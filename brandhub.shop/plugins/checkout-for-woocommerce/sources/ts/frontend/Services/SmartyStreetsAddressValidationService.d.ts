@@ -1,8 +1,7 @@
 declare class SmartyStreetsAddressValidationService {
     protected userAddress: any;
-    protected suggestedAddress: {};
+    protected suggestedAddress: Record<string, unknown> | [];
     protected userHasAcceptedAddress: boolean;
-    protected modaalTrigger: any;
     protected tabChangeDestinationID: any;
     protected addressFieldNamePrefix: string;
     constructor(addressFieldNamePrefix: string);

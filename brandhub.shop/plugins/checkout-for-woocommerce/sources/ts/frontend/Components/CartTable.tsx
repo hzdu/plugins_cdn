@@ -39,9 +39,11 @@ const CartTable: React.FC = () => {
     return (
         <>
             {
-                !isEmpty
-                && DataService.getSetting( 'enable_free_shipping_progress_bar' )
-                && shippingData?.length ? (
+                (
+                    !isEmpty
+                    && DataService.getSetting( 'enable_free_shipping_progress_bar' )
+                    && Boolean( shippingData?.length || DataService.getSetting( 'show_free_shipping_progress_bar_without_calculated_packages' ) )
+                ) ? (
                         <FreeShippingProgressBar/>
                     ) : null
             }

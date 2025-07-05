@@ -70,7 +70,7 @@ const SideCartComponent: React.FC = () => {
 
                         {ReactHtmlParser( staticActions?.cfw_side_cart_footer_start )}
 
-                        {DataService.getSetting( 'enable_promo_codes_on_side_cart' ) && (
+                        {DataService.getSetting( 'coupons_enabled_side_cart' ) && (
                             <PromoFieldControl/>
                         )}
 

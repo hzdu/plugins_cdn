@@ -18,19 +18,12 @@
     }
 
     ul.wc_stripe_checkout_banner_gateways {
-        margin-right: 8px !important;
+        margin-right: 0px !important;
 
         li.wc-stripe-checkout-banner-gateway {
-            margin-right: 8px !important;
-            margin-bottom: 0;
 
             > div {
                 @include cfw-payment-request-button();
-                margin-right: 0px !important;
-            }
-
-            &:last-child {
-                margin-right: 0px !important;
             }
         }
     }

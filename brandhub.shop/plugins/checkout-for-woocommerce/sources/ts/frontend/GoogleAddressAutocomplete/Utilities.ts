@@ -10,7 +10,7 @@ class Utilities {
     }
 
     public static getFirstComponentValueByType( types: Array<string>, components: google.maps.GeocoderAddressComponent[] ): string {
-        const values = types.map( ( type ) => Utilities.getComponentValueByType( type, components ) );
+        const values = types.map( ( type ) => Utilities.getComponentValueByType( type, components, true ) );
 
         return values.find( ( value ) => value !== '' ) ?? '';
     }

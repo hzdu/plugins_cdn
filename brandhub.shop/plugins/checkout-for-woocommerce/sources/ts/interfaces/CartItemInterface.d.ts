@@ -16,6 +16,7 @@ interface CartItemInterface {
     disable_cart_editing: boolean;
     disable_cart_editing_at_checkout: boolean;
     disable_cart_variation_editing: boolean;
+    disable_cart_variation_editing_checkout: boolean;
     max_quantity: number;
     min_quantity: number;
     step: number;

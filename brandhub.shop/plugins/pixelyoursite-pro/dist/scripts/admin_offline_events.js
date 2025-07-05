@@ -1,7 +1,13 @@
 jQuery( document ).ready(function($) {
-    var dateFormat = "yy-mm-dd"
-    var from = $( "#pys_purchase_export_datepickers .pys_datepickers_from" ).datepicker({ dateFormat: dateFormat });
-    var to = $( "#pys_purchase_export_datepickers .pys_datepickers_to" ).datepicker({ dateFormat: dateFormat })
+    let dateFormat = "yy-mm-dd",
+        dayNames = [ "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa" ],
+        datepickerConfig = {
+            dateFormat: dateFormat,
+            dayNamesMin: dayNames,
+        },
+        from = $( "#pys_purchase_export_datepickers .pys_datepickers_from" ).datepicker( datepickerConfig ),
+        to = $( "#pys_purchase_export_datepickers .pys_datepickers_to" ).datepicker( datepickerConfig );
+
     from.on( "change", function() {
         to.datepicker( "option", "minDate", getDatePickerDate( dateFormat,this ) );
     })
@@ -9,11 +15,11 @@ jQuery( document ).ready(function($) {
         from.datepicker( "option", "maxDate", getDatePickerDate(dateFormat, this ) );
     });
 
-    $("#woo_export_purchase").on('change',function(e){
+    $("#woo_export_purchase").on('change',function(){
         if($("#woo_export_purchase").val() == "export_by_date") {
-            $( "#pys_purchase_export_datepickers" ).show()
+            $( "#pys_purchase_export_datepickers" ).slideDown( 400 );
         } else {
-            $( "#pys_purchase_export_datepickers" ).hide()
+            $( "#pys_purchase_export_datepickers" ).slideUp( 400 );
         }
     })
     $("#woo_generate_export").on('click',function(e){
@@ -39,7 +45,7 @@ jQuery( document ).ready(function($) {
 
             end = (new Date()).toISOString().slice(0,10) + " 23:59:59"
         }
-        var orderStatus = $(".order_export_card .order_status:checked").map(function(){
+        var orderStatus = $(".woo-export-statuses .order_status:checked").map(function(){
             return $(this).val();
         }).get();
 
@@ -100,7 +106,7 @@ jQuery( document ).ready(function($) {
             }
             end = (new Date()).toISOString().slice(0,10) + " 23:59:59"
         }
-        var orderStatus = $(".order_export_card .order_status:checked").map(function(){
+        var orderStatus = $(".woo-export-statuses .order_status:checked").map(function(){
             return $(this).val();
         }).get();
 
@@ -164,30 +170,30 @@ jQuery( document ).ready(function($) {
         return date;
     }
 
-    function showNewFile(fileUrl,fileName) {
-        $(".order_export_card .export_links li").slice(3).remove();
+    function showNewFile( fileUrl, fileName ) {
+        $( ".export_links li" ).slice( 3 ).remove();
 
-        var parts = fileName.split("-")
-        var created = parts[0].replaceAll("_","/");
-        $type = parts[1];
-        var item = "<li><b>NEW:</b> Created on "+created+"<b> Export ";
+        let parts = fileName.split( "-" ),
+            created = parts[ 0 ].replaceAll( "_", "/" ),
+            $type = parts[ 1 ],
+            item = "<li><span class='primary-text-color primary_heading'>NEW:</span> Created on " + created + "<span class='primary-text-color primary_heading'> Export ";
 
-        if($type === "export_all") {
+        if ( $type === "export_all" ) {
             item += "All orders";
         } else {
-            var start = parts[2].replaceAll("_","/")
-            var end = parts[3].replaceAll("_","/")
-            item += "from "+start+" to "+end;
+            let start = parts[ 2 ].replaceAll( "_", "/" ),
+                end = parts[ 3 ].replaceAll( "_", "/" )
+            item += "from " + start + " to " + end;
         }
 
-        item += "</b> - <a href='"+fileUrl+"' download>download CSV</a></li>"
-        $(".order_export_card .export_links_title").after(item)
-        alert("Success create new file")
+        item += "</span> - <a href='" + fileUrl + "' download class='link'>download CSV</a></li>";
+        $( ".export_links_title" ).after( item );
+        $( ".export_links_wrap" ).slideDown( 400 );
     }
 
     function wooGenerateOfflineEventsReport(count,type,start,end,page,key) {
         showLoader(true)
-        var orderStatus = $(".order_export_card .order_status:checked").map(function(){
+        var orderStatus = $(".woo-export-statuses .order_status:checked").map(function(){
             return $(this).val();
         }).get();
 
@@ -225,7 +231,7 @@ jQuery( document ).ready(function($) {
     }
     function wooGenerateAllOfflineEventsReport(count,type,start,end,page,key) {
         showLoader(true)
-        var orderStatus = $(".order_export_card .order_status:checked").map(function(){
+        var orderStatus = $(".order_status:checked").map(function(){
             return $(this).val();
         }).get();
 

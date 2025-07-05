@@ -1,5 +1,6 @@
 
 ! function ($, orderType) {
+
     let chart = {
         chartGlobal: "",
         chartSingle: "",
@@ -31,7 +32,13 @@
                                 legend: {
                                     position: 'top',
                                     labels: {
+                                        pointStyle: 'circle',
+                                        boxWidth: 10,
                                         usePointStyle: true,
+                                        font: {
+                                            size: 16
+                                        },
+                                        padding: 24
                                     },
                                 },
                             },
@@ -284,6 +291,22 @@
         endDate : null,
         type : "",
         cog: Cookies.get('stat_cog') ? Cookies.get('stat_cog') : 'default',
+        adjustDatepickerOffset: function (input, inst) {
+            setTimeout(function () {
+                const $input = jQuery(input);
+                const $picker = inst.dpDiv;
+
+                const inputOffset = $input.offset().top;
+                const pickerOffset = $picker.offset().top;
+                const OFFSET = 8;
+
+                if (pickerOffset < inputOffset) {
+                    $picker.css('top', pickerOffset - OFFSET + 'px');
+                } else {
+                    $picker.css('top', pickerOffset + OFFSET + 'px');
+                }
+            }, 0);
+        },
         init: function (type) {
             chart.init()
             pysStatGlobal.type = type
@@ -297,7 +320,9 @@
             })
             let startDatepicker =  jQuery( ".global_data .pys_stat_time_custom .datepicker_start" )
                 .datepicker({
-                    dateFormat:"mm/dd/yy"
+                    dateFormat:"mm/dd/yy",
+                    dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                    beforeShow: this.adjustDatepickerOffset
                 })
                 .on( "change", function() {
                     pysStatGlobal.startDate = util.getDatepickerDate( this.value )
@@ -306,7 +331,9 @@
 
             let endDatepicker =  jQuery( ".global_data .pys_stat_time_custom .datepicker_end" )
                 .datepicker({
-                    dateFormat:"mm/dd/yy"
+                    dateFormat:"mm/dd/yy",
+                    dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                    beforeShow: this.adjustDatepickerOffset
                 })
                 .on( "change", function() {
                     pysStatGlobal.endDate = util.getDatepickerDate( this.value )
@@ -315,7 +342,9 @@
 
             let startDeleteDatepicker =  jQuery( ".deleting_form .pys_stat_delete_time_custom .datepicker_start" )
                 .datepicker({
-                    dateFormat:"mm/dd/yy"
+                    dateFormat:"mm/dd/yy",
+                    dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                    beforeShow: this.adjustDatepickerOffset
                 })
                 .on( "change", function() {
                     pysStatGlobal.startDateDelete = util.getDatepickerDate( this.value )
@@ -324,7 +353,9 @@
 
             let endDeleteDatepicker =  jQuery( ".deleting_form .pys_stat_delete_time_custom .datepicker_end" )
                 .datepicker({
-                    dateFormat:"mm/dd/yy"
+                    dateFormat:"mm/dd/yy",
+                    dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                    beforeShow: this.adjustDatepickerOffset
                 })
                 .on( "change", function() {
                     pysStatGlobal.endDateDelete = util.getDatepickerDate( this.value )
@@ -483,13 +514,14 @@
                 sort:$(".global_data .pys_stat_info .active").data("sort"),
                 _wpnonce:$("#html_report_wpnonce").val()
             }
+            console.log(data)
             navigation.loading()
             jQuery.ajax({
                 method: "POST",
                 url:ajaxurl,
                 data:data,
                 success: function(msg){
-                    //console.log(msg);
+                    console.log(msg);
                     if(msg.success) {
                         if (msg.data.cog == 'cog' && !msg.data.cogActive) {
                             $(".pys_stat").addClass('showInfoBlock');
@@ -502,39 +534,6 @@
                             pysStatGlobal.max = msg.data.max
                             pysStatGlobal.page = page
                             chart.showGrossChart(msg.data.items, startDate, endDate, order_by)
-                            singleTable.head = [
-                                {
-                                    title: msg.data.colName,
-                                    isSortable: false,
-                                    slug: "title",
-                                    isDefault: false,
-                                },
-                                {
-                                    title: "Orders",
-                                    isSortable: true,
-                                    slug: "order",
-                                    isDefault: false,
-                                },
-                                {
-                                    title: (pysStatSingle.cog === 'cog' || pysStatGlobal.cog === 'cog') ? 'Cost' : 'Gross Sale',
-                                    isSortable: true,
-                                    slug: "gross_sale",
-                                    isDefault: true,
-                                },
-                                {
-                                    title: (pysStatSingle.cog === 'cog' || pysStatGlobal.cog === 'cog') ? 'Profit' : 'Net Sale',
-                                    isSortable: true,
-                                    slug: "net_sale",
-                                    isDefault: false,
-                                },
-                                {
-                                    title: "Total sale",
-                                    isSortable: true,
-                                    slug: "total_sale",
-                                    isDefault: false,
-                                }
-                            ]
-                            singleTable.fillHead();
                             singleTable.fillData(msg.data.items_sum.filters)
 
                             if (page == 1) {
@@ -572,7 +571,22 @@
         type:"",
         cog: Cookies.get('stat_cog') ? Cookies.get('stat_cog') : 'default',
         perPage:50,
+        adjustDatepickerOffset: function (input, inst) {
+            setTimeout(function () {
+                const $input = jQuery(input);
+                const $picker = inst.dpDiv;
 
+                const inputOffset = $input.offset().top;
+                const pickerOffset = $picker.offset().top;
+                const OFFSET = 8;
+
+                if (pickerOffset < inputOffset) {
+                    $picker.css('top', pickerOffset - OFFSET + 'px');
+                } else {
+                    $picker.css('top', pickerOffset + OFFSET + 'px');
+                }
+            }, 0);
+        },
         init : function (type,model,filter,filterId) {
             chart.init()
             pysStatSingle.type = type
@@ -610,7 +624,9 @@
 
             let startDatepickerSingle =  jQuery( ".single_data .pys_stat_time_custom .datepicker_start" )
                 .datepicker({
-                    dateFormat:"mm/dd/yy"
+                    dateFormat:"mm/dd/yy",
+                    dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                    beforeShow: this.adjustDatepickerOffset
                 })
                 .on( "change", function() {
                     pysStatSingle.startDate = util.getDatepickerDate( this.value )
@@ -619,7 +635,9 @@
 
             let endDatepickerSingle =  jQuery( ".single_data .pys_stat_time_custom .datepicker_end" )
                 .datepicker({
-                    dateFormat:"mm/dd/yy"
+                    dateFormat:"mm/dd/yy",
+                    dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                    beforeShow: this.adjustDatepickerOffset
                 })
                 .on( "change", function() {
                     pysStatSingle.endDate = util.getDatepickerDate( this.value )
@@ -665,8 +683,8 @@
                 history.back()
             })
 
-            $(".btn-group.order_buttons .btn").on("click",function () {
-                let active = $(".btn-group.order_buttons .btn.btn-primary")
+            $(".btn-group.order_button .btn").on("click",function () {
+                let active = $(".btn-group.order_button .btn.btn-primary")
                 active.removeClass("btn-primary")
                 active.addClass("btn-secondary")
                 $(this).removeClass("btn-secondary")
@@ -719,7 +737,7 @@
                 url:ajaxurl,
                 data:data,
                 success: function(msg){
-                    // console.log(msg);
+                    console.log(msg);
                     if(msg.success) {
                         if (msg.data.cog == 'cog' && !msg.data.cogActive) {
                             $(".pys_stat").addClass('showInfoBlock');
@@ -843,7 +861,7 @@
             singleTable.onSort = onSort
             singleTable.head = [
                 {
-                    title:"",
+                    title:$(".pys_stats_filters .active").text().trim(),
                     isSortable:false,
                     slug:"title",
                     isDefault:false,
@@ -994,11 +1012,11 @@
                     cl += " sortable"
                     if(item.isDefault) {
                         cl += " active"
-                        html = ' <i class="fa fa-sort-desc"></i>'
+                        html = ' <i class="icomoon arrow-down"></i>'
                         singleTable.orderBy = item.slug
                         singleTable.selectedColl = item.title
                     } else {
-                        html = ' <i class="fa fa-sort"></i>'
+                        html = ' <i class="icomoon arrow-down-up"></i>'
                     }
 
                 }
@@ -1014,21 +1032,34 @@
 
             singleTable.parent.find("th.sortable").on("click",function () {
                 if($(this).hasClass("active")) {
+                    singleTable.head.forEach(item => {
+                        if(item.slug == $(this).data("order")){
+                            item.isDefault = true
+                        }}
+                    );
+                    console.info(singleTable.head)
                     if($(this).data("sort") == "desc") {
                         $(this).data("sort","asc")
-                        $(this).find("i").attr("class","fa fa-sort-asc")
+                        $(this).find("i").attr("class","icomoon arrow-up")
                     } else {
                         $(this).data("sort","desc")
-                        $(this).find("i").attr("class","fa fa-sort-desc")
+                        $(this).find("i").attr("class","icomoon arrow-down")
                     }
                     singleTable.sort = $(this).data("sort")
                 } else {
                     let $active = singleTable.parent.find("th.active")
                     $active.removeClass("active")
-                    $active.find("i").attr("class","fa fa-sort")
+                    $active.find("i").attr("class","icomoon arrow-down-up")
                     $(this).addClass("active")
+                    singleTable.head.forEach(item => {
+                        item.isDefault = false
+                        if(item.slug == $(this).data("order")){
+                            item.isDefault = true
+                        }}
+                    );
+                    console.info(singleTable.head)
                     $(this).data("sort","desc")
-                    $(this).find("i").attr("class","fa fa-sort-desc")
+                    $(this).find("i").attr("class","icomoon arrow-down")
 
                     singleTable.sort = $(this).data("sort")
                     singleTable.orderBy = $(this).data("order")
@@ -1155,23 +1186,6 @@
 
     jQuery( document ).ready(function() {
 
-        if($(".stat_progress").length > 0) {
-            statImport.start()
-        } else {
-            if($("#pys .single_data").length>0) {
-                pysStatSingle.init($("#pys .single_data").data("type"),$("#pys .single_data").data("model"),$("#pys .single_data").data("filter"),$("#pys .single_data").data("filter_id"))
-                pysStatSingle.loadData()
-            }
-
-            if($("#pys .global_data").length>0) {
-                pysStatGlobal.init(($("#pys .global_data").data("type")) )
-                pysStatGlobal.loadGlobalData(1)
-            }
-
-        }
-
-
-
         $(".btn-save-woo-stat").on("click",function () {
 
             jQuery.ajax({
@@ -1207,14 +1221,22 @@
                 },
             })
         })
+        if($(".stat_progress").length > 0) {
+            statImport.start()
+        } else {
+            if($("#pys .single_data").length>0) {
+                pysStatSingle.init($("#pys .single_data").data("type"),$("#pys .single_data").data("model"),$("#pys .single_data").data("filter"),$("#pys .single_data").data("filter_id"))
+                pysStatSingle.loadData()
+            }
 
+            if($("#pys .global_data").length>0) {
+                pysStatGlobal.init(($("#pys .global_data").data("type")) )
+                pysStatGlobal.loadGlobalData(1)
+            }
+
+        }
 
     })
-
-
-
-
-
 
 }(jQuery);
 

@@ -32,16 +32,16 @@ const CartTotals = () => {
                         </tr>
                     ) )}
 
-                    {typeof totals.shipping !== 'undefined' && (
-                        <tr className="shipping">
+                    {totals.shipping?.map( ( shipping, index ) => (
+                        <tr key={index} className="shipping">
                             <th>
-                                <Markup content={totals.shipping.label} noWrap={true} />
+                                <Markup content={shipping.label} noWrap={true} />
                             </th>
                             <td>
-                                <Markup content={totals.shipping.value} noWrap={true} />
+                                <Markup content={shipping.value} noWrap={true} />
                             </td>
                         </tr>
-                    )}
+                    ) )}
 
                     {totals.fees.map( ( fee, index ) => (
                         <tr key={index} className="fee">

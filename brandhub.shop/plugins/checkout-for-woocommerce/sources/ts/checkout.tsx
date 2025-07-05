@@ -93,6 +93,7 @@ import ShippingPackages                                                         
 import Mollie                                                                                         from './frontend/Compatibility/Gateways/Mollie';
 import WooCommercePayments                                                                            from './frontend/Compatibility/Gateways/WooCommercePayments';
 import CheckoutCartTable                                                                              from './frontend/Components/CheckoutCartTable';
+import YITHDeliveryDate                                                                               from './frontend/Compatibility/Plugins/YITHDeliveryDate';
 
 const hasSeparateAddress1Fields = DataService.getSetting( 'enable_separate_address_1_fields' );
 
@@ -348,6 +349,7 @@ cfwDomReady( () => {
         new OwnID(),
         new Mollie(),
         new WooCommercePayments(),
+        new YITHDeliveryDate(),
     ].forEach( ( compat ) => compat.maybeLoad() );
 
     // Init checkout ( WooCommerce native event )

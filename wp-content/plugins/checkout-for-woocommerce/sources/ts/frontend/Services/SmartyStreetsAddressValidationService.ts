@@ -7,11 +7,9 @@ import LoggingService                          from './LoggingService';
 class SmartyStreetsAddressValidationService {
     protected userAddress;
 
-    protected suggestedAddress = {};
+    protected suggestedAddress: Record<string, unknown> | [] = {};
 
     protected userHasAcceptedAddress = false;
-
-    protected modaalTrigger;
 
     protected tabChangeDestinationID = null;
 
@@ -130,8 +128,11 @@ class SmartyStreetsAddressValidationService {
         const handleSuggestedAddressButtonClick = ( e: { preventDefault: () => void; } ) => {
             e.preventDefault();
 
-            if ( !this.suggestedAddress ) {
+            // the assumption here is that it should only ever be an array when an error has occured, and there is no suggested address
+            // we only check for an array, rather than array length, because we are expecting an object below so it shouldn't continue beyond this point as an array
+            if ( Array.isArray( this.suggestedAddress ) ) {
                 jQuery( document.body ).trigger( 'cfw_smarty_streets_modal_close' );
+                return;
             }
 
             // Replace address with suggested address

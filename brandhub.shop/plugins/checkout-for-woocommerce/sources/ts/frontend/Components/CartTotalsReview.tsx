@@ -1,8 +1,8 @@
-import React                                from 'react';
-import { useSelect }                        from '@wordpress/data';
-import ReviewPaneItem                       from './ReviewPane/ReviewPaneItem';
-import DataStores                           from '../DataStores';
-import { CartTotalsData }                   from '../../interfaces/CartTotalInterface';
+import React                                  from 'react';
+import { useSelect }                          from '@wordpress/data';
+import ReviewPaneItem                         from './ReviewPane/ReviewPaneItem';
+import DataStores                             from '../DataStores';
+import { CartTotalsData }                     from '../../interfaces/CartTotalInterface';
 
 const CartTotalsReview = () => {
     const totals = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartTotals( null ), [] ) as CartTotalsData;
@@ -24,13 +24,14 @@ const CartTotalsReview = () => {
                 />
             ) )}
 
-            {typeof totals.shipping !== 'undefined' && (
+            {totals.shipping?.map( ( shipping, index ) => (
                 <ReviewPaneItem
-                    label={totals.shipping.label}
-                    content={totals.shipping.value}
+                    key={index}
+                    label={shipping.label}
+                    content={shipping.value}
                     showChangeLink={false}
                 />
-            )}
+            ) )}
 
             {totals.fees.map( ( fee, index ) => (
                 <ReviewPaneItem

@@ -56,16 +56,28 @@ class Pickup {
             jQuery( document.body ).removeClass( 'cfw-hide-pickup-methods' );
         }
 
+        const shipDifferentThanBilling = jQuery( '#shipping_dif_from_billing_radio' );
+        const billingSameAsShipping = jQuery( '#billing_same_as_shipping_radio' );
+
         if ( isPickup ) {
             Pickup.shippingAddress.hide();
             jQuery( '#cfw-pickup-location-wrap' ).show().find( ':input' ).prop( 'disabled', false );
 
-            jQuery( '#shipping_dif_from_billing_radio' ).prop( 'checked', true ).trigger( 'change' );
-            jQuery( '#billing_same_as_shipping_radio' ).prop( 'disabled', true );
+            // Store the original checked state before modifying
+            const originalShippingDiffState = shipDifferentThanBilling.prop( 'checked' );
+
+            shipDifferentThanBilling
+                .data( 'original_checked', originalShippingDiffState )
+                .prop( 'checked', true )
+                .trigger( 'change' );
+
+            billingSameAsShipping.prop( 'disabled', true );
+
             jQuery( '#cfw-shipping-same-billing .cfw-radio-reveal-group' ).css( 'border', 'none' );
             jQuery( '#cfw-shipping-same-billing .cfw-radio-reveal-group .cfw-radio-reveal-li' ).css( 'border', 'none' );
             jQuery( '#cfw-shipping-same-billing .cfw-radio-reveal-title-wrap' ).hide();
             jQuery( '.cfw-shipping-methods-heading' ).hide();
+
             Pickup.billingFieldsContainer.css( {
                 padding: '0',
                 border: 'none',
@@ -83,11 +95,27 @@ class Pickup {
             Pickup.shippingAddress.show();
             jQuery( '#cfw-pickup-location-wrap' ).hide().find( ':input' ).prop( 'disabled', true );
 
-            jQuery( '#billing_same_as_shipping_radio' ).prop( 'disabled', false );
+            billingSameAsShipping.prop( 'disabled', false );
+
+            // Restore the original checked state
+            const originalShippingDiffState = shipDifferentThanBilling.data( 'original_checked' );
+
+            if ( originalShippingDiffState !== undefined ) {
+                shipDifferentThanBilling.prop( 'checked', originalShippingDiffState );
+                billingSameAsShipping.prop( 'checked', !originalShippingDiffState );
+
+                if ( originalShippingDiffState ) {
+                    shipDifferentThanBilling.trigger( 'change' );
+                } else {
+                    billingSameAsShipping.trigger( 'change' );
+                }
+            }
+
             jQuery( '#cfw-shipping-same-billing .cfw-radio-reveal-group' ).css( 'border', '' );
             jQuery( '#cfw-shipping-same-billing .cfw-radio-reveal-group .cfw-radio-reveal-li' ).css( 'border', '' );
             jQuery( '#cfw-shipping-same-billing .cfw-radio-reveal-title-wrap' ).show();
             jQuery( '.cfw-shipping-methods-heading' ).show();
+
             Pickup.billingFieldsContainer.css( {
                 padding: '',
                 border: '',
@@ -95,6 +123,7 @@ class Pickup {
             } );
 
             const label = Pickup.shippingMethodBreadcrumb.data( 'old_label' );
+
             Pickup.shippingMethodBreadcrumb.text( label );
 
             const oldButtonLabel = continueToShippingBtn.data( 'old_label' );

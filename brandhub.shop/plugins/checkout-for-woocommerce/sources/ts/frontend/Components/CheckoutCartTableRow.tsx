@@ -65,7 +65,7 @@ const CheckoutCartTableRow = ( { item, updateItem }: CartTableRowProps ) => (
                     />
                 ) }
 
-                { !item.disable_cart_editing_at_checkout && (
+                { !item.disable_cart_variation_editing_checkout && (
                     <CartItemEditVariationLink item={item} />
                 ) }
             </div>

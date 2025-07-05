@@ -26,7 +26,7 @@ export interface CartTotalsData {
     coupons: CartCoupon[];
     fees: CartFee[];
     taxes: CartTax[];
-    shipping?: CartTotal;
+    shipping?: CartTotal[];
     quantity: number;
 }
 export {};

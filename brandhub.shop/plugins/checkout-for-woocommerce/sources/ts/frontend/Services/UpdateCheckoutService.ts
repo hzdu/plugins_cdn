@@ -166,8 +166,10 @@ class UpdateCheckoutService {
             data = { fragments: {} };
         }
 
-        jQuery( document.body ).trigger( 'updated_checkout', [ data ] );
-        LoggingService.logEvent( 'Fired updated_checkout event.' );
+        requestAnimationFrame( () => {
+            jQuery( document.body ).trigger( 'updated_checkout', [ data ] );
+            LoggingService.logEvent( 'Fired updated_checkout event.' );
+        } );
     }
 
     /**

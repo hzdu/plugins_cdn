@@ -42,6 +42,17 @@ class WooCommerceGiftCards extends Compatibility {
 
             return false;
         } );
+
+        // Resolve issues with the totals component being rendered multiple places simultaneously
+        // Only alternative would be to selectively render them or suppress the action output in some contexts
+        // But we render it in 3 places (mobile header, mobile cart summary, desktop cart summary)
+        // So this hacky workaround is preferred for now
+        // Ticket: https://secure.helpscout.net/conversation/2978044881/21763?viewId=8485149
+        jQuery( document.body ).on( 'change', '#use_gift_card_balance', function () {
+            // Sync all checkboxes with this id
+            const checked = jQuery( this ).is( ':checked' );
+            jQuery( '#use_gift_card_balance' ).prop( 'checked', checked );
+        } );
     }
 }
 

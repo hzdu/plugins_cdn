@@ -38,13 +38,13 @@ class Accordion {
         const radioButton = target;
         const parentRow = radioButton.parents( '.cfw-radio-reveal-li' ).first();
         const siblings = parentRow.siblings( '.cfw-radio-reveal-li' );
-        const content = siblings.find( '.cfw-radio-reveal-content:visible' );
+        const content = siblings.find( '.cfw-radio-reveal-content' );
 
         if ( radioButton.is( ':checked' ) ) {
             siblings.removeClass( 'cfw-active' );
             parentRow.addClass( 'cfw-active' );
             content.slideUp( 300 );
-            parentRow.find( '.cfw-radio-reveal-content:hidden' ).slideDown( 300 );
+            parentRow.find( '.cfw-radio-reveal-content' ).slideDown( 300 );
         } else {
             parentRow.removeClass( 'cfw-active' );
         }

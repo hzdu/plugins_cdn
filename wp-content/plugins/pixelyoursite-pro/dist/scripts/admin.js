@@ -1,3 +1,5 @@
+const ADMIN_BAR_HEIGHT = 32;
+
 function pysTagTemplateSelection( tag, container ) {
     // here we are finding option element of tag and
     // if it has property 'locked' we will add class 'locked-tag'
@@ -13,20 +15,28 @@ function pysTagTemplateSelection( tag, container ) {
 
 jQuery( document ).ready( function ( $ ) {
 
+    $(".password-block").each(function() {
+        maskPassword($(this));
+    });
+    $(".maskedInput").on("input", function() {
+        updatePassword($(this));
+    });
     function toggleVisibilityBasedOnValue( e ) {
-        var targetElement = $( "#" + e.data( "target" ) );
+        let targetElement = $( "#" + e.data( "target" ) );
         if ( e.val() === e.data( "value" ) ) {
-            targetElement.removeClass( "form-control-hidden" );
+            targetElement.slideDown( 400 );
+            setTimeout( () => targetElement.removeClass( "form-control-hidden" ), 400 );
         } else {
-            targetElement.addClass( "form-control-hidden" );
+            targetElement.slideUp( 400 );
+            setTimeout( () => targetElement.addClass( "form-control-hidden" ), 400 );
         }
     }
 
     function toggleWooEventValueOption() {
         if ( $( 'input[name="pys[core][woo_event_value]"]:checked' ).val() === "price" ) {
-            $( ".woo-event-value-option" ).hide();
+            $( ".woo-event-value-option" ).slideUp( 400 );
         } else {
-            $( ".woo-event-value-option" ).show();
+            $( ".woo-event-value-option" ).slideDown( 400 );
         }
     }
 
@@ -53,12 +63,6 @@ jQuery( document ).ready( function ( $ ) {
 
                 $( panelName ).show();
 
-                if ( eventType === "page_visit" ) {
-                    trigger.find( ".url_filter_panel" ).hide();
-                } else {
-                    trigger.find( ".url_filter_panel" ).show();
-                }
-
                 let triggerPanel = $( panelName ),
                     triggerType = triggerPanel.data( "trigger_type" );
 
@@ -83,9 +87,22 @@ jQuery( document ).ready( function ( $ ) {
             $( "select", clonedTrigger ).attr( "name", newTriggerName + "[rule]" );
             $( "input", clonedTrigger ).attr( "name", newTriggerName + "[value]" );
             clonedTrigger.css( "display", "block" );
+
+            const $inputWrapperList = clonedTrigger.find( '.input-number-wrapper' );
+            $inputWrapperList.each( function () {
+                addInputNumberListener( $( this ) );
+            } );
+
             clonedTrigger.insertBefore( $( ".insert-marker", triggerPanel ) );
         }
+    }
 
+    function toggleTriggerGroupHead( triggerHead, panel ) {
+        if ( triggerHead.length > 0 ) {
+            triggerHead.each( function () {
+                $( this ).attr( 'class', 'trigger_group_head trigger_group_' + panel );
+            } )
+        }
     }
 
     function toggleEventDelay() {
@@ -109,67 +126,103 @@ jQuery( document ).ready( function ( $ ) {
                 }
             } )
         }
-
     }
 
     function toggleFacebookPanel() {
-        if ( $( "#pys_event_facebook_enabled" ).is( ":checked" ) ) {
-            $( "#facebook_panel" ).show();
+        let event_facebook_enabled = $( "#pys_event_facebook_enabled" ),
+            card = event_facebook_enabled.closest( '.card' ),
+            configured = +card.attr( 'data-configured' ) === 1,
+            pixel_status = card.find( '.custom-event-pixel-status .pixel-status' );
+
+        if ( configured ) {
+            if ( event_facebook_enabled.is( ":checked" ) ) {
+                $( "#facebook_panel" ).removeClass( 'disabled' );
+                pixel_status.find( '.pixel-enabled' ).show();
+                pixel_status.find( '.pixel-disabled' ).hide();
+            } else {
+                $( "#facebook_panel" ).addClass( 'disabled' );
+                pixel_status.find( '.pixel-enabled' ).hide();
+                pixel_status.find( '.pixel-disabled' ).show();
+            }
         } else {
-            $( "#facebook_panel" ).hide();
+            $( '.facebook-not-configured-error' ).show();
+            $( "#facebook_panel" ).addClass( 'disabled' );
+            event_facebook_enabled.prop( 'checked', false ).prop( 'disabled', true );
         }
     }
 
     function toggleFacebookCustomEventType() {
         if ( $( "#pys_event_facebook_event_type" ).val() === "CustomEvent" ) {
-            $( ".facebook-custom-event-type" ).css( "visibility", "visible" );
+            $( ".facebook-custom-event-type" ).slideDown( 400 );
         } else {
-            $( ".facebook-custom-event-type" ).css( "visibility", "hidden" );
+            $( ".facebook-custom-event-type" ).slideUp( 400 );
         }
     }
 
     function toggleFacebookParamsPanel() {
         if ( $( "#pys_event_facebook_params_enabled" ).is( ":checked" ) ) {
             $( "#facebook_params_panel" ).show();
+            updateFacebookParamsPanelClass( 0 );
         } else {
-            $( "#facebook_params_panel" ).hide();
+            $( "#facebook_params_panel" ).slideUp( 400 );
         }
     }
 
-    function updateFacebookParamsPanelClass() {
-        var eventType = $( "#pys_event_facebook_event_type" ).val();
-        $( "#facebook_params_panel" ).removeClass().addClass( eventType );
+    function updateFacebookParamsPanelClass( delay = 200 ) {
+        $( "#facebook_params_panel" ).slideUp( delay, function () {
+            if ( $( "#pys_event_facebook_params_enabled" ).is( ":checked" ) ) {
+                let eventType = $( "#pys_event_facebook_event_type" ).val();
+                $( "#facebook_params_panel" ).removeClass().addClass( eventType );
+
+                $( this ).slideDown( 400 );
+            }
+        } );
     }
 
     function toggleFacebookCustomCurrency() {
         if ( $( "#pys_event_facebook_params_currency" ).val() === "custom" ) {
-            $( ".facebook-custom-currency" ).css( "visibility", "visible" );
+            $( ".facebook-custom-currency" ).slideDown( 400 );
         } else {
-            $( ".facebook-custom-currency" ).css( "visibility", "hidden" );
+            $( ".facebook-custom-currency" ).slideUp( 400 );
         }
     }
 
     function togglePinterestPanel() {
-        if ( $( "#pys_event_pinterest_enabled" ).is( ":checked" ) ) {
-            $( "#pinterest_panel" ).show();
+        let event_pinterest_enabled = $( "#pys_event_pinterest_enabled" ),
+            card = event_pinterest_enabled.closest( '.card' ),
+            configured = +card.attr('data-configured') === 1,
+            pixel_status = card.find( '.custom-event-pixel-status .pixel-status' );
+
+        if ( configured ) {
+            if ( event_pinterest_enabled.is( ":checked" ) ) {
+                $( "#pinterest_panel" ).removeClass( 'disabled' );
+                pixel_status.find( '.pixel-enabled' ).show();
+                pixel_status.find( '.pixel-disabled' ).hide();
+            } else {
+                $( "#pinterest_panel" ).addClass( 'disabled' );
+                pixel_status.find( '.pixel-enabled' ).hide();
+                pixel_status.find( '.pixel-disabled' ).show();
+            }
         } else {
-            $( "#pinterest_panel" ).hide();
+            $('.pinterest-not-configured-error').show();
+            $( "#pinterest_panel" ).addClass( 'disabled' );
+            event_pinterest_enabled.prop( 'checked', false ).prop( 'disabled', true );
         }
     }
 
     function togglePinterestCustomEventType() {
-        if ( $( "#pys_event_pinterest_event_type" ).val() === "CustomEvent" ) {
-            $( ".pinterest-custom-event-type" ).css( "visibility", "visible" );
+        if ( $( "#pys_event_pinterest_event_type" ).val() === "partner_defined" ) {
+            $( ".pinterest-custom-event-type" ).slideDown( 400 );
         } else {
-            $( ".pinterest-custom-event-type" ).css( "visibility", "hidden" );
+            $( ".pinterest-custom-event-type" ).slideUp( 400 );
         }
     }
 
     function togglePinterestParamsPanel() {
         if ( $( "#pys_event_pinterest_params_enabled" ).is( ":checked" ) ) {
-            $( "#pinterest_params_panel" ).show();
+            $( "#pinterest_params_panel" ).slideDown( 400 );
         } else {
-            $( "#pinterest_params_panel" ).hide();
+            $( "#pinterest_params_panel" ).slideUp( 400 );
         }
     }
 
@@ -211,10 +264,25 @@ jQuery( document ).ready( function ( $ ) {
     }
 
     function toggleBingPanel() {
-        if ( $( "#pys_event_bing_enabled" ).is( ":checked" ) ) {
-            $( "#bing_panel" ).show();
+        let event_bing_enabled = $( "#pys_event_bing_enabled" ),
+            card = event_bing_enabled.closest( '.card' ),
+            configured = +card.attr('data-configured') === 1,
+            pixel_status = card.find( '.custom-event-pixel-status .pixel-status' );
+
+        if ( configured ) {
+            if ( event_bing_enabled.is( ":checked" ) ) {
+                $( "#bing_panel" ).removeClass( 'disabled' );
+                pixel_status.find( '.pixel-enabled' ).show();
+                pixel_status.find( '.pixel-disabled' ).hide();
+            } else {
+                $( "#bing_panel" ).addClass( 'disabled' );
+                pixel_status.find( '.pixel-enabled' ).hide();
+                pixel_status.find( '.pixel-disabled' ).show();
+            }
         } else {
-            $( "#bing_panel" ).hide();
+            $('.bing-not-configured-error').show();
+            $( "#bing_panel" ).addClass( 'disabled' );
+            event_bing_enabled.prop( 'checked', false ).prop( 'disabled', true );
         }
     }
 
@@ -262,10 +330,16 @@ jQuery( document ).ready( function ( $ ) {
                     } );
                     break;
                 case 'device' :
-                    $( '.custom-radio input[type="radio"]', clonedCondition ).attr( {
-                        name: 'pys[event][conditions][' + conditionId + '][device]',
-                        id: 'pys_event_' + conditionId + '_device'
-                    } );
+
+                    $( 'input[type="radio"]', clonedCondition ).each(function(index) {
+                        const newId = 'pys_event_' + conditionId + '_device_' + index;
+                        const newName = 'pys[event][conditions][' + conditionId + '][device]';
+                        $(this).attr({
+                            id: newId,
+                            name: newName
+                        });
+                        $(this).next('.radio-checkbox-label').attr('for', newId);
+                    });
                     break;
                 case 'user_role':
                     $( 'select', clonedCondition ).attr( {
@@ -290,7 +364,7 @@ jQuery( document ).ready( function ( $ ) {
 
     function cloneEventTrigger() {
         let cloned = $( '#pys_add_event_trigger .trigger_group' ).clone( true ),
-            triggerWrapper = $( '.pys_triggers_wrapper' ),
+            triggerWrapper = $( '.pys_triggers_wrapper .insert-marker-add-trigger' ),
             triggerGroup = $( '.pys_triggers_wrapper .trigger_group' ),
             triggerId = 0;
 
@@ -304,7 +378,7 @@ jQuery( document ).ready( function ( $ ) {
             value: 'page_visit'
         } );
 
-        $( '.event-delay > input', cloned ).attr( {
+        $( '.event-delay input', cloned ).attr( {
             name: 'pys[event][triggers][' + triggerId + '][delay]',
             id: 'pys_event_' + triggerId + '_delay'
         } );
@@ -312,9 +386,13 @@ jQuery( document ).ready( function ( $ ) {
         cloned.attr( 'data-trigger_id', triggerId );
         cloned.css( 'display', 'block' );
 
-        triggerWrapper.append( cloned );
-        $( '.pys_event_trigger_type', cloned ).trigger( 'change' );
+        const $inputWrapperList = cloned.find( '.input-number-wrapper');
+        $inputWrapperList.each( function () {
+            addInputNumberListener( $( this ) );
+        } );
 
+        cloned.insertBefore( triggerWrapper );
+        $( '.pys_event_trigger_type', cloned ).trigger( 'change' );
     }
 
     function checkTriggerTypeAvailability( group, triggerPanel ) {
@@ -334,19 +412,19 @@ jQuery( document ).ready( function ( $ ) {
                     triggerId = group.attr( "data-trigger_id" );
                 switch ( panel ) {
                     case 'post_type':
-                        $( '.trigger_post_type > select', clonedTrigger ).attr( {
+                        $( '.trigger_post_type select', clonedTrigger ).attr( {
                             name: 'pys[event][triggers][' + triggerId + '][post_type_value]',
                             id: 'pys_event_' + triggerId + '_post_type_value'
                         } );
                         break;
 
                     case 'number_page_visit_conditional':
-                        $( '.conditional_number_visit > select', clonedTrigger ).attr( {
+                        $( '.conditional_number_visit select', clonedTrigger ).attr( {
                             name: 'pys[event][triggers][' + triggerId + '][conditional_number_visit]',
                             id: 'pys_event_' + triggerId + '_conditional_number_visit'
                         } );
 
-                        $( '.number_visit > input', clonedTrigger ).attr( {
+                        $( '.number_visit input', clonedTrigger ).attr( {
                             name: 'pys[event][triggers][' + triggerId + '][number_visit]',
                             id: 'pys_event_' + triggerId + '_number_visit'
                         } );
@@ -518,7 +596,7 @@ jQuery( document ).ready( function ( $ ) {
                 clonedTrigger.css( "display", "block" );
                 let inserted = clonedTrigger.insertBefore( group.find( '.insert-marker-trigger.' + panel + '_marker' ) );
 
-                $( '.pys-tags-pysselect2', inserted ).each( function ( index, item ) {
+                $( '.pys-tags-pysselect2', inserted ).each( function () {
                     if ( !$( this ).data( 'select2' ) ) {
                         $( this ).pysselect2( {
                             tags: true,
@@ -528,13 +606,17 @@ jQuery( document ).ready( function ( $ ) {
                     }
                 } )
 
-
-                $( 'select.pys-pysselect2', inserted ).each( function ( index, item ) {
+                $( 'select.pys-pysselect2', inserted ).each( function () {
                     if ( !$( this ).data( 'select2' ) ) {
                         $( this ).pysselect2( {
                             placeholder: $( this ).data( "placeholder" ),
                         } );
                     }
+                } );
+
+                const $inputWrapperList = clonedTrigger.find( '.input-number-wrapper');
+                $inputWrapperList.each( function () {
+                    addInputNumberListener( $( this ) );
                 } );
             } );
         }
@@ -542,13 +624,36 @@ jQuery( document ).ready( function ( $ ) {
 
     // Initialize popovers
     $( () => {
-        $( '[data-toggle="pys-popover"]' ).popover( {
-            container: "#pys",
-            html: true,
-            content: function () {
-                return $( "#pys-" + $( this ).data( "popover_id" ) ).html();
-            }
+        tippy('[data-toggle="pys-popover"]', {
+            allowHTML: true,
+            animation: 'fade',
+            trigger: 'click',
+            appendTo: document.querySelector('#pys'),
+            maxWidth: 320,
+            content(reference) {
+                const id = reference.getAttribute('data-popover_id');
+                return $( "#pys-" + id ).html();
+            },
+            interactive: true
         } );
+
+        tippy('.copy-icon', {
+            content(reference) {
+                const id = reference.getAttribute('data-popover_id');
+                return $( "#pys-" + id ).html();
+            },
+            appendTo: document.querySelector('#pys'),
+            maxWidth: 320,
+            trigger: 'click',
+            placement: 'bottom',
+            animation: 'fade',
+            onShow(instance) {
+                setTimeout(() => {
+                    instance.hide();
+                }, 3000);
+            }
+        });
+
     } );
 
     // Initialize pysselect2 for select elements
@@ -576,24 +681,26 @@ jQuery( document ).ready( function ( $ ) {
     } );
 
     // Collapse card functionality
-    $( ".card-collapse" ).on( 'click', function () {
-        var cardBody = $( this ).closest( ".card" ).children( ".card-body" );
-        if ( cardBody.hasClass( "show" ) ) {
-            cardBody.hide().removeClass( "show" );
-        } else {
-            cardBody.show().addClass( "show" );
+    $( ".card-collapse, .card-header-label .general-property-svg" ).on( 'click', function () {
+        let cardBody = $( this ).closest( ".card, .card-video" ).children( ".card-body" ),
+            cardHeader = $( this ).closest( ".card-header, .card-video-header" );
+
+        if ( cardHeader.length > 0 ) {
+            cardHeader.toggleClass( "header-opened" );
         }
+
+        cardBody.slideToggle( 400 );
     } );
 
     // Toggle visibility based on custom switch inputs
     $( ".collapse-control .custom-switch-input" ).on( 'change', function () {
-        var $this = $( this ),
+        let $this = $( this ),
             targetElement = $( "." + $this.data( "target" ) );
         if ( targetElement.length > 0 ) {
             if ( $this.prop( "checked" ) ) {
-                targetElement.show();
+                targetElement.slideDown( 400 );
             } else {
-                targetElement.hide();
+                targetElement.slideUp( 400 );
             }
         }
     } ).trigger( "change" );
@@ -608,23 +715,41 @@ jQuery( document ).ready( function ( $ ) {
         toggleEDDEventValueOption();
     } );
 
+    //toggle all events
     $( "#pys_select_all_events" ).on( 'change', function () {
         if ( $( this ).prop( "checked" ) ) {
             $( ".pys-select-event" ).prop( "checked", "checked" );
         } else {
             $( ".pys-select-event" ).prop( "checked", false );
         }
+
+        checkEventsState();
     } );
+
+    $( ".pys-select-event" ).on( 'change', function () {
+       checkEventsState();
+    })
+
+    function checkEventsState() {
+        let allEvents = $( ".pys-select-event" );
+        if ( allEvents.filter( ":checked" ).length > 0 ) {
+            $( ".buttons-action-events" ).addClass( 'checked' );
+        } else {
+            $( ".buttons-action-events" ).removeClass( 'checked' );
+        }
+    }
 
     toggleEventDelay();
     showRelevantEventTriggerPanel();
     $( ".pys_event_trigger_type" ).on( 'change', function () {
         let triggerGroup = $( this ).closest( '.trigger_group' ),
+            triggerHead = $( this ).closest( '.trigger_group_head' ),
             panel = $( this ).val();
 
         checkTriggerTypeAvailability( triggerGroup, panel )
         toggleEventDelay();
         showRelevantEventTriggerPanel();
+        toggleTriggerGroupHead( triggerHead, panel );
     } );
 
     $('.pys_conditions_wrapper .pys-role-pysselect2').each( function ( index, value ) {
@@ -638,17 +763,13 @@ jQuery( document ).ready( function ( $ ) {
     } );
 
     $( ".add-event-trigger" ).on( 'click', function () {
-        var triggerPanel = $( this ).closest( ".event_triggers_panel" ),
+        let triggerPanel = $( this ).closest( ".event_triggers_panel" ),
             triggerType = triggerPanel.data( "trigger_type" );
         cloneAndInsertTrigger( triggerPanel, triggerType );
     } );
 
-    $( ".add-url-filter" ).on( 'click', function () {
-        cloneAndInsertTrigger( $( this ).closest( ".event_triggers_panel" ), "url_filter" );
-    } );
-
-    $( ".remove-row" ).on( 'click', function ( e ) {
-        $( this ).closest( ".row.event_trigger, .row.facebook-custom-param, .row.pinterest-custom-param, .row.google_ads-custom-param" ).remove();
+    $( document ).on( 'click', '.button-remove-row', function ( e ) {
+        $( this ).closest( ".event_trigger, .facebook-custom-param, .pinterest-custom-param, .ga-ads-custom-param" ).remove();
     } );
 
     toggleFacebookPanel();
@@ -768,28 +889,62 @@ jQuery( document ).ready( function ( $ ) {
         $( '#pys-add-trigger .add-trigger' ).trigger( 'click' );
     }
 
-} );
+    function toggleMergedGA() {
+        let merged_ga_enabled = $( "#pys_event_ga_ads_enabled" ),
+            card = merged_ga_enabled.closest( '.card' ),
+            configured = +card.attr( 'data-configured' ) === 1,
+            pixel_status = card.find( '.custom-event-pixel-status .pixel-status' );
 
-
-jQuery( document ).ready( function ( $ ) {
-    function enable_merged_ga() {
-        $( "#pys_event_ga_ads_enabled" ).is( ":checked" ) ? $( "#merged_analytics_panel" ).show() : $( "#merged_analytics_panel" ).hide()
+        if ( configured ) {
+            if ( merged_ga_enabled.is( ":checked" ) ) {
+                $( "#merged_analytics_panel" ).removeClass( 'disabled' );
+                pixel_status.find( '.pixel-enabled' ).show();
+                pixel_status.find( '.pixel-disabled' ).hide();
+            } else {
+                $( "#merged_analytics_panel" ).addClass( 'disabled' );
+                pixel_status.find( '.pixel-enabled' ).hide();
+                pixel_status.find( '.pixel-disabled' ).show();
+            }
+        } else {
+            $( '.gatags-not-configured-error' ).show();
+            $( "#merged_analytics_panel" ).addClass( 'disabled' );
+            merged_ga_enabled.prop( 'checked', false ).prop( 'disabled', true );
+        }
     }
 
-    enable_merged_ga();
+    toggleMergedGA();
     $( "#pys_event_ga_ads_enabled" ).on( 'click', function () {
-        enable_merged_ga()
+        toggleMergedGA();
     } )
 
-    function enable_gtm(){
-        $("#pys_event_gtm_enabled").is(":checked")?$("#gtm_panel").show():$("#gtm_panel").hide()
-    }
-    enable_gtm();
-    $("#pys_event_gtm_enabled").on('click',function(){enable_gtm()})
+    function toggleGTMPanel() {
+        let event_gtm_enabled = $( "#pys_event_gtm_enabled" ),
+            card = event_gtm_enabled.closest( '.card' ),
+            configured = +card.attr( 'data-configured' ) === 1,
+            pixel_status = card.find( '.custom-event-pixel-status .pixel-status' );
 
-    function check_custom_action_merged() {
-        "_custom" === $( "#pys_event_ga_ads_event_action" ).val() ? $( "#pys_event_ga_ads_custom_event_action" ).css( "visibility", "visible" ) : $( "#pys_event_ga_ads_custom_event_action" ).css( "visibility", "hidden" )
+        if ( configured ) {
+            if ( event_gtm_enabled.is( ":checked" ) ) {
+                $( "#gtm_panel" ).removeClass( 'disabled' );
+                pixel_status.find( '.pixel-enabled' ).show();
+                pixel_status.find( '.pixel-disabled' ).hide();
+            } else {
+                $( "#gtm_panel" ).addClass( 'disabled' );
+                pixel_status.find( '.pixel-enabled' ).hide();
+                pixel_status.find( '.pixel-disabled' ).show();
+            }
+        } else {
+            $( '.gtm-not-configured-error' ).show();
+            $( "#gtm_panel" ).addClass( 'disabled' );
+            event_gtm_enabled.prop( 'checked', false ).prop( 'disabled', true );
+        }
     }
+
+    toggleGTMPanel();
+
+    $( "#pys_event_gtm_enabled" ).on( 'click', function () {
+        toggleGTMPanel()
+    } )
 
     checkStepActive();
     calculateStepsNums();
@@ -802,7 +957,7 @@ jQuery( document ).ready( function ( $ ) {
     } );
 
     function calculateStepsNums() {
-        var step = 2;
+        let step = 2;
         $( '.checkout_progress' ).each( function ( index, value ) {
             if ( $( value ).find( "input:checked" ).length > 0 ) {
                 $( value ).find( ".step" ).text( "STEP " + step + ": " );
@@ -815,12 +970,12 @@ jQuery( document ).ready( function ( $ ) {
 
     function checkStepActive() {
         if ( $( '.woo_initiate_checkout_enabled input[type="checkbox"]' ).is( ':checked' ) ) {
-            $( '.checkout_progress .custom-switch' ).removeClass( "disabled" );
+            $( '.checkout_progress .secondary-switch' ).removeClass( "disabled" );
             $( '.checkout_progress input[type="checkbox"]' ).removeAttr( "disabled" );
             $( '.woo_initiate_checkout_enabled .step' ).text( "STEP 1:" );
         } else {
             $( '.checkout_progress input' ).prop( 'checked', false );
-            $( '.checkout_progress .custom-switch' ).addClass( "disabled" );
+            $( '.checkout_progress .secondary-switch' ).addClass( "disabled" );
             $( '.checkout_progress input[type="checkbox"]' ).attr( "disabled", "disabled" );
             $( '.woo_initiate_checkout_enabled .step' ).text( "" );
         }
@@ -854,45 +1009,62 @@ jQuery( document ).ready( function ( $ ) {
     } );
 
     $( ".action_old,.action_g4,.action_merged_g4" ).on( 'change', function () {
-        var value = $( this ).val();
-        $( ".ga-param-list, .ga-ads-param-list" ).html( "" );
+        let value = $( this ).val(),
+            ga_param_list = '',
+            ga_ads_param_list = '';
 
-        for ( i = 0; i < ga_fields.length; i++ ) {
-            if ( ga_fields[ i ].name == value ) {
-                ga_fields[ i ].fields.forEach( function ( el ) {
-                    $( ".ga-param-list" ).append( '<div class="row mb-3 ga_param">\n' +
-                        '<label class="col-5 control-label">' + el + '</label>' +
-                        '<div class="col-4">' +
-                        '<input type="text" name="pys[event][ga_params][' + el + ']" class="form-control">' +
-                        '</div>' +
-                        ' </div>' );
-                    $( ".ga-ads-param-list" ).append( '<div class="row mb-3 ga_ads_param">\n' +
-                        '<label class="col-5 control-label">' + el + '</label>' +
-                        '<div class="col-4">' +
-                        '<input type="text" name="pys[event][ga_ads_params][' + el + ']" class="form-control">' +
-                        '</div>' +
-                        ' </div>' );
-                } );
-                break;
+        $( ".ga-param-list, .ga-ads-param-list" ).slideUp( 200, function () {
+            $( this ).html( "" );
+            for ( let i = 0; i < ga_fields.length; i++ ) {
+                if ( ga_fields[ i ].name == value ) {
+                    ga_fields[ i ].fields.forEach( function ( el ) {
+                        ga_param_list += '<div class="ga_param mb-24">\n' +
+                            '<div class="mb-8">' +
+                            '<label class="custom-event-label">' + el + '</label>' +
+                            '</div>' +
+                            '<input type="text" name="pys[event][ga_params][' + el + ']" class="input-standard">' +
+                            ' </div>';
+                        ga_ads_param_list += '<div class="ga_ads_param mb-24">\n' +
+                            '<div class="mb-8">' +
+                            '<label class="custom-event-label">' + el + '</label>' +
+                            '</div>' +
+                            '<input type="text" name="pys[event][ga_ads_params][' + el + ']" class="input-standard">' +
+                            ' </div>';
+                    } );
+                    break;
+                }
             }
-        }
 
-        if ( $( 'option:selected', this ).attr( 'group' ) == "Retail/Ecommerce" ) {
-            $( ".ga_woo_info" ).attr( 'style', "display: block" );
+            if ( ga_param_list.length > 0 ) {
+                $( ".ga-param-list" ).append( ga_param_list ).slideDown( 400 );
+            }
+
+            if ( ga_ads_param_list.length > 0 ) {
+                $( ".ga-ads-param-list" ).append( ga_ads_param_list ).slideDown( 400 );
+            }
+        } );
+
+        let group = $( 'option:selected', this ).attr( 'group' );
+        $( this ).parent().siblings( '#ga_ads_event_action_group' ).val( group );
+
+        if ( group == "Retail/Ecommerce" ) {
+            $( ".ga_woo_info" ).slideDown( 400 );
         } else {
-            $( ".ga_woo_info" ).attr( 'style', "display: none" );
+            $( ".ga_woo_info" ).slideUp( 400 );
         }
         updateGAActionSelector();
-    } )
+    } );
 
-    if ( $( ".action_merged_g4" ).length > 0 ) {
+    let action_merged_g4 = $( ".action_merged_g4" );
+
+    if ( action_merged_g4.length > 0 ) {
         var value = $( '.action_merged_g4' ).val();
         if ( $( ".ga-ads-param-list .ga_ads_param" ).length == 0 ) {
             for ( i = 0; i < ga_fields.length; i++ ) {
                 if ( ga_fields[ i ].name == value ) {
                     ga_fields[ i ].fields.forEach( function ( el ) {
                         $( ".ga-ads-param-list" ).append( '<div class="row mb-3 ga_ads_param">\n' +
-                            '<label class="col-5 control-label">' + el + '</label>' +
+                            '<label class="col-5">' + el + '</label>' +
                             '<div class="col-4">' +
                             '<input type="text" name="pys[event][ga_ads_params][' + el + ']" class="form-control">' +
                             '</div>' +
@@ -902,10 +1074,12 @@ jQuery( document ).ready( function ( $ ) {
                 }
             }
         }
-        ;
 
+        let group = $( 'option:selected', action_merged_g4 ).attr( 'group' );
+        group = group ? group : "All Properties";
+        action_merged_g4.parent().siblings( '#ga_ads_event_action_group' ).val( group );
 
-        if ( $( 'option:selected', this ).attr( 'group' ) == "Retail/Ecommerce" ) {
+        if ( group == "Retail/Ecommerce" ) {
             $( ".ga_woo_info" ).attr( 'style', "display: block" );
         } else {
             $( ".ga_woo_info" ).attr( 'style', "display: none" );
@@ -928,59 +1102,79 @@ jQuery( document ).ready( function ( $ ) {
         }
         if ( $( '.action_merged_g4' ).length > 0 ) {
             if ( $( '.action_merged_g4' ).val() === "_custom" || $( '.action_merged_g4' ).val() === "CustomEvent" ) {
-                $( '#ga-ads-custom-action_g4' ).css( 'display', 'block' );
+                $( '#ga-ads-custom-action_g4' ).slideDown(400);
             } else {
-                $( '#ga-ads-custom-action_g4' ).css( 'display', 'none' )
+                $( '#ga-ads-custom-action_g4' ).slideUp(400)
             }
         }
-
     }
 
-    $(".action_gtm").on('change',function () {
-        var value = $(this).val();
-        $(".gtm-param-list").html("");
+    let action_gtm = $( ".action_gtm" );
 
-        for(i=0;i<gtm_fields.length;i++){
-            if(gtm_fields[i].name == value) {
-                gtm_fields[i].fields.forEach(function(el){
-                    $(".gtm-param-list").append('<div class="row mb-3 gtm_param">\n' +
-                        '<label class="col-5 control-label">'+el+'</label>' +
-                        '<div class="col-4">' +
-                        '<input type="text" name="pys[event][gtm_params]['+el+']" class="form-control">' +
-                        '</div>' +
-                        ' </div>');
-                });
-                break;
-            }
-        }
+    action_gtm.on( 'change', function () {
+        let value = $( this ).val(),
+            gtm_param_list = '';
 
-        if($('option:selected', this).attr('group') == "Retail/Ecommerce") {
-            $(".gtm_woo_info").attr('style',"display: block");
-        } else {
-            $(".gtm_woo_info").attr('style',"display: none");
-        }
-        updateGTMActionSelector();
-    })
+        $( ".gtm-param-list" ).slideUp(200, function () {
+            $( this ).html( "" );
 
-    if($(".action_gtm").length > 0) {
-        var value = $('.action_gtm').val();
-        if($(".gtm-param-list .gtm_param").length == 0) {
-            for(i=0;i<gtm_fields.length;i++){
-                if(gtm_fields[i].name == value) {
-                    gtm_fields[i].fields.forEach(function(el){
-                        $(".gtm-param-list").append('<div class="row mb-3 gtm_param">\n' +
-                            '<label class="col-5 control-label">'+el+'</label>' +
-                            '<div class="col-4">' +
-                            '<input type="text" name="pys[event][gtm_params]['+el+']" class="form-control">' +
+            for ( let i = 0; i < gtm_fields.length; i++ ) {
+                if ( gtm_fields[ i ].name == value ) {
+                    gtm_fields[ i ].fields.forEach( function ( el ) {
+                        gtm_param_list += '<div class="mb-24 gtm_param">' +
+                            '<div class="mb-8">' +
+                            '<label class="custom-event-label">' + el + '</label>' +
                             '</div>' +
-                            ' </div>');
-                    });
+                            '<input type="text" name="pys[event][gtm_params][' + el + ']" class="form-control input-standard">' +
+                            ' </div>';
+                    } );
                     break;
                 }
             }
-        };
 
+            if ( gtm_param_list.length > 0 ) {
+                $( ".gtm-param-list" ).append( gtm_param_list ).slideDown( 400 );
+            }
+        });
 
+        let group = $( 'option:selected', this ).attr( 'group' );
+        $( this ).parent().siblings( '#gtm_event_action_group' ).val( group );
+
+        if ( group == "Retail/Ecommerce" ) {
+            $( ".gtm_woo_info" ).slideDown(400);
+        } else {
+            $( ".gtm_woo_info" ).slideUp(400);
+        }
+        updateGTMActionSelector();
+    } )
+
+    if(action_gtm.length > 0) {
+        let value = $('.action_gtm').val(),
+            gtm_param_list = '';
+
+        if($(".gtm-param-list .gtm_param").length == 0) {
+            for(let i=0;i<gtm_fields.length;i++){
+                if(gtm_fields[i].name == value) {
+                    gtm_fields[ i ].fields.forEach( function ( el ) {
+                        gtm_param_list += '<div class="mb-24 gtm_param">' +
+                            '<div class="mb-8">' +
+                            '<label class="custom-event-label">' + el + '</label>' +
+                            '</div>' +
+                            '<input type="text" name="pys[event][gtm_params][' + el + ']" class="form-control input-standard">' +
+                            ' </div>';
+                    } );
+                    break;
+                }
+            }
+
+            if ( gtm_param_list.length > 0 ) {
+                $( ".gtm-param-list" ).append( gtm_param_list ).slideDown( 400 );
+            }
+        }
+
+        let group = $( 'option:selected', action_gtm ).attr( 'group' );
+        group = group ? group : "All Properties";
+        action_gtm.parent().siblings( '#gtm_event_action_group' ).val( group );
 
         if($('option:selected', this).attr('group') == "Retail/Ecommerce") {
             $(".gtm_woo_info").attr('style',"display: block");
@@ -988,119 +1182,87 @@ jQuery( document ).ready( function ( $ ) {
             $(".gtm_woo_info").attr('style',"display: none");
         }
         updateGTMActionSelector();
-    };
+    }
 
 
     function updateGTMActionSelector() {
-        if($('.action_gtm').length > 0) {
-            if($('.action_gtm').val() === "_custom" || $('.action_gtm').val() === "CustomEvent") {
-                $('#gtm-custom-action_g4').css('display','block');
+        if ( $( '.action_gtm' ).length > 0 ) {
+            if ( $( '.action_gtm' ).val() === "_custom" || $( '.action_gtm' ).val() === "CustomEvent" ) {
+                $( '#gtm-custom-action_g4' ).slideDown( 400 );
             } else {
-                $('#gtm-custom-action_g4').css('display','none')
+                $( '#gtm-custom-action_g4' ).slideUp( 400 );
             }
         }
     }
 
-    $('.gtm-custom-param-list').on("click",'.gtm-custom-param .remove-row',function(){
-        var currentCount = $(".gtm-custom-param-list .gtm-custom-param").length;
-        var messageContainer = $("#custom-param-message");
-        $(this).parents('.gtm-custom-param').remove();
-        if (messageContainer.length && $(".gtm-custom-param-list .gtm-custom-param").length < 5) {
-            messageContainer.remove();
+    $( '.gtm-custom-param-list' ).on( "click", '.gtm-custom-param .button-remove-row', function () {
+        let messageContainer = $( "#custom-param-message" );
+
+        $( this ).parents( '.gtm-custom-param' ).remove();
+        if ( messageContainer.length && $( ".gtm-custom-param-list .gtm-custom-param" ).length < 5 ) {
+            messageContainer.slideUp( 400 );
         }
-    });
-    $('.add-gtm-custom-parameter').on('click',function(){
-        var currentCount = $(".gtm-custom-param-list .gtm-custom-param").length;
-        var messageContainer = $("#custom-param-message");
-        if (currentCount < 5) {
-            var index = currentCount + 1;
-            $(".gtm-custom-param-list").append('<div class="row mt-3 gtm-custom-param" data-param_id="'+index+'">' +
-                '<div class="col">' +
-                '<div class="row">' +
-                '<div class="col-1"></div>' +
-                '<div class="col-4">' +
-                '<input type="text" placeholder="Enter name" class="form-control custom-param-name"' +
-                ' name="pys[event][gtm_custom_params]['+index+'][name]"' +
+    } );
+
+    $( '.add-gtm-parameter' ).on( 'click', function () {
+        let currentCount = $( ".gtm-custom-param-list .gtm-custom-param" ).length,
+            messageContainer = $( "#custom-param-message" );
+
+        if ( currentCount < 5 ) {
+            let index = currentCount + 1;
+            $( ".gtm-custom-param-list" ).append( '<div class="gtm-custom-param" data-param_id="' + index + '">' +
+                '<div class="mt-24 d-flex align-items-center">' +
+                '<div>' +
+                '<input type="text" placeholder="Enter name" class="custom-param-name input-standard"' +
+                ' name="pys[event][gtm_custom_params][' + index + '][name]"' +
                 ' value="">' +
                 '</div>' +
-                '<div class="col-4">' +
-                '<input type="text" placeholder="Enter value" class="form-control custom-param-value"' +
-                ' name="pys[event][gtm_custom_params]['+index+'][value]"' +
+                '<div class="ml-16">' +
+                '<input type="text" placeholder="Enter value" class="custom-param-value input-standard"' +
+                ' name="pys[event][gtm_custom_params][' + index + '][value]"' +
                 ' value="">' +
                 '</div>' +
-                '<div class="col-2">' +
-                '<button type="button" class="btn btn-sm remove-row">' +
-                '<i class="fa fa-trash-o" aria-hidden="true"></i>' +
+                '<button type="button" class="btn button-remove-row">' +
+                '<i class="icon-delete" aria-hidden="true"></i>' +
                 '</button>' +
                 '</div>' +
-                '</div>' +
-                '</div>' +
-                '</div>');
-            if (messageContainer.length) {
-                messageContainer.remove();
+                '</div>' );
+            if ( messageContainer.length ) {
+                messageContainer.slideUp( 400 );
             }
         } else {
-            if (messageContainer.length) {
-                messageContainer.text("You can add up to 5 custom parameters only.");
+            if ( messageContainer.length ) {
+                messageContainer.text( "You can add up to 5 custom parameters only." );
+                messageContainer.slideDown( 400 );
             } else {
-                $(".gtm-custom-param-list").after('<p id="custom-param-message" style="color: red;">You can add up to 5 custom parameters only.</p>');
+                $(".gtm-custom-param-list").after('<div class="critical_message mt-24" id="custom-param-message">You can add up to 5 custom parameters only.</div>');
             }
         }
-
-    });
+    } );
 
     $('.ga-custom-param-list').on("click",'.ga-custom-param .remove-row',function(){
        $(this).parents('.ga-custom-param').remove();
     });
 
-    $( '.add-ga-custom-parameter' ).on( 'click', function () {
-        var index = $( ".ga-custom-param-list .ga-custom-param" ).length + 1;
-        $( ".ga-custom-param-list" ).append( '<div class="row mt-3 ga-custom-param" data-param_id="' + index + '">' +
-            '<div class="col">' +
-            '<div class="row">' +
-            '<div class="col-1"></div>' +
-            '<div class="col-4">' +
-            '<input type="text" placeholder="Enter name" class="form-control custom-param-name"' +
-            ' name="pys[event][ga_custom_params][' + index + '][name]"' +
-            ' value="">' +
-            '</div>' +
-            '<div class="col-4">' +
-            '<input type="text" placeholder="Enter value" class="form-control custom-param-value"' +
-            ' name="pys[event][ga_custom_params][' + index + '][value]"' +
-            ' value="">' +
-            '</div>' +
-            '<div class="col-2">' +
-            '<button type="button" class="btn btn-sm remove-row">' +
-            '<i class="fa fa-trash-o" aria-hidden="true"></i>' +
-            '</button>' +
-            '</div>' +
-            '</div>' +
-            '</div>' +
-            '</div>' );
-    } );
+    $( '.add-ga-ads-parameter' ).on( 'click', function () {
+        let index = $( ".ga-ads-custom-param-list .ga-ads-custom-param" ).length + 1;
 
-    $( '.add-ga-ads-custom-parameter' ).on( 'click', function () {
-        var index = $( ".ga-ads-custom-param-list .ga-ads-custom-param" ).length + 1;
-        $( ".ga-ads-custom-param-list" ).append( '<div class="row mt-3 ga-ads-custom-param" data-param_id="' + index + '">' +
-            '<div class="col">' +
-            '<div class="row">' +
-            '<div class="col-1"></div>' +
-            '<div class="col-4">' +
-            '<input type="text" placeholder="Enter name" class="form-control custom-param-name"' +
+        $( ".ga-ads-custom-param-list" ).append( '<div class="ga-ads-custom-param" data-param_id="' + index + '">' +
+            '<div class="mt-24 d-flex align-items-center">' +
+            '<div>' +
+            '<input type="text" placeholder="Enter name" class="custom-param-name input-standard"' +
             ' name="pys[event][ga_ads_custom_params][' + index + '][name]"' +
             ' value="">' +
             '</div>' +
-            '<div class="col-4">' +
-            '<input type="text" placeholder="Enter value" class="form-control custom-param-value"' +
+            '<div class="ml-16">' +
+            '<input type="text" placeholder="Enter value" class="custom-param-name input-standard"' +
             ' name="pys[event][ga_ads_custom_params][' + index + '][value]"' +
             ' value="">' +
             '</div>' +
-            '<div class="col-2">' +
-            '<button type="button" class="btn btn-sm remove-row">' +
-            '<i class="fa fa-trash-o" aria-hidden="true"></i>' +
+            '<div>' +
+            '<button type="button" class="btn button-remove-row">' +
+            '<i class="icon-delete" aria-hidden="true"></i>' +
             '</button>' +
-            '</div>' +
-            '</div>' +
             '</div>' +
             '</div>' );
     } );
@@ -1143,8 +1305,7 @@ jQuery( document ).ready( function ( $ ) {
             $.each( triggerGroup, function ( index, trigger ) {
                 trigger = $( trigger );
 
-                let url_filter = trigger.find( ".url_filter_panel" ),
-                    trigger_type = trigger.find( '.pys_event_trigger_type' ).val(),
+                let trigger_type = trigger.find( '.pys_event_trigger_type' ).val(),
                     embedded_video_view = trigger.find( ".embedded_video_view" ),
                     post_type = trigger.find( ".trigger_post_type" ),
                     post_type_error = trigger.find( ".post_type_error" ),
@@ -1158,7 +1319,6 @@ jQuery( document ).ready( function ( $ ) {
                 if ( trigger_type == "post_type" ) {
                     trigger.find( ".event-delay" ).css( "display", "flex" );
                     post_type.show();
-                    url_filter.hide();
                     post_type_error.show();
                     embedded_video_view.hide();
                     video_view_error.hide();
@@ -1166,7 +1326,6 @@ jQuery( document ).ready( function ( $ ) {
                     elementor_form_error.hide()
                 } else if ( trigger_type == "number_page_visit" ) {
                     trigger.find( ".trigger_number_page_visit" ).css( "display", "flex" );
-                    url_filter.hide();
                     post_type_error.hide();
                     post_type.hide();
                     embedded_video_view.hide();
@@ -1175,7 +1334,6 @@ jQuery( document ).ready( function ( $ ) {
                     elementor_form_error.hide();
                 } else if(trigger_type == "home_page") {
                     trigger.find(".event-delay").css("display", "flex");
-                    url_filter.hide();
                     post_type_error.hide();
                     post_type.hide();
                     embedded_video_view.hide();
@@ -1183,7 +1341,6 @@ jQuery( document ).ready( function ( $ ) {
                     elementor_form.hide();
                     elementor_form_error.hide();
                 } else if(trigger_type == "add_to_cart") {
-                    url_filter.hide();
                     post_type_error.hide();
                     post_type.hide();
                     embedded_video_view.hide();
@@ -1191,7 +1348,6 @@ jQuery( document ).ready( function ( $ ) {
                     elementor_form.hide();
                     elementor_form_error.hide();
                 } else if(trigger_type == "purchase") {
-                    url_filter.hide();
                     post_type_error.hide();
                     post_type.hide();
                     embedded_video_view.hide();
@@ -1199,7 +1355,6 @@ jQuery( document ).ready( function ( $ ) {
                     elementor_form.hide();
                     elementor_form_error.hide();
                 } else if(trigger_type == "elementor_form") {
-                    url_filter.hide();
                     post_type_error.hide();
                     post_type.hide();
                     embedded_video_view.hide();
@@ -1207,13 +1362,11 @@ jQuery( document ).ready( function ( $ ) {
                     elementor_form.show();
                     elementor_form_error.hide();
                 } else if ( trigger_type == "video_view" ) {
-                    url_filter.hide();
                     post_type_error.hide();
                     post_type.hide();
                     embedded_video_view.show();
                     video_view_error.hide();
                 } else if($.inArray(trigger_type, arr_form_trigger) != -1 || trigger_type == "email_link") {
-                    url_filter.hide();
                     post_type_error.hide();
                     post_type.hide();
                     embedded_video_view.hide();
@@ -1319,20 +1472,21 @@ jQuery( document ).ready( function ( $ ) {
 
 
     $( document ).on( 'change', '.ga_tracking_id,#pys_ga_tracking_id_0', function () {
-        let text = 'We identified this tag as a Google Analytics Universal property.'
+        let text = '<span class="not-support-tag form-text text-small">We identified this tag as a Google Analytics Universal property.</span>'
         if ( $( this ).val().indexOf( 'G' ) === 0 ) {
-            text = 'We identified this tag as a GA4 property.';
+            text = '<span class="form-text text-small">We identified this tag as a GA4 property.</span>';
         }
-        $( this ).next().text( text );
+        $( this ).next().html( text );
     } );
 
-    function renderField( data, wrapClass = "row mb-3", labelClass = "col-5 control-label" ) {
+    function renderField( data ) {
         if ( data.type === "input" ) {
-            return '<div class="' + wrapClass + '">' +
-                '<label class="' + labelClass + '">' + data.label + '</label>' +
-                '<div class="col-4">' +
-                '<input type="text" name="' + data.name + '" value="" placeholder="" class="form-control">' +
-                '</div></div>';
+            return '<div class="mt-24">' +
+                '<div class="mb-8">' +
+                '<label class="custom-event-label">' + data.label + '</label>' +
+                '</div>' +
+                '<input type="text" name="' + data.name + '" value="" placeholder="" class="input-standard">' +
+                '</div>';
         }
     }
 
@@ -1345,7 +1499,7 @@ jQuery( document ).ready( function ( $ ) {
         } )
 
         $( '#pys_event_tiktok_params_enabled' ).on( 'change', function () {
-            updateTiktokParamFormVisibility()
+            updateTiktokParamFormVisibility( true )
         } )
 
         if ( $( '#pys_event_tiktok_event_type' ).val() === 'CustomEvent' ) {
@@ -1354,69 +1508,70 @@ jQuery( document ).ready( function ( $ ) {
             $( '.tiktok-custom-event-type' ).css( 'display', 'none' )
         }
         updateTiktokParamFormVisibility();
-
-        $( '.tiktok-custom-param-list' ).on( "click", '.tiktok-custom-param .remove-row', function () {
-            $( this ).parents( '.tiktok-custom-param' ).remove();
-        } );
-
-        $( '.add-tiktok-custom-parameter' ).on( 'click', function () {
-            var index = $( ".tiktok-custom-param-list .tiktok-custom-param" ).length + 1;
-            $( ".tiktok-custom-param-list" ).append( '<div class="row mt-3 tiktok-custom-param" data-param_id="' + index + '">' +
-                '<div class="col">' +
-                '<div class="row">' +
-                '<div class="col-1"></div>' +
-                '<div class="col-4">' +
-                '<input type="text" placeholder="Enter name" class="form-control custom-param-name"' +
-                ' name="pys[event][tiktok_custom_params][' + index + '][name]"' +
-                ' value="">' +
-                '</div>' +
-                '<div class="col-4">' +
-                '<input type="text" placeholder="Enter value" class="form-control custom-param-value"' +
-                ' name="pys[event][tiktok_custom_params][' + index + '][value]"' +
-                ' value="">' +
-                '</div>' +
-                '<div class="col-2">' +
-                '<button type="button" class="btn btn-sm remove-row">' +
-                '<i class="fa fa-trash-o" aria-hidden="true"></i>' +
-                '</button>' +
-                '</div>' +
-                '</div>' +
-                '</div>' +
-                '</div>' );
-        } );
     }
 
     function updateTikTokEventParamsFrom() {
         let $select = $( '#pys_event_tiktok_event_type' );
         if ( $select.length === 0 ) return;
-        let $panel = $( '#tiktok_params_panel .standard' );
+        let $panel = $( '#tiktok_params_panel' );
         let $custom = $( '.tiktok-custom-event-type' );
 
-        $panel.html( '' )
         if ( $select.val() === 'CustomEvent' ) {
-            $custom.css( 'display', 'block' )
+            $custom.slideDown( 400 );
+            $panel.slideUp( 400, function () {
+                $( this ).html( '' );
+            } );
         } else {
-            $custom.css( 'display', 'none' )
-            let fields = $select.find( ":selected" ).data( 'fields' )
-            fields.forEach( function ( item ) {
-                $panel.append( renderField( item ) )
-            } )
+            let fields = $select.find( ":selected" ).data( 'fields' );
+
+            if ( fields.length === 0 || !$( '#pys_event_tiktok_params_enabled' ).is( ":checked" ) ) {
+                $panel.slideUp( 400, function () {
+                    $( this ).html( '' );
+                } );
+            } else {
+                $panel.html( '' )
+                fields.forEach( function ( item ) {
+                    $panel.append( renderField( item ) )
+                } );
+
+                $panel.slideDown( 400 );
+            }
+
+            $custom.slideUp( 400 );
         }
     }
 
-    function updateTiktokParamFormVisibility() {
+    function updateTiktokParamFormVisibility( new_form = false ) {
         if ( $( '#pys_event_tiktok_params_enabled:checked' ).length > 0 ) {
-            $( '#tiktok_params_panel' ).css( 'display', 'block' )
+            if ( new_form ) {
+                updateTikTokEventParamsFrom();
+            }
+            $( '#tiktok_params_panel' ).slideDown( 400 );
         } else {
-            $( '#tiktok_params_panel' ).css( 'display', 'none' )
+            $( '#tiktok_params_panel' ).slideUp( 400 );
         }
     }
 
     function updateTikTokPanelVisibility() {
-        if ( $( "#pys_event_tiktok_enabled" ).is( ":checked" ) ) {
-            $( "#tiktok_panel" ).show()
+        let tiktok_enabled = $( "#pys_event_tiktok_enabled" ),
+            card = tiktok_enabled.closest( '.card' ),
+            configured = +card.attr( 'data-configured' ) === 1,
+            pixel_status = card.find( '.custom-event-pixel-status .pixel-status' );
+
+        if ( configured ) {
+            if ( tiktok_enabled.is( ":checked" ) ) {
+                $( "#tiktok_panel" ).removeClass( 'disabled' );
+                pixel_status.find( '.pixel-enabled' ).show();
+                pixel_status.find( '.pixel-disabled' ).hide();
+            } else {
+                $( "#tiktok_panel" ).addClass( 'disabled' );
+                pixel_status.find( '.pixel-enabled' ).hide();
+                pixel_status.find( '.pixel-disabled' ).show();
+            }
         } else {
-            $( "#tiktok_panel" ).hide()
+            $( '.tiktok-not-configured-error' ).show();
+            $( "#tiktok_panel" ).addClass( 'disabled' );
+            tiktok_enabled.prop( 'checked', false ).prop( 'disabled', true );
         }
     }
 
@@ -1447,22 +1602,58 @@ jQuery( document ).ready( function ( $ ) {
         } )
     }
 
-    $( "#pys_core_automatic_events_enabled" ).on( "change", function () {
-        var $headSwitch = $( this ).parents( ".card-header" ).find( ".card-collapse" )
-        var $body = $( this ).parents( ".card" ).children( ".card-body" )
+    $( "#pys_core_automatic_events_enabled, #pys_core_fdp_enabled" ).on( "change", function () {
+        let $cardHeader = $( this ).parents( ".card-header" ),
+            $headSwitch = $cardHeader.find( ".card-collapse" ),
+            $body = $( this ).parents( ".card" ).children( ".card-body" );
         if ( $( this ).is( ':checked' ) ) {
-            $headSwitch.css( "display", "block" )
+            $headSwitch.css( "display", "block" );
         } else {
-            $body.removeClass( "show" )
-            $body.css( "display", "none" )
-            $headSwitch.css( "display", "none" )
+            $body.slideUp( 400 );
+            $headSwitch.css( "display", "none" );
+            $cardHeader.removeClass( "header-opened" );
         }
     } )
 
-    $( "#pys .copy_text" ).on( "click", function () {
-
-        navigator.clipboard.writeText( $( this ).text() );
+    //toggle card (dashboard)
+    let $disable_card = $( "#pys .disable-card .custom-switch-input" );
+    $disable_card.on( "change", function () {
+        toggleDashboardAutomaticEventsCard( $( this ) );
     } )
+
+    $disable_card.each( function () {
+        toggleDashboardAutomaticEventsCard( $( this ) );
+    } )
+
+    function toggleDashboardAutomaticEventsCard( $card ) {
+        let $header = $card.closest( ".disable-card-wrap" ),
+            $headSwitch = $header.find( ".card-collapse" ),
+            $body = $card.closest( ".card" ).children( ".card-body" ),
+            $disable_card = $card.closest( ".disable-card" );
+
+        if ( $card.is( ':checked' ) ) {
+            $headSwitch.css( "display", "flex" );
+            $disable_card.removeClass( "disabled" );
+        } else {
+            $body.removeClass( "show" );
+            $body.slideUp( 400 );
+            $headSwitch.css( "display", "none" );
+            $header.removeClass( "header-opened" );
+            $disable_card.addClass( "disabled" );
+        }
+    }
+
+    $("#pys").on("click", ".copy_text", function () {
+        let textToCopy = $(this).text();
+        let popoverIcon = $(this).find(".copy-icon")[0];
+
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            const instance = popoverIcon._tippy;
+            if (instance) {
+                instance.show();
+            }
+        }).catch(err => console.error("Error copied: ", err));
+    })
 
     $( "#pys .pys_utm_builder .utm, #pys .pys_utm_builder .site_url" ).on( "input", function () {
 
@@ -1484,8 +1675,8 @@ jQuery( document ).ready( function ( $ ) {
         if ( utms != "" ) {
             utms = "?" + utms
         }
-        $( "#pys .build_utms_with_url" ).text( urls + utms )
-        $( "#pys .build_utms" ).text( utms )
+        $( "#pys .build_utms_with_url span.insert" ).text( urls + utms )
+        $( "#pys .build_utms span.insert" ).text( utms )
     }
 
     updateBuilderUrl()
@@ -1508,7 +1699,7 @@ jQuery( document ).ready( function ( $ ) {
             message = error.find( '.event_error' ),
             button = $( this ),
             video_view_triggers = event_trigger.find( '.pys_video_view_triggers' );
-        error.hide();
+        error.slideUp( 400 );
 
         if ( urls.length > 0 ) {
 
@@ -1527,7 +1718,7 @@ jQuery( document ).ready( function ( $ ) {
             if ( !valid ) {
                 not_valid_message = not_valid_message.replace( '%s', not_valid_urls.join( ', ' ) );
                 message.html( not_valid_message );
-                error.show();
+                error.slideDown( 400 );
                 return;
             }
             button.html( 'Scanning...' ).prop( 'disabled', true );
@@ -1554,23 +1745,23 @@ jQuery( document ).ready( function ( $ ) {
                                     text: item.title
                                 } ) );
                             } )
-                            video_view_triggers.show();
+                            video_view_triggers.slideDown( 400 );
                             video_triggers.pysselect2( 'open' );
                         } else {
                             message.html( 'These URLs do not contain any videos' );
-                            error.show();
-                            video_view_triggers.hide();
+                            error.slideDown( 400 );
+                            video_view_triggers.slideUp( 400 );
                         }
                     } else {
                         message.html( 'Something went wrong' );
-                        error.show();
-                        video_view_triggers.hide();
+                        error.slideDown( 400 );
+                        video_view_triggers.slideUp( 400 );
                     }
                 },
                 error: function ( data ) {
                     message.html( data.responseJSON.data );
-                    error.show();
-                    video_view_triggers.hide();
+                    error.slideDown( 400 );
+                    video_view_triggers.slideUp( 400 );
                     console.log( data );
                 },
                 complete: function () {
@@ -1579,8 +1770,8 @@ jQuery( document ).ready( function ( $ ) {
             } );
         } else {
             message.html( 'Please enter video URLs' );
-            error.show();
-            video_view_triggers.hide();
+            error.slideDown( 400 );
+            video_view_triggers.slideUp( 400 );
         }
     } )
 
@@ -1595,7 +1786,7 @@ jQuery( document ).ready( function ( $ ) {
             button = $( this ),
             elementor_form_triggers = event_trigger.find( '.pys_elementor_form_triggers' );
 
-        error.hide();
+        error.slideUp( 400 );
 
         if ( urls.length > 0 ) {
 
@@ -1614,7 +1805,7 @@ jQuery( document ).ready( function ( $ ) {
             if ( !valid ) {
                 not_valid_message = not_valid_message.replace( '%s', not_valid_urls.join( ', ' ) );
                 message.html( not_valid_message );
-                error.show();
+                error.slideDown( 400 );
                 return;
             }
             button.html( 'Scanning...' ).prop( 'disabled', true );
@@ -1642,23 +1833,23 @@ jQuery( document ).ready( function ( $ ) {
                                     text: item.title + ' - ID  ' + item.id
                                 } ) );
                             } )
-                            elementor_form_triggers.show();
+                            elementor_form_triggers.slideDown( 400 );
                             form_triggers.pysselect2( 'open' );
                         } else {
                             message.html( 'These URLs do not contain any forms' );
-                            error.show();
-                            elementor_form_triggers.hide();
+                            error.slideDown( 400 );
+                            elementor_form_triggers.slideUp( 400 );
                         }
                     } else {
                         message.html( 'Something went wrong' );
-                        error.show();
-                        elementor_form_triggers.hide();
+                        error.slideDown( 400 );
+                        elementor_form_triggers.slideUp( 400 );
                     }
                 },
                 error: function ( data ) {
                     message.html( data.responseJSON.data );
-                    error.show();
-                    elementor_form_triggers.hide();
+                    error.slideDown( 400 );
+                    elementor_form_triggers.slideUp( 400 );
                     console.log( data );
                 },
                 complete: function () {
@@ -1667,54 +1858,61 @@ jQuery( document ).ready( function ( $ ) {
             } );
         } else {
             message.html( 'Please enter form pages URLs' );
-            error.show();
-            elementor_form_triggers.hide();
+            error.slideDown( 400 );
+            elementor_form_triggers.slideUp( 400 );
         }
     } )
 
     //Remove trigger
-    $( document ).on( 'click', '.pys_triggers_wrapper .remove-row', function () {
+    $( document ).on( 'click', '.pys_triggers_wrapper .pys_remove_trigger .button-remove-row', function () {
         $( this ).closest( '.trigger_group' ).remove();
     } )
 
-    $( document ).on( 'click', '.pys_conditions_wrapper .remove-row', function () {
+    $( document ).on( 'click', '.pys_conditions_wrapper .button-remove-row', function () {
         $( this ).closest( '.condition_group' ).remove();
     } )
 
-    const inputWrapperList = document.getElementsByClassName('input-number-wrapper');
+    const $inputWrapperList = $( '.input-number-wrapper' );
 
-    for(let wrapper of inputWrapperList) {
-        const input = wrapper.querySelector('input');
-        const incrementation = +input.step || 1;
+    $inputWrapperList.each( function () {
+        addInputNumberListener( $( this ) );
+    } );
 
-        wrapper.querySelector('.increase').addEventListener('click', function(e) {
+    function addInputNumberListener( $wrapper ) {
+        const $input = $wrapper.find( 'input' );
+        const incrementation = Number( $input.attr( 'step' ) ) || 1;
+
+        $wrapper.find( '.increase' ).on( 'click', function ( e ) {
             e.preventDefault();
-            incInputNumber(input, incrementation);
-        });
+            incInputNumber( $input, incrementation );
+        } );
 
-        wrapper.querySelector('.decrease').addEventListener('click', function(e) {
+        $wrapper.find( '.decrease' ).on( 'click', function ( e ) {
             e.preventDefault();
-            incInputNumber(input, "-" + incrementation);
-        });
+            incInputNumber( $input, -incrementation );
+        } );
     }
 
-    function incInputNumber(input, step) {
-        if(!input.disabled) {
-            let val = +input.value;
+    function incInputNumber( $input, step ) {
 
-            if (isNaN(val)) val = 0
+        if ( !$input.is( ':disabled' ) ) {
+            let val = Number( $input.val() );
+
+            if ( isNaN( val ) ) val = 0;
             val += +step;
 
-            if(input.max && val > input.max) {
-                val = input.max;
-            } else if (input.min && val < input.min) {
-                val = input.min;
-            } else if (val < 0) {
+            const max = $input.attr( 'max' );
+            const min = $input.attr( 'min' );
+
+            if ( max !== undefined && val > Number( max ) ) {
+                val = Number( max );
+            } else if ( min !== undefined && val < Number( min ) ) {
+                val = Number( min );
+            } else if ( val < 0 ) {
                 val = 0;
             }
 
-            input.value = val;
-            input.setAttribute("value", val);
+            $input.val( val ).attr( 'value', val );
         }
     }
 
@@ -1741,5 +1939,61 @@ jQuery( document ).ready( function ( $ ) {
     $('input#pys_event_gtm_custom_object_name').on( "input", function ( e ) {
         const value = $(this).val();
         $('#manual_custom_object_name').text(value);
+    });
+
+    //save settings
+    $('#pys-save-settings').on('click', function () {
+        $('#pys-form').submit();
+    });
+
+    $('.logs-wrapper .icon-trash').on('click', function (){
+        $(this).closest('.card').addClass('loading');
+    });
+
+    $("#pys .logs_enable input[id$='logs_enable']").on('change', function () {
+        let isChecked = $(this).prop("checked");
+        let card = $(this).closest('.card');
+        let textarea = card.find("textarea");
+        if (isChecked) {
+            textarea.prop("disabled", false);
+        } else {
+            textarea.prop("disabled", true);
+        }
+    });
+
+    function maskPassword(block) {
+        const passwordInput = block.find(".passwordInput");
+        const maskedInput = block.find(".maskedInput");
+
+        if (passwordInput.length && maskedInput.length) {
+            maskedInput.val('');
+            maskedInput.attr("placeholder", "*".repeat(passwordInput.val().length));
+        }
+    }
+
+    function updatePassword(maskedInput) {
+        const block = maskedInput.closest(".password-block");
+        const passwordInput = block.find(".passwordInput");
+
+        let realValue = passwordInput.val().split("");
+        let maskedValue = maskedInput.val();
+        if (maskedValue.length > 0 && maskedValue.trim().length > 0) {
+            passwordInput.val(maskedValue);
+        }
+        else {
+            passwordInput.val(maskedValue.data('value'));
+        }
+    }
+
+    $(".licenses-wrapper .btn.btn-block").on("click", function() {
+        const licenseBlock = $(this).closest(".card");
+        const headButtonBlock = licenseBlock.find(".head-button-block");
+        const passwordBlock = licenseBlock.find(".card-body .password-block");
+
+        maskPassword(passwordBlock);
+
+        headButtonBlock.find(".btn").hide();
+        headButtonBlock.find(".icon-load").addClass("active");
+        passwordBlock.find(".maskedInput").attr("disabled", true);
     });
 } );

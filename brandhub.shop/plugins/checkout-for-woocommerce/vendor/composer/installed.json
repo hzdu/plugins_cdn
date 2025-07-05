@@ -1,6 +1,58 @@
 {
     "packages": [
         {
+            "name": "mixpanel/mixpanel-php",
+            "version": "2.11.0",
+            "version_normalized": "2.11.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mixpanel/mixpanel-php.git",
+                "reference": "4b0fafacf2129eff5d50721e129b07f0c32687e7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mixpanel/mixpanel-php/zipball/4b0fafacf2129eff5d50721e129b07f0c32687e7",
+                "reference": "4b0fafacf2129eff5d50721e129b07f0c32687e7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.0"
+            },
+            "require-dev": {
+                "phpdocumentor/phpdocumentor": "2.9.*",
+                "phpunit/phpunit": "5.6.*"
+            },
+            "time": "2023-04-11T23:03:57+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "lib/Mixpanel.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Mixpanel <dev@mixpanel.com>",
+                    "homepage": "https://mixpanel.com/"
+                }
+            ],
+            "description": "The Official PHP library for Mixpanel",
+            "homepage": "https://mixpanel.com/help/reference/php",
+            "keywords": [
+                "mixpanel",
+                "mixpanel php"
+            ],
+            "support": {
+                "issues": "https://github.com/mixpanel/mixpanel-php/issues",
+                "source": "https://github.com/mixpanel/mixpanel-php/tree/2.11.0"
+            },
+            "install-path": "../mixpanel/mixpanel-php"
+        },
+        {
             "name": "pelago/emogrifier",
             "version": "v7.3.0",
             "version_normalized": "7.3.0.0",
@@ -41,7 +93,7 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "Pelago\\Emogrifier\\": "src/"
+                    "CheckoutWC\\Pelago\\Emogrifier\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -83,7 +135,7 @@
                 "issues": "https://github.com/MyIntervals/emogrifier/issues",
                 "source": "https://github.com/MyIntervals/emogrifier"
             },
-            "install-path": "../pelago/emogrifier"
+            "install-path": "../../vendor-prefixed/pelago/emogrifier/"
         },
         {
             "name": "pressmodo/wp-admin-notices",
@@ -112,7 +164,7 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "Pressmodo\\AdminNotices\\": "src/"
+                    "CheckoutWC\\Pressmodo\\AdminNotices\\": "src/"
                 }
             },
             "license": [
@@ -150,7 +202,7 @@
                 "issues": "https://github.com/pressmodo/wp-admin-notices/issues",
                 "source": "https://github.com/Objectivco/wp-admin-notices/tree/1.0.5"
             },
-            "install-path": "../pressmodo/wp-admin-notices"
+            "install-path": "../../vendor-prefixed/pressmodo/wp-admin-notices/"
         },
         {
             "name": "psr/log",
@@ -180,7 +232,7 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "Psr\\Log\\": "Psr/Log/"
+                    "CheckoutWC\\Psr\\Log\\": "Psr/Log/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -203,7 +255,7 @@
             "support": {
                 "source": "https://github.com/php-fig/log/tree/1.1.4"
             },
-            "install-path": "../psr/log"
+            "install-path": "../../vendor-prefixed/psr/log/"
         },
         {
             "name": "sabberworm/php-css-parser",
@@ -240,7 +292,7 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "Sabberworm\\CSS\\": "src/"
+                    "CheckoutWC\\Sabberworm\\CSS\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -271,7 +323,7 @@
                 "issues": "https://github.com/MyIntervals/PHP-CSS-Parser/issues",
                 "source": "https://github.com/MyIntervals/PHP-CSS-Parser/tree/v8.7.0"
             },
-            "install-path": "../sabberworm/php-css-parser"
+            "install-path": "../../vendor-prefixed/sabberworm/php-css-parser/"
         },
         {
             "name": "smartystreets/phpsdk",
@@ -303,7 +355,7 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "SmartyStreets\\PhpSdk\\": "src/"
+                    "CheckoutWC\\SmartyStreets\\PhpSdk\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -322,7 +374,7 @@
                 "issues": "https://github.com/smartystreets/smartystreets-php-sdk/issues",
                 "source": "https://github.com/smartystreets/smartystreets-php-sdk/tree/5.3.0"
             },
-            "install-path": "../smartystreets/phpsdk"
+            "install-path": "../../vendor-prefixed/smartystreets/phpsdk/"
         },
         {
             "name": "stellarwp/installer",
@@ -364,9 +416,9 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "StellarWP\\Installer\\": "src/Installer",
                     "StellarWP\\Installer\\Admin_Views\\": "src/admin-views",
-                    "StellarWP\\Installer\\Assets_JS\\": "src/assets/js"
+                    "StellarWP\\Installer\\Assets_JS\\": "src/assets/js",
+                    "CheckoutWC\\StellarWP\\Installer\\": "src/Installer"
                 }
             },
             "autoload-dev": {
@@ -416,7 +468,7 @@
             "support": {
                 "source": "https://github.com/Objectivco/installer/tree/1.1.2"
             },
-            "install-path": "../stellarwp/installer"
+            "install-path": "../../vendor-prefixed/stellarwp/installer/"
         },
         {
             "name": "symfony/css-selector",
@@ -442,7 +494,7 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "Symfony\\Component\\CssSelector\\": ""
+                    "CheckoutWC\\Symfony\\Component\\CssSelector\\": ""
                 },
                 "exclude-from-classmap": [
                     "/Tests/"
@@ -485,7 +537,7 @@
                     "type": "tidelift"
                 }
             ],
-            "install-path": "../symfony/css-selector"
+            "install-path": "../../vendor-prefixed/symfony/css-selector/"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -555,7 +607,7 @@
                     "type": "tidelift"
                 }
             ],
-            "install-path": "../symfony/deprecation-contracts"
+            "install-path": "../../vendor-prefixed/symfony/deprecation-contracts/"
         },
         {
             "name": "symfony/lock",
@@ -590,7 +642,7 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "Symfony\\Component\\Lock\\": ""
+                    "CheckoutWC\\Symfony\\Component\\Lock\\": ""
                 },
                 "exclude-from-classmap": [
                     "/Tests/"
@@ -637,7 +689,7 @@
                     "type": "tidelift"
                 }
             ],
-            "install-path": "../symfony/lock"
+            "install-path": "../../vendor-prefixed/symfony/lock/"
         },
         {
             "name": "symfony/options-resolver",
@@ -665,7 +717,7 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "Symfony\\Component\\OptionsResolver\\": ""
+                    "CheckoutWC\\Symfony\\Component\\OptionsResolver\\": ""
                 },
                 "exclude-from-classmap": [
                     "/Tests/"
@@ -709,7 +761,7 @@
                     "type": "tidelift"
                 }
             ],
-            "install-path": "../symfony/options-resolver"
+            "install-path": "../../vendor-prefixed/symfony/options-resolver/"
         },
         {
             "name": "symfony/polyfill-php73",
@@ -743,7 +795,7 @@
                     "bootstrap.php"
                 ],
                 "psr-4": {
-                    "Symfony\\Polyfill\\Php73\\": ""
+                    "CheckoutWC\\Symfony\\Polyfill\\Php73\\": ""
                 },
                 "classmap": [
                     "Resources/stubs"
@@ -788,7 +840,7 @@
                     "type": "tidelift"
                 }
             ],
-            "install-path": "../symfony/polyfill-php73"
+            "install-path": "../../vendor-prefixed/symfony/polyfill-php73/"
         },
         {
             "name": "symfony/polyfill-php80",
@@ -822,7 +874,7 @@
                     "bootstrap.php"
                 ],
                 "psr-4": {
-                    "Symfony\\Polyfill\\Php80\\": ""
+                    "CheckoutWC\\Symfony\\Polyfill\\Php80\\": ""
                 },
                 "classmap": [
                     "Resources/stubs"
@@ -871,7 +923,7 @@
                     "type": "tidelift"
                 }
             ],
-            "install-path": "../symfony/polyfill-php80"
+            "install-path": "../../vendor-prefixed/symfony/polyfill-php80/"
         },
         {
             "name": "symfony/rate-limiter",
@@ -901,7 +953,7 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "Symfony\\Component\\RateLimiter\\": ""
+                    "CheckoutWC\\Symfony\\Component\\RateLimiter\\": ""
                 },
                 "exclude-from-classmap": [
                     "/Tests/"
@@ -944,7 +996,7 @@
                     "type": "tidelift"
                 }
             ],
-            "install-path": "../symfony/rate-limiter"
+            "install-path": "../../vendor-prefixed/symfony/rate-limiter/"
         },
         {
             "name": "woocommerce/action-scheduler",

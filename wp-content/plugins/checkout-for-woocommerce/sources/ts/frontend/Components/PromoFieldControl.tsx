@@ -1,13 +1,10 @@
 import React, { useState }       from 'react';
 import { SlideToggle }           from 'react-smooth-slide-toggle';
 import { useSelect }             from '@wordpress/data';
-import ReactHtmlParser           from 'react-html-parser';
 import DataService               from '../Services/DataService';
 import SecondaryButton           from './SecondaryButton';
 import PromoFieldInput           from './PromoFieldInput';
 import DataStores                from '../DataStores';
-import Actions                   from '../../Types/Actions';
-import PrimaryButton             from './PrimaryButton';
 
 const PromoFieldControl = ( { location = '' } ) => {
     const staticActions = useSelect( ( select: any ) => select( DataStores.cart_store_key ).getCartStaticActions( null ), [] );

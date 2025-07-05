@@ -1,8 +1,6 @@
 @mixin cfw-payment-request-button() {
-    margin-right: 8px !important;
-    margin-bottom: 0.5em;
     border: none !important;
-    max-width: 140px !important;
+    max-width: 140px; // removed important because it conflicts with Payment Plugins Stripe when multiple buttons are displaying
     min-width: 140px;
     overflow: hidden;
     border-radius: 5px;
@@ -17,6 +15,14 @@
 
         @each $excluded-parent in $excluded-parents {
             $full-selector: unquote("#{$full-selector}:not(#{$excluded-parent}, #{$excluded-parent} *)");
+
+            #{$excluded-parent} {
+                // Copied from #cfw-payment-request-buttons rule -  must be kept in sync
+                display: flex;
+                align-items: flex-start;
+                flex-wrap: wrap;
+                gap: 0.5em;
+            }
         }
 
         // Apply the styles to the constructed selector

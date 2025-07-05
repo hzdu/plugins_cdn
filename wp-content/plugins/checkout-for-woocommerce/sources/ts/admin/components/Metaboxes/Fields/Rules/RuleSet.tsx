@@ -38,7 +38,7 @@ const RuleSet: React.FC<RuleSetProps> = ( { rules, onChange } ) => {
 
     return (
         <div className="cfw-rule-set">
-            {rules.map( ( rule, index ) => (
+            {rules?.map( ( rule, index ) => (
                 <Rule
                     key={index}
                     index={index}

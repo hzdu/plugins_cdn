@@ -8,7 +8,7 @@ $(document).ready(function(){
         });
     }
 
-    $('.custom_events button[type="submit"]').on('click', function(e){
+    $('.bulk-events-delete').on('click', function(e){
         e.preventDefault();
         var _this_form = $(this).closest('form');
         var data_form = _this_form.serializeArray();
@@ -26,14 +26,14 @@ $(document).ready(function(){
             {
                 $.confirm({
                     title: 'Delete selected events?',
-                    content: 'This dialog will automatically trigger \'No!\' in 10 seconds if you don\'t respond.',
-                    type: 'red',
+                    content: '<p>This dialog will automatically trigger \'No!\' in 10 seconds if you don\'t respond.</p>',
+                    type: 'pys',
                     typeAnimated: true,
                     autoClose: 'cancelAction|10000',
                     buttons: {
                         deleteEvent: {
-                            text: 'Yes, delete selected event',
-                            btnClass: 'btn-red',
+                            text: 'Yes, delete it',
+                            btnClass: 'btn-pys btn-pys-red',
                             action: function () {
                                 _this_form.submit()
                             }
@@ -53,10 +53,10 @@ $(document).ready(function(){
 
     });
 
-    $('button.save-custom-event').on('click', function(e){
+    $('.edit-event button#pys-save-settings').on('click', function(e){
 
         e.preventDefault();
-        var _this_form = $(this).closest('form');
+        var _this_form = $(this).closest('#pys').find('form');
         var data_form = _this_form.serializeArray();
         var triggerTypeValue = '';
         var formTriggerTypes = ['CF7', 'fluentform', 'formidable', 'forminator', 'gravity', 'ninjaform', 'wpforms', 'wsform'];
@@ -66,6 +66,8 @@ $(document).ready(function(){
                 break;
             }
         }
+
+        console.log(triggerTypeValue, data_form)
 
         if (triggerTypeValue) {
             var save_form = false;
@@ -79,8 +81,8 @@ $(document).ready(function(){
             if (!save_form) {
                 $.confirm({
                     title: 'Forms for trigger type ' + triggerTypeValue +' is empty!',
-                    content: 'You need to select at least one form for this trigger.',
-                    type: 'red',
+                    content: '<p>You need to select at least one form for this trigger.</p>',
+                    type: 'pys',
                     typeAnimated: true,
                     autoClose: 'cancelAction|10000',
                     buttons: {
@@ -92,25 +94,21 @@ $(document).ready(function(){
             } else {
                 _this_form.submit();
             }
-        }else {
-            _this_form.submit();
         }
-
-
     });
     $('.remove-custom-event').on('click', function(e){
         e.preventDefault();
         var _this = $(this);
         $.confirm({
             title: 'Delete event?',
-            content: 'This dialog will automatically trigger \'No!\' in 10 seconds if you don\'t respond.',
-            type: 'red',
+            content: '<p>This dialog will automatically trigger \'No!\' in 10 seconds if you don\'t respond.</p>',
+            type: 'pys',
             typeAnimated: true,
             autoClose: 'cancelAction|10000',
             buttons: {
                 deleteEvent: {
                     text: 'Yes, delete it',
-                    btnClass: 'btn-red',
+                    btnClass: 'btn-pys btn-pys-red',
                     action: function () {
                         location.href = _this.attr('href');
                     }
@@ -132,14 +130,14 @@ $(document).ready(function(){
             boxWidth: '500px',
             useBootstrap: false,
             title: 'Warning: please confirm deletion of statistics records',
-            content: 'Please verify the accuracy of the period for which you are deleting records. Be aware that once deleted, the data cannot be recovered. Proceed with caution.',
-            type: 'red',
+            content: '<p>Please verify the accuracy of the period for which you are deleting records. Be aware that once deleted, the data cannot be recovered. Proceed with caution.</p>',
+            type: 'pys',
             typeAnimated: true,
             autoClose: 'cancelAction|10000',
             buttons: {
                 deleteEvent: {
                     text: 'Yes, delete statistics records',
-                    btnClass: 'btn-red',
+                    btnClass: 'btn-pys btn-pys-red',
                     action: function () {
                         _this_form.submit()
                     }
@@ -151,4 +149,34 @@ $(document).ready(function(){
         });
     });
 
+
+    $('button.restore-settings').on('click', function(e){
+
+        console.log('restore-settings');
+
+        e.preventDefault();
+        var _this_form = $(this).closest('form');
+        var data_form = _this_form.serializeArray();
+        var _this = $(this);
+
+        $.confirm({
+            title: _this.data('title'),
+            content: '<p>'+_this.data('content')+'</p>',
+            type: 'pys',
+            typeAnimated: true,
+            autoClose: 'cancelAction|10000',
+            buttons: {
+                resetAction: {
+                    text: _this.data('button-yes'),
+                    btnClass: 'btn-pys btn-pys-red',
+                    action: function () {
+                        _this_form.submit()
+                    }
+                },
+                cancelAction: {
+                    text: _this.data('button-no'),
+                }
+            }
+        });
+    });
 });
