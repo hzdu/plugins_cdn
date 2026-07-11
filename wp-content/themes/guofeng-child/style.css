@@ -142,7 +142,9 @@ section{ padding:var(--gap-section) 0; }
 
 /* ===== 文章网格 ===== */
 .gf-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--col-gap); }
-.gf-grid.gf-grid-2{ grid-template-columns:repeat(2,1fr); }
+.gf-grid.gf-grid-2,
+section .gf-grid.gf-grid-2,
+.guofeng-content .gf-grid.gf-grid-2{ grid-template-columns:repeat(2,1fr)!important; }
 .gf-post{
   background:var(--paper); border:1px solid var(--line); border-radius:2px; overflow:hidden;
   box-shadow:0 1px 0 var(--line), 0 8px 24px -16px var(--shadow); transition:all .25s ease; display:flex; flex-direction:column;
