@@ -177,3 +177,14 @@ section{ padding:var(--gap-section) 0; }
 @media(max-width:900px){ .gf-grid{ grid-template-columns:repeat(2,1fr); } .gf-2col{ grid-template-columns:1fr; } .gf-feature{ flex-direction:column; } .gf-feature .post-thumb{ width:100%; height:160px; } }
 @media(max-width:560px){ .gf-grid{ grid-template-columns:1fr; } }
 @media(prefers-reduced-motion:reduce){ .reveal{ animation:none; } .gf-post:hover,.btn:hover{ transform:none; } }
+
+/* ===== 防止 GP 容器裁切内容（关键修复） ===== */
+.site-content, .content-area, .inside-article{ overflow:visible; max-width:none; }
+.site-footer{ display:block !important; visibility:visible !important; overflow:visible !important; }
+body{ overflow-x:hidden; }
+/* 确保 front-page.php 全宽内容不被 GP 的 .grid-container / .container 限制 */
+.page-id-0 .site-main,
+.home .site-main,
+.front-page .site-main{ max-width:100% !important; width:100% !important; padding:0 !important; margin:0 auto; }
+/* 侧边栏标签链接去下划线、继承色 */
+.tags a{ color:inherit; text-decoration:none; }
