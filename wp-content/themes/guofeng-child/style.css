@@ -62,6 +62,51 @@ a:hover{ color:var(--gold); }
 .main-navigation .main-nav ul li a:hover::after,
 .main-navigation .main-nav ul li.current-menu-item a::after{ width:100%; }
 
+/* ===== 导航栏：去白底，统一古风 ===== */
+.main-navigation{
+  background:transparent !important;
+  border:none !important;
+}
+.main-navigation .inside-navigation,
+.main-navigation .main-nav,
+.main-navigation .menu-toggle{ background:transparent !important; }
+.main-navigation .main-nav > ul{ border:0; }
+
+/* 下拉子菜单（去白底） */
+.main-navigation .main-nav ul ul.sub-menu,
+.main-navigation .main-nav ul ul.children,
+.main-navigation ul ul{
+  background:var(--paper-deep) !important;
+  border:1px solid var(--line) !important;
+  box-shadow:0 8px 24px -16px var(--shadow) !important;
+  border-radius:2px !important;
+  padding:.5rem 0 !important;
+}
+.main-navigation .main-nav ul ul li a,
+.main-navigation ul ul li a{
+  font-family:var(--kai); letter-spacing:.12em; color:var(--ink-soft) !important;
+  padding:.7rem 1.4rem !important; transition:color .2s, background .15s !important;
+  border-bottom:1px dashed var(--line);
+}
+.main-navigation .main-nav ul ul li:last-child a,
+.main-navigation ul ul li:last-child a{ border-bottom:0; }
+.main-navigation .main-nav ul ul li a:hover,
+.main-navigation ul ul li a:hover{
+  background:rgba(158,43,37,.08) !important; color:var(--cinnabar) !important;
+}
+
+/* 菜单分隔文字（如 MENU ITEM SEPARATOR） */
+.main-navigation .main-nav ul li.menu-item-type-custom a[style*="cursor"],
+.main-navigation .main-nav > ul > li:not([class*="menu-item-"]) > a{
+  font-family:var(--kai); letter-spacing:.18em; color:var(--ink-soft); text-transform:none;
+}
+
+/* 搜索图标 / 移动端菜单按钮 */
+.main-navigation .menu-toggle{ font-family:var(--kai); letter-spacing:.15em; color:var(--ink); }
+.slideout-navigation{ background:var(--paper-deep) !important; }
+.slideout-navigation .slideout-menu a{ color:var(--ink-soft); }
+.slideout-navigation .slideout-menu a:hover{ color:var(--cinnabar); }
+
 /* ===== Hero 题首 ===== */
 .gf-hero{ position:relative; overflow:hidden; padding:6.5rem 0 5.5rem; text-align:center;
   background-image:
