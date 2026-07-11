@@ -145,6 +145,8 @@ section{ padding:var(--gap-section) 0; }
 .gf-grid.gf-grid-2,
 section .gf-grid.gf-grid-2,
 .guofeng-content .gf-grid.gf-grid-2{ grid-template-columns:1fr!important; }
+/* 双保险：直接锁定商机看板主栏内的网格为单列，不依赖 gf-grid-2 类 */
+.gf-2col > div:first-child .gf-grid{ grid-template-columns:1fr!important; }
 .gf-post{
   background:var(--paper); border:1px solid var(--line); border-radius:2px; overflow:hidden;
   box-shadow:0 1px 0 var(--line), 0 8px 24px -16px var(--shadow); transition:all .25s ease; display:flex; flex-direction:column;
