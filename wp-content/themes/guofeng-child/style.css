@@ -111,9 +111,7 @@ a:hover{ color:var(--gold); }
 .gf-hero{ position:relative; overflow:hidden; padding:6.5rem 0 5.5rem; text-align:center;
   background-image:
     radial-gradient(circle at 12% 8%, rgba(184,146,74,.06), transparent 40%),
-    radial-gradient(circle at 88% 92%, rgba(158,43,37,.05), transparent 42%);
-  /* 全宽突破 GP 容器 */
-  width:100vw; margin-left:calc(50% - 50vw); }
+    radial-gradient(circle at 88% 92%, rgba(158,43,37,.05), transparent 42%); }
 .gf-hero svg{ position:absolute; inset:0; width:100%; height:100%; z-index:0; opacity:.5; }
 .gf-hero .wrap{ position:relative; z-index:1; }
 .hero-eyebrow{ font-family:var(--kai); letter-spacing:.4em; color:var(--gold); font-size:.9rem; margin-bottom:1.4rem; }
@@ -238,5 +236,11 @@ body{ overflow-x:hidden; }
 .page-id-0 .site-main,
 .home .site-main,
 .front-page .site-main{ max-width:100% !important; width:100% !important; padding:0 !important; margin:0 auto; }
+/* 首页：让内容祖先链直接全宽，Hero 才能铺满视口（不依赖负 margin 突破） */
+.gf-home,
+.gf-home.site-main{ max-width:100% !important; width:100% !important; padding:0 !important; margin:0 !important; }
+.site-content{ max-width:100% !important; width:100% !important; }
+/* 非 Hero 区块已由 .wrap 限宽居中；此处确保云纹分隔也居中 */
+.gf-home > .cloud-div{ max-width:1100px; margin-left:auto; margin-right:auto; padding:0 1.5rem; }
 /* 侧边栏标签链接去下划线、继承色 */
 .tags a{ color:inherit; text-decoration:none; }
