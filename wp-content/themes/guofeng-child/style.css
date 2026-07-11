@@ -111,7 +111,9 @@ a:hover{ color:var(--gold); }
 .gf-hero{ position:relative; overflow:hidden; padding:6.5rem 0 5.5rem; text-align:center;
   background-image:
     radial-gradient(circle at 12% 8%, rgba(184,146,74,.06), transparent 40%),
-    radial-gradient(circle at 88% 92%, rgba(158,43,37,.05), transparent 42%); }
+    radial-gradient(circle at 88% 92%, rgba(158,43,37,.05), transparent 42%);
+  /* 全宽突破 GP 容器 */
+  width:100vw; margin-left:calc(50% - 50vw); }
 .gf-hero svg{ position:absolute; inset:0; width:100%; height:100%; z-index:0; opacity:.5; }
 .gf-hero .wrap{ position:relative; z-index:1; }
 .hero-eyebrow{ font-family:var(--kai); letter-spacing:.4em; color:var(--gold); font-size:.9rem; margin-bottom:1.4rem; }
