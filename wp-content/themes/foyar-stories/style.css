@@ -1,10 +1,14 @@
 /*
-  Theme Name:   GeneratePress Child · Foyar Stories
+  Theme Name:   Foyar Stories
   Theme URI:    https://blog.ctnis.com/
-  Description:  中国水墨 · 编辑级品牌版（v4.0）。留白 · 竖排点睛 · 一处水墨手势 · 发丝金线。
-  Author:       墨斋
-  Template:     generatepress
+  Description:  中国水墨 · 编辑级品牌版（v4.0）。留白 · 竖排点睛 · 一处水墨手势 · 发丝金线。独立主题，不依赖任何父主题。
+  Author:       Foyar
+  Author URI:   https://blog.ctnis.com/
   Version:      4.0.0
+  Requires at least: 6.0
+  Tested up to:  6.5
+  Requires PHP: 7.4
+  Text Domain:  foyar-stories
 */
 
 /* ============================================================
@@ -485,3 +489,34 @@ aside .about-card{
 /* footer 防裁切保底 */
 .site-footer,.site-info{ display:block!important; }
 .site-content{ overflow:visible!important; }
+
+/* ============================================================
+   独立主题补充：真实特色图 / 非首页顶栏留白 / 文章排版 / 分页
+   ============================================================ */
+/* 缩略图：真实特色图铺满，无硬边 */
+.post-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+/* 非首页主体：避开固定悬浮顶栏 */
+.site-main:not(.gf-home){ padding-top:clamp(6.5rem,10vw,8.5rem); }
+/* 文章页正文排版（编辑级阅读感） */
+.entry-content{ font-family:var(--serif); font-size:1.05rem; line-height:2.05; color:var(--ink-soft); }
+.entry-content p{ margin:0 0 1.4rem; }
+.entry-content img{ max-width:100%; height:auto; border-radius:6px; box-shadow:0 8px 24px -14px rgba(28,26,23,.3); }
+.entry-content h2,.entry-content h3{ font-family:var(--display); color:var(--ink); letter-spacing:.06em; margin:2.2rem 0 1rem; line-height:1.5; }
+.entry-content a{ color:var(--cinnabar); text-decoration:underline; text-decoration-color:rgba(162,48,42,.3); text-underline-offset:3px; }
+.entry-content blockquote{ margin:1.6rem 0; padding:.5rem 0 .5rem 1.3rem; border-left:3px solid var(--cinnabar); color:var(--ink-faint); font-style:italic; }
+.entry-content pre{ background:var(--paper-deep); padding:1rem 1.2rem; border-radius:6px; overflow:auto; font-size:.9rem; }
+.entry-content code{ font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.92em; background:var(--paper-deep); padding:.1rem .4rem; border-radius:3px; }
+/* 分页导航 */
+.nav-links{ display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; margin:2.5rem 0 1rem; }
+.nav-links a,.nav-links .current{ font-family:var(--serif); font-size:.92rem; padding:.5rem 1rem; border-radius:20px; color:var(--ink-soft); border:1px solid var(--hair); transition:color .3s ease, border-color .3s ease; }
+.nav-links a:hover{ color:var(--cinnabar); border-color:var(--hair-gold); }
+.nav-links .current{ background:var(--cinnabar); color:var(--paper-lit); border-color:var(--cinnabar); }
+/* 评论区 */
+.comment-list{ list-style:none; margin:2rem 0; padding:0; }
+.comment-list li{ padding:1rem 0; border-bottom:1px solid var(--hair); }
+.comment-meta{ font-size:.82rem; color:var(--ink-ghost); margin-bottom:.4rem; }
+.comment-content{ font-family:var(--serif); color:var(--ink-soft); line-height:1.9; }
+.comment-respond{ margin-top:2rem; }
+.comment-respond label{ display:block; font-family:var(--serif); font-size:.85rem; color:var(--ink-faint); margin-bottom:.3rem; }
+.comment-respond input[type=text],.comment-respond textarea{ width:100%; max-width:520px; padding:.6rem .8rem; border:1px solid var(--hair); border-radius:4px; background:var(--paper-lit); font-family:var(--serif); color:var(--ink); }
+.comment-respond .submit{ margin-top:.8rem; }
