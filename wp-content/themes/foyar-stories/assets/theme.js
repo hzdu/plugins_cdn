@@ -34,6 +34,48 @@
       });
     });
 
+    /* ---------- 1b. 移动端子菜单折叠 ---------- */
+    var subParents = document.querySelectorAll(
+      '.main-navigation.toggled .main-nav > ul > li.menu-item-has-children'
+    );
+    function bindSubToggle() {
+      var parents = document.querySelectorAll(
+        '.main-navigation.toggled .main-nav > ul > li.menu-item-has-children'
+      );
+      Array.prototype.forEach.call(parents, function (li) {
+        var link = li.querySelector(':scope > a');
+        if (!link) return;
+        // 防止重复绑定
+        if (link._subBound) return;
+        link._subBound = true;
+        link.addEventListener('click', function (evt) {
+          // 仅移动端面板打开时拦截
+          var nav = li.closest('.main-navigation');
+          if (!nav || !nav.classList.contains('toggled')) return;
+          evt.preventDefault();
+          evt.stopPropagation();
+          var isOpen = li.classList.contains('sub-open');
+          // 关闭同级的其他展开项
+          var siblings = li.parentElement.children;
+          Array.prototype.forEach.call(siblings, function (sib) {
+            sib.classList.remove('sub-open');
+          });
+          if (!isOpen) {
+            li.classList.add('sub-open');
+          }
+        });
+      });
+    }
+    // 面板打开后绑定（此时 DOM 才可见）
+    var navObserver = new MutationObserver(function () {
+      bindSubToggle();
+    });
+    var mainNav = document.querySelector('.main-navigation .main-nav');
+    if (mainNav) {
+      navObserver.observe(mainNav, { attributes: true, attributeFilter: ['class'] });
+    }
+    bindSubToggle();
+
     /* ---------- 2. 顶栏滚动实色 ---------- */
     var header = document.querySelector('.site-header');
     if (header) {

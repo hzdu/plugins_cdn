@@ -133,12 +133,41 @@ body::before{
 .main-navigation .main-nav ul li a::after,
 .main-navigation .main-nav > ul > li > a::after,
 .main-navigation a::after{ display:none !important; }
-/* 下拉子菜单：干净纸面，无金边无重影 */
-.main-navigation ul ul{ list-style:none;
-  background:rgba(248,242,228,.96); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
-  border:1px solid var(--hair); box-shadow:0 18px 40px -12px rgba(28,26,23,.22);
-  border-radius:5px; overflow:hidden; min-width:170px; padding:.3rem 0;
+/* 下拉子菜单：默认隐藏，hover 父项时淡出 */
+.main-navigation ul ul{
+  list-style:none;
+  position:absolute; top:100%; left:50%; transform:translateX(-50%);
+  background:rgba(248,242,228,.97); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+  border:1px solid var(--hair); box-shadow:0 16px 44px -10px rgba(28,26,23,.18);
+  border-radius:6px; overflow:hidden; min-width:180px; padding:.45rem 0;
+  display:none; opacity:0;
+  transition:opacity .3s ease, transform .3s ease, visibility .3s ease;
+  visibility:hidden; z-index:80;
 }
+/* 父项 hover 时下拉 */
+.main-navigation .main-nav > ul > li:hover > ul,
+.main-navigation .main-nav > ul > li:focus-within > ul{
+  display:block; opacity:1; visibility:visible;
+  transform:translateX(-50%) translateY(4px);
+}
+/* 父项加小三角箭头提示有子菜单 */
+.main-navigation .main-nav > ul > .menu-item-has-children > a{
+  padding-right:1.9rem;
+}
+.main-navigation .main-nav > ul > .menu-item-has-children > a::after{
+  content:""; display:inline-block; width:0; height:0;
+  margin-left:.35rem; vertical-align:middle;
+  border-left:4px solid transparent; border-right:4px solid transparent;
+  border-top:5px solid var(--ink-faint);
+  transition:border-color .3s ease, transform .3s ease;
+  opacity:.7;
+}
+.main-navigation .main-nav > ul > .menu-item-has-children:hover > a::after,
+.main-navigation .main-nav > ul > .menu-item-has-children:focus-within > a::after{
+  border-top-color:var(--cinnabar); transform:rotate(180deg);
+}
+.main-navigation ul ul li{ position:static; }
+.main-navigation ul ul li:not(:last-child)::after{ display:none; } /* 去掉竖分隔 */
 .main-navigation ul ul li a{
   font-family:var(--serif); font-size:.92rem; letter-spacing:.12em; color:var(--ink-soft);
   padding:.7rem 1.4rem; transition:color .3s ease, background .3s ease, padding-left .3s ease;
@@ -479,6 +508,40 @@ aside .about-card{
   /* 展开时汉堡浮到面板右上，白线可见，点击关闭 */
   .main-navigation.toggled .menu-toggle{ position:fixed; top:.7rem; right:1.1rem; z-index:95; }
   .main-navigation.toggled .menu-toggle::before{ background:var(--ink); box-shadow:0 -7px 0 var(--ink), 0 7px 0 var(--ink); }
+
+  /* ---- 移动端子菜单：默认收起，点击父项展开缩进显示 ---- */
+  .main-navigation.toggled .main-nav ul ul{
+    display:none; position:static; background:transparent;
+    border:none; box-shadow:none; backdrop-filter:none;
+    padding:0; margin:0; transform:none; opacity:1; visibility:visible;
+    border-radius:0; min-width:auto;
+  }
+  /* 展开状态 */
+  .main-navigation.toggled .main-nav ul li.menu-item-has-children.sub-open > ul{
+    display:block;
+  }
+  /* 子菜单项缩进 + 更小字号 */
+  .main-navigation.toggled .main-nav ul ul li a{
+    font-family:var(--serif); font-size:.9rem; letter-spacing:.12em;
+    padding:.8rem 1.6rem .8rem 2.4rem; color:var(--ink);
+    transition:color .3s ease, background .3s ease;
+  }
+  .main-navigation.toggled .main-nav ul ul li a:hover{
+    color:var(--cinnabar); background:rgba(162,48,42,.05);
+  }
+  /* 父项右侧箭头（CSS 绘制） */
+  .main-navigation.toggled .main-nav > ul > li.menu-item-has-children > a{
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .main-navigation.toggled .main-nav > ul > li.menu-item-has-children > a::after{
+    content:""; width:6px; height:6px;
+    border-right:1.5px solid var(--ink-faint); border-bottom:1.5px solid var(--ink-faint);
+    transform:rotate(-45deg); margin-right:.4rem; transition:transform .3s ease;
+    flex-shrink:0;
+  }
+  .main-navigation.toggled .main-nav > ul > li.menu-item-has-children.sub-open > a::after{
+    transform:rotate(45deg);
+  }
 }
 @media(prefers-reduced-motion:reduce){
   [data-reveal]{ opacity:1; transform:none; transition:none; }
