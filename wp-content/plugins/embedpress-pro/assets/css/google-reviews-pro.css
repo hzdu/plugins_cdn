@@ -1,0 +1,319 @@
+/**
+ * EmbedPress Pro — Google Reviews frontend styles.
+ *
+ * Layered on the free google-reviews.css (Google-authentic, NO cards — reviews
+ * are a hairline-divided list). Adds the dark theme, accent hook, and the Pro
+ * layout presets restyled to the same no-card language.
+ * Classes from Google_Reviews_Pro::wrapper_class():
+ *   .ep-gr--preset-{masonry|slider|badge|spotlight|knowledge}
+ *   .ep-gr--dark  .ep-gr--autoplay
+ * Accent var --ep-gr-accent is set inline (JS) only when the user picks one.
+ */
+
+/* ── Accent (opt-in; default stays Google gold/blue) ─────────────────────── */
+.ep-google-reviews[data-ep-gr-accent] .ep-gr-starrow-fill,
+.ep-google-reviews[data-ep-gr-accent] .ep-gr-star.is-filled {
+    color: var(--ep-gr-accent);
+}
+.ep-google-reviews[data-ep-gr-accent] .ep-gr-carousel-dot.is-active {
+    background: var(--ep-gr-accent);
+}
+
+/* ── Dark theme ─────────────────────────────────────────────────────────── */
+.ep-google-reviews.ep-gr--dark {
+    --ep-gr-text: #e8eaed;
+    --ep-gr-heading: #ffffff;
+    --ep-gr-muted: #9aa0a6;
+    --ep-gr-divider: #3c4043;
+    --ep-gr-card-border: #34373c;
+    --ep-gr-card-bg: #26282c;
+    --ep-gr-card-fill: #26282c;
+    --ep-gr-card-fill-hover: #2d3035;
+    --ep-gr-star-empty: #5f6368;
+    --ep-gr-link: #8ab4f8;
+    --ep-gr-bg: #202124;
+    background: #202124;
+    padding: 20px;
+    border-radius: 12px;
+}
+/* Cards (grid/card/bubble) in dark mode sit on a raised surface, not the page bg. */
+.ep-gr--dark.ep-google-reviews--card .ep-gr-review,
+.ep-gr--dark.ep-google-reviews--grid .ep-gr-review {
+    background: var(--ep-gr-card-bg, #26282c);
+    border-color: var(--ep-gr-card-border, #34373c);
+}
+.ep-gr--dark .ep-gr-write-review { border-color: #5f6368; }
+.ep-gr--dark .ep-gr-owner { background: #2a2f37; }
+.ep-gr--dark .ep-gr-photo { background: #2a2f37; }
+.ep-gr--dark .ep-gr-avatar--placeholder { background: linear-gradient(135deg, #4285f4, #1a73e8); }
+.ep-gr--dark .ep-gr-carousel-arrow { background: #2a2f37; border-color: #3c4043; color: #e8eaed; }
+.ep-gr--dark .ep-gr-carousel-arrow:hover { background: #353b45; }
+/* Bubble preset card tokens in dark mode: a subtly raised surface over the
+   page bg, with the inner bubble body one step lighter so it stays distinct. */
+.ep-gr--preset-bubble.ep-gr--dark,
+.ep-gr--dark .ep-gr--preset-bubble {
+    --ep-gr-card-bg: #26282c;
+    --ep-gr-card-border: #34373c;
+}
+.ep-gr--preset-bubble.ep-gr--dark .ep-gr-body { background: #2d3035; }
+
+/* ── Masonry preset (no-card: balanced columns, hairline under each) ─────── */
+/* Column count + gap follow the free structural controls (--ep-gr-columns /
+   --ep-gr-gap) so the Columns/Gap settings drive masonry too. */
+.ep-gr--preset-masonry .ep-gr-items {
+    column-gap: var(--ep-gr-gap, 32px);
+    column-count: var(--ep-gr-columns, 3);
+}
+.ep-gr--preset-masonry .ep-gr-review {
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    /* Clean card (matches grid/card; uses theme vars → dark mode follows). */
+    background: var(--ep-gr-bg, #fff);
+    border: 1px solid var(--ep-gr-card-border, #eef1f6);
+    border-radius: 14px;
+    padding: 20px;
+    margin: 0 0 var(--ep-gr-gap, 24px);
+    transition: border-color 0.18s ease, background 0.18s ease;
+}
+.ep-gr--preset-masonry .ep-gr-review:hover {
+    border-color: #d6dae3;
+}
+.ep-gr--dark .ep-gr--preset-masonry .ep-gr-review {
+    background: var(--ep-gr-card-bg, #26282c);
+    border-color: var(--ep-gr-card-border, #34373c);
+}
+@media (max-width: 900px) { .ep-gr--preset-masonry .ep-gr-items { column-count: min(2, var(--ep-gr-columns, 3)); } }
+@media (max-width: 600px) {
+    .ep-gr--preset-masonry .ep-gr-items { column-count: 1; }
+    /* Tighter gutter on mobile so the spotlight card keeps usable width. */
+    .ep-google-reviews--spotlight { padding-inline: 38px; }
+    .ep-google-reviews--spotlight .ep-gr-carousel-prev { inset-inline-start: 2px; }
+    .ep-google-reviews--spotlight .ep-gr-carousel-next { inset-inline-end: 2px; }
+}
+
+/* ── Spotlight preset (single large centered review, rotates) ────────────── */
+.ep-gr--preset-spotlight .ep-gr-items { display: block; max-width: 680px; margin-inline: auto; }
+.ep-gr--preset-spotlight .ep-gr-review { padding: 28px 0; border: 0; text-align: center; }
+.ep-gr--preset-spotlight .ep-gr-review-head { flex-direction: column; align-items: center; gap: 8px; }
+.ep-gr--preset-spotlight .ep-gr-avatar { flex-basis: 60px; width: 60px; height: 60px; font-size: 22px; }
+.ep-gr--preset-spotlight .ep-gr-meta { text-align: center; }
+.ep-gr--preset-spotlight .ep-gr-reviewer-meta { justify-content: center; }
+.ep-gr--preset-spotlight .ep-gr-stars-line { justify-content: center; }
+/* Spotlight keeps the read-more clamp too, so the locked slide height stays
+   compact instead of being driven by the single longest review. */
+.ep-gr--preset-spotlight .ep-gr-text {
+    font-size: 18px; line-height: 1.6; color: var(--ep-gr-heading);
+    max-width: 600px; margin-inline: auto;
+}
+.ep-gr--preset-spotlight .ep-gr-readmore { margin-inline: auto; }
+.ep-gr--preset-spotlight .ep-gr-photos { justify-content: center; }
+.ep-gr--preset-spotlight .ep-gr-rev-actions { justify-content: center; }
+.ep-gr--preset-spotlight .ep-gr-review + .ep-gr-review { display: none; }
+/* Manual navigation (arrows + dots) injected by google-reviews-pro.js. The JS
+   sets an explicit display on the active card, overriding the sibling-hide rule
+   above. These reuse the free .ep-gr-carousel-arrow/.ep-gr-carousel-dots styles;
+   spotlight just needs the positioning context + room below for the dots. */
+.ep-google-reviews--spotlight {
+    position: relative;
+    padding-bottom: 28px;
+    /* Side gutter so the arrows sit clear of the centered review card instead
+       of overlapping it (mirrors the free carousel layout). */
+    padding-inline: 48px;
+}
+.ep-google-reviews--spotlight .ep-gr-carousel-prev { inset-inline-start: 6px; }
+.ep-google-reviews--spotlight .ep-gr-carousel-next { inset-inline-end: 6px; }
+.ep-google-reviews--spotlight .ep-gr-carousel-dots {
+    position: absolute;
+    inset-block-end: 4px;
+    inset-inline: 0;
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+}
+
+/* ── Marquee preset (continuous auto-scrolling ribbon of review cards) ───── */
+/* The .ep-gr-items track holds the real cards followed by a JS-cloned copy, so
+   animating it -50% loops seamlessly. Pauses on hover/focus; respects
+   prefers-reduced-motion (animation disabled → static scrollable row). Card
+   width follows --ep-gr-columns (how many are visible at once); gap is
+   --ep-gr-gap. */
+.ep-gr--preset-marquee { position: relative; overflow: hidden; }
+/* Items track + edge-fade live INSIDE this viewport — not on the preset root —
+ * so the gradient only covers the scrolling reviews, not the summary header
+ * above it. */
+.ep-gr--preset-marquee .ep-gr-marquee-viewport {
+    position: relative;
+    overflow: hidden;
+}
+.ep-gr--preset-marquee .ep-gr-items {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: var(--ep-gr-gap, 24px);
+    width: max-content;
+    animation: ep-gr-marquee var(--ep-gr-marquee-duration, 40s) linear infinite;
+}
+/* Each card is a fixed share of the VIEWPORT width (the preset root is the
+   sizing context, not the max-content track), so --ep-gr-columns sets how many
+   are visible at once. min/max keep cards readable on very narrow/wide screens. */
+.ep-gr--preset-marquee .ep-gr-review {
+    flex: 0 0 auto;
+    width: clamp(240px, calc((100vw - 80px) / var(--ep-gr-columns, 3)), 420px);
+    box-sizing: border-box;
+    border: 1px solid var(--ep-gr-divider);
+    border-radius: 12px;
+    padding: 18px;
+}
+.ep-gr--preset-marquee:hover .ep-gr-items,
+.ep-gr--preset-marquee:focus-within .ep-gr-items { animation-play-state: paused; }
+/* Edge fade — scoped to the marquee viewport so cards slide in/out softly
+ * without washing out the summary header above. */
+.ep-gr--preset-marquee .ep-gr-marquee-viewport::before,
+.ep-gr--preset-marquee .ep-gr-marquee-viewport::after {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 56px;
+    z-index: 2;
+    pointer-events: none;
+}
+.ep-gr--preset-marquee .ep-gr-marquee-viewport::before { inset-inline-start: 0; background: linear-gradient(to right, var(--ep-gr-bg, #fff), transparent); }
+.ep-gr--preset-marquee .ep-gr-marquee-viewport::after  { inset-inline-end: 0;  background: linear-gradient(to left,  var(--ep-gr-bg, #fff), transparent); }
+@keyframes ep-gr-marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .ep-gr--preset-marquee .ep-gr-items { animation: none; overflow-x: auto; }
+}
+
+/* ── Bubble preset (speech-bubble testimonials — Essential Addons style) ─── */
+/* Review text sits in a rounded bubble with a downward tail; the reviewer
+   (avatar + name + stars) sits below it. Laid out in the shared column grid. */
+/* Light-mode card tokens for the bubble preset (dark mode overrides below). */
+.ep-gr--preset-bubble {
+    --ep-gr-card-bg: #f9fbff;
+    --ep-gr-card-border: #eef2f8;
+}
+/* Masonry COLUMN FLOW (not grid): items pack tightly top-to-bottom so a long
+   bubble never forces empty space under the short reviews beside it. */
+.ep-gr--preset-bubble .ep-gr-items {
+    display: block;
+    column-count: var(--ep-gr-columns, 3);
+    column-gap: var(--ep-gr-gap, 20px);
+}
+.ep-gr--preset-bubble .ep-gr-review {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    /* Card wrapper around each bubble (uses theme vars → dark mode follows). */
+    padding: 14px;
+    background: var(--ep-gr-card-bg, #f9fbff);
+    border: 1px solid var(--ep-gr-card-border, #eef2f8);
+    border-radius: 16px;
+    /* Keep a card whole within a column (no mid-card break). */
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    margin: 0 0 var(--ep-gr-gap, 20px);
+}
+/* Explicit order: bubble on top, then reviewer (avatar+name), then stars +
+   actions — so the body/head/stars/actions never interleave by source order. */
+.ep-gr--preset-bubble .ep-gr-body { order: 0; }
+.ep-gr--preset-bubble .ep-gr-review-head { order: 1; }
+.ep-gr--preset-bubble .ep-gr-stars-line { order: 2; }
+.ep-gr--preset-bubble .ep-gr-rev-actions { order: 3; }
+/* The text body becomes the bubble. */
+.ep-gr--preset-bubble .ep-gr-body {
+    position: relative;
+    background: var(--ep-gr-bg, #fff);
+    border: 1px solid var(--ep-gr-divider);
+    border-radius: 14px;
+    padding: 18px 20px;
+}
+.ep-gr--preset-bubble .ep-gr-body::after {
+    content: "";
+    position: absolute;
+    left: 28px;
+    bottom: -9px;
+    width: 16px;
+    height: 16px;
+    background: inherit;
+    border-right: 1px solid var(--ep-gr-divider);
+    border-bottom: 1px solid var(--ep-gr-divider);
+    transform: rotate(45deg);
+}
+/* Bubble keeps the read-more clamp (like the carousel) so every bubble is the
+   same height and the masonry packs evenly — long reviews expand on click. */
+/* Reviewer block sits under the bubble, aligned with the tail. */
+.ep-gr--preset-bubble .ep-gr-review-head {
+    align-items: center;
+    gap: 12px;
+    padding-inline-start: 8px;
+}
+/* Bubble is a CSS multi-column layout (display:block; column-count) — NOT a
+   grid — so the responsive overrides MUST use column-count. `grid-template-columns`
+   is a no-op here, which is why the bubble layout previously stayed at N columns
+   at every width and squeezed cards to one word per line in narrow containers. */
+@media (max-width: 900px) and (min-width: 601px) {
+    .ep-gr--preset-bubble .ep-gr-items {
+        column-count: min(2, var(--ep-gr-columns, 3));
+    }
+}
+@media (max-width: 600px) {
+    .ep-gr--preset-bubble .ep-gr-items { column-count: 1; }
+}
+
+/* ── Compact badge preset (rating pill — summary only) ───────────────────── */
+.ep-gr--preset-badge .ep-gr-items,
+.ep-gr--preset-badge .ep-gr-footer { display: none; }
+.ep-gr--preset-badge { display: inline-block; }
+.ep-gr--preset-badge .ep-gr-summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 8px 16px;
+    border: 1px solid var(--ep-gr-divider);
+    border-radius: 999px;
+}
+.ep-gr--preset-badge .ep-gr-summary-head { display: none; }
+.ep-gr--preset-badge .ep-gr-summary-rating { margin: 0; gap: 8px; }
+.ep-gr--preset-badge .ep-gr-summary-score { font-size: 18px; }
+.ep-gr--preset-badge .ep-gr-stars--lg { font-size: 16px; letter-spacing: 1px; }
+
+/* ── Knowledge-panel preset (compact summary card — summary only) ────────── */
+.ep-gr--preset-knowledge .ep-gr-items,
+.ep-gr--preset-knowledge .ep-gr-footer { display: none; }
+.ep-gr--preset-knowledge { display: inline-block; }
+.ep-gr--preset-knowledge .ep-gr-summary {
+    max-width: 320px;
+    padding: 20px 22px;
+    border: 1px solid var(--ep-gr-divider);
+    border-radius: 12px;
+    margin: 0;
+}
+.ep-gr--preset-knowledge .ep-gr-write-review { display: none; }
+.ep-gr--preset-knowledge .ep-gr-summary-rating { flex-direction: column; align-items: flex-start; gap: 6px; }
+
+/* ── Load more ──────────────────────────────────────────────────────────── */
+.ep-gr-loadmore-wrap { text-align: center; margin-top: 18px; }
+.ep-gr-loadmore {
+    display: inline-block;
+    padding: 9px 22px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ep-gr-accent, #5b4e96);
+    background: transparent;
+    border: 1.5px solid var(--ep-gr-accent, #5b4e96);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background .15s, color .15s;
+}
+.ep-gr-loadmore:hover { background: var(--ep-gr-accent, #5b4e96); color: #fff; }
+.ep-gr--dark .ep-gr-loadmore { color: #e6e8eb; border-color: #3a4150; }
+.ep-gr--dark .ep-gr-loadmore:hover { background: var(--ep-gr-accent, #5b4e96); border-color: var(--ep-gr-accent, #5b4e96); }
