@@ -36,7 +36,7 @@
   /* 字体 */
   --brush:"Ma Shan Zheng","KaiTi",serif;         /* 印章/水印 */
   --display:"ZCOOL XiaoWei","Noto Serif SC",serif;/* 品牌显示体 */
-  --serif:"Noto Serif SC",Georgia,"Songti SC",serif;
+  --serif:"Songti SC","STSong","SimSun","Noto Serif SC","Microsoft YaHei",serif; /* 系统宋体优先，Noto 仅作补充 → 镜像抽风也不"怪" */
   /* 节奏 */
   --wrap:1180px;
   --gap:clamp(1.4rem,2.6vw,2.4rem);
@@ -77,6 +77,13 @@ body::before{
   border-bottom:none;
   position:fixed; top:0; left:0; right:0; z-index:50;
   transition:background .45s ease, box-shadow .45s ease, border-color .45s ease;
+}
+/* 登录状态下 WP 管理条（Admin Bar）遮挡修复：header 下移 */
+body.admin-bar .site-header{
+  top:32px;
+}
+@media screen and (max-width: 782px){
+  body.admin-bar .site-header{ top:46px; }
 }
 /* 滚动后浮层变实色，避免透明导航压住正文 */
 .site-header.is-solid{
@@ -133,48 +140,122 @@ body::before{
 .main-navigation .main-nav ul li a::after,
 .main-navigation .main-nav > ul > li > a::after,
 .main-navigation a::after{ display:none !important; }
-/* 下拉子菜单：默认隐藏，hover 父项时淡出 */
-.main-navigation ul ul{
-  list-style:none;
-  position:absolute; top:100%; left:50%; transform:translateX(-50%);
-  background:rgba(248,242,228,.97); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
-  border:1px solid var(--hair); box-shadow:0 16px 44px -10px rgba(28,26,23,.18);
-  border-radius:6px; overflow:hidden; min-width:180px; padding:.45rem 0;
-  display:none; opacity:0;
+/* ============================================================
+   子菜单（支持任意多级）· 默认隐藏，hover/focus 展开
+   ============================================================ */
+/* 所有层级的子菜单 ul：默认绝对定位 + 隐藏 */
+.main-navigation .main-nav ul ul{
+  list-style:none !important;
+  position:absolute;
+  background:rgba(248,242,228,.97);
+  -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+  border:1px solid var(--hair);
+  box-shadow:0 16px 44px -10px rgba(28,26,23,.18);
+  border-radius:6px;
+  padding:.45rem 0;
+  min-width:180px;
+  z-index:80;
+  display:none;
+  opacity:0;
+  visibility:hidden;
   transition:opacity .3s ease, transform .3s ease, visibility .3s ease;
-  visibility:hidden; z-index:80;
 }
-/* 父项 hover 时下拉 */
-.main-navigation .main-nav > ul > li:hover > ul,
-.main-navigation .main-nav > ul > li:focus-within > ul{
-  display:block; opacity:1; visibility:visible;
-  transform:translateX(-50%) translateY(4px);
+/* 第一级子菜单：父项正下方居中弹出 */
+.main-navigation .main-nav > ul > ul,
+.main-navigation .main-nav ul > li > ul{
+  top:100%;
+  left:50%;
+  transform:translateX(-50%);
 }
-/* 父项加小三角箭头提示有子菜单 */
-.main-navigation .main-nav > ul > .menu-item-has-children > a{
-  padding-right:1.9rem;
+/* 第二级及更深：从父项右侧展开 */
+.main-navigation .main-nav ul ul ul{
+  top:0;
+  left:100%;
+  transform:translateX(6px);
+  margin-left:0;
 }
-.main-navigation .main-nav > ul > .menu-item-has-children > a::after{
-  content:""; display:inline-block; width:0; height:0;
-  margin-left:.35rem; vertical-align:middle;
-  border-left:4px solid transparent; border-right:4px solid transparent;
-  border-top:5px solid var(--ink-faint);
-  transition:border-color .3s ease, transform .3s ease;
-  opacity:.7;
+/* 通用展开规则：仅桌面端 hover/focus 即显示子 ul
+   —— 必须限定 min-width:769px，否则移动端 :focus-within 会泄露：
+      点击收起后链接仍保有焦点，导致子菜单以自然全高重新显示（即“收起后自动展开 + 间距撑大”）。
+   移动端一律由 JS 点击切换 .sub-open 控制。 */
+@media (min-width: 769px){
+  .main-navigation .main-nav ul li:hover > ul,
+  .main-navigation .main-nav ul li:focus-within > ul{
+    display:block !important;
+    opacity:1 !important;
+    visibility:visible !important;
+  }
 }
-.main-navigation .main-nav > ul > .menu-item-has-children:hover > a::after,
-.main-navigation .main-nav > ul > .menu-item-has-children:focus-within > a::after{
-  border-top-color:var(--cinnabar); transform:rotate(180deg);
+
+/* ---- 箭头图标（chevron）：所有带子菜单的项 · 用 Unicode 字符避免 border 三角形溢出 ---- */
+/* 第一级（顶栏横排）：朝下 › */
+.main-navigation .main-nav > ul > li.menu-item-has-children > a::after{
+  content:"\203A";  /* › 单右尖角 */
+  display:inline-block !important;
+  font-size:.7em;
+  line-height:1;
+  margin-left:.3rem;
+  transition:transform .35s cubic-bezier(.22,.61,.36,1), color .3s ease;
+  color:var(--ink-faint);
+  flex:none;
+  vertical-align:middle;
 }
-.main-navigation ul ul li{ position:static; }
-.main-navigation ul ul li:not(:last-child)::after{ display:none; } /* 去掉竖分隔 */
-.main-navigation ul ul li a{
-  font-family:var(--serif); font-size:.92rem; letter-spacing:.12em; color:var(--ink-soft);
-  padding:.7rem 1.4rem; transition:color .3s ease, background .3s ease, padding-left .3s ease;
+/* 第一级箭头 hover：转向上（朱砂） */
+.main-navigation .main-nav > ul > li.menu-item-has-children:hover > a::after,
+.main-navigation .main-nav > ul > li.menu-item-has-children:focus-within > a::after{
+  transform:rotate(90deg) translateY(-2px);
+  color:var(--cinnabar);
+  display:inline-block !important;
 }
-.main-navigation ul ul li a::after{ display:none; }
-.main-navigation ul ul li a:hover{
-  color:var(--cinnabar); background:rgba(162,48,42,.06); padding-left:1.7rem;
+
+/* 深层（下拉菜单内）：› 箭头用绝对定位锁定在 a 内部右侧，物理上不可能溢出 */
+.main-navigation .main-nav ul ul li.menu-item-has-children > a{
+  position:relative;
+  display:block !important;
+  padding-right:2.2rem !important;   /* 右侧留空间给箭头（!important 覆盖基础规则） */
+}
+.main-navigation .main-nav ul ul li.menu-item-has-children > a::after{
+  content:"\203A";  /* › */
+  display:block !important;
+  position:absolute;
+  right:.7rem;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:.85em;
+  line-height:1;
+  color:var(--ink-faint);
+  transition:transform .35s cubic-bezier(.22,.61,.36,1), color .3s ease;
+}
+/* 深层箭头 hover：转向下（朱砂） */
+.main-navigation .main-nav ul ul li.menu-item-has-children:hover > a::after,
+.main-navigation .main-nav ul ul li.menu-item-has-children:focus-within > a::after{
+  transform:translateY(-50%) rotate(90deg);
+  color:var(--cinnabar);
+}
+/* 注意：ul ul 绝不能加 overflow:hidden —— 会裁掉从右侧 left:100% 展开的三级子菜单！
+   箭头靠绝对定位 + padding-right 已锁在 a 内部，无需容器截断 */
+
+/* ---- 子菜单内项目样式 ---- */
+/* 去掉子菜单内的竖分隔线 */
+.main-navigation .main-nav ul ul li:not(:last-child)::after{ display:none !important; }
+/* 子菜单链接 */
+.main-navigation .main-nav ul ul li{
+  display:block; width:100%;
+}
+.main-navigation .main-nav ul ul li a{
+  font-family:var(--serif);
+  font-size:.92rem;
+  letter-spacing:.12em;
+  color:var(--ink-soft);
+  padding:.7rem 1.4rem;
+  display:block;
+  transition:color .3s ease, background .3s ease, padding-left .3s ease;
+  white-space:nowrap;
+}
+.main-navigation .main-nav ul ul li a:hover{
+  color:var(--cinnabar);
+  background:rgba(162,48,42,.06);
+  padding-left:1.7rem;
 }
 
 /* ============================================================
@@ -222,31 +303,125 @@ body::before{
   font-family:var(--serif); font-size:clamp(1rem,1.35vw,1.18rem); line-height:2.1;
   color:var(--ink-soft); max-width:34ch; margin:0 0 2.6rem;
 }
-.hero-actions{ display:flex; gap:1rem; flex-wrap:wrap; }
-.btn{
-  font-family:var(--serif); font-weight:500; font-size:.98rem; letter-spacing:.22em;
-  padding:.82rem 2rem; border:1px solid rgba(28,26,23,.2); color:var(--ink);
-  border-radius:3px; position:relative; overflow:hidden;
-  transition:color .4s ease, border-color .4s ease, background .4s ease, box-shadow .4s ease;
+/* 首页诗句副标题：两行分段 + 「」引号 + 朱砂小印 */
+.hero-poem{
+  display:flex; flex-direction:column; align-items:flex-start; gap:.5rem;
+  font-family:var(--display); font-size:clamp(1.05rem,1.5vw,1.32rem);
+  line-height:1.85; letter-spacing:.06em; color:var(--ink); max-width:none;
+  padding-left:.3rem;
 }
-.btn::before{ content:""; position:absolute; inset:0; z-index:-1; background:var(--ink); transform:translateY(101%); transition:transform .42s cubic-bezier(.2,.8,.2,1); }
-.btn:hover{ color:var(--paper-lit); }
-.btn:hover::before{ transform:translateY(0); }
-.btn-solid{ background:var(--cinnabar); border-color:transparent; color:var(--paper-lit); box-shadow:0 4px 14px rgba(124,35,30,.18); }
-.btn-solid::before{ background:var(--cinnabar-deep); }
-.btn-solid:hover{ color:var(--paper-lit); }
-/* 远山墨雾 · 底部过渡桥梁
-   · 上下两端用 mask 渐隐，确保 SVG 任何轮廓都不产生硬边
-   · 整体羽化为雾，自然浮沉、化入正文 */
+.hero-poem .line{ display:block; }
+.hero-poem .line::before{ content:"「"; color:var(--cinnabar); margin-right:.18em; }
+.hero-poem .line::after{ content:"」"; color:var(--cinnabar); margin-left:.18em; }
+.hero-poem .seal{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:2.4rem; height:2.4rem; margin-top:.55rem;
+  color:var(--paper);
+  background:var(--cinnabar); border-radius:3px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.16), 0 2px 7px -2px rgba(162,48,42,.45);
+  opacity:.94;
+}
+.hero-actions{ display:flex; gap:1.6rem; flex-wrap:wrap; align-items:center; }
+
+/* ===== 按钮基底 · 宣纸签条（ghost / 次要按钮） ===== */
+.btn{
+  font-family:var(--brush); font-size:1.05rem; letter-spacing:.32em;
+  padding:.78rem 2rem; color:var(--ink);
+  background:linear-gradient(145deg, var(--paper-lit), var(--paper-deep));
+  border:1px solid var(--hair);
+  border-radius:3px;
+  position:relative; overflow:hidden;
+  transition:color .45s ease, border-color .45s ease, box-shadow .45s ease, background .45s ease;
+}
+/* 内层金线 · 与卡片古风边框同源 */
+.btn::after{
+  content:""; position:absolute; inset:5px; pointer-events:none; z-index:1;
+  border:1px solid var(--hair-gold); opacity:.55;
+  transition:border-color .3s ease, opacity .3s ease;
+}
+/* 四角小钩 */
+.btn::before{
+  content:""; position:absolute; inset:0; pointer-events:none; z-index:2;
+  background:
+    linear-gradient(135deg, var(--gold) 2px, transparent 2px) 0 0   / 10px 10px no-repeat,
+    linear-gradient(225deg, var(--gold) 2px, transparent 2px) 100% 0 / 10px 10px no-repeat,
+    linear-gradient(315deg, var(--gold) 2px, transparent 2px) 100% 100%/ 10px 10px no-repeat,
+    linear-gradient(45deg,  var(--gold) 2px, transparent 2px) 0 100%  / 10px 10px no-repeat;
+  opacity:.45;
+}
+/* hover：朱砂描边 + 淡红晕，文字保持深墨始终可读 */
+.btn:hover{
+  color:var(--ink); border-color:var(--cinnabar);
+  box-shadow:inset 0 0 24px rgba(162,48,42,.1);
+}
+.btn:hover::after{ border-color:rgba(168,132,62,.5); opacity:.8; }
+.btn:hover::before{
+  background:
+    linear-gradient(135deg, var(--cinnabar) 2px, transparent 2px) 0 0   / 10px 10px no-repeat,
+    linear-gradient(225deg, var(--cinnabar) 2px, transparent 2px) 100% 0 / 10px 10px no-repeat,
+    linear-gradient(315deg, var(--cinnabar) 2px, transparent 2px) 100% 100%/ 10px 10px no-repeat,
+    linear-gradient(45deg,  var(--cinnabar) 2px, transparent 2px) 0 100%  / 10px 10px no-repeat;
+}
+
+/* ===== 主按钮 · 朱砂钤印（印章质感） =====
+   注意：需用 .gf-home a.btn-solid 提升特异性，否则会被 .gf-home a 的链接色覆盖 */
+.gf-home a.btn-solid{
+  font-family:var(--brush); font-size:1.08rem; font-weight:500; letter-spacing:.36em;
+  padding:.82rem 2.2rem;
+  background:linear-gradient(165deg, #B8342E, #9E2B25 40%, #8A2420);
+  border:none;
+  color:#FFFDF8;
+  text-shadow:0 1px 2px rgba(80,20,15,.35), 0 0 10px rgba(180,52,46,.18);
+  border-radius:4px;
+  position:relative; overflow:hidden;
+  transform:rotate(-1.5deg);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.16),
+    inset 0 -2px 0 rgba(0,0,0,.15),
+    0 3px 12px rgba(124,35,30,.28),
+    0 1px 3px rgba(0,0,0,.1);
+  transition:transform .3s ease, box-shadow .35s ease;
+}
+/* 印面纹理：极淡噪点模拟印泥不匀（置于文字下层） */
+.gf-home a.btn-solid::before{
+  content:"";
+  position:absolute; inset:0; z-index:-1;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,.08) 0%, transparent 50%),
+    radial-gradient(circle at 75% 70%, rgba(0,0,0,.07) 0%, transparent 45%);
+  pointer-events:none;
+}
+/* 内框线 · 印章边廓（置于文字下层） */
+.gf-home a.btn-solid::after{
+  content:""; position:absolute; inset:4px; pointer-events:none; z-index:-1;
+  border:1px solid rgba(249,244,234,.22); border-radius:2px;
+}
+/* hover：压下去 + 加深阴影（像盖章按下的手感） */
+.gf-home a.btn-solid:hover{
+  transform:rotate(-0.5deg) translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.16),
+    inset 0 -2px 0 rgba(0,0,0,.18),
+    0 6px 20px rgba(124,35,30,.38),
+    0 2px 6px rgba(0,0,0,.12);
+}
+/* 层峦叠嶂 · 远近高低不同的山峰座落在地面上
+   · 容器底部化入纸里，作为地平线过渡
+   · 内部三层山各自绝对铺满、以不同墨色与清晰度叠出远近 */
 .hero-ridge{
   position:absolute; left:-3%; right:-3%; bottom:0;
-  width:106%; height:clamp(190px,34vh,360px);
-  z-index:1; opacity:.9;
-  filter:blur(1.4px);
-  -webkit-mask-image:linear-gradient(to bottom, transparent 0%, #000 26%, #000 68%, transparent 100%);
-          mask-image:linear-gradient(to bottom, transparent 0%, #000 26%, #000 68%, transparent 100%);
+  width:106%; height:clamp(210px,42vh,420px);
+  z-index:1; overflow:hidden;
+  -webkit-mask-image:linear-gradient(to bottom, transparent 0%, #000 30%, #000 72%, transparent 100%);
+          mask-image:linear-gradient(to bottom, transparent 0%, #000 30%, #000 72%, transparent 100%);
 }
-.hero-ridge svg{ display:block; width:100%; height:100%; }
+.hero-ridge .ridge-layer{
+  position:absolute; left:0; right:0; bottom:0; width:100%; height:100%;
+  display:block; will-change:transform;
+}
+.hero-ridge .ridge-far{  filter:blur(2.2px); }
+.hero-ridge .ridge-mid{  filter:blur(.9px); }
+.hero-ridge .ridge-near{ filter:none; }
 /* 朱砂钤印 · 右下角 */
 .hero-stamp{
   position:absolute; right:clamp(2rem,7vw,6rem); bottom:clamp(2.4rem,8vh,5rem); width:70px; height:70px; z-index:4;
@@ -254,6 +429,75 @@ body::before{
   filter:drop-shadow(0 3px 8px rgba(124,35,30,.3));
 }
 .hero-stamp.stamped{ opacity:1; transform:scale(1) rotate(-6deg); }
+
+/* 飞鸟与流云 · Hero 天空层（装饰，不挡交互） */
+.hero-sky{
+  position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden;
+}
+/* —— 流云：柔和白云，缓慢自右向左横移 —— */
+.hero-sky .cloud{
+  position:absolute; left:0; display:block;
+  width:clamp(170px,19vw,310px);
+  color:#fff;
+  filter:blur(3px) drop-shadow(0 12px 20px rgba(28,26,23,.06));
+  will-change:transform;
+  /* 显式写全动画属性（含 duration），覆盖 Tailwind Preflight 的 animation-duration:0s */
+  animation-name:cloudDrift; animation-timing-function:linear;
+  animation-iteration-count:infinite; animation-fill-mode:both;
+}
+.hero-sky .cloud svg{ display:block; width:100%; height:auto; }
+.cloud-1{ top:7%;  opacity:.72; animation-duration:135s; animation-delay:-18s;  width:clamp(170px,20vw,320px); }
+.cloud-2{ top:15%; opacity:.6;  animation-duration:165s; animation-delay:-72s;  width:clamp(120px,13vw,210px); }
+.cloud-3{ top:4%;  opacity:.52; animation-duration:115s; animation-delay:-45s;  width:clamp(180px,22vw,300px); }
+.cloud-4{ top:24%; opacity:.6;  animation-duration:148s; animation-delay:-100s; width:clamp(80px,9vw,140px); }
+.cloud-5{ top:11%; opacity:.46; animation-duration:192s; animation-delay:-33s;  width:clamp(210px,26vw,380px); }
+.cloud-6{ top:30%; opacity:.5;  animation-duration:122s; animation-delay:-140s; width:clamp(200px,24vw,340px); }
+.cloud-7{ top:19%; opacity:.44; animation-duration:175s; animation-delay:-88s;  width:clamp(130px,15vw,240px); }
+@keyframes cloudDrift{
+  from{ transform:translateX(-45vw); }
+  to{   transform:translateX(130vw); }
+}
+/* —— 飞鸟：墨色简笔，随机贝塞尔曲线滑翔 + 振翅 —— */
+/* 轨迹由 theme.js 用 offset-path 注入随机三次贝塞尔曲线，这里只定基准样式 */
+.hero-sky .bird{
+  position:absolute; top:0; left:0; display:block;
+  width:clamp(24px,2.5vw,40px);
+  color:var(--ink); opacity:.55;
+  will-change:offset-distance;
+  offset-rotate:0deg;          /* 不随切线自转，朝向由振翅翻转保持向右 */
+  offset-distance:0%;
+}
+.hero-sky .bird img{
+  display:block; width:100%; height:auto;
+  transform-origin:center;
+  animation-name:birdFlap; animation-duration:.9s;
+  animation-timing-function:ease-in-out; animation-iteration-count:infinite;
+}
+.bird-1{ opacity:.6;  width:clamp(26px,2.6vw,42px); }
+.bird-2{ opacity:.5;  width:clamp(20px,2vw,32px); }
+.bird-3{ opacity:.55; width:clamp(30px,3vw,48px); }
+.bird-4{ opacity:.42; width:clamp(17px,1.7vw,26px); }
+.bird-5{ opacity:.48; width:clamp(22px,2.2vw,36px); }
+@keyframes birdFlap{
+  0%,100%{ transform:scaleX(-1) scaleY(1); }
+  50%{     transform:scaleX(-1) scaleY(.82); }
+}
+/* 尊重无障碍：减少动态 */
+@media (prefers-reduced-motion: reduce){
+  .hero-sky .cloud,
+  .hero-sky .bird,
+  .hero-sky .bird img{ animation:none !important; }
+  .hero-sky .cloud{ opacity:.5; }
+  .cloud-1{ transform:translateX(42vw); }
+  .cloud-2{ transform:translateX(8vw); }
+  .cloud-3{ transform:translateX(74vw); }
+  .hero-sky .bird{ opacity:.5; }
+  .bird-1{ offset-distance:18%; }
+  .bird-2{ offset-distance:42%; }
+  .bird-3{ offset-distance:64%; }
+  .bird-4{ offset-distance:30%; }
+  .bird-5{ offset-distance:82%; }
+}
 
 /* ============================================================
    区块节奏 & 章节标题（序号式）
@@ -290,7 +534,7 @@ body::before{
 .gf-post{
   position:relative; counter-increment:post;
   background:var(--paper-card);
-  border:none; border-radius:10px;
+  border:1px solid var(--hair); border-radius:4px;
   overflow:hidden;
   display:flex; flex-direction:column;
   transition:transform .55s cubic-bezier(.2,.8,.2,1), box-shadow .55s ease;
@@ -316,6 +560,21 @@ body::before{
   opacity:0; transition:opacity .55s ease; pointer-events:none; z-index:0;
 }
 .gf-post:hover::before{ opacity:1; }
+/* 古风双线内框 + 四角回纹直角钩 */
+.gf-post::after{
+  content:""; position:absolute; inset:6px; pointer-events:none; z-index:3;
+  border:1px solid var(--hair-gold); border-radius:2px;
+  background:
+    linear-gradient(var(--gold),var(--gold)) left top/13px 1px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) left top/1px 13px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) right top/13px 1px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) right top/1px 13px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) left bottom/13px 1px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) left bottom/1px 13px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) right bottom/13px 1px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) right bottom/1px 13px no-repeat;
+}
+.gf-post:hover::after{ border-color:rgba(168,132,62,.5); }
 /* 缩略：宣纸面 + 大字，无边界 */
 .post-thumb{
   position:relative; z-index:1; aspect-ratio:16/10; display:grid; place-items:center;
@@ -326,7 +585,7 @@ body::before{
 .post-thumb::before{
   content:counter(post,decimal-leading-zero);
   position:absolute; left:1.1rem; top:.7rem;
-  font-family:var(--display); font-size:1.05rem; letter-spacing:.1em;
+  font-family:var(--serif); font-size:1.05rem; letter-spacing:.1em;
   color:var(--ink-faint); opacity:.5; z-index:2;
 }
 /* 微光掠过：hover 时一道柔光自左上扫向右下 */
@@ -339,6 +598,30 @@ body::before{
 .gf-post:hover .post-thumb::after{ opacity:1; transform:translateX(260%) rotate(8deg); }
 .post-thumb .ch{ font-family:var(--brush); font-size:clamp(3.4rem,7vw,5rem); color:var(--ink); opacity:.16; transition:opacity .5s ease, transform .6s ease; z-index:1; }
 .gf-post:hover .post-thumb .ch{ opacity:.24; transform:scale(1.06); }
+/* ---- 特色图片（有图时）---- */
+.post-featured{
+  width:100%; height:100%; object-fit:cover;
+  transition:transform .7s cubic-bezier(.2,.8,.2,1), filter .5s ease;
+}
+.gf-post:hover .post-featured{ transform:scale(1.04); filter:brightness(.96) saturate(1.08); }
+/* 图片上方宣纸纹理叠加层（让照片融入纸面） */
+.post-thumb > img + *{ display:none; }   /* 有图时隐藏 fallback 装饰 */
+/* ---- 无图兜底装饰：分类名 + 远山墨晕 ---- */
+.thumb-cat{
+  position:absolute; right:.9rem; bottom:.65rem; z-index:2;
+  font-family:var(--display); font-size:.72rem; letter-spacing:.22em;
+  color:var(--ink-faint); opacity:.55;
+  writing-mode:vertical-rl; text-orientation:mixed;
+}
+.thumb-mist{
+  position:absolute; left:0; bottom:0; width:100%; height:60%;
+  pointer-events:none; z-index:0;
+}
+/* 大字在无图模式下更醒目，加一点墨晕 */
+.post-thumb:has(.thumb-cat) .ch{
+  opacity:.13; font-size:clamp(4rem,8vw,6.5rem);
+  text-shadow:0 0 40px rgba(28,26,23,.07), 0 0 80px rgba(28,26,23,.03);
+}
 .post-body{ padding:1.5rem 1.5rem 1.4rem; display:flex; flex-direction:column; flex:1; position:relative; z-index:1; }
 .post-cat{ font-family:var(--serif); font-size:.68rem; letter-spacing:.3em; color:var(--cinnabar); text-transform:uppercase; margin-bottom:.7rem; }
 .post-title{ font-family:var(--display); font-weight:400; font-size:1.32rem; line-height:1.5; letter-spacing:.04em; margin:0 0 .7rem; }
@@ -379,16 +662,50 @@ body::before{
 
 /* 侧栏 */
 aside .about-card{
+  position:relative;
   background:var(--paper-card);
-  border:none; border-radius:8px;
+  border:1px solid var(--hair); border-radius:4px;
   padding:2rem 1.7rem; text-align:center;
-  /* 同卡片：仅靠极淡阴影，无边框无内框 */
   box-shadow:0 1px 12px -8px rgba(28,26,23,.14);
+}
+/* 古风双线内框 + 四角回纹直角钩 */
+aside .about-card::after{
+  content:""; position:absolute; inset:5px; pointer-events:none; z-index:2;
+  border:1px solid var(--hair-gold); border-radius:2px;
+  background:
+    linear-gradient(var(--gold),var(--gold)) left top/11px 1px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) left top/1px 11px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) right top/11px 1px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) right top/1px 11px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) left bottom/11px 1px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) left bottom/1px 11px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) right bottom/11px 1px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) right bottom/1px 11px no-repeat;
 }
 .about-ava{ width:64px; height:64px; margin:0 auto 1rem; background:var(--cinnabar); color:var(--paper-lit); font-family:var(--brush); font-size:2rem; line-height:64px; border-radius:3px; transform:rotate(-3deg); box-shadow:inset 0 0 0 1.5px rgba(249,244,234,.25), inset 0 3px 8px rgba(124,35,30,.4); }
 .about-name{ font-family:var(--display); font-size:1.4rem; letter-spacing:.14em; margin-bottom:.7rem; }
 .about-bio{ font-family:var(--serif); font-size:.9rem; line-height:1.95; color:var(--ink-faint); margin:0; }
-.side-block{ margin-top:1.8rem; }
+.side-block{
+  position:relative; margin-top:1.8rem;
+  padding:1.5rem 1.4rem;
+  background:var(--paper-card);
+  border:1px solid var(--hair); border-radius:4px;
+  box-shadow:0 1px 2px rgba(28,26,23,.04), 0 12px 26px -20px rgba(28,26,23,.18);
+}
+/* 古风双线内框 + 四角回纹直角钩 */
+.side-block::after{
+  content:""; position:absolute; inset:5px; pointer-events:none; z-index:2;
+  border:1px solid var(--hair-gold); border-radius:2px;
+  background:
+    linear-gradient(var(--gold),var(--gold)) left top/11px 1px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) left top/1px 11px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) right top/11px 1px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) right top/1px 11px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) left bottom/11px 1px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) left bottom/1px 11px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) right bottom/11px 1px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) right bottom/1px 11px no-repeat;
+}
 .side-title{
   font-family:var(--display); font-size:1.12rem; letter-spacing:.18em;
   padding-bottom:.5rem; margin-bottom:1rem;
@@ -399,19 +716,40 @@ aside .about-card{
 .cat-list li a{ font-family:var(--serif); font-size:.95rem; letter-spacing:.06em; color:var(--ink-soft); transition:color .3s ease; }
 .cat-list li a:hover{ color:var(--cinnabar); }
 .cat-list .cnt{ font-size:.72rem; color:var(--ink-ghost); background:var(--paper-deep); padding:.1rem .55rem; border-radius:20px; }
-.tags{ display:flex; flex-wrap:wrap; gap:.5rem; }
-.tags span a,.tags span{
-  display:inline-block; font-family:var(--serif); font-size:.82rem; letter-spacing:.08em;
-  color:var(--ink-soft); padding:.36rem .85rem;
-  border:1px solid rgba(28,26,23,.08); border-radius:20px;
-  background:rgba(244,238,225,.5);
-  transition:color .3s ease, border-color .3s ease, background .3s ease, box-shadow .3s ease;
+/* 标签云 · 宣纸笺 + 朱砂印点（水墨古风，拒绝现代药丸） */
+.tags{ display:flex; flex-wrap:wrap; gap:.5rem .58rem; align-items:center; }
+.tags span{ display:inline-block; line-height:1; }
+.tags span a{
+  display:inline-flex; align-items:center; gap:.42rem;
+  font-family:var(--serif); font-size:.82rem; letter-spacing:.1em;
+  color:var(--ink-soft);
+  padding:.34rem .82rem .34rem .92rem;
+  position:relative;
+  /* 宣纸渐变：受光→背光 */
+  background:linear-gradient(180deg, var(--paper-lit), var(--paper-deep));
+  border:1px solid var(--hair);          /* 发丝线，不抢戏 */
+  border-radius:3px;                      /* 方中带圆 */
+  box-shadow:0 1px 5px -4px rgba(28,26,23,.25);
+  transition:color .3s ease, border-color .3s ease, transform .3s ease, box-shadow .3s ease, background .3s ease;
 }
-.tags span:hover{
+/* 朱砂小印：每个标签前一枚，像随手钤印 */
+.tags span a::before{
+  content:""; flex:none;
+  width:5px; height:5px; border-radius:50%;
+  background:var(--cinnabar); opacity:.5;
+  transition:opacity .3s ease, transform .3s ease, box-shadow .3s ease;
+}
+.tags span a:hover,.tags span a:focus{
   color:var(--cinnabar);
-  border-color:rgba(168,132,62,.25);
-  background:rgba(162,48,42,.04);
-  box-shadow:0 2px 8px -3px rgba(162,48,42,.12);
+  border-color:rgba(168,132,62,.4);
+  background:linear-gradient(180deg, var(--paper-lit), rgba(162,48,42,.06));
+  transform:translateY(-2px);
+  box-shadow:0 5px 14px -6px rgba(162,48,42,.28);
+  outline:none;
+}
+.tags span a:hover::before,.tags span a:focus::before{
+  opacity:1; transform:scale(1.35);
+  box-shadow:0 0 0 3px rgba(162,48,42,.12);
 }
 
 /* ============================================================
@@ -509,38 +847,72 @@ aside .about-card{
   .main-navigation.toggled .menu-toggle{ position:fixed; top:.7rem; right:1.1rem; z-index:95; }
   .main-navigation.toggled .menu-toggle::before{ background:var(--ink); box-shadow:0 -7px 0 var(--ink), 0 7px 0 var(--ink); }
 
-  /* ---- 移动端子菜单：默认收起，点击父项展开缩进显示 ---- */
+  /* ================================================================
+     移动端子菜单 · v7 极简方案（Tailwind utility-first 思路）
+     原则：CSS 只管"默认隐藏 + 展开时显示 + 视觉样式"
+     动画（精确高度过渡）全部由 theme.js 用 inline style 控制
+     不再用 max-height/overflow-hidden/visibility 的 !important 军备竞赛
+     ================================================================ */
+
+  /* --- 默认隐藏所有层级的子菜单 --- */
   .main-navigation.toggled .main-nav ul ul{
-    display:none; position:static; background:transparent;
-    border:none; box-shadow:none; backdrop-filter:none;
-    padding:0; margin:0; transform:none; opacity:1; visibility:visible;
-    border-radius:0; min-width:auto;
+    display:none;
+    /* JS 展开时会通过 inline style 覆盖 display 为 block 并设 maxHeight 动画 */
+    position:static;
+    background:transparent;
+    border:none;
+    box-shadow:none;
+    padding:0;
+    margin:0;
+    transform:none;
+    width:100%;
   }
-  /* 展开状态 */
-  .main-navigation.toggled .main-nav ul li.menu-item-has-children.sub-open > ul{
+
+  /* --- 点击展开：JS 加 .sub-open 后显示（样式由 JS 内联 style 精确控制动画）--- */
+  .main-navigation.toggled .main-nav li.menu-item-has-children.sub-open > ul{
     display:block;
+    opacity:1;
+    visibility:visible;
   }
-  /* 子菜单项缩进 + 更小字号 */
+
+  /* --- 子菜单 <li> 和 <a>：纯视觉样式，无 !important，无 display/max-height 干扰 --- */
+  .main-navigation.toggled .main-nav ul ul li{ display:block; width:100%; }
+
   .main-navigation.toggled .main-nav ul ul li a{
-    font-family:var(--serif); font-size:.9rem; letter-spacing:.12em;
-    padding:.8rem 1.6rem .8rem 2.4rem; color:var(--ink);
-    transition:color .3s ease, background .3s ease;
+    display:block;
+    font-family:var(--serif);
+    font-size:.85rem;
+    letter-spacing:.1em;
+    color:var(--ink);
+    padding:.5rem 1.4rem .5rem 2.2rem;
+    background:transparent;
+    white-space:nowrap;
   }
-  .main-navigation.toggled .main-nav ul ul li a:hover{
-    color:var(--cinnabar); background:rgba(162,48,42,.05);
+  .main-navigation.toggled .main-nav ul ul ul li a{ padding-left:3.2rem; }
+  .main-navigation.toggled .main-nav ul ul ul ul li a{ padding-left:4.2rem; }
+  .main-navigation.toggled .main-nav ul ul li a:hover{ color:var(--cinnabar); background:rgba(162,48,42,.04); }
+
+  /* --- 带子菜单的父项：flex 让箭头靠右 --- */
+  .main-navigation.toggled .main-nav li.menu-item-has-children > a{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-right:1.6rem;
   }
-  /* 父项右侧箭头（CSS 绘制） */
-  .main-navigation.toggled .main-nav > ul > li.menu-item-has-children > a{
-    display:flex; align-items:center; justify-content:space-between;
-  }
-  .main-navigation.toggled .main-nav > ul > li.menu-item-has-children > a::after{
-    content:""; width:6px; height:6px;
-    border-right:1.5px solid var(--ink-faint); border-bottom:1.5px solid var(--ink-faint);
-    transform:rotate(-45deg); margin-right:.4rem; transition:transform .3s ease;
+  /* --- 箭头 ::after：› 字符 --- */
+  .main-navigation.toggled .main-nav li.menu-item-has-children > a::after{
+    content:"\203A";
+    display:inline-block;
+    font-size:.8em;
+    line-height:1;
+    color:var(--ink-faint);
+    margin-right:.1rem;
+    transition:transform .35s cubic-bezier(.22,.61,.36,1), color .3s ease;
     flex-shrink:0;
   }
-  .main-navigation.toggled .main-nav > ul > li.menu-item-has-children.sub-open > a::after{
-    transform:rotate(45deg);
+  .main-navigation.toggled .main-nav li.menu-item-has-children.sub-open > a::after{
+    transform:rotate(90deg);
+    color:var(--cinnabar);
   }
 }
 @media(prefers-reduced-motion:reduce){
@@ -583,3 +955,38 @@ aside .about-card{
 .comment-respond label{ display:block; font-family:var(--serif); font-size:.85rem; color:var(--ink-faint); margin-bottom:.3rem; }
 .comment-respond input[type=text],.comment-respond textarea{ width:100%; max-width:520px; padding:.6rem .8rem; border:1px solid var(--hair); border-radius:4px; background:var(--paper-lit); font-family:var(--serif); color:var(--ink); }
 .comment-respond .submit{ margin-top:.8rem; }
+
+/* ============================================================
+   古物拓影 · 内容区背景装饰
+   墨拓风：极低不透明度、贴近纸色的墨色剪影，只在 Hero 下方
+   主题内容区（.gf-content）浮现，绝不触碰 Hero 与正文卡片。
+   ============================================================ */
+.gf-content{ position:relative; }
+.relic-bg{
+  position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none;
+}
+.relic-bg .relic{
+  position:absolute; display:block; color:var(--ink);
+  filter:saturate(0); user-select:none; will-change:transform;
+}
+.relic-bg .relic svg{ display:block; width:100%; height:auto; }
+
+/* 窄屏：收起易与正文打架的大件，整体再降一档存在感 */
+@media (max-width:760px){
+  .relic-bg .relic.r-chariot,
+  .relic-bg .relic.r-bamboo{ display:none; }
+  .relic-bg .relic{ opacity:.04 !important; }
+  .relic-bg .relic.r-ding{ width:92px !important; }
+  .relic-bg .relic.r-oracle{ width:104px !important; }
+}
+
+/* 极宽屏：避免在超大留白里元素贴边过近，略向内收 */
+@media (min-width:1600px){
+  .relic-bg .relic.r-ding:not(.r-ding--b){ right:6% !important; }
+  .relic-bg .relic.r-coin{ left:6% !important; }
+  .relic-bg .relic.r-oracle{ left:6% !important; }
+  .relic-bg .relic.r-chariot{ left:6% !important; }
+  .relic-bg .relic.r-bamboo{ right:6% !important; }
+  .relic-bg .relic.r-weapon{ right:6% !important; }
+  .relic-bg .relic.r-spade{ right:8% !important; }
+}
