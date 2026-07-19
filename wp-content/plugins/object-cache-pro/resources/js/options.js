@@ -29,7 +29,11 @@ jQuery.extend(window.objectcache, {
                     },
                 })
                 .done(function (data, status, xhr) {
-                    objectcache.rest.nonce = xhr.getResponseHeader('X-WP-Nonce') ?? objectcache.rest.nonce;
+                    var header = xhr.getResponseHeader('X-WP-Nonce');
+
+                    if (header) {
+                        objectcache.rest.nonce = header;
+                    }
 
                     window.objectcache.options.addAdminNotice({
                         message: 'Settings saved.',

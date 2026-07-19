@@ -433,6 +433,10 @@ jQuery.extend(window.objectcache, {
                 'date_display',
             ];
 
+            if (! Object.keys(this.charts).length) {
+                return;
+            }
+
             for (var chart in this.charts) {
                 if (this.comboCharts.hasOwnProperty(chart)) {
                     this.comboCharts[chart].containers.forEach(function (container) {
@@ -465,9 +469,13 @@ jQuery.extend(window.objectcache, {
                     },
                 })
                 .done(function (data, status, xhr) {
-                    objectcache.rest.nonce = xhr.getResponseHeader('X-WP-Nonce') ?? objectcache.rest.nonce;
+                    var header = xhr.getResponseHeader('X-WP-Nonce');
 
-                    this.updateCharts(data)
+                    if (header) {
+                        objectcache.rest.nonce = header;
+                    }
+
+                    this.updateCharts(data);
                 }.bind(this))
                 .fail(function (error) {
                     console.log(error);

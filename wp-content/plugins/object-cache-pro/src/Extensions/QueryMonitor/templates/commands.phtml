@@ -65,13 +65,24 @@ if (! defined('QM_OBJECTCACHE_HEAVY')) {
                         <?php array_shift($trace); ?>
 
                         <ol>
-                            <li>
-                                <?php echo self::output_filename($caller['display'], $caller['calling_file'], $caller['calling_line']); ?>
-                            </li>
+                            <?php if ($caller) : ?>
+                                <li>
+                                    <?php echo self::output_filename(
+                                        is_object($caller) ? $caller->id : ($caller['display'] ?? "{$caller['function']}()"),
+                                        is_object($caller) ? $caller->file : $caller['calling_file'],
+                                        is_object($caller) ? $caller->line : $caller['calling_line']
+                                    ); ?>
+                                </li>
+                            <?php endif; ?>
+
                             <div class="qm-toggled">
                                 <?php foreach ($trace as $item) : ?>
                                     <li>
-                                        <?php echo self::output_filename($item['display'] ?? "{$item['function']}()", $item['calling_file'], $item['calling_line']); ?>
+                                        <?php echo self::output_filename(
+                                            is_object($item) ? $item->id : ($item['display'] ?? "{$item['function']}()"),
+                                            is_object($item) ? $item->file : $item['calling_file'],
+                                            is_object($item) ? $item->line : $item['calling_line']
+                                        ); ?>
                                     </li>
                                 <?php endforeach; ?>
                             </div>

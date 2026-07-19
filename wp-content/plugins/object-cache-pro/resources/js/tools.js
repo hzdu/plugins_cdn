@@ -2,6 +2,10 @@ window.addEventListener('load', function () {
     window.objectcache.groups.init();
     window.objectcache.latency.init();
     window.objectcache.flushlog.init();
+    window.objectcache.slowlog.init();
+    window.objectcache.commands.init();
+    window.objectcache.diagnostics.init();
+    window.objectcache.adaptive.init();
 });
 
 jQuery.extend(window.objectcache, {
@@ -20,7 +24,11 @@ jQuery.extend(window.objectcache, {
                     },
                 })
                 .done(function (data, status, xhr) {
-                    objectcache.rest.nonce = xhr.getResponseHeader('X-WP-Nonce') ?? objectcache.rest.nonce;
+                    var header = xhr.getResponseHeader('X-WP-Nonce');
+
+                    if (header) {
+                        objectcache.rest.nonce = header;
+                    }
 
                     var widget = document.querySelector('.objectcache\\:latency-widget');
 
@@ -36,9 +44,10 @@ jQuery.extend(window.objectcache, {
                     var content = '';
 
                     var formatLatency = function (us) {
-                        if (us < 500) return '<strong>' + us + '</strong> μs';
-                        if (us < 1000) return '<strong class="warning">' + us + '</strong> μs';
-                        return '<strong class="error">' + Math.round((us / 1000 + Number.EPSILON) * 100) / 100 + '</strong> ms';
+                        var ms = Math.round((us / 1000 + Number.EPSILON) * 100) / 100;
+                        if (us < 500) return '<strong>' + ms + '</strong> ms';
+                        if (us < 1000) return '<strong class="warning">' + ms + '</strong> ms';
+                        return '<strong class="error">' + ms + '</strong> ms';
                     };
 
                     data.forEach(function (item) {
@@ -83,46 +92,37 @@ jQuery.extend(window.objectcache, {
             document.querySelector('.objectcache\\:groups-widget button')
                 .addEventListener('click', window.objectcache.groups.fetchData);
 
-            document.querySelector('.objectcache\\:groups-widget')
-                .addEventListener('click', window.objectcache.groups.flushGroup);
-
             if (! ClipboardJS.isSupported()) {
                 return;
             }
 
             var widget = document.querySelector('.objectcache\\:groups-widget');
-            var copyButton = widget.querySelector('.button[data-clipboard-target]');
-            var copyText = widget.querySelector('.button[data-clipboard-target] + span');
-            var clipboard = new ClipboardJS(copyButton);
+            var downloadButton = widget.querySelector('.button[data-download-target]');
 
-            clipboard.on('success', function (event) {
-                event.clearSelection();
-                copyButton.classList.add('hidden');
-                copyText.classList.remove('hidden');
+            downloadButton.addEventListener('click', function (event) {
+                var groups = widget.querySelector(event.target.dataset.downloadTarget);
+                var hostname = window.location.hostname.replace('.', '-');
 
-                setTimeout(function () {
-                    copyText.classList.add('hidden');
-                    copyButton.classList.remove('hidden');
-                }, 3000);
-            });
-
-            clipboard.on('error', function (event) {
-                event.clearSelection();
-
-                window.alert('Sorry, something went wrong.');
+                if (groups) {
+                    var data = groups.innerText.replace(/ *\t/g, ',');
+                    var anchor = window.document.createElement('a');
+                    anchor.href = window.URL.createObjectURL(new Blob([data], { type: 'text/plain' }));
+                    anchor.download = 'cache-groups-' + hostname + '.csv';
+                    anchor.click();
+                }
             });
         },
 
         fetchData: function () {
             var widget = document.querySelector('.objectcache\\:groups-widget');
-
+            var checkbox = widget.querySelector('input[type=checkbox]');
             var button = widget.querySelector('.button');
             button.blur();
             button.classList.add('disabled');
             button.textContent = button.dataset.loading;
 
-            var copy = widget.querySelector('.button[data-clipboard-target]');
-            copy.classList.add('hidden');
+            var download = widget.querySelector('.button[data-download-target]');
+            download.classList.add('hidden');
 
             var container = widget.querySelector('.table-container');
             container && widget.removeChild(container);
@@ -142,13 +142,19 @@ jQuery.extend(window.objectcache, {
 
             jQuery
                 .ajax({
-                    url: objectcache.rest.url + 'objectcache/v1/groups',
+                    url: objectcache.rest.url + 'objectcache/v1/groups' + (
+                        objectcache.rest.url.indexOf('?') < 0 ? '?' : '&'
+                    ) + 'memory=' + (+(checkbox && checkbox.checked)),
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader('X-WP-Nonce', objectcache.rest.nonce);
                     },
                 })
                 .done(function (data, status, xhr) {
-                    objectcache.rest.nonce = xhr.getResponseHeader('X-WP-Nonce') ?? objectcache.rest.nonce;
+                    var header = xhr.getResponseHeader('X-WP-Nonce');
+
+                    if (header) {
+                        objectcache.rest.nonce = header;
+                    }
 
                     var info = widget.querySelector('p:first-child');
                     info && widget.removeChild(info);
@@ -167,25 +173,45 @@ jQuery.extend(window.objectcache, {
                         return div.innerHTML.replace(/"/g, '&quot;').replace(/'/g, '&apos;');
                     };
 
+                    var formatNumber = function (number) {
+                        return new Intl.NumberFormat('en-US').format(number);
+                    };
+
+                    var formatBytes = function (bytes) {
+                        return new Intl.NumberFormat('en-US', {
+                            style: 'unit',
+                            unit: 'byte',
+                            unitDisplay: 'narrow',
+                            notation: 'compact',
+                        }).format(bytes).replace(/([\d.]+)(\D+)/, '$1 $2');
+                    };
+
                     var content = '';
 
                     if (data.length) {
                         title.textContent = title.dataset.label + ' (' + data.length + ')';
-                        title.dataset.count = data.length;
+                        title.dataset.keys = data.length;
 
                         data.forEach(function (item) {
-                            content += '<tr title="' + item.count + ' objects found in `' + escapeHtml(item.group) + '` group">';
+                            var title = formatNumber(item.keys) + ' objects found in `' + escapeHtml(item.group) + '` cache group';
+
+                            content += '<tr title="' + title + '">';
                             content += '  <td data-group="' + item.group + '">';
                             content += '    <span class="group-name">' + escapeHtml(item.group) + '</span>';
                             content += '    <button class="objectcache:flush-group button-link">Flush</button>';
                             content += '  </td>';
+                            if (checkbox && checkbox.checked) {
+                                content += '<td>';
+                                content += formatBytes(item.bytes);
+                                content += '</td>';
+                            }
                             content += '  <td>';
-                            content += '    <strong>' + item.count + '</strong>';
+                            content += formatNumber(item.keys);
                             content += '  </td>';
                             content += '</tr>';
                         });
 
-                        ClipboardJS.isSupported() && copy.classList.remove('hidden');
+                        download.classList.remove('hidden');
                     } else {
                         content += '<tr>';
                         content += '  <td colspan="2">No cache groups found.</td>';
@@ -193,6 +219,12 @@ jQuery.extend(window.objectcache, {
                     }
 
                     table.innerHTML = content;
+
+                    document.querySelectorAll(
+                        '.objectcache\\:groups-widget .objectcache\\:flush-group'
+                    ).forEach(function (button) {
+                        button.addEventListener('click', window.objectcache.groups.flushGroup);
+                    });
                 })
                 .fail(function (error) {
                     var container = widget.querySelector('.error');
@@ -219,10 +251,6 @@ jQuery.extend(window.objectcache, {
 
         flushGroup: function (event) {
             event.preventDefault();
-
-            if (! event.target.classList.contains('objectcache:flush-group')) {
-                return;
-            }
 
             var table = event.target.closest('table');
 
@@ -251,12 +279,16 @@ jQuery.extend(window.objectcache, {
                     },
                 })
                 .done(function(data, status, xhr) {
-                    objectcache.rest.nonce = xhr.getResponseHeader('X-WP-Nonce') ?? objectcache.rest.nonce;
+                    var header = xhr.getResponseHeader('X-WP-Nonce');
+
+                    if (header) {
+                        objectcache.rest.nonce = header;
+                    }
 
                     var title = document.querySelector('#objectcache_groups .hndle');
-                    title.dataset.count = title.dataset.count - 1;
+                    title.dataset.keys = title.dataset.keys - 1;
 
-                    title.textContent = title.dataset.label + ' (' + title.dataset.count + ')';
+                    title.textContent = title.dataset.label + ' (' + title.dataset.keys + ')';
 
                     event.target.closest('tr').remove();
                 })
@@ -318,4 +350,212 @@ jQuery.extend(window.objectcache, {
                 });
         },
     },
+
+    diagnostics: {
+        init: function () {
+            var widget = document.querySelector('.objectcache\\:health-widget');
+            var downloadButton = widget.querySelector('.button[data-download-target]');
+
+            downloadButton.addEventListener('click', function (event) {
+                var diagnostics = widget.querySelector(event.target.dataset.downloadTarget);
+                var hostname = window.location.hostname.replace('.', '-');
+
+                if (diagnostics) {
+                    var anchor = window.document.createElement('a');
+                    anchor.href = window.URL.createObjectURL(new Blob([diagnostics.value], { type: 'text/plain' }));
+                    anchor.download = 'diagnostics-' + hostname + '.txt';
+                    anchor.click();
+                }
+            });
+        },
+    },
+
+    slowlog: {
+        init: function () {
+            document.querySelector(
+                '#objectcache_slowlog .handle-actions'
+            )?.addEventListener('click', function (event) {
+                if (
+                    event.target.classList.contains('handle-reset') ||
+                    event.target.closest('.handle-reset')
+                ) {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    if (window.confirm("Are you sure you want to reset the slowlog?")) {
+                        window.objectcache.slowlog.reset();
+                    }
+                }
+            });
+        },
+
+        reset: function () {
+            jQuery
+                .ajax({
+                    type: 'DELETE',
+                    url: document.querySelector('#objectcache_slowlog .handle-reset').dataset.href,
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('X-WP-Nonce', objectcache.rest.nonce);
+                    },
+                })
+                .done(function (data, status, xhr) {
+                    window.location.reload();
+                })
+                .fail(function (error) {
+                    if (error.responseJSON && error.responseJSON.message) {
+                        window.alert(error.responseJSON.message);
+                    } else {
+                        window.alert('Request failed (' + error.status + ').');
+                    }
+                });
+        },
+    },
+
+    commands: {
+        init: function () {
+            document.querySelector(
+                '#objectcache_commandstats .handle-actions'
+            )?.addEventListener('click', function (event) {
+                if (
+                    event.target.classList.contains('handle-reset') ||
+                    event.target.closest('.handle-reset')
+                ) {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    if (window.confirm("Are you sure you want to reset the command statistics?")) {
+                        window.objectcache.commands.reset();
+                    }
+                }
+            });
+        },
+
+        reset: function () {
+            jQuery
+                .ajax({
+                    type: 'DELETE',
+                    url: document.querySelector('#objectcache_commandstats .handle-reset').dataset.href,
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('X-WP-Nonce', objectcache.rest.nonce);
+                    },
+                })
+                .done(function (data, status, xhr) {
+                    window.location.reload();
+                })
+                .fail(function (error) {
+                    if (error.responseJSON && error.responseJSON.message) {
+                        window.alert(error.responseJSON.message);
+                    } else {
+                        window.alert('Request failed (' + error.status + ').');
+                    }
+                });
+        },
+
+        sort: function (event) {
+            var sortBy = (event.target.closest('[data-sort]') || { dataset: {} }).dataset.sort;
+            var sortable = ['calls', 'rejected', 'failed', 'usec'];
+
+            if (sortBy && sortable.includes(sortBy)) {
+                event.preventDefault();
+
+                var container = document.querySelector('.objectcache\\:commands-widget');
+                var items = Array.from(container.querySelectorAll('details'));
+
+                var sorted = items.slice().sort((a, b) => {
+                    return parseInt(b.dataset[sortBy]) - parseInt(a.dataset[sortBy]);
+                });
+
+                sorted.forEach(item => container.appendChild(item));
+            }
+        },
+    },
+
+    adaptive: {
+        init: function () {
+            var button = document.querySelector('.objectcache\\:adaptive-widget button');
+            if (button) {
+                button.addEventListener('click', window.objectcache.adaptive.fetchData);
+            }
+        },
+        fetchData: function (event) {
+            event.preventDefault();
+
+            var widget = document.querySelector('.objectcache\\:adaptive-widget');
+            var button = widget.querySelector('.button');
+
+            button.blur();
+            button.classList.add('disabled');
+            button.textContent = button.dataset.loading;
+
+            jQuery
+                .ajax({
+                    url: objectcache.rest.url + 'objectcache/v1/relay/adaptive',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('X-WP-Nonce', objectcache.rest.nonce);
+                    },
+                })
+                .done(function (data, status, xhr) {
+                    var header = xhr.getResponseHeader('X-WP-Nonce');
+
+                    if (header) {
+                        objectcache.rest.nonce = header;
+                    }
+
+                    var content = '';
+
+                    if (data.length > 0) {
+                        data.forEach(function (item) {
+                            content += '<details>';
+                            content += '  <summary>';
+                            content += '    <span class="dashicons dashicons-arrow-right-alt2"></span>';
+                            content += '    <code title="' + item.key + '">' + item.key + '</code>';
+                            content += '    <time title="Reads/Writes ratio">1:' + Math.min(Math.round(item.ratio), 1000) + '</time>';
+                            content += '  </summary>';
+                            content += '  <ul>';
+                            content += '    <li title="Number of reads">';
+                            content += '      <span class="dashicons dashicons-visibility"></span>';
+                            content += '      <time>' + item.reads + '</time>';
+                            content += '    </li>';
+                            content += '    <li title="Number of writes">';
+                            content += '      <span class="dashicons dashicons-edit"></span>';
+                            content += '      <time>' + item.writes + '</time>';
+                            content += '    </li>';
+                            content += '  </ul>';
+                            content += '</details>';
+                        });
+                    } else {
+                        content = 'No statistics available, yet.';
+                    }
+
+                    var table = widget.querySelector('p,div.table-container');
+                    table && widget.removeChild(table);
+
+                    var container = document.createElement('div');
+                    container.classList.add('table-container');
+                    container.innerHTML = content;
+
+                    widget.prepend(container);
+                })
+                .fail(function (error) {
+                    var container = widget.querySelector('.error');
+
+                    if (! container) {
+                        container = document.createElement('p');
+                        container.classList.add('error');
+
+                        widget.prepend(container);
+                    }
+
+                    if (error.responseJSON && error.responseJSON.message) {
+                        container.textContent = error.responseJSON.message;
+                    } else {
+                        container.textContent = 'Request failed (' + error.status + ').';
+                    }
+                })
+                .always(function () {
+                    button.textContent = button.dataset.text;
+                    button.classList.remove('disabled');
+                });
+        }
+    }
 });

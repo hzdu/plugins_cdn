@@ -5,14 +5,23 @@
     </p>
 
     <div class="actions">
-        <button class="button button-primary" data-text="Scan groups" data-loading="Scanning...">
-            Scan groups
-        </button>
+        <div>
+            <button class="button button-primary" data-text="Scan groups" data-loading="Scanning...">
+                Scan groups
+            </button>
 
-        <button class="button button-secondary hidden" data-text="Copy groups" data-clipboard-target=".objectcache\:groups-widget .table-container">
-            Copy to clipboard
-        </button>
+            <?php if (! $this->plugin->config()->cluster) : ?>
+                <label>
+                    <input type="checkbox" name="memory" value="1" />
+                    Calculate memory
+                </label>
+            <?php endif; ?>
+        </div>
 
-        <span class="success hidden" aria-hidden="true">Copied!</span>
+        <textarea id="objectcache-groups"></textarea>
+
+        <button class="button button-secondary hidden" data-download-target=".table-container">
+            Download
+        </button>
     </div>
 </div>

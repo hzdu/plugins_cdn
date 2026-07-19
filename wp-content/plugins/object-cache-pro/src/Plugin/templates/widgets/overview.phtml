@@ -3,6 +3,7 @@
 $license = $this->license();
 $diagnostics = $this->diagnostics();
 
+$usingRelay = $diagnostics->usingRelay();
 $usingRelayCache = $diagnostics->usingRelayCache();
 
 $status = $diagnostics['general']['status']->html;
@@ -18,8 +19,9 @@ $relayMaxMemory = $diagnostics['relay']['relay-maxmemory'] ?? 100;
 $relayLicense = $diagnostics['relay']['relay-license'] ?? null;
 
 $configError = $this->config->initException ?? false;
-$configDefined = defined('\WP_REDIS_CONFIG');
+$configDefined = defined('WP_REDIS_CONFIG');
 $configDefinedTooLate = $this->lazyAssConfig();
+$hello = $diagnostics->hello();
 $networkFlushing = is_multisite() && $this->config->network_flush !== $this->config::NETWORK_FLUSH_ALL;
 $isDisabled = $diagnostics->isDisabled();
 $dropinExists = $diagnostics->dropinExists();
@@ -72,7 +74,7 @@ $adminNonceUrl = function ($action) use ($onDashboard) {
             </li>
         <?php endif; ?>
 
-        <?php if ($usingRelayCache) : ?>
+        <?php if ($usingRelayCache && $onDashboard) : ?>
             <?php $relayAtCapacity = $relayMemory->isWarning() ? "Relay is running at maximum memory capacity ({$relayMaxMemory}) and will cache no further data." : null; ?>
 
             <?php if ($this->config->shared && $relayKeys->hasValue()) : ?>
@@ -104,7 +106,7 @@ $adminNonceUrl = function ($action) use ($onDashboard) {
             </li>
         <?php endif; ?>
 
-        <?php if ($usingRelayCache && $relayLicense->hasIssue()) : ?>
+        <?php if ($usingRelay && $onDashboard && $relayLicense->hasIssue()) : ?>
             <li title="Relay license">
                 <span class="dashicons dashicons-admin-network"></span>
                 Relay: <?php echo ucwords($relayLicense->html() ?? 'error'); ?>
@@ -126,9 +128,7 @@ $adminNonceUrl = function ($action) use ($onDashboard) {
             <?php $flushAction = is_network_admin() ? 'flush-network-cache' : ($networkFlushing ? 'flush-site-cache' : 'flush-cache'); ?>
 
             <?php if ($license->isValid()) : ?>
-                <a class="button button-primary"
-                    href="<?php echo $adminNonceUrl($flushAction); ?>"
-                >
+                <a class="button button-primary" href="<?php echo $adminNonceUrl($flushAction); ?>">
                     <?php echo $flushText; ?>
                 </a>
             <?php else : ?>
@@ -141,10 +141,8 @@ $adminNonceUrl = function ($action) use ($onDashboard) {
         <?php if ($fileModsAllowed && (! is_multisite() || is_network_admin())) : ?>
 
             <?php if (! $dropinExists || ! $dropinIsValid) : ?>
-                <?php if ($configDefined && ! $configDefinedTooLate && $license->isValid()) : ?>
-                    <a class="button button-primary"
-                        href="<?php echo $adminNonceUrl('enable-dropin'); ?>"
-                    >
+                <?php if ($configDefined && ! $configDefinedTooLate && ! is_wp_error($hello) && $license->isValid()) : ?>
+                    <a class="button button-primary" href="<?php echo $adminNonceUrl('enable-dropin'); ?>">
                         Enable Cache
                     </a>
                 <?php else : ?>
@@ -153,9 +151,7 @@ $adminNonceUrl = function ($action) use ($onDashboard) {
                     </a>
                 <?php endif; ?>
             <?php elseif ($dropinIsValid && ! $dropinIsUpToDate) : ?>
-                <a class="button button-secondary"
-                    href="<?php echo $adminNonceUrl('update-dropin'); ?>"
-                >
+                <a class="button button-secondary" href="<?php echo $adminNonceUrl('update-dropin'); ?>">
                     Update Drop-in
                 </a>
             <?php endif; ?>
@@ -255,6 +251,20 @@ $adminNonceUrl = function ($action) use ($onDashboard) {
     <div class="objectcache:widget-sub">
         <p>
             Automatic updates for Object Cache Pro are disabled, because the license token could not be verified or is not valid.
+        </p>
+    </div>
+
+<?php elseif (is_wp_error($hello) && (! $dropinExists || ! $dropinIsValid)) : ?>
+
+    <div class="objectcache:widget-sub">
+        <p>
+            Failed to verify connection details:
+        </p>
+        <ul>
+            <li><code><?php echo esc_html($hello->get_error_message()); ?></code></li>
+        </ul>
+        <p>
+            Either Redis server is unreachable, or the <code>WP_REDIS_CONFIG</code> constant does not contain the correct connection details.
         </p>
     </div>
 
