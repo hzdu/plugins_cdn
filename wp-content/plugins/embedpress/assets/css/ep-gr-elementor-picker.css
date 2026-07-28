@@ -1,0 +1,763 @@
+/* EmbedPress Google Reviews — Elementor place picker control.
+ *
+ * Scoped on .ep-gr-picker (the wrapper inside our content_template), NOT
+ * on .elementor-control-<type> — Elementor names the wrapper after the
+ * control's NAME, not its TYPE, so .elementor-control-ep_gr_place_picker
+ * never exists in the DOM.
+ *
+ * All colors use Elementor's design tokens (var(--e-a-*)) with safe
+ * fallbacks so the control follows the editor's light/dark theme.
+ */
+
+.ep-gr-picker {
+    /* NOTE on tokens: in Elementor's editor theme `--e-a-bg-secondary` and
+       `--e-a-color-txt` resolve to the SAME grey (#515962) — using one for a
+       card background and the other for its text renders invisible (dark-on-dark).
+       So the selected card uses the DEFAULT bg + the high-contrast ACCENT text
+       token for the name, and the muted token only for the secondary ID line. */
+    --gr-bg: var(--e-a-bg-default, #fff);
+    --gr-bg-alt: var(--e-a-bg-hover, #f1f3f5);
+    --gr-bg-hover: var(--e-a-bg-hover, #e6e9ec);
+    --gr-bd: var(--e-a-border-color, #d5dadf);
+    --gr-bd-focus: var(--e-a-color-primary, #5b4e96);
+    --gr-txt: var(--e-a-color-txt-accent, #1f2733);
+    --gr-txt-muted: var(--e-a-color-txt-muted, #6d7882);
+    --gr-error: var(--e-a-color-danger, #d63638);
+    --gr-radius: 4px;
+    /* Pro/upgrade badge — must read on BOTH light + dark editor themes. The old
+       hardcoded pale-amber-on-dark-amber (#fff4d1 / #8a6d00) was unreadable in
+       Elementor's dark UI. Derive from the theme text colour so contrast holds:
+       a translucent amber wash + amber text mixed toward the current foreground. */
+    --gr-pro: #b8860b;
+    --gr-pro-bg: color-mix(in srgb, var(--gr-pro) 16%, transparent);
+    --gr-pro-txt: color-mix(in srgb, var(--gr-pro) 70%, var(--gr-txt));
+}
+
+/* --- Selected chip — hidden unless data-state="picked" --- */
+.ep-gr-picker__selected {
+    display: none;
+}
+
+.ep-gr-picker__selected[data-state="picked"] {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 11px;
+    border-radius: var(--gr-radius);
+    background: var(--gr-bg);
+    border: 1px solid var(--gr-bd);
+}
+
+.ep-gr-picker__selected-pin {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--gr-bg-hover);
+    color: var(--gr-bd-focus);
+}
+
+.ep-gr-picker__selected-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    flex: 1;
+    min-width: 0;
+}
+
+.ep-gr-picker__selected-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gr-txt);
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ep-gr-picker__selected-address {
+    font-size: 11px;
+    color: var(--gr-txt-muted);
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ep-gr-picker__selected-id {
+    font-size: 10px;
+    color: var(--gr-txt-muted);
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ep-gr-picker__clear {
+    flex-shrink: 0;
+    background: transparent;
+    border: 0;
+    padding: 4px 10px;
+    color: var(--gr-bd-focus);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.ep-gr-picker__clear:hover {
+    background: var(--gr-bg-hover);
+}
+
+.ep-gr-picker__clear:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--gr-bd-focus) 22%, transparent);
+}
+
+/* --- Search row --- */
+.ep-gr-picker__search {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.ep-gr-picker__search-icon {
+    position: absolute;
+    inset-inline-start: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gr-txt-muted);
+    line-height: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.ep-gr-picker__input {
+    width: 100%;
+    padding: 8px 32px 8px 32px;
+    border: 1px solid var(--gr-bd);
+    border-radius: var(--gr-radius);
+    background: var(--gr-bg);
+    color: var(--gr-txt);
+    font-size: 12px;
+    line-height: 1.4;
+    font-family: inherit;
+    box-shadow: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ep-gr-picker__input:focus {
+    border-color: var(--gr-bd-focus);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--gr-bd-focus) 22%, transparent);
+    outline: none;
+}
+
+.ep-gr-picker__input::placeholder {
+    color: var(--gr-txt-muted);
+    opacity: 0.7;
+}
+
+/* --- Spinner --- */
+.ep-gr-picker__spinner {
+    position: absolute;
+    inset-inline-end: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+}
+
+.ep-gr-picker__spinner-dot {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid var(--gr-bd);
+    border-top-color: var(--gr-bd-focus);
+    animation: ep-gr-spin 0.7s linear infinite;
+}
+
+@keyframes ep-gr-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- Suggestions dropdown --- unified with the settings + Gutenberg pickers:
+   full-width attached panel, results-first, "+ Select" affordance, upsell note
+   BELOW the results (inside the panel). */
+.ep-gr-picker__search-wrap {
+    position: relative;
+}
+
+.ep-gr-picker__results-panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 60;
+    margin-top: -1px;
+    /* attach flush to the input's bottom edge */
+    background: var(--gr-bg);
+    border: 1px solid var(--gr-bd);
+    border-radius: 0 0 var(--gr-radius) var(--gr-radius);
+    max-height: 320px;
+    overflow-y: auto;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+}
+
+.ep-gr-picker__results {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Row layout for a NARROW panel (~280px in Elementor sidebar / Gutenberg
+   inspector). Two columns: [pin] [content]. The badge is NOT a third column
+   (that squeezed name+address to ~140px and wrapped every word). Instead the
+   badge lives INSIDE the content column, on its OWN line BELOW the text — so the
+   name/address get the full width and the "Upgrade to add" pill sits cleanly. */
+.ep-gr-picker__results li {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 9px;
+    margin: 0;
+    padding: 9px 12px;
+    cursor: pointer;
+    color: var(--gr-txt);
+}
+
+/* Map-pin on each row — left, accent-coloured (matches admin), fixed size. */
+.ep-gr-suggestion-pin {
+    flex: 0 0 auto;
+    margin-top: 1px;
+    color: var(--gr-bd-focus);
+}
+
+.ep-gr-picker__results li .ep-gr-suggestion-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+/* Truncate name + address to ONE line (ellipsis) like the admin picker, so a
+   long address never wraps to a messy multi-line block. Meta + badge excluded. */
+.ep-gr-picker__results li .ep-gr-suggestion-body>strong,
+.ep-gr-picker__results li .ep-gr-suggestion-body>span:not(.ep-gr-suggestion-meta) {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ep-gr-picker__results li+li {
+    border-top: 1px solid var(--gr-bd);
+}
+
+.ep-gr-picker__results li:hover,
+.ep-gr-picker__results li:focus {
+    background: var(--gr-bg-hover);
+    outline: none;
+}
+
+.ep-gr-picker__results li strong {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--gr-txt);
+}
+
+.ep-gr-picker__results li .ep-gr-suggestion-body span {
+    font-size: 11px;
+    line-height: 1.3;
+    color: var(--gr-txt-muted);
+}
+
+/* Rating + review-count line — parity with the block/admin pickers
+   (★ 4.5 · 1,167 reviews). Works in both search + saved rows. */
+.ep-gr-picker .ep-gr-suggestion-meta {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 8px;
+    margin-top: 2px;
+    font-size: 11px;
+    color: var(--gr-txt-muted);
+}
+
+.ep-gr-picker .ep-gr-suggestion-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    font-weight: 600;
+    color: var(--gr-txt);
+}
+
+.ep-gr-picker .ep-gr-suggestion-star {
+    color: #fbbf24;
+    font-size: 12px;
+    line-height: 1;
+}
+
+.ep-gr-picker .ep-gr-suggestion-count::before {
+    content: '·';
+    margin-right: 6px;
+    color: var(--gr-txt-muted);
+}
+
+/* Badges sit on their OWN line below the place text (block-level, left). */
+.ep-gr-picker__results li .ep-gr-suggestion-add,
+.ep-gr-picker__results li .ep-gr-already,
+.ep-gr-picker__results li .ep-gr-suggestion-pro {
+    margin-top: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    font-style: normal;
+    padding: 3px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.ep-gr-picker__results li .ep-gr-suggestion-add {
+    color: var(--gr-bd-focus);
+    background: var(--gr-bg-hover);
+    border: 1px solid transparent;
+    transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+}
+
+.ep-gr-picker__results li:hover .ep-gr-suggestion-add,
+.ep-gr-picker__results li:focus .ep-gr-suggestion-add {
+    background: var(--gr-bd-focus);
+    color: #fff;
+    border-color: var(--gr-bd-focus);
+}
+
+.ep-gr-picker__results li .ep-gr-already {
+    color: #15803d;
+    background: #e6f4ea;
+}
+
+/* Pro badge = TEXT-ONLY (no pill bg / padding) — amber crown + label below the
+   place text. */
+.ep-gr-picker__results li .ep-gr-suggestion-pro {
+    margin-top: 5px;
+    padding: 0;
+    background: none;
+    color: var(--gr-pro-txt);
+}
+
+.ep-gr-picker__results li .ep-gr-suggestion-pro svg {
+    display: block;
+}
+
+.ep-gr-picker__results li.is-locked strong {
+    color: var(--gr-txt-muted);
+}
+
+.ep-gr-picker__results li.is-locked:hover,
+.ep-gr-picker__results li.is-locked:focus {
+    background: var(--gr-bg-hover);
+}
+
+/* Upsell note — last row of the panel, after the results */
+.ep-gr-picker__results-note {
+    margin: 0;
+    padding: 9px 12px;
+    border-top: 1px solid var(--gr-bd);
+    font-size: 11.5px;
+    line-height: 1.4;
+    color: var(--gr-txt-muted);
+}
+
+.ep-gr-picker__results-note a {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* --- Status row --- */
+.ep-gr-picker__status {
+    font-size: 11px;
+    line-height: 1.4;
+    margin-top: 6px;
+    min-height: 14px;
+    color: var(--gr-txt-muted);
+}
+
+.ep-gr-picker__status[data-tone="error"] {
+    color: var(--gr-error);
+}
+
+.ep-gr-picker__status[data-tone="muted"] {
+    color: var(--gr-txt-muted);
+    font-style: italic;
+}
+
+/* --- Recent / Saved lists --- */
+.ep-gr-picker__lists {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /* Cap the saved/recent area and scroll when there are many places, so the
+       picker can't grow taller than the panel. */
+    max-height: 240px;
+    overflow-y: auto;
+    padding-right: 2px;
+}
+
+.ep-gr-picker__list-heading {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--gr-txt-muted);
+    margin: 0 0 4px;
+}
+
+.ep-gr-picker__list-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ep-gr-picker__list-items li {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.ep-gr-picker__list-pick {
+    flex: 1;
+    text-align: start;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    padding: 6px 8px;
+    cursor: pointer;
+    color: var(--gr-txt);
+    /* Row: [pin] [body] — badge lives INSIDE the body (own line), matching the
+       search results, so it never squeezes the name in the narrow panel. */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 8px;
+    font-family: inherit;
+}
+
+.ep-gr-picker__list-pick:hover,
+.ep-gr-picker__list-pick:focus {
+    background: var(--gr-bg-hover);
+    outline: none;
+}
+
+.ep-gr-picker__list-pick-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.ep-gr-picker__list-pick strong {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--gr-txt);
+}
+
+/* Truncate the name to one line (ellipsis), matching the search rows + admin. */
+.ep-gr-picker__list-pick-body>strong {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Truncate the address to one line too, so a long address (e.g. a full street
+   address) can't wrap to 2–3 lines and leave saved rows uneven. The badge is an
+   <em>, so `> span` targets only the address line. */
+.ep-gr-picker__list-pick-body>span {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* white-space: nowrap; */
+    font-size: 11px;
+    color: var(--gr-txt-muted);
+    line-height: 1.5;
+}
+
+.ep-gr-picker__list-pick.is-locked strong {
+    color: var(--gr-txt-muted);
+}
+
+.ep-gr-picker__list-pick code {
+    font-size: 10px;
+    color: var(--gr-txt-muted);
+}
+
+/* "Upgrade to add" on a locked saved row — TEXT-ONLY (no pill), amber, own line
+   below the name/ID. */
+.ep-gr-picker__list-pick .ep-gr-suggestion-pro {
+    align-self: flex-start;
+    margin-top: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10.5px;
+    font-style: normal;
+    font-weight: 600;
+    padding: 0;
+    background: none;
+    color: var(--gr-pro-txt);
+    white-space: nowrap;
+}
+
+.ep-gr-picker__list-pick .ep-gr-suggestion-pro svg {
+    display: block;
+}
+
+.ep-gr-picker__lists-note {
+    margin: 8px 4px 2px;
+    font-size: 11px;
+    line-height: 1.45;
+    color: var(--gr-txt-muted);
+}
+
+.ep-gr-picker__lists-note a {
+    color: var(--gr-pro-txt);
+    font-weight: 600;
+}
+
+/* --- Manual Place ID entry --- */
+.ep-gr-picker__manual {
+    margin-top: 10px;
+    border-top: 1px solid var(--gr-bd);
+    padding-top: 8px;
+}
+
+.ep-gr-picker__manual-toggle {
+    background: transparent;
+    border: 0;
+    color: var(--gr-bd-focus);
+    cursor: pointer;
+    font-size: 11px;
+    padding: 2px 0;
+    font-family: inherit;
+}
+
+.ep-gr-picker__manual-toggle:hover {
+    text-decoration: underline;
+}
+
+.ep-gr-picker__manual-row {
+    margin-top: 6px;
+    display: flex;
+    gap: 6px;
+}
+
+.ep-gr-picker__manual-input {
+    flex: 1;
+    padding: 6px 8px;
+    border: 1px solid var(--gr-bd);
+    border-radius: var(--gr-radius);
+    background: var(--gr-bg);
+    color: var(--gr-txt);
+    font-size: 11px;
+    font-family: var(--gr-mono, ui-monospace, "SFMono-Regular", Menlo, monospace);
+}
+
+.ep-gr-picker__manual-input:focus {
+    border-color: var(--gr-bd-focus);
+    outline: none;
+}
+
+.ep-gr-picker__manual-apply {
+    padding: 6px 10px;
+    border: 1px solid var(--gr-bd-focus);
+    border-radius: var(--gr-radius);
+    background: var(--gr-bd-focus);
+    color: #fff;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+/* Quick-preview hint — one short muted line with a "Fetch more" link, shown
+   under the picker once a place is selected. */
+.ep-gr-elementor-hint {
+    font-size: 11px;
+    line-height: 1.4;
+    color: var(--gr-txt-muted);
+}
+
+.ep-gr-elementor-hint a {
+    color: var(--gr-bd-focus);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.ep-gr-elementor-hint a:hover {
+    text-decoration: underline;
+}
+
+/* ── Layout picker — mirror the Gutenberg block's LayoutPicker ──────────────
+ *
+ * Elementor's CHOOSE control renders inline alongside its Label, which leaves
+ * the choices wrapper only a narrow right-hand column — 10 tiles get cropped
+ * to ~3. We force the whole control to stack vertically so the 3-column grid
+ * of tiles has the full panel width to breathe in.
+ *
+ * What we change inside the ep_gr_layout control:
+ *   1. .elementor-control-field: row → column. Label sits ABOVE the tiles
+ *      on its own line, choices wrapper gets the full width.
+ *   2. .elementor-control-input-wrapper: drop the inline-block width cap so
+ *      the grid can claim the row.
+ *   3. .elementor-choices: row flex → 3-col grid, 8px gap.
+ *   4. .elementor-choices-label: vertical stack — LABEL on top, icon below.
+ *   5. .elementor-screen-only: un-hide the screen-reader span so the option
+ *      title becomes the visible tile label (matches Gutenberg).
+ *   6. Active radio: themed border + ring; hover: subtle border lift.
+ *
+ * Scoped to .elementor-control-ep_gr_layout so this doesn't leak into other
+ * CHOOSE controls in the same widget. Uses Elementor's editor CSS variables
+ * so the picker flips correctly in both light + dark editor themes.
+ */
+.elementor-control-ep_gr_layout .elementor-control-field {
+    /* Stack label + tiles vertically — gives the grid the full panel width. */
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.elementor-control-ep_gr_layout .elementor-control-title {
+    /* Label gets its own row above the tiles. */
+    display: block;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.elementor-control-ep_gr_layout .elementor-control-input-wrapper {
+    width: 100%;
+    max-width: 100%;
+}
+
+.elementor-control-ep_gr_layout .elementor-choices {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    width: 100%;
+    /* Override Elementor's defaults that clip the tiles:
+     *   .elementor-choices { height: 27px; line-height: 27px; overflow: hidden; }
+     * These force every choice strip into a single 27px row — fine for a 2-3
+     * tile alignment picker, but our grid needs to expand to multiple rows
+     * and let each tile size itself naturally. */
+    height: auto;
+    line-height: normal;
+    overflow: visible;
+    border-spacing: 0;
+    border-radius: 0;
+    background: transparent;
+}
+
+.elementor-control-ep_gr_layout .elementor-choices-label {
+    /* Icon-only tile — tooltip carries the layout name on hover. We use
+     * `outline` instead of `border` for the tile frame because Elementor's
+     * own rules zero out `border-inline-end` (and a few other border-* sides)
+     * across normal/hover/active states to merge adjacent tiles into a
+     * segmented strip. `outline` has no per-side properties to strip, so it
+     * always renders all four sides — no matter what Elementor does next. */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 4px;
+    height: auto;
+    min-height: 44px;
+    width: 100%;
+    border: 0;
+    outline: 1px solid var(--e-a-border-color, #e0e0e0);
+    outline-offset: -1px;
+    /* sit flush inside the tile box */
+    /* Use Elementor's panel surface tokens so light + dark editor themes both
+     * get a sensible tile background + border. Fall back to the Gutenberg
+     * picker's hex values for older Elementor builds. */
+    background: var(--e-a-bg-default, #fff);
+    border: 1px solid var(--e-a-border-color, #e0e0e0);
+    border-radius: 6px;
+    color: var(--e-a-color-txt, #50575e);
+    cursor: pointer;
+    transition:
+        border-color 0.12s ease,
+        color 0.12s ease,
+        background 0.12s ease,
+        box-shadow 0.12s ease;
+}
+
+.elementor-control-ep_gr_layout .elementor-choices-label>i {
+    /* Same 22px target as the Gutenberg SVG icons. The option title is
+     * surfaced by the Elementor tooltip (data-tooltip on .tooltip-target);
+     * we deliberately keep the screen-reader span hidden — no duplicate text
+     * underneath the icon. */
+    font-size: 22px;
+    line-height: 1;
+}
+
+.elementor-control-ep_gr_layout .elementor-choices-label:hover {
+    outline-color: var(--e-a-border-color-bold, #b4b9be);
+    color: var(--e-a-color-txt-accent, #1e1e1e);
+}
+
+.elementor-control-ep_gr_layout input[type="radio"]:checked+.elementor-choices-label {
+    /* Selected state — primary outline on all four sides + faint tinted
+     * background. Uses outline (not border) for the same reason as the
+     * resting state: Elementor strips border-inline-end on checked too. */
+    outline-color: var(--e-a-color-primary, #3858e9);
+    background: color-mix(in srgb, var(--e-a-color-primary, #3858e9) 8%, transparent);
+}
+
+/* --- Pro-only layout tiles: "PRO" badge (free only) ---
+ * The PHP adds .ep-gr-layout-choose--free to the control wrapper when Pro is
+ * inactive. The 6 Pro layouts (masonry/badge/spotlight/knowledge/marquee/
+ * bubble) get a small corner pill so users see at a glance which need Pro.
+ * Pro active → wrapper class absent → no badge. */
+.ep-gr-layout-choose--free .elementor-choices-label {
+    position: relative;
+    overflow: visible;
+}
+
+.ep-gr-layout-choose--free input[type="radio"][value="masonry"]+.elementor-choices-label::after,
+.ep-gr-layout-choose--free input[type="radio"][value="badge"]+.elementor-choices-label::after,
+.ep-gr-layout-choose--free input[type="radio"][value="spotlight"]+.elementor-choices-label::after,
+.ep-gr-layout-choose--free input[type="radio"][value="knowledge"]+.elementor-choices-label::after,
+.ep-gr-layout-choose--free input[type="radio"][value="marquee"]+.elementor-choices-label::after,
+.ep-gr-layout-choose--free input[type="radio"][value="bubble"]+.elementor-choices-label::after {
+    content: "PRO";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    padding: 3px 5px;
+    border-radius: 4px;
+    color: #fff;
+    background: #b8860b;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    z-index: 2;
+}

@@ -1,0 +1,731 @@
+/* EmbedPress — Google Reviews
+ *
+ * Google-authentic UI. NO cards: reviews are a clean vertical list separated by
+ * hairline dividers (matches Google's own review panel). Class names are a
+ * stable contract shared with the Pro stylesheet/JS — only add, never rename.
+ * Layout variants: .ep-google-reviews--{list|grid|carousel} (free) and Pro's
+ * .ep-gr--preset-{masonry|slider|badge|spotlight|knowledge} / .ep-gr--dark.
+ */
+
+.ep-google-reviews {
+    --ep-gr-text: #202124;
+    --ep-gr-heading: #202124;
+    --ep-gr-muted: #5f6368;
+    --ep-gr-divider: #e8eaed;
+    --ep-gr-card-border: #eef1f6;
+    --ep-gr-card-fill: #f7f9fc;
+    --ep-gr-card-fill-hover: #eef2f8;
+    --ep-gr-star: #fbbc04;
+    --ep-gr-star-empty: #dadce0;
+    --ep-gr-link: #1a73e8;
+    --ep-gr-bg: #ffffff;
+    --ep-gr-accent: #1a73e8;
+    --ep-gr-gap: 0px;
+    --ep-gr-clamp: 5;
+    /* Structural controls (set inline by the renderer from the columns/gap/
+       max-width settings). Fallbacks here keep standalone CSS sane. */
+    --ep-gr-columns: 3;
+    --ep-gr-max-width: none;
+
+    color: var(--ep-gr-text);
+    font-family: "Google Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    max-width: var(--ep-gr-max-width);
+    margin-inline: auto; /* center when capped via max-width */
+}
+.ep-google-reviews *,
+.ep-google-reviews *::before,
+.ep-google-reviews *::after { box-sizing: border-box; }
+
+/* ── Style isolation (CSS cascade layer) ──────────────────────────────────
+ * The widget must look identical on EVERY theme/builder. We put a neutralizing
+ * reset for the tags we render INSIDE a named @layer. Layered styles always
+ * lose to unlayered styles in the cascade — but crucially, ALL of our widget
+ * CSS that follows is UNLAYERED, so it always beats both this reset AND any
+ * theme rule that is itself layered. For unlayered theme rules, the reset's
+ * own specificity (a real `.ep-google-reviews tag` selector) plus our class
+ * rules below handle the realistic cases (themes styling generic tags in
+ * post content). Scoped to elements WE emit — never users' embedded content.
+ */
+@layer ep-gr-reset {
+    .ep-google-reviews :is(div, span, p, a, img, time, button, article, header, h1, h2, h3, h4, ul, ol, li) {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: none;
+        box-shadow: none;
+        outline: none;
+        text-decoration: none;
+        list-style: none;
+        float: none;
+        max-width: none;
+        text-transform: none;
+        letter-spacing: normal;
+        text-shadow: none;
+        font-family: inherit;
+        color: inherit;
+    }
+    .ep-google-reviews button { -webkit-appearance: none; appearance: none; cursor: pointer; font: inherit; }
+    .ep-google-reviews img { max-width: 100%; height: auto; vertical-align: middle; }
+    .ep-google-reviews a { color: var(--ep-gr-link); }
+}
+
+/* ── Summary header ──────────────────────────────────────────────────────── */
+.ep-gr-summary { margin-bottom: 8px; }
+.ep-gr-summary-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+/* Header alignment (the "Header alignment" control). */
+.ep-gr-summary--align-center .ep-gr-summary-head,
+.ep-gr-summary--align-right .ep-gr-summary-head { flex-wrap: wrap; }
+.ep-gr-summary--align-center .ep-gr-summary-place { text-align: center; flex: 1 1 100%; }
+.ep-gr-summary--align-right .ep-gr-summary-place { text-align: right; flex: 1 1 100%; }
+.ep-gr-summary--align-center .ep-gr-summary-rating { justify-content: center; }
+.ep-gr-summary--align-right .ep-gr-summary-rating { justify-content: flex-end; }
+.ep-gr-summary--align-center .ep-gr-summary-head { justify-content: center; }
+.ep-gr-summary--align-right .ep-gr-summary-head { justify-content: flex-end; }
+.ep-gr-summary-name {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--ep-gr-heading);
+}
+.ep-gr-summary-address {
+    font-size: 14px;
+    color: var(--ep-gr-muted);
+    margin-top: 4px;
+}
+.ep-gr-write-review {
+    flex: 0 0 auto;
+    border: 1px solid var(--ep-gr-divider);
+    background: none;
+    color: var(--ep-gr-link);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 9px 16px;
+    border-radius: 999px;
+    white-space: nowrap;
+    transition: background 0.15s ease;
+}
+.ep-gr-write-review:hover { background: rgba(26, 115, 232, 0.06); text-decoration: none; }
+.ep-gr-summary-rating {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+}
+.ep-gr-summary-score {
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--ep-gr-heading);
+}
+.ep-gr-summary-count { font-size: 15px; color: var(--ep-gr-text); }
+
+/* ── Star rows (half-star fill overlay) ──────────────────────────────────── */
+.ep-gr-stars,
+.ep-gr-starrow {
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+    font-size: 15px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+.ep-gr-stars--lg .ep-gr-starrow,
+.ep-gr-stars.ep-gr-stars--lg { font-size: 24px; letter-spacing: 2px; }
+.ep-gr-starrow-track { color: var(--ep-gr-star-empty); }
+.ep-gr-starrow-fill {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    overflow: hidden;
+    color: var(--ep-gr-star);
+    white-space: nowrap;
+}
+/* SVG star glyphs inherit the row's color (track = empty, fill = gold) via
+   currentColor, and size to the row's font-size via em so --lg still scales. */
+.ep-gr-star-svg {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    vertical-align: -0.12em;
+}
+.ep-gr-starrow-track .ep-gr-star-svg { color: var(--ep-gr-star-empty); }
+.ep-gr-starrow-fill .ep-gr-star-svg { color: var(--ep-gr-star); }
+
+/* Legacy discrete stars (back-compat) */
+.ep-gr-star { font-size: 15px; color: var(--ep-gr-star-empty); }
+.ep-gr-star.is-filled { color: var(--ep-gr-star); }
+
+/* ── Review list (NO cards — hairline dividers) ──────────────────────────── */
+.ep-google-reviews--list .ep-gr-items { display: block; }
+.ep-gr-review {
+    padding: 22px 0;
+    margin: 0;
+    background: none;
+    border: 0;
+    box-shadow: none;
+}
+.ep-google-reviews--list .ep-gr-review + .ep-gr-review {
+    border-top: 1px solid var(--ep-gr-divider);
+}
+
+.ep-gr-review-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+.ep-gr-avatar {
+    position: relative;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f1f3f4;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 15px;
+    color: #fff;
+    overflow: hidden;
+}
+.ep-gr-avatar--placeholder { background: linear-gradient(135deg, #4285f4, #1a73e8); }
+.ep-gr-avatar-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.ep-gr-meta { flex: 1; min-width: 0; }
+.ep-gr-author {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ep-gr-heading);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.ep-gr-reviewer-meta {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    color: var(--ep-gr-muted);
+    margin-top: 1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.ep-gr-dot { opacity: 0.7; }
+/* Google "G" source badge, top-right of each review card. */
+.ep-gr-source {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    line-height: 0;
+}
+.ep-gr-source svg { display: block; }
+
+.ep-gr-stars-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 12px 0 8px;
+}
+.ep-gr-date { font-size: 13px; color: var(--ep-gr-muted); }
+
+/* ── Review text + read-more clamp ───────────────────────────────────────── */
+.ep-gr-body { margin: 0; }
+.ep-gr-text {
+    color: var(--ep-gr-text);
+    font-size: 14px;
+    line-height: 1.55;
+    white-space: pre-line;
+    display: -webkit-box;
+    -webkit-line-clamp: var(--ep-gr-clamp);
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.ep-gr-body.is-expanded .ep-gr-text {
+    -webkit-line-clamp: unset;
+    display: block;
+    overflow: visible;
+}
+.ep-gr-readmore {
+    margin-top: 2px;
+    padding: 0;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ep-gr-link);
+}
+.ep-gr-readmore:hover { text-decoration: underline; }
+.ep-gr-readmore .ep-gr-readmore-less { display: none; }
+.ep-gr-body.is-expanded .ep-gr-readmore .ep-gr-readmore-more { display: none; }
+.ep-gr-body.is-expanded .ep-gr-readmore .ep-gr-readmore-less { display: inline; }
+
+/* ── Photo strip (horizontal thumbnails, like Google) ────────────────────── */
+.ep-gr-photos {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+    overflow: hidden;
+    flex-wrap: wrap;
+}
+.ep-gr-photo {
+    position: relative;
+    flex: 0 0 auto;
+    width: 104px;
+    height: 104px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #e8eaed;
+}
+.ep-gr-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ep-gr-photo--more::after {
+    content: attr(data-more);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* ── Owner response ──────────────────────────────────────────────────────── */
+.ep-gr-owner {
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+.ep-gr-owner-head { font-size: 12px; font-weight: 600; color: var(--ep-gr-heading); margin-bottom: 3px; }
+.ep-gr-owner-text { font-size: 13px; line-height: 1.5; color: var(--ep-gr-muted); }
+
+/* ── Like / thanks action row ────────────────────────────────────────────── */
+.ep-gr-rev-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 14px;
+    color: var(--ep-gr-muted);
+}
+.ep-gr-rev-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+}
+.ep-gr-rev-like svg { display: block; }
+.ep-gr-thanks-icon { font-size: 14px; }
+
+/* ── Footer (View on Google) ─────────────────────────────────────────────── */
+.ep-gr-footer { margin-top: 18px; }
+.ep-gr-view-on-google {
+    display: inline-block;
+    color: var(--ep-gr-link);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+}
+.ep-gr-view-on-google:hover { text-decoration: underline; }
+
+/* ── Grid layout (FLAT bordered boxes, EQUAL height) ─────────────────────── */
+/* Real CSS grid with stretch rows so every box in a row matches the tallest —
+   uniform, tidy. The read-more clamp keeps that tallest box bounded. Flat look:
+   a hairline border, no shadow (that's what sets it apart from Card). */
+.ep-google-reviews--grid .ep-gr-items {
+    display: grid;
+    grid-template-columns: repeat(var(--ep-gr-columns, 3), minmax(0, 1fr));
+    gap: var(--ep-gr-gap, 20px);
+    align-items: stretch;
+}
+.ep-google-reviews--grid .ep-gr-review {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+    background: var(--ep-gr-bg, #fff);
+    border: 1px solid var(--ep-gr-divider);
+    border-radius: 12px;
+    padding: 20px;
+    transition: border-color 0.18s ease;
+}
+.ep-google-reviews--grid .ep-gr-review:hover { border-color: #c6ccd8; }
+/* Push the actions/footer to the card bottom so equal-height cards align. */
+.ep-google-reviews--grid .ep-gr-rev-actions,
+.ep-google-reviews--card .ep-gr-rev-actions { margin-top: auto; }
+
+/* ── Card layout (FILLED boxes, EQUAL height — Essential Addons style) ───── */
+/* Same equal-height grid. Distinct from the flat Grid layout via a soft FILLED
+   surface + rounder corners (no shadow), with a subtle lift on hover. */
+.ep-google-reviews--card .ep-gr-items {
+    display: grid;
+    grid-template-columns: repeat(var(--ep-gr-columns, 3), minmax(0, 1fr));
+    gap: var(--ep-gr-gap, 24px);
+    align-items: stretch;
+}
+.ep-google-reviews--card .ep-gr-review {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+    background: var(--ep-gr-card-fill, #f7f9fc);
+    border: 1px solid transparent;
+    border-radius: 16px;
+    padding: 22px;
+    transition: background 0.18s ease, transform 0.18s ease;
+}
+.ep-google-reviews--card .ep-gr-review:hover {
+    background: var(--ep-gr-card-fill-hover, #eef2f8);
+    transform: translateY(-3px);
+}
+
+/* ── Carousel (real slider; controls added by JS) ────────────────────────── */
+.ep-google-reviews--carousel {
+    position: relative;
+    /* Reserve a side gutter so the arrows sit clear of the cards instead of
+       overlapping the review content. The .ep-gr-viewport lives inside this
+       padding; the arrows are placed in the gutter (see .ep-gr-carousel-prev/next).
+       Dots now sit in normal flow under the viewport (no bottom padding needed). */
+    padding-inline: 48px;
+}
+/* The stationary .ep-gr-viewport (inserted by google-reviews.js) clips; the
+   .ep-gr-items track inside it is what JS translates. overflow:hidden MUST live
+   on the viewport, NOT the moving track — otherwise the clip box travels with
+   the translate and the next page renders blank. */
+.ep-google-reviews--carousel .ep-gr-viewport {
+    overflow: hidden;
+    width: 100%;
+}
+.ep-google-reviews--carousel .ep-gr-items {
+    display: flex;
+    align-items: flex-start; /* don't stretch short slides to the tallest one */
+    width: 100%;
+    will-change: transform;
+}
+/* Per-view = the "Columns" control. Each slide is 100%/columns of the viewport
+   (the JS perView() measures the same ratio to compute pages). On phones we
+   force a single slide regardless of the column setting. */
+.ep-google-reviews--carousel .ep-gr-review {
+    flex: 0 0 100%;
+    max-width: 100%;
+    /* Gap between carousel slides is applied as horizontal padding INSIDE each
+       slide (half the gap per side → a full gap between adjacent cards). The
+       slide's outer box stays flex-basis:100%/perView, so the JS percentage
+       translate + perView ratio are unaffected. The visible card is .ep-gr-review
+       content; box-sizing keeps padding inside the basis. Default 20px to match
+       the grid/card layouts when no Gap is set. */
+    padding: 22px calc(var(--ep-gr-gap, 20px) / 2);
+    border: 0;
+}
+/* Tighter, CONSISTENT text clamp across the card layouts (carousel/grid/card +
+   the Pro masonry/bubble presets) so a verbose review never towers over the
+   short ones — every card starts the same height and "Read more" reveals the
+   rest on click. Photo strips are height-limited for the same reason. */
+.ep-google-reviews--carousel .ep-gr-text,
+.ep-google-reviews--grid .ep-gr-text,
+.ep-google-reviews--card .ep-gr-text,
+.ep-gr--preset-masonry .ep-gr-text,
+.ep-gr--preset-bubble .ep-gr-text { -webkit-line-clamp: 4; }
+.ep-google-reviews--carousel .ep-gr-text { -webkit-line-clamp: 3; }
+.ep-google-reviews--carousel .ep-gr-photos { max-height: 84px; overflow: hidden; }
+@media (min-width: 700px) {
+    .ep-google-reviews--carousel .ep-gr-review {
+        flex-basis: calc(100% / var(--ep-gr-columns, 2));
+        max-width: calc(100% / var(--ep-gr-columns, 2));
+        padding-inline: 16px;
+    }
+}
+.ep-gr-carousel-arrow {
+    position: absolute;
+    /* Center on the viewport. Dots occupy ~30px at the bottom (now in flow), so
+       the viewport's vertical middle is a touch above the root's middle. */
+    top: calc(50% - 16px);
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--ep-gr-divider);
+    background: #fff;
+    color: var(--ep-gr-heading);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease;
+}
+.ep-gr-carousel-arrow:hover { background: #f8f9fa; }
+/* Centered within the carousel's 48px side gutter, clear of the cards. */
+.ep-gr-carousel-prev { inset-inline-start: 6px; }
+.ep-gr-carousel-next { inset-inline-end: 6px; }
+/* In normal flow directly under the viewport so the dots follow the per-page
+   height (the viewport flexes per page) instead of being pinned to a growing
+   root bottom and leaving a gap. */
+.ep-gr-carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 14px;
+}
+.ep-gr-carousel-dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--ep-gr-star-empty);
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+}
+.ep-gr-carousel-dot.is-active { background: var(--ep-gr-accent); transform: scale(1.2); }
+
+/* ── States ──────────────────────────────────────────────────────────────── */
+.ep-google-reviews--empty,
+.ep-google-reviews--error {
+    padding: 16px;
+    border: 1px dashed var(--ep-gr-divider);
+    border-radius: 10px;
+    color: var(--ep-gr-muted);
+    text-align: center;
+}
+.ep-google-reviews--error { border-color: #fad2cf; color: #c5221f; background: #fce8e6; }
+
+/* "No place chosen yet" — a calm editor-only prompt, not an error. */
+.ep-google-reviews--placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 28px 20px;
+    border: 1px dashed var(--ep-gr-divider, #dcdfe6);
+    border-radius: 12px;
+    background: #f7f8fb;
+    color: var(--ep-gr-muted, #6b7280);
+    text-align: center;
+}
+.ep-google-reviews--placeholder .ep-gr-placeholder-icon { color: var(--ep-gr-accent, #5b4e96); }
+.ep-google-reviews--placeholder strong { color: var(--ep-gr-heading, #25396f); font-size: 14px; }
+.ep-google-reviews--placeholder span { font-size: 13px; max-width: 360px; }
+
+/* Tablet: cap a high column count at 2 so cards stay readable. These are CSS
+   Grid containers, so the responsive override MUST use grid-template-columns —
+   `column-count` is a multi-column (columns) property and is a no-op on a grid,
+   which is why the grid/card/bubble layouts previously never collapsed and cards
+   got cut off in narrow containers. */
+@media (max-width: 900px) and (min-width: 601px) {
+    .ep-google-reviews--grid .ep-gr-items,
+    .ep-google-reviews--card .ep-gr-items {
+        grid-template-columns: repeat(min(2, var(--ep-gr-columns, 3)), minmax(0, 1fr));
+    }
+}
+@media (max-width: 600px) {
+    .ep-google-reviews--grid .ep-gr-items,
+    .ep-google-reviews--card .ep-gr-items {
+        grid-template-columns: 1fr;
+    }
+    /* Tighter gutter on mobile so the single card keeps usable width. */
+    .ep-google-reviews--carousel { padding-inline: 38px; }
+    .ep-gr-carousel-prev { inset-inline-start: 2px; }
+    .ep-gr-carousel-next { inset-inline-end: 2px; }
+}
+
+/* --- "Load more" button (FREE, AJAX pagination) --- */
+.ep-gr-loadmore-wrap { text-align: center; margin-top: 18px; }
+.ep-gr-loadmore {
+    display: inline-block;
+    padding: 9px 22px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ep-gr-accent, #5b4e96);
+    background: transparent;
+    border: 1.5px solid var(--ep-gr-accent, #5b4e96);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background .15s, color .15s, opacity .15s;
+}
+.ep-gr-loadmore:hover { background: var(--ep-gr-accent, #5b4e96); color: #fff; }
+.ep-gr-loadmore.is-loading { opacity: .6; cursor: default; }
+.ep-gr-loadmore:disabled { cursor: default; }
+.ep-gr--dark .ep-gr-loadmore { color: #e6e8eb; border-color: #3a4150; }
+.ep-gr--dark .ep-gr-loadmore:hover { background: var(--ep-gr-accent, #5b4e96); border-color: var(--ep-gr-accent, #5b4e96); }
+
+/* --- Pro-layout upsell — rendered INLINE in the content (not a modal) when an
+   editor picks a Pro layout without Pro. Reuses EmbedPress's pro__alert card
+   design tokens (#131F4D / #7C8DB5 / #5B4E96, 20px radius) but is self-contained
+   here so it styles correctly in every GR context (frontend, Gutenberg SSR
+   preview, AND the Elementor editor, where settings.css isn't loaded). --- */
+.ep-gr-pro-upsell { display: block; }
+.ep-gr-pro-upsell .ep-gr-pro-upsell__card {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #e6e8f0;
+    border-radius: 20px;
+    padding: 32px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+.ep-gr-pro-upsell__icon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1eefb;
+    border-radius: 50%;
+    margin-bottom: 18px;
+}
+.ep-gr-pro-upsell .ep-gr-pro-upsell__card h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #131F4D;
+    margin: 0 0 10px;
+    padding: 0;
+}
+.ep-gr-pro-upsell .ep-gr-pro-upsell__card p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #7C8DB5;
+    line-height: 1.55;
+    margin: 0 0 18px;
+    max-width: 380px;
+}
+.ep-gr-pro-upsell .ep-gr-pro-upsell__btn {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff !important;
+    background: #5B4E96;
+    padding: 11px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background .15s ease;
+}
+.ep-gr-pro-upsell .ep-gr-pro-upsell__btn:hover { background: #4a3f7d; }
+.ep-gr-pro-upsell .ep-gr-pro-upsell__note {
+    font-size: 12px;
+    color: #9aa3bd;
+    margin: 14px 0 0 !important;
+}
+
+/* ── Loading state (place added, reviews still being fetched in the background)
+   The frontend poller (google-reviews.js initPoller) self-refreshes the block
+   when the job finishes — see GoogleReviewsRenderer::render_loading. ─────────── */
+.ep-google-reviews--loading {
+    border: 1px solid var(--ep-gr-card-border);
+    border-radius: 12px;
+    padding: 18px;
+    background: #fff;
+}
+.ep-gr-loading-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+.ep-gr-loading-text { display: flex; flex-direction: column; gap: 3px; }
+.ep-gr-loading-text strong { font-size: 14px; color: var(--ep-gr-heading); font-weight: 600; }
+.ep-gr-loading-text span { font-size: 12.5px; color: var(--ep-gr-muted); line-height: 1.5; max-width: 560px; }
+
+.ep-gr-spinner {
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+    border: 2px solid var(--ep-gr-divider);
+    border-top-color: var(--ep-gr-link);
+    border-radius: 50%;
+    animation: ep-gr-spin 0.7s linear infinite;
+}
+@keyframes ep-gr-spin { to { transform: rotate(360deg); } }
+
+.ep-gr-skeletons { display: flex; flex-direction: column; gap: 14px; }
+.ep-gr-skel-card {
+    border: 1px solid var(--ep-gr-card-border);
+    border-radius: 10px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.ep-gr-skel-row { display: flex; align-items: center; gap: 10px; }
+.ep-gr-skel-lines { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.ep-gr-skel {
+    display: block;
+    background: linear-gradient(90deg, #eef1f6 25%, #f6f8fb 37%, #eef1f6 63%);
+    background-size: 400% 100%;
+    animation: ep-gr-shimmer 1.4s ease infinite;
+    border-radius: 6px;
+}
+.ep-gr-skel-avatar { width: 40px; height: 40px; border-radius: 50%; flex: 0 0 auto; }
+.ep-gr-skel-line { height: 11px; width: 100%; }
+.ep-gr-skel-line--xs { width: 30%; }
+.ep-gr-skel-line--sm { width: 45%; }
+.ep-gr-skel-line--md { width: 70%; }
+@keyframes ep-gr-shimmer { 0% { background-position: 100% 0; } 100% { background-position: 0 0; } }
+
+/* Admin-only fetch-failed notice (visitors get nothing server-side). */
+.ep-google-reviews--fetch-failed { text-align: left; }
+.ep-google-reviews--fetch-failed p { margin: 0 0 8px; }
+.ep-google-reviews--fetch-failed a { color: var(--ep-gr-link); }
+.ep-google-reviews--fetch-failed .ep-gr-admin-only-note { color: var(--ep-gr-muted); font-size: 12px; }
+
+/* ── Dark theme + accent (FREE — mirrors Essential Addons' free Business
+   Reviews). The theme/accent controls are free, so the full dark-mode token
+   set lives here, not only in the Pro stylesheet. Pro's google-reviews-pro.css
+   keeps the PREMIUM-LAYOUT (masonry/badge/etc.) dark variants. ─────────────── */
+.ep-google-reviews[data-ep-gr-accent] .ep-gr-starrow-fill,
+.ep-google-reviews[data-ep-gr-accent] .ep-gr-star.is-filled {
+    color: var(--ep-gr-accent);
+}
+.ep-google-reviews.ep-gr--dark {
+    --ep-gr-text: #e8eaed;
+    --ep-gr-heading: #ffffff;
+    --ep-gr-muted: #9aa0a6;
+    --ep-gr-divider: #3c4043;
+    --ep-gr-card-border: #34373c;
+    --ep-gr-card-bg: #26282c;
+    --ep-gr-card-fill: #26282c;
+    --ep-gr-card-fill-hover: #2d3035;
+    --ep-gr-star-empty: #5f6368;
+    --ep-gr-link: #8ab4f8;
+    --ep-gr-bg: #202124;
+    background: #202124;
+    padding: 20px;
+    border-radius: 12px;
+}
+.ep-gr--dark.ep-google-reviews--card .ep-gr-review,
+.ep-gr--dark.ep-google-reviews--grid .ep-gr-review {
+    background: var(--ep-gr-card-bg, #26282c);
+    border-color: var(--ep-gr-card-border, #34373c);
+}
+.ep-gr--dark .ep-gr-write-review { border-color: #5f6368; }
+.ep-gr--dark .ep-gr-owner { background: #2a2f37; }
+.ep-gr--dark .ep-gr-photo { background: #2a2f37; }
+.ep-gr--dark .ep-gr-avatar--placeholder { background: linear-gradient(135deg, #4285f4, #1a73e8); }
+.ep-gr--dark .ep-gr-carousel-arrow { background: #2a2f37; border-color: #3c4043; color: #e8eaed; }
+.ep-gr--dark .ep-gr-carousel-arrow:hover { background: #353b45; }

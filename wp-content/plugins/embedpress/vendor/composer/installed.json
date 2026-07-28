@@ -1,0 +1,130 @@
+{
+    "packages": [
+        {
+            "name": "priyomukul/wp-notice",
+            "version": "v2.x-dev",
+            "version_normalized": "2.9999999.9999999.9999999-dev",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:priyomukul/wp-notice.git",
+                "reference": "5471f3262e583ebcba56062d84faecc910bd04d6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/priyomukul/wp-notice/zipball/5471f3262e583ebcba56062d84faecc910bd04d6",
+                "reference": "5471f3262e583ebcba56062d84faecc910bd04d6",
+                "shasum": ""
+            },
+            "time": "2023-12-27T06:49:41+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "PriyoMukul\\WPNotice\\": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Priyo Mukul",
+                    "email": "17237437+priyomukul@users.noreply.github.com"
+                }
+            ],
+            "support": {
+                "source": "https://github.com/priyomukul/wp-notice/tree/v2",
+                "issues": "https://github.com/priyomukul/wp-notice/issues"
+            },
+            "install-path": "../priyomukul/wp-notice"
+        },
+        {
+            "name": "wpdevelopers/embera",
+            "version": "dev-latest",
+            "version_normalized": "dev-latest",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WPDevelopers/Embera.git",
+                "reference": "616e54e80a49eb992bc067c34d1e0ab65324b09b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WPDevelopers/Embera/zipball/616e54e80a49eb992bc067c34d1e0ab65324b09b",
+                "reference": "616e54e80a49eb992bc067c34d1e0ab65324b09b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^1.4",
+                "phpunit/phpunit": "^9.0||^10.0",
+                "symfony/yaml": "^2.1"
+            },
+            "suggest": {
+                "ext-curl": "Fetch data using curl instead of using file_get_contents"
+            },
+            "time": "2025-06-29T09:13:30+00:00",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-4": {
+                    "Embera\\": "src/Embera"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Embera\\": "tests/Embera"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "Composer\\Config::disableProcessTimeout",
+                    "phpunit"
+                ],
+                "test-github": [
+                    "phpunit -c phpunit-github.xml"
+                ],
+                "analyse": [
+                    "phpstan analyse src --level=4 --no-progress"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Pratt",
+                    "email": "yo@michael-pratt.com",
+                    "homepage": "http://www.michael-pratt.com",
+                    "role": "Author/Developer"
+                }
+            ],
+            "description": "Oembed consumer library. Converts urls into their html embed code. Supports 250+ sites, such as Youtube, Twitter, vimeo, Instagram etc.",
+            "homepage": "https://github.com/WPDevelopers/Embera",
+            "keywords": [
+                "Auto embed",
+                "Embed",
+                "Embed Text",
+                "Instagram",
+                "Oembed",
+                "Responsive Embeds",
+                "Twitter",
+                "Url Embed",
+                "Vimeo",
+                "Vine",
+                "Youtube"
+            ],
+            "support": {
+                "source": "https://github.com/WPDevelopers/Embera/tree/latest"
+            },
+            "funding": [
+                {
+                    "type": "paypal",
+                    "url": "https://paypal.me/mtpratt"
+                }
+            ],
+            "install-path": "../wpdevelopers/embera"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

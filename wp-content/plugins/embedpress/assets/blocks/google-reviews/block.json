@@ -1,0 +1,175 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "title": "EmbedPress Google Reviews",
+  "name": "embedpress/google-reviews",
+  "category": "embedpress",
+  "description": "Embed Google Business reviews instantly. Select your saved place, pick a stunning layout, and beautifully display your customer feedback without needing complex API keys.",
+  "apiVersion": 2,
+  "textdomain": "embedpress",
+  "editorScript": "embedpress-blocks-editor",
+  "editorStyle": "embedpress-blocks-editor-style",
+  "style": "embedpress-blocks-style",
+  "supports": {
+    "align": [
+      "left",
+      "center",
+      "right",
+      "wide",
+      "full"
+    ],
+    "html": false,
+    "anchor": true,
+    "lightBlockWrapper": true,
+    "default": "center"
+  },
+  "attributes": {
+    "placeId": {
+      "type": "string",
+      "default": ""
+    },
+    "placeName": {
+      "type": "string",
+      "default": ""
+    },
+    "placeAddress": {
+      "type": "string",
+      "default": ""
+    },
+    "limit": {
+      "type": "number",
+      "default": 10
+    },
+    "minRating": {
+      "type": "number",
+      "default": 0
+    },
+    "layout": {
+      "type": "string",
+      "default": "list"
+    },
+    "showPhoto": {
+      "type": "boolean",
+      "default": true
+    },
+    "showStars": {
+      "type": "boolean",
+      "default": true
+    },
+    "showDate": {
+      "type": "boolean",
+      "default": true
+    },
+    "showLink": {
+      "type": "boolean",
+      "default": false
+    },
+    "showImages": {
+      "type": "boolean",
+      "default": true
+    },
+    "columns": {
+      "type": "number",
+      "default": 3
+    },
+    "maxWidth": {
+      "type": "number",
+      "default": 0
+    },
+    "gap": {
+      "type": "number",
+      "default": 20
+    },
+    "showArrows": {
+      "type": "boolean",
+      "default": true
+    },
+    "showDots": {
+      "type": "boolean",
+      "default": true
+    },
+    "carouselLoop": {
+      "type": "boolean",
+      "default": true
+    },
+    "autoplaySpeed": {
+      "type": "number",
+      "default": 5
+    },
+    "showSummary": {
+      "type": "boolean",
+      "default": true
+    },
+    "showSummaryName": {
+      "type": "boolean",
+      "default": true
+    },
+    "showSummaryRating": {
+      "type": "boolean",
+      "default": true
+    },
+    "showSummaryStars": {
+      "type": "boolean",
+      "default": true
+    },
+    "showSummaryCount": {
+      "type": "boolean",
+      "default": true
+    },
+    "showWriteReview": {
+      "type": "boolean",
+      "default": true
+    },
+    "summaryAlign": {
+      "type": "string",
+      "default": "left"
+    },
+    "sort": {
+      "type": "string",
+      "default": "newest"
+    },
+    "keyword": {
+      "type": "string",
+      "default": ""
+    },
+    "hideEmpty": {
+      "type": "boolean",
+      "default": false
+    },
+    "fetchAll": {
+      "type": "boolean",
+      "default": false
+    },
+    "theme": {
+      "type": "string",
+      "default": "light"
+    },
+    "accentColor": {
+      "type": "string",
+      "default": ""
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": false
+    },
+    "schema": {
+      "type": "boolean",
+      "default": false
+    },
+    "places": {
+      "type": "array",
+      "default": []
+    },
+    "cacheTtl": {
+      "type": "number",
+      "default": 0
+    },
+    "loadMore": {
+      "type": "boolean",
+      "default": true
+    },
+    "perPage": {
+      "type": "number",
+      "default": 0
+    }
+  }
+}

@@ -1,0 +1,989 @@
+/**
+ * EmbedPress — "What's New" Feature Preview Modal
+ *
+ * Split-panel post-update announcement modal shown on EmbedPress admin pages
+ * after a version bump. Left = animated feature preview in faux browser chrome;
+ * right = copy + CTA. Adapts between a single feature (no nav) and a carousel
+ * (dots + Back/Next) automatically — the JS toggles `.epwn--multi`.
+ *
+ * Themed with the real EmbedPress design tokens (mirrored from the Analytics UI
+ * + EmbedDetailsModal): brand purple #5945b0, navy ink #25396F, slate muted
+ * #7C8DB5, soft panel #F5F7FD, coral accent #FE504F, 24px modal radius, DMSans.
+ *
+ * Source file: static/css/feature-preview-modal.css
+ * Build output: assets/css/feature-preview-modal.css (mirror until vite build).
+ */
+
+.epwn {
+    /* ===== EmbedPress design tokens ===== */
+    --epwn-brand: #5945b0;
+    --epwn-brand-hover: #4a3a9a;
+    --epwn-brand-light: #f3f1fc;
+    --epwn-brand-2: #7c3aed;
+    --epwn-ink: #25396f;
+    /* navy — headings */
+    --epwn-muted: #7c8db5;
+    /* slate — secondary text */
+    --epwn-soft: #f5f7fd;
+    /* soft lavender panel bg */
+    --epwn-accent: #fe504f;
+    /* coral accent */
+    --epwn-line: #eef1f8;
+    --epwn-dark: #0f1014;
+    --epwn-font: "DMSans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    /* above wp-admin chrome */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(15, 16, 20, .6);
+    font-family: var(--epwn-font);
+    color: var(--epwn-ink);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .22s ease, visibility .22s ease;
+}
+
+.epwn.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ===== modal shell ===== */
+.epwn__modal {
+    width: 820px;
+    max-width: 100%;
+    max-height: calc(100vh - 48px);
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(37, 57, 111, .22);
+    position: relative;
+    display: flex;
+    min-height: 392px;
+    transform: translateY(10px) scale(.985);
+    transition: transform .22s ease;
+}
+
+.epwn.is-open .epwn__modal {
+    transform: translateY(0) scale(1);
+}
+
+.epwn__close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .92);
+    box-shadow: 0 2px 8px rgba(37, 57, 111, .14);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 6;
+    padding: 0;
+    transition: var(--epwn-trans, all .15s ease);
+}
+
+.epwn__close:hover {
+    background: var(--epwn-accent);
+    color: #fff;
+}
+
+.epwn__close:focus, .epwn__close:focus-visible {
+    outline: none;
+}
+
+
+/* ===== left: preview panel (light) ===== */
+.epwn__left {
+    width: 54%;
+    background: var(--epwn-soft, #f5f7fd);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 26px;
+    position: relative;
+}
+
+.epwn__demo {
+    width: 100%;
+    background: #fff;
+    border: 1px solid #e7ebf3;
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 12px 30px rgba(37, 57, 111, .12);
+    height: 100%;
+}
+
+.epwn__bar {
+    height: 30px;
+    background: #f3f5fa;
+    border-bottom: 1px solid #e7ebf3;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 13px;
+}
+
+.epwn__bar i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #d3d8e4;
+}
+
+.epwn__bar i:nth-child(1) {
+    background: #fe504f;
+}
+
+.epwn__bar i:nth-child(2) {
+    background: #ffa53c;
+}
+
+.epwn__bar i:nth-child(3) {
+    background: #00cc76;
+}
+
+.epwn__badge {
+    position: absolute;
+    top: 38px;
+    right: 38px;
+    background: var(--epwn-accent);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    padding: 4px 9px;
+    border-radius: 6px;
+    z-index: 3;
+    box-shadow: 0 2px 8px rgba(254, 80, 79, .4);
+}
+
+.epwn__stage {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+    background: #fff;
+    height: 100%;
+}
+
+/* File media (image/gif/video, e.g. the PDF-flipbook slide) sizes to its
+   content instead of stretching the panel to full column height — the parent
+   .epwn__left centers the compact panel, removing the gap above a landscape
+   clip. html demos keep height:100% so they fill as designed. */
+.epwn__demo--flat,
+.epwn__demo--flat .epwn__stage {
+    height: auto;
+}
+
+.epwn__stage img,
+.epwn__stage video {
+    max-width: 100%;
+    max-height: 240px;
+    border-radius: 10px;
+    display: block;
+}
+
+/* While a large image/GIF/video is still loading, show a soft shimmer on the
+   stage instead of a blank white box; the media fades in once ready. */
+.epwn__stage img,
+.epwn__stage video {
+    opacity: 1;
+    transition: opacity .25s ease;
+}
+
+.epwn__stage--loading {
+    position: relative;
+    background:
+        linear-gradient(100deg, #f3f4fa 30%, #e9ebf5 45%, #f3f4fa 60%) #f3f4fa;
+    background-size: 200% 100%;
+    border-radius: 10px;
+    animation: epwn-shimmer 1.2s ease-in-out infinite;
+}
+
+.epwn__stage--loading img,
+.epwn__stage--loading video {
+    opacity: 0;
+}
+
+@keyframes epwn-shimmer {
+    0% {
+        background-position: 150% 0;
+    }
+
+    100% {
+        background-position: -50% 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .epwn__stage--loading {
+        animation: none;
+    }
+}
+
+/* ===== right: copy panel ===== */
+.epwn__right {
+    width: 46%;
+    padding: 30px 32px 26px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background: #fff;
+}
+
+/* brand header: EmbedPress logo */
+.epwn__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.epwn__logo {
+    height: 26px;
+    width: auto;
+    display: block;
+}
+
+.epwn__eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--epwn-brand);
+    min-height: 14px;
+}
+
+.epwn__title {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1.16;
+    margin: 10px 0 11px;
+    color: var(--epwn-ink);
+}
+
+.epwn__desc {
+    font-size: 14px;
+    color: var(--epwn-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.epwn__grow {
+    flex: 1;
+    min-height: 14px;
+}
+
+/* fade animation applied to the right copy on step change */
+.epwn__fade {
+    animation: epwn-fade .3s ease;
+}
+
+@keyframes epwn-fade {
+    from {
+        opacity: 0;
+        transform: translateY(7px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.epwn__cta {
+    font-family: var(--epwn-font);
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 13px 18px;
+    cursor: pointer;
+    border: none;
+    background: var(--epwn-brand);
+    color: #fff;
+    margin-top: 22px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    transition: background .15s ease;
+}
+
+.epwn__cta:hover {
+    background: var(--epwn-brand-hover);
+    color: #fff;
+}
+
+.epwn__cta:focus-visible {
+    outline: 2px solid var(--epwn-brand);
+    outline-offset: 2px;
+}
+
+/* ===== nav (multi only) ===== */
+.epwn__nav {
+    display: none;
+    align-items: center;
+    margin-top: 16px;
+    height: 24px;
+}
+
+.epwn--multi .epwn__nav {
+    display: flex;
+}
+
+.epwn__back,
+.epwn__next {
+    font-family: var(--epwn-font);
+    font-size: 13px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 2px;
+}
+
+.epwn__back {
+    font-weight: 600;
+    color: var(--epwn-muted);
+    visibility: hidden;
+}
+
+.epwn__next {
+    font-weight: 700;
+    color: var(--epwn-brand);
+}
+
+.epwn__back:focus-visible,
+.epwn__next:focus-visible {
+    outline: 2px solid var(--epwn-brand);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+.epwn__dots {
+    display: flex;
+    gap: 6px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.epwn__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #d7daea;
+    transition: .2s;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+}
+
+.epwn__dot.is-on {
+    background: var(--epwn-accent);
+    width: 22px;
+    border-radius: 5px;
+}
+
+.epwn__chglink {
+    margin-top: 18px;
+    text-align: left;
+}
+
+.epwn__chglink a {
+    font-size: 12.5px;
+    color: var(--epwn-muted);
+    text-decoration: none;
+    border-bottom: 1px dashed #c7cee2;
+    transition: color .15s ease;
+}
+
+.epwn__chglink a:hover {
+    color: var(--epwn-brand);
+    border-bottom-color: var(--epwn-brand);
+}
+
+/* ===== Google Reviews animated demo (light) =====
+   A single light card that cross-fades between TWO phases on a 7s loop:
+   Phase A — our place-search picker (type a name → suggestion → click);
+   Phase B — the reviews our block renders (summary + cards).
+   Only one phase is visible at a time (both absolutely stacked). Inline
+   markup carries .ep-grdemo-* classes — the modal kses-strips <style>, so all
+   motion lives here. */
+.ep-grdemo {
+    /* Mirror the real Google Reviews block's tokens (google-reviews.css). */
+    /* Review cards mirror the real Google Reviews block; the search field uses
+       the EmbedPress admin field style (brand purple). */
+    --grd-heading: #202124;
+    --grd-text: #202124;
+    --grd-muted: #5f6368;
+    --grd-border: #eef1f6;
+    --grd-star: #fbbc05;
+    --grd-blue: #1a73e8;
+    /* EmbedPress admin field tokens (from google-reviews.scss). */
+    --ep-field-border: #d7d7ea;
+    --ep-field-text: #2c3e66;
+    --ep-field-muted: #7f8bb2;
+    --ep-brand: #5b4e96;
+    --grd-font: "Google Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+
+    width: 100%;
+    height: 100%;
+    min-height: 248px;
+    background: #fff;
+    border-radius: 12px;
+    font-family: var(--grd-font);
+    color: var(--grd-text);
+    position: relative;
+    overflow: hidden;
+}
+
+.ep-grdemo-stars {
+    color: var(--grd-star);
+    font-size: 13px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.ep-grdemo-stars span {
+    display: inline;
+}
+
+/* Both phases share the same box; cross-faded via opacity. Children sit at
+   the top at their natural height (the search box must NOT stretch to fill). */
+.ep-grdemo,
+.ep-grdemo * {
+    box-sizing: border-box;
+}
+
+.ep-grdemo-phase {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 16px;
+    opacity: 0;
+}
+
+.ep-grdemo-phase--search {
+    animation: ep-grdemo-phaseA 7s infinite;
+}
+
+.ep-grdemo-phase--reviews {
+    animation: ep-grdemo-phaseB 7s infinite;
+}
+
+/* ── Phase A: search picker — matches the EmbedPress admin search field ── */
+.ep-grdemo-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ep-field-text);
+    margin-bottom: 6px;
+}
+
+.ep-grdemo-search {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    border: 1px solid var(--ep-field-border);
+    border-radius: 8px;
+    padding: 0 12px;
+    font-size: 14px;
+    color: var(--ep-field-text);
+    box-shadow: 0 0 0 2px rgba(91, 78, 150, .1);
+    /* focus-ring while "typing", removed once the result is picked */
+    animation: ep-grdemo-focus 7s infinite;
+}
+
+.ep-grdemo-search-ico {
+    color: var(--ep-field-muted);
+    flex-shrink: 0;
+    display: block;
+}
+
+.ep-grdemo-label {
+    flex: 0 0 auto;
+}
+
+.ep-grdemo-typed {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    flex-shrink: 0;
+    animation: ep-grdemo-type 7s infinite steps(18, end);
+}
+
+.ep-grdemo-caret {
+    width: 1.5px;
+    height: 16px;
+    flex-shrink: 0;
+    background: var(--ep-brand);
+    animation: ep-grdemo-blink 1s infinite step-end, ep-grdemo-caret-hide 7s infinite;
+}
+
+/* suggestion dropdown */
+.ep-grdemo-suggest {
+    flex: 0 0 auto;
+    margin-top: 8px;
+    border: 1px solid var(--grd-border);
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(60, 64, 67, .12);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-6px);
+    animation: ep-grdemo-suggest 7s infinite;
+}
+
+.ep-grdemo-result {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 12px;
+    background: #fff;
+    animation: ep-grdemo-hl 7s infinite;
+}
+
+.ep-grdemo-pin {
+    color: var(--ep-brand);
+    flex-shrink: 0;
+    display: block;
+}
+
+.ep-grdemo-result-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.35;
+    min-width: 0;
+}
+
+.ep-grdemo-result-text strong {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ep-field-text);
+}
+
+.ep-grdemo-result-text small {
+    font-size: 11px;
+    color: var(--ep-field-muted);
+}
+
+/* a little click-cursor that taps the result */
+.ep-grdemo-cursor {
+    margin-left: auto;
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--ep-field-muted);
+    border-radius: 50%;
+    flex-shrink: 0;
+    opacity: 0;
+    animation: ep-grdemo-tap 7s infinite;
+}
+
+/* ── Phase B: reviews (matches the real block's summary + cards) ── */
+.ep-grdemo-summary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.ep-grdemo-summary b {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--grd-heading);
+    line-height: 1;
+}
+
+.ep-grdemo-count {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--grd-muted);
+}
+
+.ep-grdemo-review {
+    border: 1px solid var(--grd-border);
+    border-radius: 10px;
+    padding: 9px 11px;
+    margin-bottom: 7px;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: ep-grdemo-card 7s infinite;
+}
+
+.ep-grdemo-review:last-child {
+    margin-bottom: 0;
+}
+
+/* Stagger via adjacent-sibling chains (kses strips inline animation-delay).
+   1st review = base; 2nd = preceded by one; 3rd = preceded by two. */
+.ep-grdemo-review+.ep-grdemo-review {
+    animation: ep-grdemo-card2 7s infinite;
+}
+
+.ep-grdemo-review+.ep-grdemo-review+.ep-grdemo-review {
+    animation: ep-grdemo-card3 7s infinite;
+}
+
+.ep-grdemo-review-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.ep-grdemo-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--ep-brand);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+.ep-grdemo-name {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--grd-heading);
+}
+
+.ep-grdemo-review-head .ep-grdemo-stars {
+    margin-left: auto;
+    font-size: 10px;
+}
+
+.ep-grdemo-text {
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: var(--grd-text);
+}
+
+/* ── Timeline (0–100% of 7s) ──
+   Phase A visible 0–52%: type 5–35%, dropdown 38%, tap 46%.
+   cross-fade 52–58%.
+   Phase B visible 58–100%: cards stagger in 62–74%, hold, fade at loop. */
+@keyframes ep-grdemo-phaseA {
+    0%, 50% {
+        opacity: 1;
+    }
+
+    57%, 100% {
+        opacity: 0;
+    }
+}
+
+@keyframes ep-grdemo-phaseB {
+    0%, 52% {
+        opacity: 0;
+    }
+
+    60%, 96% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes ep-grdemo-type {
+    0%, 5% {
+        width: 0;
+    }
+
+    34%, 100% {
+        /* Wide enough for the full "Sydney Opera House" string at 14px. */
+        width: 168px;
+    }
+}
+
+@keyframes ep-grdemo-blink {
+    0%, 50% {
+        opacity: 1;
+    }
+
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+@keyframes ep-grdemo-caret-hide {
+    0%, 35% {
+        opacity: 1;
+    }
+
+    36%, 100% {
+        opacity: 0;
+    }
+}
+
+@keyframes ep-grdemo-suggest {
+    0%, 35% {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    40%, 50% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    57%, 100% {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+}
+
+@keyframes ep-grdemo-hl {
+    0%, 44% {
+        background: #fff;
+    }
+
+    47%, 50% {
+        background: rgba(91, 78, 150, .08);
+    }
+
+    57%, 100% {
+        background: #fff;
+    }
+}
+
+/* Search field focus ring while typing; drops once the result is picked. */
+@keyframes ep-grdemo-focus {
+    0%, 50% {
+        box-shadow: 0 0 0 2px rgba(91, 78, 150, .1);
+        border-color: var(--ep-brand);
+    }
+
+    57%, 100% {
+        box-shadow: none;
+        border-color: var(--ep-field-border);
+    }
+}
+
+@keyframes ep-grdemo-tap {
+    0%, 42% {
+        opacity: 0;
+        transform: scale(1);
+    }
+
+    44% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    47% {
+        opacity: 1;
+        transform: scale(.7);
+    }
+
+    50%, 100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+
+@keyframes ep-grdemo-card {
+    0%, 60% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    68%, 96% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+}
+
+@keyframes ep-grdemo-card2 {
+    0%, 64% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    72%, 96% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+}
+
+@keyframes ep-grdemo-card3 {
+    0%, 68% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    76%, 96% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .ep-grdemo-phase, .ep-grdemo-typed, .ep-grdemo-caret, .ep-grdemo-suggest,
+    .ep-grdemo-result, .ep-grdemo-cursor, .ep-grdemo-review {
+        animation: none;
+    }
+
+    /* Reduced motion → just show the reviews phase. */
+    .ep-grdemo-phase--search {
+        display: none;
+    }
+
+    .ep-grdemo-phase--reviews {
+        opacity: 1;
+    }
+
+    .ep-grdemo-review {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* ===== responsive ===== */
+@media (max-width: 760px) {
+    .epwn {
+        padding: 14px;
+    }
+
+    .epwn__modal {
+        flex-direction: column;
+        min-height: 0;
+        max-height: calc(100vh - 28px);
+        overflow-y: auto;
+    }
+
+    .epwn__left,
+    .epwn__right {
+        width: 100%;
+    }
+
+    .epwn__left {
+        padding: 18px;
+    }
+
+    .epwn__title {
+        font-size: 21px;
+    }
+
+    /* keep the PREVIEW badge clear of the close button when stacked */
+    .epwn__badge {
+        top: 28px;
+        right: 14px;
+    }
+
+    /* tighten nav so Back/Next don't clip at narrow widths */
+    .epwn__nav {
+        margin-top: 14px;
+    }
+
+    .epwn__back,
+    .epwn__next {
+        font-size: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .epwn,
+    .epwn__modal,
+    .epwn__fade,
+    .epwn__cta {
+        transition: none;
+        animation: none;
+    }
+}
+/* =========================================================================
+ * Menu "New" indicator — the blinking bubble on the EmbedPress admin menu.
+ *
+ * NOTE: this stylesheet only loads on EmbedPress pages, but the bubble shows on
+ * EVERY admin page. FeaturePreviewModal::print_menu_indicator_style() prints an
+ * identical rule inline in <head> so the blink works globally; this copy keeps
+ * the source of truth here and covers EmbedPress pages where the modal CSS is
+ * already enqueued. Keep the two in sync.
+ * ========================================================================= */
+#adminmenu li.menu-top:has(.ep-whatsnew-badge) .wp-menu-name {
+    white-space: nowrap;
+}
+/* Inline red "NEW" pill with a sweeping white-gradient shine. */
+#adminmenu .ep-whatsnew-badge {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    width: 28px;
+    height: 18px;
+    margin: -2px 0 0 0;
+    padding: 0;
+    border-radius: 9px;
+    background: #d63637;
+    color: #fff;
+    font-size: 8px;
+    font-weight: 700;
+    line-height: 1.6;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    text-align: center;
+    box-shadow: none !important;
+    animation: ep-whatsnew-glow 1.8s ease-in-out infinite;
+}
+#adminmenu .ep-whatsnew-badge::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, .85) 50%, transparent 100%);
+    animation: ep-whatsnew-shine 1.8s ease-in-out infinite;
+}
+@keyframes ep-whatsnew-shine {
+    0%        { transform: translateX(-160%) skewX(-18deg); }
+    55%, 100% { transform: translateX(320%) skewX(-18deg); }
+}
+@keyframes ep-whatsnew-glow {
+    0%, 100% { box-shadow: 0 1px 4px rgba(0, 185, 105, .5); }
+    50%      { box-shadow: 0 1px 9px rgba(0, 185, 105, .85); }
+}
+@media (prefers-reduced-motion: reduce) {
+    #adminmenu .ep-whatsnew-badge { animation: none; }
+    #adminmenu .ep-whatsnew-badge::after { display: none; }
+}
