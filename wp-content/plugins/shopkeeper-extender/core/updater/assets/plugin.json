@@ -1,0 +1,28 @@
+{
+	"name": "Shopkeeper Extender",
+	"version": "10.0.6",
+	"download_url": "https://downloads.wordpress.org/plugin/shopkeeper-extender.latest-stable.zip",
+
+	"homepage": "https://wordpress.org/plugins/shopkeeper-extender/",
+	"requires": "6.0",
+	"tested": "7.1",
+	"last_updated": "2026-09-06 21:12:45",
+
+	"author": "Get Bowtied",
+	"author_homepage": "https://getbowtied.com/",
+
+	"sections": {
+		"description": "<p>Companion plugin for the <b>Shopkeeper</b> theme. Extends the functionality by adding theme specific features.</p><h4>Features:</h4><ul><li>Adds 'Social Media' section in Customizer for easy management of links to social media profiles</li><li>Adds header image option for WooCommerce product categories</li><li>Adds 'Additional JS' section in Customizer allowing for site customization with custom JavaScript code</li><li>Adds social sharing buttons for WooCommerce products</li><li>Adds 'Background URL' field for menu items</li></ul><h4>Gutenberg Blocks:</h4><ul><li>Image Slider</li><li>Banner</li><li>Posts Grid</li><li>Product Categories Grid</li><li>Social Media Profiles</li></ul><h4>Widgets:</h4><ul><li>Social Media Profiles</li></ul><h4>WPBakery Page Builder Elements:</h4><ul><li>Slider</li><li>Banner</li><li>Posts Slider</li><li>Product Categories Grid</li><li>Social Media Profiles</li></ul>",
+		"changelog": "<h4>10.0.6</h4><ul><li>Newer updater always wins via versioned loader and GBT_Extender_Theme_Updater_Core; detach legacy direct-require hooks</li></ul><h4>10.0.5</h4><ul><li>Detect current themes via GBT_Theme_Update_Notice; use marker files only on front/cron when the dashboard is not loaded</li></ul>"
+	},
+
+	"icons" : {
+		"1x" : "https://raw.githubusercontent.com/getbowtied/shopkeeper-extender/master/core/updater/assets/images/shopkeeper-extender-128x128.png",
+		"2x" : "https://raw.githubusercontent.com/getbowtied/shopkeeper-extender/master/core/updater/assets/images/shopkeeper-extender-256x256.png"
+    },
+
+	"banners": {
+		"low": "https://raw.githubusercontent.com/getbowtied/shopkeeper-extender/master/core/updater/assets/images/shopkeeper-banner-772x250.png",
+		"high": "https://raw.githubusercontent.com/getbowtied/shopkeeper-extender/master/core/updater/assets/images/shopkeeper-banner-1544x500.png"
+	}
+}

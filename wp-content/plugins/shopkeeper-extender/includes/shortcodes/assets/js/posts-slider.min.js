@@ -1,0 +1,1 @@
+jQuery(function(i){"use strict";i(".from-the-blog.swiper-container").each(function(){var e=i(this).attr("data-id");new Swiper(".swiper-"+e,{slidesPerView:1,loop:!0,breakpoints:{1024:{slidesPerView:3},640:{slidesPerView:2},480:{slidesPerView:1}},pagination:{el:".swiper-"+e+" .swiper-pagination"}})})});
