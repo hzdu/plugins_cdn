@@ -42,7 +42,7 @@
 					
 					//replace placeholders with selected text
 					buttons.forEach(function(e) {
-						e.href = e.dataset.highlight.replace("%highlight%", selectedText);
+						e.href = e.dataset.highlight.replace("__highlight__", encodeURIComponent(selectedText));
 					});
 
 					highlight.classList.add("ns-visible");

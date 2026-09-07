@@ -103,29 +103,34 @@ table.media .column-title .has-media-icon ~ .row-actions {
 }
 #posts-filter .wp-filter {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
     align-items: center;
 }
 #posts-filter .wp-filter .filter-items {
-	width: 70%;
+	width: 74%;
 	float: none;
 }
 #posts-filter .wp-filter .search-form {
-	width: 20%;
+	width: 26%;
 	float: none;
+    display: flex;
+    justify-content: flex-end;
 }
 p.search-box {
     display: flex;
-    float: none;
+    margin: 10px 0 !important;
 }
-.wp-filter .search-form input[type="search"] {
-    width: 100%;
+.wp-filter .search-box input[type="search"] {
+    width: 120px;
 }
 .attachments-browser .media-toolbar-secondary {
-	max-width: 78%;
+	max-width: 80%;
 }
 .media-frame-content .attachments-browser .media-toolbar-primary.search-form {
-	max-width: 22%;
+	max-width: 20%;
+}
+.tablenav .actions select#bulk-action-selector-top {
+    min-width: 240px;
 }
 #posts-filter .search-form label.media-search-input-label,
 .media-frame-content .attachments-browser .media-toolbar-primary.search-form label.media-search-input-label,
@@ -161,6 +166,7 @@ p.search-box {
     border-bottom: 1px solid #ddd;
 }
 .media-modal-content .attachments-browser .media-toolbar-secondary {
+    display: flex;
     max-width: 66%;
     width: 66%;
 }
@@ -242,7 +248,7 @@ p.search-box {
 .post-type-attachment.supports-drag-drop .media-categories-module-tree-view #media-categories-module-tree-view .wp-filter {
     margin: 10px 0 9px !important;        
 }
-.wp-filter .search-form {
+.media-categories-module-tree-view-inner .wp-filter .search-form {
     float: right;
     margin: 10px 0;
 }
@@ -280,7 +286,34 @@ p.search-box {
     height: 30px;
 }
 
-@media only screen and (max-width:1920px) {
+.media-frame.mode-grid .media-toolbar .type-filter label,
+.media-frame.mode-grid .media-toolbar .date-filter label {
+    display: none;
+}
+
+.media-toolbar-secondary {
+    align-items: center;
+    gap: 0 !important;
+}
+
+.attachments-browser .media-toolbar {
+    padding: 0 16px !important;
+}
+
+.media-toolbar.wp-filter .view-switch {
+    margin: 0 12px 0 -4px !important;
+}
+
+.wp-filter .view-switch {
+    padding: 0 !important;
+}
+
+/* Hide Elementor AI Generator button in media library */
+#e-image-ai-media-library {
+    display: none !important;
+}
+
+@media only screen and (max-width:1400px) {
 
     #posts-filter .wp-filter .search-form input[type="search"] {
         margin-bottom: 10px;
@@ -293,6 +326,10 @@ p.search-box {
     .upload-php .wrap .wp-heading-inline + .page-title-action{
         position: relative;
         left: -25%;
+    }
+    
+    .upload-php .wrap h1.wp-heading-inline {
+        padding: 17px 0 4px;
     }
 }
 

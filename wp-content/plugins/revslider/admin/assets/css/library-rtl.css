@@ -1,0 +1,405 @@
+body.rtl,
+html[dir="rtl"] {
+
+/*********************************+
+    BASIC LIBRARY STYLES
+**********************************/
+
+/* Media Area */
+lib-item lib-i-media:before {
+    left: auto;
+    right: 0px;
+}
+
+/* BUTTONS ON THE MEDIA AREA */
+lib-btn-wrap {
+    position: absolute;
+}
+
+/* Bottom Area Content */
+
+.lib--title .sr--lib--amnt {
+    margin-left:inherit;
+    margin-right:5px;
+}
+
+/* The Submenue for the Library Item */
+
+lib-i-menudrop {
+    right:auto;
+    left:5px;
+}
+
+.lib--item--active lib-i-menudrop .sr--icon{
+    transform: rotate(-180deg);
+}
+
+lib-item-menu {
+    left:auto;
+    right:0px;
+}
+lib-item-submenu {
+    right: auto;
+    left: 0px;
+}
+
+lib-i-bottom sr-input {
+    left:auto;
+    right:0px;
+}
+
+/************************
+    PAGINATION
+*************************/
+
+lib-page:last-child {
+    margin-right: inherit;
+    margin-left: 0px;
+}
+
+/************************
+    BREADCRUMB
+*************************/
+
+sr-breadcrumb {
+    margin-right:inherit;
+    margin-left:30px;
+}
+sr-breadcrumb sr-icon-wrap {
+    margin-right:inherit;
+    margin-left:10px;
+}
+
+/*Addon Grid Settings*/
+
+sr-library#sr_alib lib-item lib-i-bottom {
+    right:auto;
+    left:0px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+
+/********************************+
+    SEARCH IN NAV
+*********************************/
+sr-nav-wrap#sr_overview_toolbar sr-input {
+    right: auto;
+    left: -44px;
+}
+sr-nav-wrap#sr_overview_toolbar sr-input .sr--input--icon{
+    right: auto;
+    left: 15px;
+}
+
+/***********************************
+    LIBRARY LIST VIEW
+************************************/
+
+sr-library-folders.sr--lib--listview,
+.sr--lib--listview sr-library-folders{
+    padding-right: inherit;
+    padding-left: 30px;
+    border-right: none;
+    border-left: 3px solid var(--sr-col-w8-d0);
+}
+.sr--lib--listview lib-i-menudrop {
+    right:auto;
+    left:5px;
+}
+
+/* CSS for the right container */
+.sr--lib--listview lib-i-top {
+    border-radius:5px 5px 0px 0px;
+}
+.sr--lib--listview lib-i-bottom {
+    border-radius:0px 0px 5px 5px;
+}
+.sr--lib--listview  lib-i-labels {
+    right:auto;
+    left:10px;
+}
+.sr--lib--listview lib-item lib-i-bottom lib-btn-wrap
+{
+    right: auto;
+    left: 5px;
+    text-align: left;
+}
+.sr--lib--listview .sr--overview lib-item lib-i-bottom lib-btn-wrap {
+    right:auto;
+    left:45px;
+}
+.sr--lib--listview lib-item lib-item-menu {
+    border-radius: 0px 0px 0px 5px;
+}
+.sr--lib--listview lib-item-submenu {
+    right:auto;
+    left:0px;
+}
+
+/*****************************
+    LIBRARY FOLDERS LIST
+*****************************/
+
+sr-library-folders sr-scroll-bar {
+    right:auto;
+    left:15px;
+}
+sr-library-folders lib-btn-wrap-folders {
+    left:auto;
+    right:0px;
+    text-align:left;
+}
+
+.sr--lib--listview lib-item lib-i-bottom lib-btn-wrap lib-i-btn {
+    margin-right:inherit;
+    margin-left:5px;
+}
+
+sr-library-folders lib-item.sr--lib--folder--level--1 {
+    padding-left: inherit;
+    padding-right: 20px;
+}
+
+sr-library-folders lib-item.sr--lib--folder--level--2 {
+    padding-left: inherit;
+    padding-right: 40px;
+}
+
+sr-library-folders lib-item.sr--lib--folder--level--3 {
+    padding-left: inherit;
+    padding-right: 60px;
+}
+
+sr-library-folders lib-item.sr--lib--folder--level--4 {
+    padding-left: inherit;
+    padding-right: 80px;
+}
+
+sr-library-folders lib-item.sr--lib--folder--level--5 {
+    padding-left: inherit;
+    padding-right: 100px;
+}
+
+sr-library-folders lib-item.sr--lib--folder--level--6 {
+    padding-left: inherit;
+    padding-right: 120px;
+}
+
+sr-library-folders lib-item lib-i-bottom lib-btn-wrap {
+    right:auto;
+    left:0px;
+}
+
+/*********************
+//      TEMPLATES
+**********************/
+
+.sr--basic--library .sr--library--right {
+    padding:16px 10px 6px 230px;
+    border-left:none;
+    border-right:3px solid var(--sr-col-w9-d1);
+}
+.sr--basic--library .sr--library--right sr-radio  sr-radio-item{
+    margin-right:inherit;
+    margin-left:20px;
+}
+.sr--basic--library .sr--library--right sr-radio svg {
+    margin-right:inherit;
+    margin-left:10px;
+}
+.sr--basic--library sr-scroll-bar {
+    right:auto;
+    left:0px;
+}
+.sr--basic--library lib-item-inner {
+    left:auto;
+    right:0px;
+}
+.sr--basic--library #sr_alib lib-item lib-i-media {
+    left:auto;
+    right:10px;
+}
+sr-button.sr--library--update {
+    right:auto;
+    left:42px;
+}
+
+/****************************/
+/*Addon Grid Hover Settings*/
+/****************************/
+
+.sr--basic--library lib-item lib-i-bottom lib-btn-wrap {
+    left:10px;
+    right:auto;
+    text-align: left;
+}
+.sr--basic--library lib-pagination {
+    padding-right:inherit;
+    padding-left:40px;
+}
+lib-item-details {
+    left:auto;
+    right:calc(100% + 40px);
+}
+
+/*******************************
+    ADDON LIBRARY SPECIALITIES
+********************************/
+sr-library#sr_alib lib-item:hover lib-i-bottom,
+sr-library#sr_alib lib-item.lib--item--active lib-i-bottom{
+    right: auto;
+    left: 0px;
+    padding-left:inherit;
+    padding-right:70px;
+}
+
+
+
+.sr--basic--library #sr_alib lib-item:hover lib-i-media,
+.sr--basic--library #sr_alib lib-item.lib--item--active lib-i-media {
+    left: auto;
+    right: 10px;
+}
+
+.sr--basic--library #sr_alib lib-item lib-item-main-labels {
+    right:auto;
+    left: -10px;
+}
+
+lib-item lib-i-video-wrap {
+    left:auto;
+    right:0px;
+}
+
+.sr--basic--library #sr_alib lib-item.lib--item--active lib-item-main-labels,
+.sr--basic--library #sr_alib lib-item:hover lib-item-main-labels {
+    transform:translateX(15px);
+}
+
+.sr--library--addon--buttons {
+    right:auto;
+    left:42px;
+}
+
+/************************************
+    LIBRARY TAGS
+*************************************/
+
+sr-lib-tag svg {
+    margin-right:inherit;
+    margin-left:12px;
+}
+
+.sr--basic--library sr-breadcrumbs {
+    left:auto;
+    right:0px;
+}
+
+
+/********************************
+        ELEMENTS LIBRARY
+********************************/
+.sr--basic--library .sr--library--right  sr-drop[data-name="size"] {
+    right: auto;
+    left: 213px;
+}
+lib-section-title {
+    float: right;
+    margin-left: inherit;
+    margin-right: 40px;
+}
+lib-section-link {
+    margin-right: inherit;
+    margin-left: 40px;
+    float: left;
+}
+lib-section-items {
+    padding: 0 40px 30px 20px;
+}
+.sr--lib--e--all lib-section-items {
+    padding: 0 40px 30px 0px;
+}
+.sr--basic--library lib-item.sr--element--item {
+    float: right;
+    margin: 0 0px 20px 20px;
+}
+.sr--basic--library.sr--lib--e--all lib-item.sr--element--item {
+    margin: 0 0 0 18px;
+}
+.sr--basic--library .sr--lib--large lib-item.sr--element--item {
+    margin-right: inherit;
+    margin-left: 20px;
+}
+lib-item-trigger {
+    right: auto;
+    left: 18px;
+    transform: rotate(90deg);
+}
+lib-item-duration {
+    left: auto;
+    right: 9px;
+}
+.sr--lib-element--details .lib--info {
+    margin-right: inherit;
+    margin-left: 5px;
+}
+.sr--lib-element--details sr-button {
+    margin-right: inherit;
+    margin-left: 20px;
+}
+
+/********************************
+        IMPORT LAYERS MODAL
+********************************/
+sr-modal.sr--layers--import--modal sr-modal-list {
+    left: 0px;
+    right: 10px;
+}
+sr-modal.sr--layers--import--modal sr-modal-status {
+    left: auto;
+    right: 20px;
+}
+sr-modal.sr--layers--import--modal sr-button {
+    right: auto;
+    left: 20px;
+}
+sr-modal.sr--layers--import--modal ul {
+    margin-right: inherit;
+    margin-left: 20px;
+}
+sr-modal.sr--layers--import--modal ul ul {
+    margin-left: 0px;
+    margin-right: 20px;
+}
+sr-layer-list-item-icon {
+    padding: 10px 10px 10px 15px;
+}
+sr-layer-list-item sr-lbl {
+    margin-left: inherit;
+    margin-right: 20px;
+}
+sr-layer-list-item sr-layer-list-item-note {
+    margin-left: inherit;
+    margin-right: 20px;
+}
+sr-layer-list-item sr-onoff {
+    right: auto;
+    left: 0;
+}
+
+/********************************
+        RESPONSIVE SETTINGS
+********************************/
+
+@media only screen and (max-width: 1050px) {
+    .sr--basic--library .sr--library--right {
+        padding-right:inherit;
+        padding-left:50px;
+    }
+    .sr--basic--library .sr--library--right sr-drop[data-name="size"] {
+        right: unset;
+        left: 102px;
+    }
+}
+
+}

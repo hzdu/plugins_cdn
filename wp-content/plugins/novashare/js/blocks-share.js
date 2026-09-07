@@ -5,7 +5,10 @@
 	const { registerBlockType } = blocks; 
 	const { InspectorControls, useBlockProps, useInnerBlocksProps, __experimentalColorGradientControl } = blockEditor;
 	const { Fragment, useEffect } = element;
-	const { BaseControl, TextControl, ToggleControl, PanelBody, Icon, RangeControl, Button, ButtonGroup, Dropdown, SelectControl, ColorIndicator, FlexItem, __experimentalHStack } = components;
+	const { BaseControl, TextControl, ToggleControl, PanelBody, Icon, RangeControl, Button, Dropdown, SelectControl, ColorIndicator, FlexItem, __experimentalHStack } = components;
+	const ToggleGroupControl = components.__experimentalToggleGroupControl || components.ToggleGroupControl;
+	const ToggleGroupControlOption = components.__experimentalToggleGroupControlOption || components.ToggleGroupControlOption;
+	const ToggleGroupControlOptionIcon = components.__experimentalToggleGroupControlOptionIcon || components.ToggleGroupControlOptionIcon;
 	const { __ } = wp.i18n;
 
 	//swap button colors on hover in editor
@@ -21,9 +24,9 @@
 
 	 		if(event.type == 'mouseover') {
 
-	 			block.setAttribute('data-button-color', block.style.getPropertyValue('--ns-button-color'));
+	 			block.setAttribute('data-button-color', block.style.getPropertyValue('--ns-btn-color'));
 	 			if(buttonHoverColor) {
-	 				block.style.setProperty('--ns-button-color', buttonHoverColor);
+	 				block.style.setProperty('--ns-btn-color', buttonHoverColor);
 	 			}
 
 	 			if(inverseHover) {
@@ -37,7 +40,7 @@
 	 		}
 	 		else if(event.type == 'mouseout') {
 
-	 			block.style.setProperty('--ns-button-color', block.getAttribute('data-button-color'));
+	 			block.style.setProperty('--ns-btn-color', block.getAttribute('data-button-color'));
 
 	 			if(inverseHover) {
 	 				inverseHoverSwap(block);
@@ -98,7 +101,7 @@
 
  	//register share block
 	registerBlockType('novashare/share', {
-		apiVersion: 2,
+		apiVersion: 3,
 		title: __("Share Buttons", 'novashare'),
 		description: __("Add share buttons for your social network profiles.", 'novashare'),
 		category: 'widgets',
@@ -395,6 +398,7 @@
 							//button style
 							el(SelectControl, { 
 								label: __('Button Style', 'novashare'),
+								__nextHasNoMarginBottom: true,
 								value: props.attributes.buttonStyle,
 							    onChange: (value) => {
 									props.setAttributes({ buttonStyle: value });
@@ -423,6 +427,7 @@
 							//button layout
 							el(SelectControl, { 
 								label: __('Button Layout', 'novashare'),
+								__nextHasNoMarginBottom: true,
 								value: props.attributes.buttonLayout,
 							    onChange: (value) => {
 									props.setAttributes({ buttonLayout: value });
@@ -454,94 +459,71 @@
 							//alignment
 							(() => {
 								if(!props.attributes.buttonLayout) {
-									return el(BaseControl, { label: __('Alignment', 'novashare') },
-										el(ButtonGroup, { style: { display: 'flex'} },
-											el(Button, {
-												variant: 'secondary', 
-												isPressed: (() => { return (props.attributes.alignment == '' ? true : false) })(),
-												onClick: (event) => { props.setAttributes({ alignment: event.target.value }) },
-												value: '',
-												icon: el(Icon, { icon: 'align-left', style: { pointerEvents: 'none' } }),
-												style: { display: 'inline-flex', flexGrow: '1' }
-											}),
-											el(Button, {
-												variant: 'secondary', 
-												isPressed: (() => { return (props.attributes.alignment == 'center' ? true : false) })(),
-												onClick: (event) => { props.setAttributes({ alignment: event.target.value }) },
-												value: 'center',
-												icon: el(Icon, { icon: 'align-center', style: { pointerEvents: 'none' } }),
-												style: { display: 'inline-flex', flexGrow: '1' }
-											}),
-											el(Button, {
-												variant: 'secondary', 
-												isPressed: (() => { return (props.attributes.alignment == 'right' ? true : false) })(),
-												onClick: (event) => { props.setAttributes({ alignment: event.target.value }) },
-												value: 'right',
-												icon: el(Icon, { icon: 'align-right', style: { pointerEvents: 'none' } }),
-												style: { display: 'inline-flex', flexGrow: '1' }
-											})
-										)
+									return el(ToggleGroupControl, {
+										label: __('Alignment', 'novashare'),
+										__nextHasNoMarginBottom: true,
+										__next40pxDefaultSize: true,
+										isBlock: true,
+										value: props.attributes.alignment || 'left',
+										onChange: (value) => {
+											props.setAttributes({ alignment: value === 'left' ? '' : value });
+										}
+									},
+										el(ToggleGroupControlOptionIcon, {
+											value: 'left',
+											label: __('Left', 'novashare'),
+											icon: 'align-left'
+										}),
+										el(ToggleGroupControlOptionIcon, {
+											value: 'center',
+											label: __('Center', 'novashare'),
+											icon: 'align-center'
+										}),
+										el(ToggleGroupControlOptionIcon, {
+											value: 'right',
+											label: __('Right', 'novashare'),
+											icon: 'align-right'
+										})
 									);
 								}
 							})(),
 
 							//button size
-							el(BaseControl, { label: __('Button Size', 'novashare') },
-								el(ButtonGroup, { style: { display: 'flex' } },
-									el(Button, {
-										variant: 'secondary', 
-										isPressed: (() => { return (props.attributes.buttonSize == 'small' ? true : false) })(),
-										onClick: (event) => { props.setAttributes({ buttonSize: event.target.value }) },
-										value: 'small',
-										style: { display: 'inline-flex', flexGrow: '1', justifyContent: 'center' }
-									},__('Small', 'novashare')),
-									el(Button, {
-										variant: 'secondary', 
-										isPressed: (() => { return (props.attributes.buttonSize == '' ? true : false) })(),
-										onClick: (event) => { props.setAttributes({ buttonSize: event.target.value }) },
-										value: '',
-										style: { display: 'inline-flex', flexGrow: '1', justifyContent: 'center' }
-									}, __('Medium', 'novashare')),
-									el(Button, {
-										variant: 'secondary', 
-										isPressed: (() => { return (props.attributes.buttonSize == 'large' ? true : false) })(),
-										onClick: (event) => { props.setAttributes({ buttonSize: event.target.value }) },
-										value: 'large',
-										style: { display: 'inline-flex', flexGrow: '1', justifyContent: 'center' }
-									}, __('Large', 'novashare'))
-								)
+							el(ToggleGroupControl, {
+								label: __('Button Size', 'novashare'),
+								__nextHasNoMarginBottom: true,
+								__next40pxDefaultSize: true,
+								isBlock: true,
+								value: props.attributes.buttonSize || 'medium',
+								onChange: (value) => {
+									props.setAttributes({ buttonSize: value === 'medium' ? '' : value });
+								}
+							},
+								el(ToggleGroupControlOption, { value: 'small', label: __('Small', 'novashare') }),
+								el(ToggleGroupControlOption, { value: 'medium', label: __('Medium', 'novashare') }),
+								el(ToggleGroupControlOption, { value: 'large', label: __('Large', 'novashare') })
 							),
 
 							//button shape
-							el(BaseControl, { label: __('Button Shape', 'novashare') },
-								el(ButtonGroup, { style: { display: 'flex' } },
-									el(Button, {
-										variant: 'secondary', 
-										isPressed: (() => { return (props.attributes.buttonShape == '' ? true : false) })(),
-										onClick: (event) => { props.setAttributes({ buttonShape: event.target.value }) },
-										value: '',
-										style: { display: 'inline-flex', flexGrow: '1', justifyContent: 'center' }
-									},__('Squared', 'novashare')),
-									el(Button, {
-										variant: 'secondary', 
-										isPressed: (() => { return (props.attributes.buttonShape == 'rounded' ? true : false) })(),
-										onClick: (event) => { props.setAttributes({ buttonShape: event.target.value }) },
-										value: 'rounded',
-										style: { display: 'inline-flex', flexGrow: '1', justifyContent: 'center' }
-									}, __('Rounded', 'novashare')),
-									el(Button, {
-										variant: 'secondary', 
-										isPressed: (() => { return (props.attributes.buttonShape == 'circular' ? true : false) })(),
-										onClick: (event) => { props.setAttributes({ buttonShape: event.target.value }) },
-										value: 'circular',
-										style: { display: 'inline-flex', flexGrow: '1', justifyContent: 'center' }
-									}, __('Circular', 'novashare'))
-								)
+							el(ToggleGroupControl, {
+								label: __('Button Shape', 'novashare'),
+								__nextHasNoMarginBottom: true,
+								__next40pxDefaultSize: true,
+								isBlock: true,
+								value: props.attributes.buttonShape || 'squared',
+								onChange: (value) => {
+									props.setAttributes({ buttonShape: value === 'squared' ? '' : value });
+								}
+							},
+								el(ToggleGroupControlOption, { value: 'squared', label: __('Squared', 'novashare') }),
+								el(ToggleGroupControlOption, { value: 'rounded', label: __('Rounded', 'novashare') }),
+								el(ToggleGroupControlOption, { value: 'circular', label: __('Circular', 'novashare') })
 							),
 
 							//button margin
 							el(RangeControl, {
 								label: __('Button Margin', 'novashare'),
+								__nextHasNoMarginBottom: true,
 								onChange: (value) => {
 									props.setAttributes({ buttonMargin: value });
 								},
@@ -554,6 +536,7 @@
 							//show labels
 							el(ToggleControl, {
 								label: __('Show Labels', 'novashare'),
+								__nextHasNoMarginBottom: true,
 								onChange: (value) => {
 									props.setAttributes({ showLabels: value });
 								},
@@ -562,8 +545,9 @@
 
 							//colors
 							el(BaseControl, {
-								label: __('Colors', 'novashare')
-								},
+								label: __('Colors', 'novashare'),
+								__nextHasNoMarginBottom: true
+							},
 								nsColorPicker(props, 'buttonColor', __('Button Color', 'novashare')),
 								nsColorPicker(props, 'buttonHoverColor', __('Button Hover Color', 'novashare')),								
 								(() => {return !props.attributes.inverseHover ? nsColorPicker(props, 'iconColor', __('Icon Color', 'novashare')) : ''})(),
@@ -573,6 +557,7 @@
 							//inverse on hover
 							el(ToggleControl, {
 								label: __('Inverse on Hover', 'novashare'),
+								__nextHasNoMarginBottom: true,
 								onChange: (value) => {
 									props.setAttributes({ inverseHover: value });
 								},
@@ -586,6 +571,7 @@
 							//mobile breakpoint
 							el(RangeControl, {
 								label: __('Mobile Breakpoint', 'novashare'),
+								__nextHasNoMarginBottom: true,
 								onChange: (value) => {
 									props.setAttributes({ mobileBreakpoint: value });
 								},
@@ -598,6 +584,7 @@
 							//hide above breakpoint
 							el(ToggleControl, {
 								label: __('Hide Above Breakpoint', 'novashare'),
+								__nextHasNoMarginBottom: true,
 								onChange: (value) => {
 									props.setAttributes({ hideAboveBreakpoint: value });
 								},
@@ -607,6 +594,7 @@
 							//hide below breakpoint
 							el(ToggleControl, {
 								label: __('Hide Below Breakpoint', 'novashare'),
+								__nextHasNoMarginBottom: true,
 								onChange: (value) => {
 									props.setAttributes({ hideBelowBreakpoint: value });
 								},
@@ -619,6 +607,7 @@
 							//total share count
 							el(ToggleControl, {
 								label: __('Total Share Count', 'novashare'),
+								__nextHasNoMarginBottom: true,
 								onChange: (value) => {
 									props.setAttributes({ totalShareCount: value });
 								},
@@ -629,25 +618,23 @@
 							(() => {
 								if(props.attributes.totalShareCount) {
 									return el(Fragment, {},
-										el(BaseControl, { label: __('Total Share Count Position', 'novashare') },
-											el(ButtonGroup, { style: { display: 'flex'} },
-												el(Button, {
-													variant: 'secondary', 
-													isPressed: (() => { return (props.attributes.totalShareCountPosition == 'before' ? true : false) })(),
-													onClick: (event) => { props.setAttributes({ totalShareCountPosition: event.target.value }) },
-													value: 'before',
-													style: { display: 'inline-flex', flexGrow: '1' }
-												}, __('Before', 'novashare')),
-												el(Button, {
-													variant: 'secondary', 
-													isPressed: (() => { return (props.attributes.totalShareCountPosition == '' ? true : false) })(),
-													onClick: (event) => { props.setAttributes({ totalShareCountPosition: event.target.value }) },
-													value: '',
-													style: { display: 'inline-flex', flexGrow: '1' }
-												}, __('After', 'novashare'))
-											)
+										el(ToggleGroupControl, {
+											label: __('Total Share Count Position', 'novashare'),
+											__nextHasNoMarginBottom: true,
+											__next40pxDefaultSize: true,
+											isBlock: true,
+											value: props.attributes.totalShareCountPosition || 'after',
+											onChange: (value) => {
+												props.setAttributes({ totalShareCountPosition: value === 'after' ? '' : value });
+											}
+										},
+											el(ToggleGroupControlOption, { value: 'before', label: __('Before', 'novashare') }),
+											el(ToggleGroupControlOption, { value: 'after', label: __('After', 'novashare') })
 										),
-										el(BaseControl, { label: __('Color', 'novashare')},
+										el(BaseControl, { 
+											label: __('Color', 'novashare'),
+											__nextHasNoMarginBottom: true
+										},
 											nsColorPicker(props, 'totalShareCountColor', __('Total Share Count Color', 'novashare'))
 										)
 									);
@@ -657,6 +644,7 @@
 							//network share counts
 							el(ToggleControl, {
 								label: __('Network Share Counts', 'novashare'),
+								__nextHasNoMarginBottom: true,
 								onChange: (value) => {
 									props.setAttributes({ networkShareCounts: value });
 								},
@@ -679,6 +667,7 @@
 							//size
 							el(RangeControl, {
 								label: __('Font Size', 'novashare'),
+								__nextHasNoMarginBottom: true,
 								onChange: (value) => {
 									props.setAttributes({ ctaSize: value });
 								},
@@ -690,9 +679,9 @@
 
 							//color
 							el(BaseControl, {
-								label: __('Color', 'novashare')
-
-								},
+								label: __('Color', 'novashare'),
+								__nextHasNoMarginBottom: true
+							},
 								nsColorPicker(props, 'ctaColor', __('Font Color', 'novashare'))
 							)
 						)
@@ -744,7 +733,7 @@
 
 	//register share network block
 	registerBlockType('novashare/share-network', {
-		apiVersion: 2,
+		apiVersion: 3,
 	 	title: __('Follow Network', 'novashare'),
 	 	description: __('Add an icon linking to a social network profile.', 'novashare'),
 		parent: [ 'novashare/share' ],
@@ -763,7 +752,14 @@
 	  			})
 	  		}, [props.context.styleClasses]);
 
-	  		const networkShareCounts = props.context.networkShareCounts && ['twitter','facebook','pinterest','buffer','reddit','tumblr','vkontakte','yummly'].includes(props.attributes.network);
+			const network = novashare.networks.share[props.attributes.network];
+
+			//skip removed/unknown networks still saved in existing blocks
+			if(!network) {
+				return null;
+			}
+
+	  		const networkShareCounts = props.context.networkShareCounts && ['twitter','facebook','pinterest','buffer','reddit','tumblr','vkontakte'].includes(props.attributes.network);
 
 	 		return (
 
@@ -776,7 +772,7 @@
 						className: props.attributes.network + ' ns-button' + (() => { return networkShareCounts ? ' ns-share-count' : ''; })(), 
 						style: {
 							margin: '0',
-							'--ns-button-color': props.context.buttonColor,
+							'--ns-btn-color': props.context.buttonColor,
 							textDecoration: 'none',
 							flexBasis: (() => {
 								if(props.context.buttonLayout && (props.context.buttonMargin || props.context.buttonMargin == 0)) {
@@ -808,7 +804,7 @@
 										color: (() => {return !props.context.inverseHover ? props.context.iconColor : ''})()
 									}
 									}, 
-									novashare.networks.share[props.attributes.network].name
+									network.name
 								)
 							)
 						)

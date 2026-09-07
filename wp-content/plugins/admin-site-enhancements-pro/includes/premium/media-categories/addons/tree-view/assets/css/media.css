@@ -1,5 +1,5 @@
 #media-categories-module-tree-view {
-     display: none;
+     display: block;
      will-change: min-height;
 }
  #media-categories-module-tree-view .media-categories-module-tree-view-inner {
@@ -15,6 +15,17 @@
      max-height: 75vh;
      overflow-y: scroll;
 }
+/* Hide tree list until jstree initializes to prevent layout shift from icons appearing */
+#media-categories-module-tree-view-list.media-categories-module-tree-view-enabled {
+    visibility: hidden;
+}
+/* Show tree list once jstree has added its class (icons and grid layout are now in place) */
+#media-categories-module-tree-view-list.media-categories-module-tree-view-enabled.jstree {
+    visibility: visible;
+}
+ #media-categories-module-tree-view-list.media-categories-module-tree-view-no-actionbar {
+     margin-top: 10px;
+ }
  #media-categories-module-tree-view-list > ul {
      display: flex;
      flex-direction: row;
@@ -85,6 +96,7 @@
      padding: 10px 10px 10px 6px;
      border-radius: 4px;
 }
+
  #media-categories-module-tree-view-list ul li.current-cat > a {
      padding: 10px 10px 10px 6px;
 }
@@ -141,15 +153,6 @@
  #media-categories-module-tree-view-list ul li ul.children {
      margin: 0 0 0 20px;
 }
- .media-categories-module-tree-view {
-     width: 100%;
-     display: flex;
-     flex-direction: row;
-     top: -22px;
-}
-.supports-drag-drop .media-categories-module-tree-view {
-     padding-top: 2px;    
-}
 #media-categories-spinner {
     display: flex;
     align-items: center;
@@ -158,16 +161,7 @@
 #media-categories-spinner svg {
     margin-right: 6px;
 }
- .media-categories-module-tree-view #media-categories-module-tree-view {
-     display: none;
-     width: 20%;
-     box-sizing: border-box;
-     padding: 0 10px 0 0;
-     margin-top: 45px;
-}
-}
-}
- .media-categories-module-tree-view #media-categories-module-tree-view h2.wp-heading-inline {
+ #media-categories-module-tree-view h2.wp-heading-inline {
      float: left;
      font-size: 23px;
      font-weight: 400;
@@ -175,29 +169,27 @@
      padding: 11px 0 4px 0;
      line-height: 1.3;
 }
- .media-categories-module-tree-view #media-categories-module-tree-view a.button {
+ #media-categories-module-tree-view a.button {
      float: right;
      margin: 11px 0 0 0;
 }
- .media-categories-module-tree-view #media-categories-module-tree-view .wp-filter {
-     margin: 12px 0;
+ #media-categories-module-tree-view .wp-filter {
+     margin: 10px 0 8px;
+     padding: 0 10px 2px;
 }
- .media-categories-module-tree-view #media-categories-module-tree-view .wp-filter .search-form {
+ #media-categories-module-tree-view .wp-filter .search-form {
      width: 100%;
 }
- .media-categories-module-tree-view #media-categories-module-tree-view .wp-filter .search-form button {
+ #media-categories-module-tree-view .wp-filter .search-form button {
      width: 32%;
      height: 30px;
+     min-height: 30px;
 }
- .media-categories-module-tree-view #media-categories-module-tree-view .wp-filter .search-form button svg {
+ #media-categories-module-tree-view .wp-filter .search-form button svg {
      position: relative;
      top: 2px;
 }
- .media-categories-module-tree-view .wrap {
-     width: 80%;
-     margin-top: 0;
-}
- .media-categories-module-tree-view .wrap th#tree-view-move {
+ body.asenha-media-categories-tree-view.upload-php .wrap th#tree-view-move {
      width: 20px;
 }
  ul.ui-contextmenu {
@@ -231,34 +223,8 @@
  .media-categories-module-tree-view-droppable-hover {
      background-color: #e5e5e5;
 }
- @media only screen and (max-width: 1300px) {
-     .media-categories-module-tree-view #media-categories-module-tree-view {
-         width: 25%;
-    }
-     .media-categories-module-tree-view .wrap {
-         width: 75%;
-    }
-}
- @media only screen and (max-width: 1100px) {
-     .media-categories-module-tree-view #media-categories-module-tree-view {
-         width: 30%;
-    }
-     .media-categories-module-tree-view .wrap {
-         width: 70%;
-    }
-}
  @media only screen and (max-width: 768px) {
-    .media-categories-module-tree-view {
-        flex-direction: column;
-    }
-     .media-categories-module-tree-view #media-categories-module-tree-view {
-         width: 100%;
-         margin-bottom: 32px;
-    }
-     .media-categories-module-tree-view #media-categories-module-tree-view .wp-filter .search-form button {
+     #media-categories-module-tree-view .wp-filter .search-form button {
          padding: 5px 14px 0;
-    }
-     .media-categories-module-tree-view .wrap {
-         width: 100%;
     }
 }

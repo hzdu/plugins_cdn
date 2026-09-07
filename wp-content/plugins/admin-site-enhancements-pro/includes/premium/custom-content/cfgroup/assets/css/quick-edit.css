@@ -1,0 +1,537 @@
+/**
+ * Custom Field Groups — Quick Edit styles.
+ */
+
+/* Beat WP core #wpbody-content .quick-edit-row-post .inline-edit-col-left { width: 40% }. */
+#wpbody-content .inline-edit-row fieldset.asenha-cfgroup-qe,
+#wpbody-content .quick-edit-row-post fieldset.asenha-cfgroup-qe,
+#wpbody-content .quick-edit-row-page fieldset.asenha-cfgroup-qe {
+	clear: both;
+	float: none;
+	width: 100%;
+	max-width: 100%;
+	margin: 0.75em 0 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+#wpbody-content .inline-edit-row .asenha-cfgroup-qe .inline-edit-col {
+	width: 100%;
+	max-width: 100%;
+	padding: 0 0 0.25em;
+	box-sizing: border-box;
+}
+
+/* Group title bar — separates CFG fields from core Quick Edit. */
+.asenha-cfgroup-qe-heading {
+	margin: 0.75em 0;
+	padding: 8px 12px;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.4;
+	background: #f0f0f1;
+	border: 1px solid #c3c4c7;
+	border-radius: 2px;
+	box-sizing: border-box;
+}
+
+/* Interactive tabs (when 2+ CFG tabs have QE fields). */
+.asenha-cfgroup-qe-tabs {
+	display: block;
+	margin: 0 0 0.75em;
+	padding: 8px 0 0;
+	border-bottom: 1px solid #c3c4c7;
+	background: #fff;
+	box-sizing: border-box;
+}
+
+.striped > tbody > tr:nth-child(odd) .asenha-cfgroup-qe-tabs {
+	background: #f6f7f7;	
+}
+
+.asenha-cfgroup-qe-tab {
+	position: relative;
+	display: inline-block;
+	margin: 0 0 -1px 8px;
+	padding: 6px 14px;
+	font-size: 13px;
+	font-weight: 500;
+	line-height: 1.4;
+	color: #666;
+	background: #f3f3f3;
+	border: 1px solid #c3c4c7;
+	border-radius: 0;
+	cursor: pointer;
+	box-sizing: border-box;
+}
+
+.asenha-cfgroup-qe-tab:hover {
+	color: #1d2327;
+	background: #fff;
+}
+
+.asenha-cfgroup-qe-tab:first-child {
+	margin-left: 12px;
+}
+
+.asenha-cfgroup-qe-tab.active {
+	background: #fff;
+	border-bottom-color: #fff;
+	font-weight: 600;
+	color: #1d2327;
+}
+
+.asenha-cfgroup-qe-tab.active::after {
+	content: '';
+	position: absolute;
+	right: 0;
+	bottom: -2px;
+	left: 0;
+	border-bottom: 3px solid #fff;
+}
+
+.striped > tbody > tr:nth-child(odd) .asenha-cfgroup-qe-tab.active {
+	background: #f6f7f7;
+	border-bottom-color: #f6f7f7;	
+}
+
+.striped > tbody > tr:nth-child(odd) .asenha-cfgroup-qe-tab.active::after {
+	border-bottom: 3px solid #f6f7f7;
+}
+
+.asenha-cfgroup-qe-tab-pane {
+	display: none;
+	margin: 0 0 0.5em;
+}
+
+.asenha-cfgroup-qe-tab-pane.active {
+	display: block;
+}
+
+/* Forced thirds grid — ignores CFG column_width. */
+.asenha-cfgroup-qe-fields {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 10px;
+	margin: 0 0 0.75em;
+	box-sizing: border-box;
+}
+
+/* Field cells: label on top + bounding border.
+ * Beat WP core: .inline-edit-row fieldset label span.title { float:left; width:6em }
+ * and span.input-text-wrap { margin-left:6em }. */
+#wpbody-content .inline-edit-row .asenha-cfgroup-qe-field,
+#wpbody-content .inline-edit-row fieldset label.asenha-cfgroup-qe-field {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	margin: 0;
+	padding: 10px;
+	clear: none;
+	float: none;
+	width: auto;
+	max-width: none;
+	min-width: 0;
+	overflow: hidden;
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-radius: 2px;
+	box-sizing: border-box;
+	line-height: 1.4;
+}
+
+#wpbody-content .inline-edit-row .asenha-cfgroup-qe-field > .title,
+#wpbody-content .inline-edit-row fieldset label.asenha-cfgroup-qe-field > span.title {
+	display: block;
+	float: none;
+	width: 100%;
+	max-width: 100%;
+	margin: 0 0 0.4em;
+	padding: 0;
+	font-size: 12px;
+	font-weight: 600;
+	font-style: normal;
+	line-height: 1.4;
+	color: #1d2327;
+	vertical-align: top;
+}
+
+#wpbody-content .inline-edit-row .asenha-cfgroup-qe-field .input-text-wrap,
+#wpbody-content .inline-edit-row fieldset label.asenha-cfgroup-qe-field span.input-text-wrap,
+#wpbody-content .inline-edit-row .asenha-cfgroup-qe-field-wysiwyg .input-text-wrap,
+#wpbody-content .inline-edit-row .asenha-cfgroup-qe-field-hyperlink .input-text-wrap {
+	display: block;
+	float: none;
+	width: 100%;
+	max-width: 100%;
+	margin-left: 0;
+	vertical-align: top;
+	box-sizing: border-box;
+}
+
+#wpbody-content .inline-edit-row .asenha-cfgroup-qe-field .asenha-cfgroup-qe-input[type="text"],
+#wpbody-content .inline-edit-row .asenha-cfgroup-qe-field .asenha-cfgroup-qe-input[type="number"],
+#wpbody-content .inline-edit-row .asenha-cfgroup-qe-field .asenha-cfgroup-qe-input[type="date"],
+#wpbody-content .inline-edit-row .asenha-cfgroup-qe-field .asenha-cfgroup-qe-input[type="time"],
+#wpbody-content .inline-edit-row .asenha-cfgroup-qe-field .asenha-cfgroup-qe-input[type="datetime-local"],
+#wpbody-content .inline-edit-row .asenha-cfgroup-qe-field .asenha-cfgroup-qe-input[type="hidden"],
+#wpbody-content .inline-edit-row .asenha-cfgroup-qe-field select.asenha-cfgroup-qe-input,
+#wpbody-content .inline-edit-row .asenha-cfgroup-qe-field textarea.asenha-cfgroup-qe-input {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+#wpbody-content .inline-edit-row .asenha-cfgroup-qe-field textarea.asenha-cfgroup-qe-input {
+	height: 8em;
+}
+
+#wpbody-content .inline-edit-row .asenha-cfgroup-qe-field input[type="checkbox"].asenha-cfgroup-qe-input,
+#wpbody-content .inline-edit-row .asenha-cfgroup-qe-field input[type="radio"].asenha-cfgroup-qe-input {
+	width: auto;
+	max-width: none;
+}
+
+.asenha-cfgroup-qe-field-date-year .asenha-cfgroup-qe-year,
+#wpbody-content .inline-edit-row .asenha-cfgroup-qe-field-date-year .asenha-cfgroup-qe-year {
+	width: 6em;
+	max-width: 100%;
+}
+
+.asenha-cfgroup-qe-color {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 4px;
+}
+
+.asenha-cfgroup-qe-color .cfgroup-color-preview {
+	box-sizing: border-box;
+	width: 30px;
+	min-width: 30px;
+	height: 30px;
+	min-height: 30px;
+	border: 1px solid #8c8f94;
+	border-radius: 4px;
+}
+
+.asenha-cfgroup-qe-color .asenha-cfgroup-qe-input.color,
+#wpbody-content .inline-edit-row .asenha-cfgroup-qe-color .asenha-cfgroup-qe-input.color {
+	flex: 1 1 auto;
+	width: auto;
+	min-width: 0;
+	max-width: 100%;
+}
+
+/* Picker is appended to body; keep it above the Quick Edit row. */
+.cp-color-picker {
+	z-index: 100100;
+}
+
+.asenha-cfgroup-qe-hyperlink-sub {
+	display: block;
+	margin: 0 0 0.4em;
+	font-style: normal;
+}
+
+.asenha-cfgroup-qe-hyperlink-sub-label {
+	display: block;
+	margin: 0 0 0.15em;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 1.4;
+	color: #50575e;
+}
+
+.asenha-cfgroup-qe-field-hyperlink-simple .asenha-cfgroup-qe-hyperlink-sub .asenha-cfgroup-qe-input,
+.asenha-cfgroup-qe-field-hyperlink-simple .asenha-cfgroup-qe-hyperlink-sub select.asenha-cfgroup-qe-input {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+.asenha-cfgroup-qe .cfgroup-hyperlink-wplink-preview {
+	margin: 0 0 8px;
+}
+
+.asenha-cfgroup-qe .cfgroup-hyperlink-wplink-preview-empty {
+	color: #646970;
+}
+
+.asenha-cfgroup-qe .cfgroup-hyperlink-wplink-actions .button + .button {
+	margin-left: 6px;
+}
+
+.asenha-cfgroup-qe .cfgroup-hyperlink-wplink-editor {
+	display: none;
+}
+
+.asenha-cfgroup-qe-field-wysiwyg .input-text-wrap {
+	overflow: visible;
+}
+
+.asenha-cfgroup-qe-field-wysiwyg .cfg-wysiwyg-pending,
+.asenha-cfgroup-qe-field-wysiwyg .cfg-wysiwyg-initialized,
+.asenha-cfgroup-qe-field-wysiwyg .wp-editor-wrap {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+.asenha-cfgroup-qe-field-wysiwyg .cfg-wysiwyg-initialized {
+	border-top: 1px solid #ddd;
+}
+
+.asenha-cfgroup-qe-field-wysiwyg textarea.asenha-cfgroup-qe-input.wysiwyg {
+	width: 100%;
+	min-height: 160px;
+	box-sizing: border-box;
+}
+
+.asenha-cfgroup-qe-field-wysiwyg .wp-editor-container,
+.asenha-cfgroup-qe-field-wysiwyg .mce-tinymce {
+	max-width: 100%;
+}
+
+/* Keep TinyMCE toolbar icons dark when active (match .cfgroup_wysiwyg meta-box fix). */
+.asenha-cfgroup-qe-field-wysiwyg .mce-toolbar-grp .mce-btn.mce-active button,
+.asenha-cfgroup-qe-field-wysiwyg .mce-toolbar-grp .mce-btn.mce-active i,
+.asenha-cfgroup-qe-field-wysiwyg .mce-toolbar-grp .mce-btn.mce-active:hover button,
+.asenha-cfgroup-qe-field-wysiwyg .mce-toolbar-grp .mce-btn.mce-active:hover i,
+.asenha-cfgroup-qe-field-wysiwyg .mce-toolbar .mce-btn-group .mce-btn.mce-active i,
+.asenha-cfgroup-qe-field-wysiwyg .mce-toolbar .mce-btn-group .mce-btn.mce-active:hover i {
+	color: #1d2327;
+}
+
+@media screen and (max-width: 782px) {
+	.asenha-cfgroup-qe-fields {
+		grid-template-columns: 1fr;
+	}
+}
+
+.asenha-cfgroup-qe-field-file .cfgroup_file_input {
+	display: block;
+}
+
+.asenha-cfgroup-qe-field-file .file_url {
+	display: block;
+	margin: 0 0 0.4em;
+	line-height: 1.4;
+	word-break: break-word;
+}
+
+.asenha-cfgroup-qe-field-file .file_url img {
+	display: block;
+	max-width: 100%;
+	max-height: 80px;
+	height: auto;
+	width: auto;
+}
+
+.asenha-cfgroup-qe-field-file .file_url a {
+	text-decoration: underline;
+}
+
+.asenha-cfgroup-qe-field-file .media.button {
+	margin: 0 0.35em 0.25em 0;
+}
+
+.asenha-cfgroup-qe-field-file .error {
+	display: block;
+	margin-top: 0.35em;
+	color: #b32d2e;
+}
+
+.asenha-cfgroup-qe-field-gallery .cfgroup_gallery {
+	display: block;
+}
+
+.asenha-cfgroup-qe-field-gallery .gallery-preview {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	margin: 0 0 0.4em;
+}
+
+.asenha-cfgroup-qe-field-gallery .preview-image {
+	width: 48px;
+	height: 48px;
+	overflow: hidden;
+	border: 1px solid #c3c4c7;
+	border-radius: 2px;
+	background: #f0f0f1;
+}
+
+.asenha-cfgroup-qe-field-gallery .preview-image img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.asenha-cfgroup-qe-field-gallery .gallery-buttons {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.35em 0.5em;
+}
+
+.asenha-cfgroup-qe-field-gallery .cfg-clear-gallery {
+	color: #b32d2e;
+	text-decoration: underline;
+}
+
+/* TinyMCE / link UI above the Quick Edit row. */
+.mce-floatpanel,
+.mce-popover,
+.mce-tooltip {
+	z-index: 100160;
+}
+
+/* wpLink modal above Quick Edit / list table UI. */
+#wp-link-wrap {
+	z-index: 100150;
+}
+
+#wp-link-backdrop {
+	z-index: 100140;
+}
+
+.asenha-cfgroup-qe-field-true-false .input-text-wrap {
+	line-height: 1.8;
+}
+
+.asenha-cfgroup-qe-checkbox-message {
+	margin-left: 0.35em;
+}
+
+.asenha-cfgroup-qe-choices {
+	display: block;
+}
+
+.inline-edit-row fieldset .asenha-cfgroup-qe-choices label {
+	display: block;
+	margin: 0.15em 0;
+	line-height: 1.5;
+	font-style: normal;
+}
+
+.asenha-cfgroup-qe-choices.horizontal label {
+	display: inline-block;
+	margin-right: 0.85em;
+}
+
+.asenha-cfgroup-qe-choices input[type="checkbox"],
+.asenha-cfgroup-qe-choices input[type="radio"] {
+	margin-right: 0.1375em;
+}
+
+/* Relationship / Term / User — Select2 multi */
+.asenha-cfgroup-qe-field-relationship .select2-container,
+.asenha-cfgroup-qe-field-term .select2-container,
+.asenha-cfgroup-qe-field-user .select2-container {
+	width: 100% !important;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+.asenha-cfgroup-qe-field-relationship .select2-container-multi .select2-choices,
+.asenha-cfgroup-qe-field-term .select2-container-multi .select2-choices,
+.asenha-cfgroup-qe-field-user .select2-container-multi .select2-choices {
+	min-height: 28px;
+	padding: 2px 0 0;
+	border-color: #8c8f94;
+	border-radius: 3px;
+}
+
+.asenha-cfgroup-qe-field-relationship .select2-container-multi .select2-choices .select2-search-choice,
+.asenha-cfgroup-qe-field-term .select2-container-multi .select2-choices .select2-search-choice,
+.asenha-cfgroup-qe-field-user .select2-container-multi .select2-choices .select2-search-choice {
+	display: block;
+	float: none;
+	margin: 3px 5px;
+	padding: 5px 20px 5px 6px;
+	line-height: 1.4;
+	background: #f6f7f7;
+	border-color: #c3c4c7;
+	box-shadow: none;
+}
+
+.asenha-cfgroup-qe-field-relationship .select2-container-multi .select2-search-choice-close,
+.asenha-cfgroup-qe-field-term .select2-container-multi .select2-search-choice-close,
+.asenha-cfgroup-qe-field-user .select2-container-multi .select2-search-choice-close {
+	left: auto;
+	right: 3px;
+}
+
+.asenha-cfgroup-qe-rel-type,
+.asenha-cfgroup-qe-term-type {
+	display: inline-block;
+	border: 1px solid #999;
+	background: #e9e9e9;
+	padding: 0 5px;
+	border-radius: 4px;
+	margin-right: 5px;
+	font-weight: 500;
+	font-size: 11px;
+	line-height: 1.5;
+	vertical-align: middle;
+}
+
+.select2-results .asenha-cfgroup-qe-rel-type,
+.select2-highlighted .asenha-cfgroup-qe-rel-type,
+.select2-results .asenha-cfgroup-qe-term-type,
+.select2-highlighted .asenha-cfgroup-qe-term-type {
+	color: #1d2327;
+}
+
+.asenha-cfgroup-qe-rel-title,
+.asenha-cfgroup-qe-term-title,
+.asenha-cfgroup-qe-user-name {
+	vertical-align: middle;
+}
+
+.asenha-cfgroup-qe-user-meta {
+	color: #999;
+	vertical-align: middle;
+}
+
+.select2-highlighted .asenha-cfgroup-qe-user-meta {
+	color: rgba(255, 255, 255, 0.75);
+}
+
+.asenha-cfgroup-qe-relationship-error,
+.asenha-cfgroup-qe-term-error,
+.asenha-cfgroup-qe-user-error {
+	display: block;
+	margin-top: 0.35em;
+	color: #b32d2e;
+	font-style: normal;
+	font-size: 12px;
+	line-height: 1.4;
+}
+
+.select2-drop.asenha-cfgroup-qe-relationship-drop,
+body > .select2-drop {
+	z-index: 100100;
+}
+
+.select2-drop .asenha-cfgroup-qe-rel-type,
+.select2-drop .asenha-cfgroup-qe-term-type {
+	display: inline-block;
+	border: 1px solid #999;
+	background: #e9e9e9;
+	padding: 0 5px;
+	border-radius: 4px;
+	margin-right: 5px;
+	font-weight: 500;
+	font-size: 11px;
+	line-height: 1.5;
+}
+
+/* Keep the helper column out of visual layout when Screen Options hasn't hidden it yet. */
+.column-asenha_cfgroup_qe,
+.asenha_cfgroup_qe.column-asenha_cfgroup_qe {
+	display: none;
+}

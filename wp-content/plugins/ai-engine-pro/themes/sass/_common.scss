@@ -1,0 +1,2343 @@
+// main: chatgpt.scss, messages.scss
+
+// Central variables for consistency across themes
+$bp-mobile: 760px !default;                 // single source of truth for mobile breakpoint
+$submit-offset-optical: 2px !default;       // vertical optical compensation for in-field submit
+$mobile-baseline-gap: 6px !default;         // minimal baseline gap on mobile when needed
+
+// Shared mixin: bottom spacing for input when no footer is present
+// Usage: @include common.no-footer-bottom-spacing($desktop, $mobile);
+// - $desktop: CSS length for desktop baseline under input (e.g., var(--mwai-spacing))
+// - $mobile:  CSS length/expression for mobile baseline (e.g., max(6px, env(...)))
+@mixin no-footer-bottom-spacing($desktop, $mobile) {
+  // When there's no footer, add extra bottom padding to the input
+  &:not(:has(~ .mwai-footer)):not(:has(+ .mwai-footer)) .mwai-input,
+  &:last-child .mwai-input {
+    padding-bottom: $desktop;
+
+    @media (max-width: $bp-mobile) {
+      padding-bottom: $mobile;
+    }
+  }
+}
+
+// Shared mixin: in-field submit absolutely centered with hover scaling
+// Keeps vertical translate identical on hover to avoid drift.
+// Params:
+// - $width/$height: button box size
+// - $right: right offset within the input container
+// - $offset: optical Y-offset compensation (defaults to $submit-offset-optical)
+// - $scale: hover scale factor
+@mixin infield-submit-absolute-center(
+  $width,
+  $height,
+  $right: calc(var(--mwai-spacing) + 5px),
+  $offset: $submit-offset-optical,
+  $scale: 1.03
+) {
+  position: absolute;
+  right: $right;
+  top: 50%;
+  transform: translateY(calc(-50% - #{$offset}));
+  width: $width;
+  height: $height;
+  min-width: $width;
+  min-height: $height;
+  transition: transform 0.15s ease-out;
+  &:hover { transform: translateY(calc(-50% - #{$offset})) scale($scale); }
+}
+
+// Shared mixin: base input container (layout only)
+// Params:
+// - $align: align-items value; if null, property is omitted to preserve theme defaults
+@mixin input-container-base($align: center) {
+  display: flex;
+  @if $align != null { align-items: $align; }
+  position: relative;
+}
+
+// Shared mixin: base input text wrapper (layout only)
+@mixin input-text-base() {
+  flex: auto;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  border-radius: var(--mwai-borderRadius);
+
+  // The chatbot is locked (usage limit reached, GDPR consent pending). The field
+  // is already disabled in the markup, this just makes it look that way. Tied to
+  // a class rather than :disabled, which also fires while the bot is answering.
+  &.mwai-locked {
+    opacity: 0.5;
+
+    input, textarea {
+      cursor: not-allowed;
+    }
+  }
+}
+
+// Shared mixin: base textarea styles (resets + typography)
+// $bg can be 'inherit' or a color variable.
+@mixin input-textarea-base($bg: var(--mwai-backgroundPrimaryColor)) {
+  background: $bg;
+  color: var(--mwai-fontColor);
+  flex: auto;
+  border: none;
+  font-size: var(--mwai-fontSize);
+  resize: none;
+  font-family: inherit;
+  margin: 0;
+  overflow: hidden;
+  min-height: inherit;
+  &:focus { outline: none; box-shadow: none; }
+}
+
+// Shared mixin: file upload icon sprite setup
+// Params:
+// - $sprite-url: path to the sprite sheet
+// - $icon-size: size of one icon cell (default: 32px)
+// - $mt/$ml: optional margins to apply (null to skip)
+@mixin file-upload-icon($sprite-url, $icon-size: 32px, $mt: null, $ml: null) {
+  background: url(#{$sprite-url});
+  background-size: 500%; // 5 icons in the row
+  background-position: -0 * $icon-size -3 * $icon-size;
+  width: $icon-size;
+  height: $icon-size;
+  z-index: 100;
+  @if $mt != null { margin-top: $mt; }
+  @if $ml != null { margin-left: $ml; }
+  @include file-upload-icon-sprites;
+}
+
+@mixin discussions-styles {
+	&.mwai-discussions {
+		border-radius: var(--mwai-borderRadius);
+		background: var(--mwai-backgroundHeaderColor);
+		overflow: hidden;
+
+		* {
+			box-sizing: border-box;
+		}
+
+		.mwai-discussion {
+			display: flex;
+			position: relative;
+			padding-left: calc(var(--mwai-spacing) / 2);
+			padding-right: calc(var(--mwai-spacing) / 2);
+			padding-bottom: calc(var(--mwai-spacing) / 2);
+			color: var(--mwai-conversationsTextColor);
+			opacity: 0.65;
+			align-items: center;
+
+			.mwai-discussion-content {
+				flex: 1;
+				padding: 5px 10px;
+				overflow: hidden;
+			}
+
+			.mwai-discussion-title {
+				display: block;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				font-size: var(--mwai-fontSize);
+				margin-bottom: 4px;
+			}
+
+			.mwai-discussion-info {
+				display: flex;
+				gap: 12px;
+				font-size: calc(var(--mwai-fontSize) * 0.85);
+				opacity: 0.7;
+				
+				.mwai-info-item {
+					display: flex;
+					align-items: center;
+					gap: 4px;
+					
+					svg {
+						opacity: 0.6;
+					}
+				}
+			}
+
+			.mwai-discussion-actions {
+				position: absolute;
+				top: 50%;
+				right: calc(var(--mwai-spacing) / 2);
+				transform: translateY(-50%);
+				opacity: 0;
+				transition: opacity 0.2s ease-out;
+				z-index: 100;
+	
+				.mwai-menu-icon {
+					width: 28px;
+					height: 28px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					cursor: pointer;
+					color: var(--mwai-conversationsTextColor);
+				}
+
+			}
+
+			&.mwai-active {
+				cursor: pointer;
+
+				.mwai-discussion-content {
+					background: var(--mwai-backgroundPrimaryColor);
+					border-radius: var(--mwai-borderRadius);
+					opacity: 1;
+				}
+			}
+			
+			&:hover {
+				cursor: pointer;
+
+				.mwai-discussion-content {
+					background: var(--mwai-backgroundPrimaryColor);
+					border-radius: var(--mwai-borderRadius);
+					opacity: 1;
+				}
+
+				.mwai-discussion-actions {
+					opacity: 1;
+				}
+			}
+
+			// Keep actions visible when menu is open
+			&:has(.mwai-context-menu) {
+				.mwai-discussion-actions {
+					opacity: 1;
+				}
+			}
+
+			&:first-child {
+				margin-top: calc(var(--mwai-spacing) / 2);
+			}
+		}
+
+		.mwai-header {
+			color: var(--mwai-headerColor);
+			padding: var(--mwai-spacing);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 10px;
+
+			button {
+				background: var(--mwai-backgroundPrimaryColor);
+				color: var(--mwai-fontColor);
+				border: none;
+				padding: 8px 16px;
+				border-radius: var(--mwai-borderRadius);
+				cursor: pointer;
+				transition: all 0.2s ease-out;
+
+				&:hover:not(:disabled) {
+					background: var(--mwai-iconTextBackgroundColor);
+				}
+
+				&:disabled {
+					opacity: 0.5;
+					cursor: not-allowed;
+				}
+			}
+
+			.mwai-refresh-btn {
+				padding: 8px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+
+		.mwai-body {
+			background: var(--mwai-conversationsBackgroundColor);
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			position: relative;
+			min-height: 200px;
+			display: flex;
+			flex-direction: column;
+			border-radius: 0;
+			z-index: 1;
+		}
+
+		.mwai-loading-overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: var(--mwai-conversationsBackgroundColor);
+			opacity: 0.9;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 10;
+		}
+
+		.mwai-spinner {
+			animation: spin 1s linear infinite;
+			color: var(--mwai-fontColor);
+		}
+
+		@keyframes spin {
+			from { transform: rotate(0deg); }
+			to { transform: rotate(360deg); }
+		}
+
+		.mwai-pagination {
+			background: var(--mwai-backgroundHeaderColor);
+			padding: var(--mwai-spacing);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			border-top: 1px solid var(--mwai-backgroundPrimaryColor);
+
+			button {
+				background: var(--mwai-backgroundPrimaryColor);
+				color: var(--mwai-fontColor);
+				border: none;
+				padding: 8px 12px;
+				border-radius: var(--mwai-borderRadius);
+				cursor: pointer;
+				transition: all 0.2s ease-out;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				&:hover:not(:disabled) {
+					background: var(--mwai-iconTextBackgroundColor);
+				}
+
+				&:disabled {
+					opacity: 0.3;
+					cursor: not-allowed;
+				}
+			}
+
+			span {
+				color: var(--mwai-headerColor);
+				font-size: var(--mwai-fontSize);
+				font-weight: 500;
+			}
+
+			.mwai-page-indicator {
+				color: var(--mwai-headerColor);
+				font-size: calc(var(--mwai-fontSize) * 0.85);
+				font-weight: 400;
+				opacity: 0.8;
+			}
+		}
+	}
+}
+
+@mixin file-upload-icon-sprites {
+	$icon-size: 32px;
+
+	&.mwai-idle-add {
+		background-position: -1 * $icon-size -3 * $icon-size;
+	}
+
+	&.mwai-image-add {
+		background-position: -1 * $icon-size -0 * $icon-size;
+	}
+
+	&.mwai-image-up {
+		background-position: -2 * $icon-size -0 * $icon-size;
+	}
+
+	&.mwai-image-del {
+		background-position: -3 * $icon-size -0 * $icon-size;
+	}
+
+	&.mwai-image-ok {
+		background-position: -4 * $icon-size -0 * $icon-size;
+	}
+
+	&.mwai-document-add {
+		background-position: -1 * $icon-size -2 * $icon-size;
+	}
+
+	&.mwai-document-up {
+		background-position: -2 * $icon-size -2 * $icon-size;
+	}
+
+	&.mwai-document-del {
+		background-position: -3 * $icon-size -2 * $icon-size;
+	}
+
+	&.mwai-document-ok {
+		background-position: -4 * $icon-size -2 * $icon-size;
+	}
+
+	.mwai-file-upload-progress {
+		position: absolute;
+		font-size: 8px;
+		width: 21px;
+		top: 24px;
+		left: 23px;
+		overflow: hidden;
+		text-align: center;
+		font-weight: bold;
+		color: white;
+	}
+}
+
+@mixin microphone {
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	svg {
+		opacity: 0.5;
+		filter: grayscale(100%);
+		transition: opacity 0.3s ease-out;
+		cursor: pointer;
+	}
+
+	&[active=true] svg {
+		opacity: 1;
+	}
+
+	&[disabled] svg {
+		opacity: 0;
+		cursor: not-allowed;
+	}
+}
+
+// Fullscreen shell (desktop + large screens)
+// - Use dynamic viewport height where supported (100dvh) but avoid hard height locks
+//   that fight browser UI/keyboard on mobile. This mixin is mostly used on desktop
+//   or non-mobile fullscreen contexts.
+@mixin fullscreen-window {
+  position: fixed;
+  left: 0 !important;
+  right: 0 !important; 
+  bottom: 0 !important;
+  top: 0 !important;
+  width: 100%;
+  // Use modern dynamic viewport height for proper fullscreen
+  height: 100%;
+  height: 100vh;
+  height: 100dvh; // Dynamic viewport height - tracks actual visible viewport
+  max-height: 100dvh;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  z-index: 999999;
+  background-color: var(--mwai-backgroundSecondaryColor);
+
+	.mwai-header {
+		border-radius: 0;
+	} 
+
+  .mwai-body {
+    flex: 1;
+    min-height: 0; // Allow shrinking
+    max-height: inherit;
+		border-radius: 0;
+		display: flex !important;
+		flex-direction: column !important;
+
+    .mwai-conversation {
+      flex: 0 1 auto !important; // Can shrink but doesn't grow by default - important to override theme styles
+      max-height: none;
+      overflow-y: auto;
+      min-height: 0; // Important for flexbox to allow shrinking
+    }
+    
+    // Spacer for fullscreen mode to push input to bottom
+    .mwai-fullscreen-spacer {
+      flex: 1 1 auto !important;
+      min-height: 0;
+    }
+    
+    // Ensure input and footer stay at bottom
+    .mwai-input {
+      flex: 0 0 auto;
+    }
+    
+    .mwai-footer {
+      flex: 0 0 auto;
+    }
+    
+    .mwai-files {
+      flex: 0 0 auto;
+    }
+  }
+}
+
+// Mobile-specific fullscreen that handles safe areas and animations
+// Spacing & safe-area strategy (important):
+// - Do NOT pad the shell at the bottom; bottom spacing is owned by the
+//   bottom-most anchored element (input/footer). This prevents double-padding
+//   and tiny lingering gaps when browser toolbars hide/show.
+// - Respect safe areas on the top/left/right directly on the shell.
+// - Avoid fixed heights; prefer min-height so the keyboard and URL bar dynamics
+//   don't cause jumping.
+@mixin mobile-fullscreen-window {
+  position: fixed;
+  // Track the Visual Viewport via CSS vars set by useVisualViewport() in JS. When the
+  // soft keyboard opens on iOS/Android, these insets shrink the fixed container down to
+  // the actually-visible area so the header and messages stay on-screen. The fallback
+  // values keep the existing behavior when the JS hook isn't active.
+  top: var(--mwai-vv-offset-top, 0) !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: var(--mwai-vv-offset-bottom, 0) !important;
+
+  width: 100%;
+  // Use modern viewport units for true fullscreen on mobile
+  min-height: 100%;
+  min-height: 100vh;
+  min-height: var(--mwai-vv-height, 100dvh); // Dynamic viewport height - tracks visible viewport as browser chrome shows/hides
+  height: var(--mwai-vv-height, 100dvh);
+  max-height: var(--mwai-vv-height, 100dvh);
+  max-width: 100%;
+  margin: 0;
+  z-index: 999999;
+  // Use backgroundPrimaryColor as fallback, then backgroundSecondaryColor if that doesn't exist
+  background-color: var(--mwai-backgroundPrimaryColor, var(--mwai-backgroundSecondaryColor));
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
+  
+  // Apply safe area top/side padding to the container itself
+  // Note: bottom safe-area is handled by the bottom-most anchored bars (input/footer)
+  padding-top: env(safe-area-inset-top, 0);
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
+  box-sizing: border-box;
+  
+  // Handle the window-box wrapper for animations
+  .mwai-window-box {
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+    min-height: 0; // Allow flexbox shrinking
+  }
+
+  // Hide header completely on mobile
+  .mwai-header {
+    display: none !important;
+  } 
+
+  .mwai-body {
+    flex: 1;
+    min-height: 0; // Allow body to shrink properly
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 !important;
+    overflow: hidden;
+    // Ensure body background is preserved on mobile fullscreen
+    background: var(--mwai-backgroundPrimaryColor, var(--mwai-backgroundSecondaryColor));
+
+    .mwai-conversation {
+      flex: 1;
+      overflow-y: auto;
+      max-height: none;
+      min-height: 0; // Important for flexbox shrinking
+    }
+    
+    // Input/footer sit at the bottom; we avoid sticky/fixed here and rely on
+    // flex layout + theme-specific padding to keep things stable across devices.
+    .mwai-input {
+      flex-shrink: 0; // Keep input at bottom
+      position: relative; // Changed from sticky to relative
+      // Input container itself doesn't need extra bottom padding
+    }
+    
+    .mwai-footer {
+      flex-shrink: 0;
+      position: relative;
+      // Do NOT add bottom safe-area padding here. It can constrain layout and
+      // create asymmetry across themes. Each theme (or input when no footer)
+      // handles its own bottom spacing and safe-area needs explicitly.
+    }
+    
+    // When there's no footer, align input to device edge while respecting safe-area
+    .mwai-body:last-child .mwai-input {
+      padding-bottom: env(safe-area-inset-bottom, 0);
+    }
+  }
+
+// Mobile font-size rule (iOS): enforce 16px in input/textarea to prevent
+// automatic viewport zoom on focus. Desktop keeps theme variable sizes.
+// This applies when the window is open on small screens.
+  
+  // Mobile header - sticky header for mobile devices
+  .mwai-mobile-header {
+    display: flex; // Always flex when rendered (React controls visibility)
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-height: 50px;
+    background: var(--mwai-backgroundHeaderColor);
+    border-bottom: 1px solid var(--mwai-lineColor);
+    padding: 0 15px;
+    // Account for safe areas in the header
+    padding-top: env(safe-area-inset-top, 0);
+    padding-left: calc(15px + env(safe-area-inset-left, 0));
+    padding-right: calc(15px + env(safe-area-inset-right, 0));
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+    flex-shrink: 0;
+    
+    .mwai-mobile-header-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--mwai-headerColor);
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    
+    .mwai-mobile-header-close {
+      all: unset;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+      
+      &:hover, &:active {
+        background-color: var(--mwai-backgroundSecondaryColor);
+      }
+      
+      svg {
+        width: 20px;
+        height: 20px;
+        
+        path {
+          stroke: var(--mwai-headerColor);
+        }
+      }
+    }
+  }
+}
+
+@mixin files-preview-styles {
+  .mwai-files {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: var(--mwai-spacing);
+    background: var(--mwai-backgroundSecondaryColor);
+    border-top: 1px solid var(--mwai-backgroundPrimaryColor);
+    
+    // Custom scrollbar for webkit browsers
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: var(--mwai-backgroundPrimaryColor);
+      border-radius: 3px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: var(--mwai-backgroundHeaderColor);
+      border-radius: 3px;
+      
+      &:hover {
+        background: var(--mwai-primaryColor);
+      }
+    }
+
+    .mwai-file-preview {
+      position: relative;
+
+      .mwai-file-content {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .mwai-file-thumbnail {
+        width: 32px;
+        height: 32px;
+        object-fit: cover;
+        border-radius: 4px;
+        border: 1px solid var(--mwai-backgroundHeaderColor);
+        display: block;
+        flex-shrink: 0;
+      }
+
+      .mwai-file-icon {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--mwai-backgroundSecondaryColor);
+        border-radius: 4px;
+        color: var(--mwai-fontColor);
+        opacity: 0.6;
+        flex-shrink: 0;
+        
+        svg {
+          width: 18px;
+          height: 18px;
+        }
+      }
+
+      .mwai-file-info {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .mwai-file-name {
+        font-size: calc(var(--mwai-fontSize) * 0.85);
+        color: var(--mwai-fontColor);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.2;
+      }
+
+      .mwai-file-size {
+        font-size: calc(var(--mwai-fontSize) * 0.7);
+        color: var(--mwai-fontColor);
+        opacity: 0.5;
+        line-height: 1;
+      }
+
+      .mwai-file-progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--mwai-backgroundHeaderColor);
+        border-radius: 0 0 calc(var(--mwai-borderRadius) / 2) calc(var(--mwai-borderRadius) / 2);
+        overflow: hidden;
+
+        .mwai-file-progress-bar {
+          height: 100%;
+          background: var(--mwai-primaryColor);
+          transition: width 0.3s ease;
+        }
+      }
+
+      .mwai-file-remove {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        cursor: pointer;
+        color: var(--mwai-fontColor);
+        padding: 4px;
+        border: none;
+        line-height: 0;
+        min-width: inherit;
+        margin-left: auto;
+        opacity: 0.6;
+        transition: opacity 0.2s ease;
+        
+        &:hover {
+          opacity: 1;
+        }
+        
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+    
+    // Empty state when no files
+    &:empty {
+      display: none;
+    }
+  }
+}
+
+@mixin common-styles {
+
+	// Include files preview styles
+	@include files-preview-styles;
+
+	// File upload icon adjustment
+	.mwai-file-upload-icon {
+		margin-bottom: -3px;
+	}
+
+	// Spinning icon (e.g., on the submit button while a file is uploading)
+	.mwai-spin {
+		animation: mwai-spin 1s linear infinite;
+	}
+
+	@keyframes mwai-spin {
+		from { transform: rotate(0deg); }
+		to { transform: rotate(360deg); }
+	}
+	
+	// Terminal Messages Component Styles
+	.mwai-terminal {
+		--mwai-terminal-active-color: var(--mwai-fontColor); // Default, themes can override
+		
+		font-family: ui-monospace, SFMono-Regular, 'SF Mono', Monaco, Menlo, Consolas, "Liberation Mono", "Courier New", monospace;
+		font-size: 12px;
+		background: var(--mwai-backgroundPrimaryColor);
+		color: var(--mwai-fontColor);
+		padding: var(--mwai-spacing);
+		height: 100%;
+		overflow-y: auto;
+		cursor: text;
+		display: flex;
+		flex-direction: column;
+		flex: 1 1 auto;
+		min-height: 0; // ensure it can shrink so footer stays visible
+		padding-bottom: calc(var(--mwai-spacing) * 1.25); // leave room for the typing line
+		
+		&:focus {
+			outline: none;
+		}
+		
+		.mwai-terminal-line {
+			display: flex;
+			align-items: flex-start; // align to top for multi-line text
+			margin: calc(var(--mwai-spacing) / 2) 0;
+			white-space: pre-wrap;
+			word-wrap: break-word;
+			word-break: break-word;
+			
+			// Past user messages - low opacity 
+			&.mwai-terminal-user {
+				color: var(--mwai-fontColor);
+				opacity: 0.35;
+			}
+			
+			// Currently typing line - use active color for everything
+			&.mwai-terminal-user-typing {
+				color: var(--mwai-terminal-active-color);
+				opacity: 1;
+				
+				.mwai-terminal-prompt {
+					color: var(--mwai-terminal-active-color);
+				}
+			}
+			
+			&.mwai-terminal-assistant {
+				color: var(--mwai-fontColor);
+			}
+			
+			&.mwai-terminal-system {
+				color: #608b4e;
+				font-style: italic;
+			}
+		}
+		
+		
+		// User prompt (ChevronRight icon) - uses active color by default
+		.mwai-terminal-prompt {
+			color: var(--mwai-terminal-active-color);
+			margin-left: -4px; // slight global nudge for icon bounding-box
+			margin-right: 4px; // space after prompt
+			display: inline-flex; // use flex to vertically center the icon within the text box
+			align-items: center;
+			height: 1.5em; // Taller height for better visual alignment
+			line-height: 1.2; // Normalized line height
+			flex-shrink: 0; // prevent prompt from shrinking
+			align-self: flex-start; // align to top of line
+			// Normalize Lucide icon box to text metrics (same visual size as text)
+			svg {
+				display: block; // remove inline descender space
+				width: 1.4em;
+				height: 1.4em;
+			}
+		}
+		
+		.mwai-terminal-text {
+			color: inherit;
+		}
+		
+		// Input wrapper to keep cursor inline with text
+		.mwai-terminal-input-wrapper {
+			flex: 1; // take remaining space
+			display: inline;
+			white-space: pre-wrap;
+			word-wrap: break-word;
+			word-break: break-word;
+		}
+		
+		// Currently typing text - uses active color
+		.mwai-terminal-typed {
+			color: var(--mwai-terminal-active-color);
+			white-space: pre-wrap;
+			word-wrap: break-word;
+			word-break: break-word;
+		}
+		
+		.mwai-terminal-cursor {
+			display: inline-block;
+			min-width: 8px;
+			height: 1.35em;
+			color: var(--mwai-terminal-active-color);
+			background: var(--mwai-terminal-active-color);
+			opacity: 0.35;
+			vertical-align: text-bottom;
+			line-height: inherit;
+
+			&.mwai-terminal-cursor-active {
+				opacity: 1;
+				color: var(--mwai-backgroundPrimaryColor);
+				animation: mwai-cursor-blink 1s infinite;
+			}
+
+			&.mwai-terminal-cursor-typing {
+				opacity: 1;
+				color: var(--mwai-backgroundPrimaryColor);
+			}
+
+			&.mwai-terminal-cursor-inactive {
+				opacity: 0.35;
+			}
+		}
+		
+		// Firefox scrollbar
+		scrollbar-width: thin;
+		scrollbar-color: rgba(128, 128, 128, 0.3) transparent;
+		
+		// Custom scrollbar for terminal
+		&::-webkit-scrollbar {
+			width: 8px;
+			background: transparent;
+		}
+		
+		&::-webkit-scrollbar-track {
+			background: transparent;
+		}
+		
+		&::-webkit-scrollbar-thumb {
+			background: rgba(128, 128, 128, 0.3);
+			border-radius: 4px;
+			
+			&:hover {
+				background: rgba(128, 128, 128, 0.5);
+			}
+		}
+		
+		// When terminal is used with chatgpt theme, fix compliance spacing
+		& + .mwai-compliance {
+			margin-top: 0;
+		}
+	}
+
+	// Transitions
+
+	&.mwai-transition, .mwai-transition {
+		opacity: 0;
+		transition: opacity 350ms ease-in-out;
+	}
+
+	&.mwai-transition-visible, .mwai-transition-visible {
+		opacity: 1;
+	}
+
+	.mwai-text {
+		overflow-wrap: anywhere;
+
+		img, svg {
+			max-width: 100%;
+		}
+
+		div {
+			p:first-child {
+				margin-top: 0;
+			}
+			p:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	// The icon when the chat window is closed.
+
+	.mwai-trigger {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		transition: all 0.2s ease-out;
+		z-index: 9999;
+		display: flex;
+		flex-direction: column;
+		align-items: end;
+
+		.mwai-icon-text-container {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			position: relative; // allow absolute positioning of the close button
+			z-index: 2; // ensure it sits above the icon container for clickability
+
+			.mwai-icon-text {
+				background: var(--mwai-iconTextBackgroundColor);
+				color: var(--mwai-iconTextColor);
+				box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+				max-width: 200px;
+				font-size: 13px;
+				margin-bottom: 15px;
+				padding: 10px 15px;
+				border-radius: 8px;
+				position: relative; // visual stacking for the close button overlay
+				user-select: none;
+				-webkit-user-select: none;
+				-ms-user-select: none;
+			}
+
+			.mwai-icon-text-close {
+				--mwai-icon-close-size: 28px;
+				color: var(--mwai-iconTextColor);
+				background: var(--mwai-iconTextBackgroundColor);
+				font-size: 13px;
+				line-height: 1;
+				width: var(--mwai-icon-close-size);
+				height: var(--mwai-icon-close-size);
+				min-width: var(--mwai-icon-close-size);
+				min-height: var(--mwai-icon-close-size);
+				border-radius: 50%;
+				display: flex; // keep in layout for smooth transitions (use opacity/visibility to hide)
+				opacity: 0; // hidden by default
+				visibility: hidden;
+				pointer-events: none;
+				transition: opacity 120ms ease, transform 120ms ease, visibility 0s linear 120ms; // delay visibility off to allow fade-out
+				justify-content: center;
+				align-items: center;
+				position: absolute; // half-inside, half-outside the bubble
+				right: 0;
+				top: 0; // place at top-right
+				transform: translate(40%, -40%); // half-outside look without shifting layout
+				box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+				z-index: 2;
+				cursor: pointer;
+				pointer-events: auto;
+				-webkit-tap-highlight-color: transparent;
+				user-select: none;
+				-webkit-user-select: none;
+				-ms-user-select: none;
+			}
+
+			&:hover {
+				cursor: pointer;
+				.mwai-icon-text-close {
+					opacity: 1;
+					visibility: visible;
+					pointer-events: auto;
+					transform: translate(40%, -40%) scale(1);
+					transition: opacity 120ms ease, transform 120ms ease, visibility 0s;
+				}
+				.mwai-icon-text-close:hover { filter: brightness(1.1); transform: translate(40%, -40%) scale(1.06); }
+			}
+
+            @media (max-width: $bp-mobile) {
+				.mwai-icon-text-close {
+					opacity: 1;
+					visibility: visible;
+					pointer-events: auto;
+					transform: translate(40%, -40%) scale(1);
+					transition: opacity 120ms ease, transform 120ms ease, visibility 0s;
+				}
+			}
+
+		}
+
+		.mwai-icon-container {
+			position: relative;
+			z-index: 1; // keep below icon-text container so the close remains clickable
+
+			.mwai-icon {
+				filter: drop-shadow(0px 0px 15px rgba(0, 0, 0, 0.15));
+				transition: all 0.2s ease-out;
+
+				&:hover {
+					cursor: pointer;
+					transform: scale(1.05);
+				}
+			}
+		}
+	}
+
+	// Handle the chat window and fullscreen.
+	// Let's keep this common for all themes.
+
+	&.mwai-window {
+		position: fixed;
+		right: 30px;
+		bottom: 30px;
+		width: var(--mwai-width);
+		z-index: 9999;
+
+		// Ensure the window content has proper z-index
+		.mwai-window-box { position: relative; z-index: 1; }
+
+		.mwai-header {
+			display: none;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0 0 0 15px;
+			border-radius: var(--mwai-borderRadius) var(--mwai-borderRadius) 0 0;
+			background: var(--mwai-backgroundHeaderColor);
+
+			.mwai-buttons {
+				display: flex;
+				align-items: center;
+				margin-left: auto; // keep close button right-aligned when no title
+
+				.mwai-resize-button {
+					justify-content: center;
+					height: 32px;
+					width: 32px;
+					cursor: pointer;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+
+					// Expand glyph: thin corner brackets that match the hairline X of the
+					// close button (it used to be a plain bordered square, which read as a
+					// broken icon in fullscreen mode). The fullscreen state swaps to the
+					// inward "restore" brackets below.
+					&:before {
+						transition: all 0.2s ease-out;
+						content: ' ';
+						cursor: pointer;
+						position: absolute;
+						height: 20px;
+						width: 20px;
+						background-color: var(--mwai-headerColor);
+						-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='butt' stroke-linejoin='miter'%3E%3Cpath d='M3 9V3h6'/%3E%3Cpath d='M15 3h6v6'/%3E%3Cpath d='M21 15v6h-6'/%3E%3Cpath d='M9 21H3v-6'/%3E%3C/svg%3E") no-repeat center / contain;
+						mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='butt' stroke-linejoin='miter'%3E%3Cpath d='M3 9V3h6'/%3E%3Cpath d='M15 3h6v6'/%3E%3Cpath d='M21 15v6h-6'/%3E%3Cpath d='M9 21H3v-6'/%3E%3C/svg%3E") no-repeat center / contain;
+					}
+
+					&:hover:before {
+						width: 22px;
+						height: 22px;
+					}
+				}
+
+				.mwai-close-button {
+					justify-content: center;
+					height: 32px;
+					width: 32px;
+					cursor: pointer;
+					border-radius: var(--mwai-borderRadius);
+					margin-left: -10px;
+
+					&:before {
+						transition: all 0.2s ease-out;
+						transform: translate(16px, 5px) rotate(45deg);
+					}
+					&:after {
+						transition: all 0.2s ease-out;
+						transform: translate(16px, 5px) rotate(-45deg);
+					}
+				}
+
+				.mwai-close-button:before, .mwai-close-button:after {
+					content: ' ';
+					cursor: pointer;
+					position: absolute;
+					height: 22px;
+					width: 1.2px;
+					background-color: var(--mwai-headerColor);
+				}
+
+				.mwai-close-button:hover {
+					&:before {
+						opacity: 1;
+						transform: translate(16px, 5px) rotate(135deg);
+					}
+					&:after {
+						opacity: 1;
+						transform: translate(16px, 5px) rotate(45deg);
+					}
+				}
+
+			}
+		}
+
+		// During opening/closing, keep cursor consistent to avoid flicker
+		&.mwai-opening, &.mwai-closing {
+			cursor: default !important;
+			.mwai-header { cursor: default !important; }
+		}
+
+		.mwai-body {
+			display: none;
+			opacity: 0;
+			max-height: var(--mwai-maxHeight);
+			border-radius: 0 0 var(--mwai-borderRadius) var(--mwai-borderRadius);
+		}
+
+		&.mwai-bottom-left {
+			bottom: 30px;
+			right: inherit;
+			left: 30px;
+
+			.mwai-trigger {
+				right: inherit;
+				left: 0;
+			}
+		}
+
+		&.mwai-top-right {
+			top: 30px;
+			bottom: inherit;
+			right: 30px;
+
+			.mwai-trigger {
+				top: 0;
+				bottom: inherit;
+			}
+		}
+
+		&.mwai-top-left {
+			top: 30px;
+			bottom: inherit;
+			right: inherit;
+			left: 30px;
+
+			.mwai-trigger {
+				top: 0;
+				bottom: inherit;
+				right: inherit;
+				left: 0;
+			}
+		}
+
+		// Simple center positioning when enabled and open
+		&.mwai-center-open.mwai-open {
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			right: auto;
+			bottom: auto;
+			
+			// Mobile adjustments
+			@media (max-width: $bp-mobile) {
+				width: calc(100% - 40px);
+				max-width: var(--mwai-width);
+			}
+		}
+
+
+		&.mwai-top-left, &.mwai-bottom-left {
+			
+			.mwai-trigger {
+				align-items: flex-start;
+			}
+		}
+
+		&.mwai-top-right, &.mwai-top-left {
+
+			.mwai-trigger {
+				flex-direction: column-reverse;
+
+				.mwai-icon-text {
+					margin-bottom: 0;
+					margin-top: 15px;
+				}
+			}
+		}
+	}
+
+	// Popup chat is fullscreen
+
+	&.mwai-window.mwai-fullscreen {
+
+		.mwai-header  {
+
+			.mwai-buttons  {
+				margin-bottom: 0px;
+
+				.mwai-resize-button {
+					// Already fullscreen: the button restores the window, so show the
+					// inward "restore" brackets instead of the outward "expand" ones.
+					&:before {
+						width: 20px;
+						height: 20px;
+						-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='butt' stroke-linejoin='miter'%3E%3Cpath d='M8 3V8H3'/%3E%3Cpath d='M21 8H16V3'/%3E%3Cpath d='M3 16H8V21'/%3E%3Cpath d='M16 21V16H21'/%3E%3C/svg%3E");
+						mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='butt' stroke-linejoin='miter'%3E%3Cpath d='M8 3V8H3'/%3E%3Cpath d='M21 8H16V3'/%3E%3Cpath d='M3 16H8V21'/%3E%3Cpath d='M16 21V16H21'/%3E%3C/svg%3E");
+					}
+			
+					&:hover:before {
+						width: 22px;
+						height: 22px;
+					}
+				}
+			}
+		}
+	}
+
+	// Standard chat is fullscreen
+
+	&.mwai-fullscreen:not(.mwai-window) {
+		@include fullscreen-window;
+		// Ensure the non-window fullscreen chatbot is visible and takes full space
+		display: flex !important;
+		visibility: visible !important;
+		opacity: 1 !important;
+		
+		.mwai-window-box {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+		}
+		
+		.mwai-header {
+			display: flex !important;
+			visibility: visible !important;
+			opacity: 1 !important;
+			flex: 0 0 auto;
+		}
+		
+		.mwai-body {
+			display: flex !important;
+			visibility: visible !important;
+			opacity: 1 !important;
+			flex: 1 1 auto;
+			flex-direction: column;
+			min-height: 0;
+			height: 100%;
+		}
+	}
+	
+	&.mwai-fullscreen.mwai-window.mwai-open {
+		@include fullscreen-window;
+		// Neutralize any centering transform from center-open state
+		transform: none !important;
+		
+		.mwai-window-box {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+		}
+		
+		.mwai-body {
+			flex: 1 1 auto;
+			min-height: 0;
+		}
+	}
+
+	// Popup chat is open
+
+	&.mwai-window.mwai-open {
+
+		.mwai-header {
+			display: flex;
+		}
+
+
+		.mwai-body {
+			display: flex;
+			transition: opacity 200ms ease-in-out 0s;
+			opacity: 1;
+		}
+
+		.mwai-trigger {
+			display: none;
+		}
+	}
+
+	// Old error style - kept for backwards compatibility
+	.mwai-body > .mwai-error {
+		margin: var(--mwai-spacing);
+		color: white;
+		background: rgba(180, 55, 55, 0.55);
+		padding: var(--mwai-spacing);
+		border-radius: var(--mwai-borderRadius);
+
+		&:hover {
+			cursor: pointer;
+			background: rgba(180, 44, 44, 0.85);
+		}
+	}
+
+	// Error message specific styles
+	.mwai-reply.mwai-error {
+		.mwai-text {
+			color: #ff5656; // ChatGPT-style red for error text
+			
+			// Style links in error messages
+			a {
+				color: #ff5656;
+				text-decoration: underline;
+			}
+		}
+		
+		// Style action buttons in error messages
+		.mwai-reply-actions {
+			.mwai-action-button {
+				fill: var(--mwai-fontColor);
+				padding: 3px 5px;
+				width: 24px;
+				height: 24px;
+				background: var(--mwai-backgroundPrimaryColor);
+				cursor: pointer;
+				border-radius: 5px;
+				
+				&:hover {
+					filter: brightness(1.2);
+				}
+			}
+		}
+	}
+	
+	// Reply actions visibility
+	.mwai-reply-actions {
+		opacity: 0;
+		transition: opacity 0.2s ease-in-out;
+	}
+	
+	// Show reply actions on hover of entire reply container
+	.mwai-reply:hover .mwai-reply-actions {
+		opacity: 1 !important;
+	}
+	
+	// Show reply actions on hover for AI Forms output fields
+	.mwai-form-output-container:hover .mwai-reply-actions {
+		opacity: 1 !important;
+	}
+	
+	// Override mwai-hidden class on hover for forms
+	.mwai-form-output-container:hover .mwai-reply-actions.mwai-hidden {
+		opacity: 1 !important;
+	}
+
+	&.mwai-bubble .mwai-trigger .mwai-icon-container {
+		background: var(--mwai-bubbleColor);
+		width: var(--mwai-iconSize, 60px);
+		height: var(--mwai-iconSize, 60px);
+		border-radius: 100%;
+		transition: all 0.2s ease-out;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		.mwai-icon {
+			max-width: 50%;
+			max-height: 50%;
+			filter: none;
+
+			&:hover {
+				transform: none;
+			}
+		}
+
+		.mwai-emoji {
+			font-size: calc(var(--mwai-iconSize, 60px) / 2);
+		}
+
+		&:hover {
+			cursor: pointer;
+			filter: brightness(1.1);
+		}
+	}
+
+@media (max-width: $bp-mobile) {
+		// The fullscreen shells (@include fullscreen-window) lock the container to
+		// 100dvh / bottom:0 and are more specific than the mobile block below, so they
+		// used to win and push the input behind the soft keyboard on iOS (100dvh does
+		// not shrink when the keyboard opens). Re-apply the Visual Viewport fit here so
+		// fullscreen chatbots follow the visible area like the regular popup does.
+		&.mwai-fullscreen.mwai-window.mwai-open,
+		&.mwai-fullscreen:not(.mwai-window) {
+			top: var(--mwai-vv-offset-top, 0) !important;
+			bottom: var(--mwai-vv-offset-bottom, 0) !important;
+			height: var(--mwai-vv-height, 100dvh);
+			max-height: var(--mwai-vv-height, 100dvh);
+		}
+
+		&.mwai-window.mwai-open {
+			@include mobile-fullscreen-window;
+			
+			// Override center-open positioning on mobile - also honor the Visual Viewport
+			// vars so the keyboard-aware fit applies here too.
+			&.mwai-center-open {
+				top: var(--mwai-vv-offset-top, 0) !important;
+				left: 0 !important;
+				transform: none !important;
+				right: 0 !important;
+				bottom: var(--mwai-vv-offset-bottom, 0) !important;
+				width: 100% !important;
+				max-width: 100% !important;
+				height: var(--mwai-vv-height, 100dvh) !important;
+			}
+		
+			.mwai-input {
+				flex-direction: column;
+
+				// Exclude the submit button here - modern themes (ChatGPT, Messages, Timeless)
+				// keep it as a compact circular button. Themes that want full-width submit on
+				// mobile (e.g. Foundation) apply it explicitly in their own mobile block.
+				button:not(.mwai-input-submit) {
+					font-size: 16px;
+					margin-left: 0;
+					width: 100%;
+				}
+
+				.mwai-input-text {
+					//margin-bottom: var(--mwai-spacing);
+					width: 100%;
+
+					// This is to avoid iOS from zooming in when focusing on an input field.
+					input, textarea {
+						font-size: 16px;
+					}
+				}
+			}
+	
+			.mwai-body {
+				display: flex;
+				transition: opacity 200ms ease-in-out 0s;
+				opacity: 1;
+				flex: 1;
+				min-height: 0;
+				max-height: inherit;
+	
+				.mwai-conversation {
+					flex: 1;
+					max-height: none;
+					min-height: 0;
+				}
+			}
+
+			.mwai-resize-button {
+				display: none !important;
+			}
+	
+			.mwai-trigger {
+				display: none;
+			}
+		}
+	}
+
+	// Keyframes for buttons
+
+	@keyframes mwai-button-spinner {
+
+		from {
+			transform: rotate(0turn);
+		}
+		to {
+			transform: rotate(1turn);
+		}
+	}
+
+	// Safari-specific fix for spinner cleanup
+	button:not(.mwai-busy):before {
+		content: none !important;
+		display: none !important;
+		animation: none !important;
+	}
+
+	// WordPress Admin Bar
+
+	.admin-bar .mwai-fullscreen:not(.mwai-window),
+	.admin-bar .mwai-fullscreen.mwai-window.mwai-open {
+		top: 32px;
+	}
+
+	// Terminal Input line (when used as an input component)
+		.mwai-input .mwai-terminal-line {
+		display: flex;
+		align-items: flex-start; // align to top for multi-line
+		color: var(--mwai-terminal-active-color, var(--mwai-fontColor));
+		// Inherit font-size/line-height from theme
+
+		.mwai-terminal-prompt {
+			color: var(--mwai-terminal-active-color, currentColor);
+			margin-left: -4px;
+			margin-right: 4px; // space after prompt
+			display: inline-flex;
+			align-items: center;
+			height: 1.5em; // Taller height for better visual alignment
+			line-height: 1.2;
+			flex-shrink: 0;
+			align-self: flex-start;
+			svg { display: block; width: 1.4em; height: 1.4em; }
+		}
+		
+		.mwai-terminal-input-wrapper {
+			flex: 1;
+			display: inline;
+			white-space: pre-wrap;
+			word-wrap: break-word;
+			word-break: break-word;
+		}
+
+		.mwai-terminal-typed { 
+			white-space: pre-wrap;
+			word-wrap: break-word;
+			word-break: break-word;
+		}
+		
+		.mwai-terminal-cursor {
+			display: inline-block;
+			min-width: 8px;
+			height: 1.35em;
+			color: currentColor;
+			background: currentColor;
+			opacity: 0.35;
+			vertical-align: text-bottom;
+			line-height: inherit;
+
+			&.mwai-terminal-cursor-active {
+				opacity: 1;
+				color: var(--mwai-backgroundPrimaryColor, #1a1a2e);
+				animation: mwai-cursor-blink 1s infinite;
+			}
+
+			&.mwai-terminal-cursor-typing {
+				opacity: 1;
+				color: var(--mwai-backgroundPrimaryColor, #1a1a2e);
+			}
+
+			&.mwai-terminal-cursor-inactive {
+				opacity: 0.35;
+			}
+		}
+	}
+
+}
+
+// Terminal cursor blink: toggles between solid block (dark text) and transparent (light text)
+@keyframes mwai-cursor-blink {
+	0%, 49.9% {
+		background: var(--mwai-terminal-active-color);
+		color: var(--mwai-backgroundPrimaryColor);
+	}
+	50%, 100% {
+		background: transparent;
+		color: var(--mwai-terminal-active-color);
+	}
+}
+
+// Unified footer tools section across themes (modeled after Timeless)
+@mixin footer-tools {
+  .mwai-footer {
+    display: flex;
+    align-items: center;
+    background: var(--mwai-backgroundAiColor, var(--mwai-backgroundSecondaryColor));
+    border-top: 1px solid var(--mwai-backgroundPrimaryColor);
+    padding: 6px var(--mwai-spacing);
+    
+    // Hide footer completely when empty
+    &:empty {
+      display: none;
+    }
+    
+    // Hide footer when it only contains empty compliance (no tools)
+    &:not(:has(.mwai-tools)):has(.mwai-compliance:empty) {
+      display: none;
+    }
+
+    .mwai-tools {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-right: calc(var(--mwai-spacing) / 2);
+
+      .mwai-file-upload { display: inline-block; }
+
+      // Generic lucide variant for small action icons (upload/clear)
+      .mwai-file-upload-icon.mwai-lucide {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: relative; // allow corner badge
+        min-width: 16px;
+        height: 16px;
+        color: var(--mwai-fontColor);
+        opacity: 0.75;
+        margin: 0; // rely on parent gap for spacing
+        &:hover { opacity: 1; }
+        svg { width: 16px; height: 16px; }
+
+        // Tiny corner badge for count
+        .mwai-upload-count {
+          position: absolute;
+          top: -5px;
+          right: -6px;
+          min-width: 12px;
+          height: 12px;
+          padding: 0 2px; // subtle horizontal padding
+          border-radius: 999px;
+          background: var(--mwai-backgroundHeaderColor); // use main theme color
+          color: #fff;
+          border: 2px solid var(--mwai-backgroundAiColor, var(--mwai-backgroundSecondaryColor));
+          font-size: 8px; // smaller numeral
+          font-family: system-ui;
+          font-weight: 700;
+          line-height: 1; 
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          user-select: none;
+          cursor: pointer;
+        }
+        .mwai-upload-count::after { content: attr(data-count); }
+        &.mwai-hover .mwai-upload-count::after { content: '-'; }
+      }
+    }
+
+    .mwai-compliance {
+      opacity: 0.50;
+      font-size: 11px;
+      line-height: 11px;
+      color: var(--mwai-fontColor);
+      flex: 1;
+      text-align: left; // Default to left when alone
+      padding: calc(var(--mwai-spacing) / 2) 0;
+      margin: 0;
+    }
+    
+    // When tools are present, align compliance text to the right
+    .mwai-tools + .mwai-compliance {
+      text-align: right;
+    }
+  }
+}
+
+@mixin code-dark {
+
+  pre code.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 1em;
+  }
+
+  code.hljs {
+    padding: 3px 5px;
+  }
+
+  .hljs {
+    color: #fff;
+
+    &-subst {
+      color: #fff;
+    }
+
+    &-comment {
+      color: #999;
+    }
+
+    &-attr,
+    &-doctag,
+    &-keyword,
+    &-meta .hljs-keyword,
+    &-section,
+    &-selector-tag {
+      color: #88aece;
+    }
+
+    &-attribute {
+      color: #c59bc1;
+    }
+
+    &-name,
+    &-number,
+    &-quote,
+    &-selector-id,
+    &-template-tag,
+    &-type {
+      color: #f08d49;
+    }
+
+    &-selector-class {
+      color: #88aece;
+    }
+
+    &-link,
+    &-regexp,
+    &-selector-attr,
+    &-string,
+    &-symbol,
+    &-template-variable,
+    &-variable {
+      color: #b5bd68;
+    }
+
+    &-meta,
+    &-selector-pseudo {
+      color: #88aece;
+    }
+
+    &-built_in,
+    &-literal,
+    &-title {
+      color: #f08d49;
+    }
+
+    &-bullet,
+    &-code {
+      color: #ccc;
+    }
+
+    &-meta .hljs-string {
+      color: #b5bd68;
+    }
+
+    &-deletion {
+      color: #de7176;
+    }
+
+    &-addition {
+      color: #76c490;
+    }
+
+    &-emphasis {
+      font-style: italic;
+    }
+
+    &-strong {
+      font-weight: 700;
+    }
+  }
+}
+
+@mixin code-light {
+  
+  pre code.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 1em;
+  }
+
+  code.hljs {
+    padding: 3px 5px;
+  }
+
+  .hljs {
+    color: #333;
+    background: #f0f0f0;
+
+    &-subst {
+      color: #333;
+    }
+
+    &-comment {
+      color: #888;
+    }
+
+    &-attr,
+    &-doctag,
+    &-keyword,
+    &-meta .hljs-keyword,
+    &-section,
+    &-selector-tag {
+      color: #0077cc;
+    }
+
+    &-attribute {
+      color: #aa3377;
+    }
+
+    &-name,
+    &-number,
+    &-quote,
+    &-selector-id,
+    &-template-tag,
+    &-type {
+      color: #c18401;
+    }
+
+    &-selector-class {
+      color: #0077cc;
+    }
+
+    &-link,
+    &-regexp,
+    &-selector-attr,
+    &-string,
+    &-symbol,
+    &-template-variable,
+    &-variable {
+      color: #689700;
+    }
+
+    &-meta,
+    &-selector-pseudo {
+      color: #0077cc;
+    }
+
+    &-built_in,
+    &-literal,
+    &-title {
+      color: #c18401;
+    }
+
+    &-bullet,
+    &-code {
+      color: #555;
+    }
+
+    &-meta .hljs-string {
+      color: #689700;
+    }
+
+    &-deletion {
+      color: #b71c1c;
+    }
+
+    &-addition {
+      color: #1b5e20;
+    }
+
+    &-emphasis {
+      font-style: italic;
+    }
+
+    &-strong {
+      font-weight: 700;
+    }
+  }
+}
+
+@mixin reply-actions {
+	.mwai-reply-actions {
+		position: absolute;
+		border-radius: 5px;
+		top: 10px;
+		right: 10px;
+		display: flex;
+		align-items: center;
+		padding: 2px 2px;
+		z-index: 100;
+		background: var(--mwai-backgroundPrimaryColor);
+		box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+		z-index: 100;
+
+		.mwai-copy-button,
+		.mwai-download-button,
+		.mwai-pdf-button {
+			fill: var(--mwai-fontColor);
+			padding: 3px 5px;
+			width: 24px;
+			height: 24px;
+			background: var(--mwai-backgroundPrimaryColor);
+			cursor: pointer;
+			border-radius: 5px;
+
+			&:hover {
+				filter: brightness(1.2);
+			}
+		}
+
+		&.mwai-hidden {
+			opacity: 0;
+		}
+	}
+}
+
+@mixin realtime {
+	.mwai-realtime {
+		padding: var(--mwai-spacing);
+
+		.mwai-visualizer {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			hr {
+				width: 100px;
+				margin-right: var(--mwai-spacing);
+				margin-left: var(--mwai-spacing);
+				border: 1px solid var(--mwai-backgroundPrimaryColor);
+			}
+
+			.mwai-animation {
+				background: var(--mwai-backgroundPrimaryColor);
+			}
+		}
+
+		.mwai-controls {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: var(--mwai-spacing);
+
+			> * + * {
+				margin-left: 10px;
+			}
+
+			button {
+				border-radius: 100%;
+				width: 50px;
+				height: 50px;
+				margin: 5px;
+				padding: 5px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: var(--mwai-fontColor);
+				border: 2px solid var(--mwai-backgroundPrimaryColor);
+				background: none;
+				cursor: pointer;
+				transition: all 0.2s ease-out;
+				min-width: inherit;
+				max-width: inherit;
+
+				&:hover:not(:disabled) {
+					background: var(--mwai-backgroundPrimaryColor);
+				}
+
+				&:disabled {
+					opacity: 0.5;
+					cursor: not-allowed;
+					background: none;
+				}
+
+				&.mwai-active {
+					border: 2px solid var(--mwai-fontColor);
+				}
+			}
+
+			// Hold to Talk mode specific styles
+			&.mwai-hold-to-talk-mode {
+				flex-direction: column;
+				gap: 8px;
+
+				.mwai-push-to-talk {
+					// Wide button with rounded edges
+					border-radius: calc(var(--mwai-borderRadius) * 0.8);
+					width: auto;
+					min-width: 120px;
+					padding: 12px 24px;
+					margin: 5px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					gap: 8px;
+					color: var(--mwai-fontColor);
+					border: 2px solid var(--mwai-backgroundPrimaryColor);
+					background: none;
+					cursor: pointer;
+					transition: all 0.2s ease-out;
+					font-family: inherit;
+					font-size: var(--mwai-fontSize);
+					line-height: 1.2;
+					font-weight: 500;
+					height: auto;
+					// Holding the button is a long-press: disable the OS default
+					// behaviors (iOS callout/selection, double-tap zoom delay).
+					user-select: none;
+					-webkit-user-select: none;
+					-webkit-touch-callout: none;
+					touch-action: manipulation;
+
+					&:hover:not(:disabled) {
+						background: var(--mwai-backgroundPrimaryColor);
+					}
+
+					&:disabled {
+						opacity: 0.5;
+						cursor: not-allowed;
+						background: none;
+					}
+
+					&.mwai-active {
+						border: 2px solid var(--mwai-fontColor);
+						background: var(--mwai-backgroundPrimaryColor);
+					}
+
+					svg {
+						width: 18px;
+						height: 18px;
+					}
+				}
+
+				.mwai-talk-hint {
+					font-size: 12px;
+					color: var(--mwai-fontColor);
+					opacity: 0.6;
+					text-align: center;
+					margin: 0;
+				}
+			}
+		}
+
+		.mwai-last-transcript {
+			margin: var(--mwai-spacing);
+			margin-top: 0;
+			border: 2px solid var(--mwai-backgroundPrimaryColor);
+			padding: calc(var(--mwai-spacing) / 2);
+			padding-right: calc(var(--mwai-spacing) / 2 + 10px);
+			border-radius: var(--mwai-borderRadius);
+			font-size: 80%;
+			text-align: center;
+			max-height: 120px;
+			overflow-y: auto;
+			overflow-x: hidden;
+			word-wrap: break-word;
+			overflow-wrap: break-word;
+
+			// Custom scrollbar for webkit browsers
+			&::-webkit-scrollbar {
+				width: 6px;
+			}
+
+			&::-webkit-scrollbar-track {
+				background: transparent;
+				margin: 4px 0;
+			}
+
+			&::-webkit-scrollbar-thumb {
+				background: var(--mwai-backgroundHeaderColor);
+				border-radius: 10px;
+
+				&:hover {
+					background: var(--mwai-primaryColor);
+				}
+			}
+
+			// Firefox scrollbar
+			scrollbar-width: thin;
+			scrollbar-color: var(--mwai-backgroundHeaderColor) transparent;
+		}
+
+		.mwai-statistics {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			grid-row-gap: 10px;
+			font-size: 14px;
+
+			div {
+				display: flex;
+    		flex-direction: column;
+    		align-items: center;
+			}
+
+			label {
+				font-size: 11px;
+				opacity: 0.5;
+				text-transform: uppercase;
+			}
+		}
+
+		.mwai-options {
+			margin-top: var(--mwai-spacing);
+			display: flex;
+			align-items: center;
+
+			.mwai-option {
+				cursor: pointer;
+				opacity: 0.5;
+				margin-right: 2px;
+
+				&.mwai-active {
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+
+// Context Menu Portal (appears at document body level)
+.mwai-context-menu-portal {
+	.mwai-context-menu {
+		background: var(--mwai-backgroundHeaderColor);
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		border-radius: var(--mwai-borderRadius);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+		font-size: 13px;
+		color: var(--mwai-fontColor);
+
+		.mwai-menu-item {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			padding: 8px 12px;
+			cursor: pointer;
+			transition: background-color 0.2s;
+
+			&:hover {
+				background-color: rgba(0, 0, 0, 0.05);
+			}
+
+			&.mwai-danger {
+				color: #dc3545;
+
+				&:hover {
+					background-color: rgba(220, 53, 69, 0.1);
+				}
+			}
+
+			svg {
+				flex-shrink: 0;
+			}
+		}
+	}
+}
+
+
+// ChatbotChunks - Debug Stream Events Display
+.mwai-chunks {
+	padding: 8px;
+	background: rgba(0, 0, 0, 0.03);
+	font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+	font-size: 11px;
+	border-top: 1px solid rgba(0, 0, 0, 0.06);
+
+	&.mwai-chunks-collapsed {
+		.mwai-chunks-header {
+			margin-bottom: 0 !important;
+		}
+	}
+
+	.mwai-chunks-header {
+		display: flex;
+		align-items: center;
+		gap: 2px;
+		margin-bottom: 8px;
+		color: #6b7280;
+		font-size: 10px;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+
+		.mwai-chunks-title {
+			flex: 1; // This pushes the buttons to the right
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.mwai-chunks-status {
+			margin-left: 4px;
+			font-weight: 500;
+		}
+
+		.mwai-chunks-toggle {
+			background: none;
+			border: 1px solid rgba(0, 0, 0, 0.1);
+			border-radius: 3px;
+			padding: 2px;
+			width: 30px;
+			height: 20px;
+			cursor: pointer;
+			color: #6b7280;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: all 0.2s ease;
+			margin-left: 4px;
+
+			&:hover {
+				background: rgba(0, 0, 0, 0.05);
+				color: #374151;
+			}
+		}
+	}
+
+	// Scroll the list (not the header) once there are more events than fit.
+	.mwai-chunks-list {
+		max-height: 240px;
+		overflow-y: auto;
+	}
+
+	.mwai-chunk {
+		margin-bottom: 4px;
+		padding: 6px 8px;
+		background: white;
+		border-radius: 4px;
+		border: 1px solid rgba(0, 0, 0, 0.06);
+		transition: all 0.2s ease;
+
+		.mwai-chunk-header {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			cursor: pointer;
+			user-select: none;
+
+			.mwai-chunk-time {
+				color: #9ca3af;
+				font-size: 10px;
+				font-variant-numeric: tabular-nums;
+			}
+
+			.mwai-chunk-type {
+				display: flex;
+				align-items: center;
+				gap: 4px;
+				padding: 2px 6px;
+				border-radius: 3px;
+				font-size: 10px;
+				font-weight: 500;
+				color: white;
+			}
+
+			.mwai-chunk-data {
+				flex: 1;
+				color: #374151;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+
+			.mwai-chunk-expand {
+				color: #9ca3af;
+				transition: transform 0.2s ease;
+			}
+		}
+
+		.mwai-chunk-details {
+			margin-top: 8px;
+			padding: 8px;
+			background: rgba(0, 0, 0, 0.02);
+			border-radius: 3px;
+			overflow-x: auto;
+
+			pre {
+				margin: 0;
+				white-space: pre-wrap;
+				word-break: break-word;
+				color: #4b5563;
+			}
+		}
+	}
+}
+
+// Uploaded user images in a message (vision). Themes without their own rule
+// (Timeless, Foundation, Messages) get a sensible full-width default here so the
+// image fills the message bubble; the ChatGPT theme overrides with its own grid.
+.mwai-user-images {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	flex: 1 1 100%;
+	min-width: 0;
+
+	.mwai-user-image {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: var(--mwai-borderRadius);
+	}
+}

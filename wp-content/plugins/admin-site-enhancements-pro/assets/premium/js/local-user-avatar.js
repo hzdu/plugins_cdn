@@ -36,7 +36,7 @@
 			if ( ! $('#asenha-attachment-description').hasClass('hidden') ) {
 				$('#asenha-attachment-description').addClass('hidden');
 			} else {
-				$('#asenha-attachment-description').removelass('hidden');				
+				$('#asenha-attachment-description').removeClass('hidden');				
 			}
 			if ( ! $('#btn-media-remove').hasClass('hidden') ) {
 				$('#btn-media-remove').addClass('hidden');

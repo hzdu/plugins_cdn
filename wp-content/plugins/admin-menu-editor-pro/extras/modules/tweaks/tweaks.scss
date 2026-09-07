@@ -1,5 +1,6 @@
 @import "../../../css/indeterminate-checkbox";
 @import "../../../css/boxes";
+@import "../../../css/ui-constants";
 
 $desiredChildTweakOffset: 2em;
 $childrenOffset: 1.7em;
@@ -41,7 +42,7 @@ $childrenOffset: 1.7em;
 }
 
 #ame-tweak-manager #ws_actor_selector_container {
-	margin-bottom: 8px;
+	margin-bottom: $largeActorSelectorToUiGap;
 }
 
 #ame-twm-new-css-tweak-code {

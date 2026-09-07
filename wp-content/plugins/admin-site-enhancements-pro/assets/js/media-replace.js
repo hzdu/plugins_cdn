@@ -14,12 +14,18 @@
 
 // Open media modal on clicking Select New Media File button. 
 // This is set with onclick="replaceMedia('mime/type')" on the button HTML
-function replaceMedia(oldImageMimeType) {
+function replaceMedia(originalAttachmentId,oldImageMimeType) {
 	if ( oldImageMimeType ) {
 		// There's a mime type defined. Do nothing.
 	} else {
 		// We're in the grid view of an image. Get the mime type form the file info in DOM.
-		var oldImageMimeTypeFromDom = jQuery('.details .file-type').html();
+		if ( jQuery('.details .file-type').length ) {
+			var oldImageMimeTypeFromDom = jQuery('.details .file-type').html();		
+		}
+		// Sometimes .file-type div is not there, and instead, a second .filename div is used to display file type info
+		else if ( jQuery('.details .filename:nth-child(2)').length ) {
+			var oldImageMimeTypeFromDom = jQuery('.details .filename:nth-child(2)').html();		
+		}
 		// Replace '<strong>File type:</strong>' in any language with empty string
 		oldImageMimeTypeFromDom = oldImageMimeTypeFromDom.replace(/<strong>(.*?)<\/strong>/, '');
 		// Replace one blank spacing with an empty space / no space
@@ -75,19 +81,22 @@ function replaceMedia(oldImageMimeType) {
 		
 		if ( oldImageMimeType == newImageMimeType ) {
 
-			// Send the attachment id to our hidden input
-			jQuery('#new-attachment-id').val(attachment.id);
+			// Send the attachment id of the replacement / new image to our hidden input
+			jQuery('#new-attachment-id-'+originalAttachmentId).val(attachment.id);
 
-			if (jQuery("#new-attachment-id").closest('.media-modal').length) {
+			if (jQuery('#new-attachment-id-'+originalAttachmentId).closest('.media-modal').length) {
 			    /*! <fs_premium_only> */
 				// For media library grid view
-				jQuery("#new-attachment-id").change();
-				location.href = 'upload.php';
+				jQuery('#new-attachment-id-'+originalAttachmentId).change();
+				setTimeout( function() {
+					location.href = 'upload.php?item=' + originalAttachmentId;
+				}, 1000);
+				// document.location.reload(true);
 				/*! </fs_premium_only> */
 			} else {
 				// For media library list view
 				// "Perform Replacement" button has been clicked. Submit the edit form, which includes 'new-attachment-id'
-				jQuery("#new-attachment-id").closest("form").submit();
+				jQuery('#new-attachment-id-'+originalAttachmentId).closest("form").submit();
 				jQuery(mediaFrame.close());
 			}			
 		}

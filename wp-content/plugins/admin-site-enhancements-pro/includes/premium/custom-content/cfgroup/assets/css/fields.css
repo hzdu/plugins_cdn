@@ -1,4 +1,247 @@
 /*---------------------------------------------------------------------------------------------
+    Conditional logic (field group editor)
+---------------------------------------------------------------------------------------------*/
+
+.field_conditional_logic .cfgroup-cl-builder {
+    margin-top: 8px;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 2px;
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.field_form tr.field_conditional_logic > td:last-child {
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.widefat td p.cfgroup-cl-intro {
+    margin: 4px 0 8px;
+    font-weight: 600;
+}
+
+.cfgroup-cl-or-label {
+    display: block;
+    margin: 12px 0;
+    font-weight: 600;
+    text-transform: lowercase;
+}
+
+.cfgroup-cl-and-label {
+    display: inline-block;
+    margin: 0;
+    font-weight: 600;
+    text-transform: lowercase;
+    flex: 0 0 auto;
+}
+
+/* Last rule: hide "and" visually but keep layout width so fields/actions align with prior rows. */
+.cfgroup-cl-rule:last-child .cfgroup-cl-and-label {
+    visibility: hidden;
+}
+
+.cfgroup-cl-and-rules {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.cfgroup-cl-rule {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.cfgroup-cl-drag-handle {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #787c82;
+    cursor: move;
+    cursor: grab;
+}
+
+.cfgroup-cl-drag-handle:active {
+    cursor: grabbing;
+}
+
+.cfgroup-cl-drag-handle .dashicons {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+}
+
+.cfgroup-cl-rule-inputs {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: nowrap;
+    /* Flex middle column shrinks on narrow rows; max caps width on large metaboxes. Inner selects keep alignment when value is hidden. */
+    max-width: min(538px, 100%);
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* Unified 32px baseline for all rule-row controls (select, input, flatpickr fields). */
+#poststuff .postbox .inside .field_form tr.field_conditional_logic .cfgroup-cl-rule-inputs select,
+#poststuff .postbox .inside .field_form tr.field_conditional_logic .cfgroup-cl-rule-inputs input[type="text"],
+#poststuff .postbox .inside .field_form tr.field_conditional_logic .cfgroup-cl-rule-inputs input.cfgroup-cl-date-input {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    height: 32px;
+    min-height: 32px;
+    max-height: 32px;
+    margin: 0;
+    padding: 0 8px;
+    line-height: 30px;
+    min-width: 0;
+    flex: 1 1 0;
+    align-self: center;
+}
+
+#poststuff .postbox .inside .field_form tr.field_conditional_logic .cfgroup-cl-rule-inputs select {
+    padding-right: 24px;
+}
+
+.cfgroup-cl-rule-inputs .cfgroup-cl-value {
+    min-width: 0;
+}
+
+.field_form .cfgroup-cl-rule-inputs .cfgroup-cl-value-slot {
+    display: flex;
+    flex: 1 1 0;
+    align-items: center;
+    align-self: center;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.field_form .cfgroup-cl-rule-inputs .cfgroup-cl-value-slot .cfgroup-cl-date-range {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+}
+
+.field_form .cfgroup-cl-rule-inputs .cfgroup-cl-date-range .cfgroup-cl-date-range-sep {
+    flex: 0 0 auto;
+    user-select: none;
+}
+
+/* Date "is between": one row; narrow selects; range inputs shrink with ellipsis when tight. */
+.field_form .cfgroup-cl-rule-inputs:has(.cfgroup-cl-date-range) {
+    flex-wrap: nowrap;
+    max-width: min(538px, 100%);
+}
+
+.field_form .cfgroup-cl-rule-inputs:has(.cfgroup-cl-date-range) .cfgroup-cl-field-id,
+.field_form .cfgroup-cl-rule-inputs:has(.cfgroup-cl-date-range) .cfgroup-cl-operator {
+    flex: 0 1 auto;
+    max-width: min(28%, 140px);
+    min-width: 72px;
+}
+
+.field_form .cfgroup-cl-rule-inputs:has(.cfgroup-cl-date-range) .cfgroup-cl-value-slot {
+    flex: 1 1 0;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.field_form .cfgroup-cl-rule-inputs:has(.cfgroup-cl-date-range) .cfgroup-cl-date-range input.cfgroup-cl-value {
+    flex: 1 1 0;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cfgroup-cl-rule-actions {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    gap: 6px;
+    flex: 0 0 auto;
+    flex-shrink: 0;
+    margin-left: auto;
+    /* Match gap so "and" has similar space on left (from inputs) and right (before +). */
+    padding-inline-start: 6px;
+}
+
+.field_conditional_logic .cfgroup-cl-add-rule-btn.button,
+.field_conditional_logic .cfgroup-cl-remove-rule-btn.button {
+    box-sizing: border-box;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    max-height: 32px;
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+    border-radius: 3px;
+    line-height: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    opacity: 0.25;
+    transition: 0.25s;
+}
+
+.field_conditional_logic .cfgroup-cl-builder:hover .cfgroup-cl-add-rule-btn.button,
+.field_conditional_logic .cfgroup-cl-builder:hover .cfgroup-cl-remove-rule-btn.button {
+    opacity: 1;
+}
+
+.field_conditional_logic .cfgroup-cl-add-rule-btn .dashicons,
+.field_conditional_logic .cfgroup-cl-remove-rule-btn .dashicons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    margin: 0;
+    line-height: 1;
+}
+
+.field_conditional_logic .cfgroup-cl-add-rule-btn .dashicons::before,
+.field_conditional_logic .cfgroup-cl-remove-rule-btn .dashicons::before {
+    line-height: 1;
+}
+
+.cfgroup-cl-rule.ui-sortable-helper {
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.cfgroup-cl-rule-placeholder {
+    height: 40px;
+    margin-bottom: 8px;
+    border: 1px dashed #c3c4c7;
+    border-radius: 2px;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.widefat td p.cfgroup-cl-add-or-wrap {
+    margin: 16px 0 10px;
+}
+
+/*---------------------------------------------------------------------------------------------
     generic
 ---------------------------------------------------------------------------------------------*/
 
@@ -49,15 +292,26 @@
 }
 
 .field-key {
-    width: 268px;
+    width: 260px;
 }
 
 .field-type {
     width: 96px;
+    padding-left: 8px;
 }
 
 .field-width {
-    width: 96px;
+    width: 160px;
+    padding-left: 8px;
+}
+
+.field-header.field-key,
+.field-header.field-type,
+.field-header.field-width,
+.field_meta td.field_name,
+.field_meta td.field_type,
+.field_meta td.field_width {
+    box-sizing: border-box;
 }
 
 .field-order {
@@ -92,7 +346,7 @@
 }
 
 .field-label {
-    width: calc(100% - 48px - 48px - 268px - 96px - 96px);
+    width: calc(100% - 48px - 48px - 260px - 96px - 160px);
 }
 
 #cfgroup_fields .table_footer {
@@ -133,7 +387,7 @@
 }
 
 .field.form_open .cfgroup_edit_field svg:hover {
-    background: #1b5a8d;
+    background: #273da3;
 }
 
 #cfgroup_fields .fields li {
@@ -141,7 +395,7 @@
     background: #fafafa;
 }
 
-.tab-flag {
+.field-type-flag {
     margin-left: 2px;
     padding: 2px 6px;
     font-weight: 500;
@@ -151,7 +405,7 @@
     border-radius: 4px;
 }
 
-#cfgroup_fields .field.form_open .tab-flag {
+#cfgroup_fields .field.form_open .field-type-flag {
     border-color: #0073aa;
 }
 
@@ -161,19 +415,30 @@ li.tab .field_meta td {
 }
 
 #cfgroup_fields .fields li.tab table.widefat {
-    background: #f3f7fb;
+    background: #eff1fc;
 }
+
+/* #cfgroup_fields .fields li.heading table.widefat,
+#cfgroup_fields .fields li.line_break table.widefat {
+    background: #f9f9f9;
+} */
 
 #cfgroup_fields .fields li.tab a.cfgroup_edit_field {
     font-weight: 600;
 }
 
-#cfgroup_fields .fields li.tab .field_meta .field_name {
+#cfgroup_fields .fields li.tab .field_meta .field_name,
+#cfgroup_fields .fields li.heading .field_meta .field_name,
+#cfgroup_fields .fields li.line_break .field_meta .field_name {
     color: #bbb;    
 }
 
 #cfgroup_fields .fields li.tab .field_meta .field_type,
-#cfgroup_fields .fields li.tab .field_meta .field_width {
+#cfgroup_fields .fields li.tab .field_meta .field_width,
+#cfgroup_fields .fields li.heading .field_meta .field_type,
+#cfgroup_fields .fields li.heading .field_meta .field_width,
+#cfgroup_fields .fields li.line_break .field_meta .field_type,
+#cfgroup_fields .fields li.line_break .field_meta .field_width {
     color: transparent !important;
 }
 
@@ -199,12 +464,16 @@ li.tab .field_meta td {
 #cfgroup_fields .fields li.repeater li:last-child {
 }
 
+.asenha-repeater-row-label-seq-setting {
+    margin-top: 8px;
+}
+
 #cfgroup_fields .field.form_open {
     border-bottom: 1px solid #DFDFDF;
 }
 
 #cfgroup_fields .field.form_open .field_meta td {
-    background-color: #0073aa;
+    background-color: #3858e9;
     color: #fff;
 }
 
@@ -263,13 +532,14 @@ li.tab .field_meta td {
 }
 
 .field_meta td.field_type {
-    width: 88px;
+    width: 96px;
     padding-left: 8px;
 }
 
 .field_meta td.field_width {
-    width: 96px;
+    width: 160px;
     padding-left: 8px;
+    white-space: nowrap;
 }
 
 .field_meta td.field_toggle {
@@ -309,6 +579,7 @@ li.tab .field_meta td {
 }
 
 .field_form td.label.repeater-label,
+.field_form td.label.year-only-label,
 .field_form td.label.validation-label,
 .field_form td.label.select-label {
     padding: 10px 12px;
@@ -330,7 +601,7 @@ li.tab .field_meta td {
 }
 
 .field_form tr.field_basics table {
-    padding: 10px 12px 20px;
+    padding: 10px 12px;
     border-bottom: 1px solid #bcc4c6;
     border-spacing: 0;
 }
@@ -368,7 +639,7 @@ li.tab .field_meta td {
 
 .field.form_open table.widefat,
 .field_form tr.field_actions td {
-    background: #ecf5f8;
+    background: #ebeefc;
 }
 
 .field_form tr.field_actions td {
@@ -381,6 +652,81 @@ li.tab .field_meta td {
 .field_form input[type="text"] {
     width: 99.95%;
     margin-top: 10px;
+}
+
+.field_form tr.field_conditional_logic select,
+.field_form tr.field_conditional_logic input[type="text"] {
+    margin-top: 0;
+}
+
+/* Map field settings: Center Latitude / Longitude on one 50/50 row */
+.field_form .cfgroup-map-center-inputs {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 8px;
+    width: 100%;
+}
+
+.field_form .cfgroup-map-center-lat,
+.field_form .cfgroup-map-center-lng {
+    display: inline-flex;
+    flex: 1 1 0;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    min-width: 0;
+    border: 1px solid #8c8f94;
+    border-radius: 3px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.field_form .cfgroup-map-height-input {
+    display: inline-flex;
+    align-items: stretch;
+    border: 1px solid #8c8f94;
+    border-radius: 3px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.field_form .cfgroup-map-center-lat input[type="text"],
+.field_form .cfgroup-map-center-lng input[type="text"] {
+    width: auto;
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-top: 0;
+    border: 0;
+    box-shadow: none;
+}
+
+.field_form .cfgroup-map-height-input input[type="number"] {
+    margin-top: 0;
+    border: 0;
+    box-shadow: none;
+    min-width: 110px;
+}
+
+.field_form .cfgroup-map-input-prefix,
+.field_form .cfgroup-map-input-suffix {
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+    padding: 0 8px;
+    background: #f0f0f1;
+    color: #50575e;
+    font-size: 12px;
+    line-height: 1;
+    border-right: 1px solid #8c8f94;
+}
+
+.field_form .cfgroup-map-input-suffix {
+    border-right: 0;
+    border-left: 1px solid #8c8f94;
+}
+
+#poststuff .postbox .inside .field_option select {
+    margin-bottom: 0;
 }
 
 .field_form select.multiple {
@@ -579,4 +925,116 @@ span.checkbox.active {
 #powerTip {
     max-width: 480px;
     white-space: normal !important;
+}
+
+/*---------------------------------------------------------------------------------------------
+    Field Instructions editor (Field Group editor screen)
+---------------------------------------------------------------------------------------------*/
+
+.field_form .cfg-field-notes-editor {
+    width: 99.95%;
+    margin-top: 10px;
+}
+
+.field_form .cfg-field-notes-editor .wp-editor-wrap {
+    width: 100%;
+}
+
+.field_form .cfg-field-notes-editor .wp-editor-tools {
+    display: none;
+}
+
+.field_form .cfg-field-notes-editor .wp-editor-wrap iframe {
+    min-height: 120px;
+}
+
+.field_form .cfg-field-notes-editor.cfg-field-notes-initialized .wp-editor-wrap iframe {
+    max-height: unset;
+}
+
+.field_form .cfg-field-notes-editor .mce-toolbar-grp .mce-btn.mce-active button,
+.field_form .cfg-field-notes-editor .mce-toolbar-grp .mce-btn.mce-active i,
+.field_form .cfg-field-notes-editor .mce-toolbar-grp .mce-btn.mce-active:hover button,
+.field_form .cfg-field-notes-editor .mce-toolbar-grp .mce-btn.mce-active:hover i,
+.field_form .cfg-field-notes-editor .mce-toolbar .mce-btn-group .mce-btn.mce-active i,
+.field_form .cfg-field-notes-editor .mce-toolbar .mce-btn-group .mce-btn.mce-active:hover i {
+    color: #1d2327;
+}
+
+/* Fullscreen: drop panel chrome; cfg-field-notes.js sets top/left/width/height to fit admin content area. */
+body.wp-admin .field_form .cfg-field-notes-editor .mce-tinymce.mce-fullscreen {
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: visible;
+}
+
+.cfgroup-allowed-mime-mode-radios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    padding-top: 12px;
+}
+
+.cfgroup-allowed-mime-mode-radios label {
+    margin: 0;
+}
+
+.cfgroup-allowed-extensions-wrap {
+    margin-top: 10px;
+}
+
+.cfgroup-allowed-extensions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px 12px;
+}
+
+.cfgroup-allowed-extensions label {
+    display: block;
+    margin: 0;
+}
+
+.cfgroup-ext-mime {
+    color: #a7aaad;
+}
+
+.cfgroup-wysiwyg-toolbar-mode-radios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+}
+
+.cfgroup-wysiwyg-toolbar-mode-radios label {
+    margin: 0;
+}
+
+.cfgroup-wysiwyg-editor-tabs-radios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+}
+
+.cfgroup-wysiwyg-editor-tabs-radios label {
+    margin: 0;
+}
+
+.cfgroup-wysiwyg-toolbar-buttons-wrap {
+    margin-top: 10px;
+}
+
+.cfgroup-wysiwyg-toolbar-buttons {
+    display: flex;
+    gap: 12px 24px;
+}
+
+.cfgroup-wysiwyg-toolbar-buttons-col {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.cfgroup-wysiwyg-toolbar-buttons-col label {
+    display: block;
+    margin: 0 0 6px;
 }

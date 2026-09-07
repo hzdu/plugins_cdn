@@ -88,7 +88,7 @@ class AmeSuperUsers {
 		let displayNames = AmeSuperUsers._.map(user.roles, (roleId) => {
 			var actor = AmeActors.getActor('role:' + roleId);
 			if (actor) {
-				return actor.displayName;
+				return actor.getDisplayName();
 			} else {
 				return '[Unknown role]';
 			}

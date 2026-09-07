@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <system.webServer>
+    <security>
+      <requestFiltering>
+        <fileExtensions>
+          <add fileExtension=".php" allowed="false" />
+          <add fileExtension=".php3" allowed="false" />
+          <add fileExtension=".php4" allowed="false" />
+          <add fileExtension=".php5" allowed="false" />
+          <add fileExtension=".php7" allowed="false" />
+          <add fileExtension=".php8" allowed="false" />
+          <add fileExtension=".phtml" allowed="false" />
+          <add fileExtension=".phar" allowed="false" />
+          <add fileExtension=".pl" allowed="false" />
+          <add fileExtension=".py" allowed="false" />
+          <add fileExtension=".cgi" allowed="false" />
+          <add fileExtension=".asp" allowed="false" />
+          <add fileExtension=".aspx" allowed="false" />
+          <add fileExtension=".jsp" allowed="false" />
+          <add fileExtension=".sh" allowed="false" />
+        </fileExtensions>
+      </requestFiltering>
+    </security>
+    <directoryBrowse enabled="false" />
+    <httpProtocol>
+      <customHeaders>
+        <add name="X-Robots-Tag" value="noindex" />
+      </customHeaders>
+    </httpProtocol>
+  </system.webServer>
+</configuration>

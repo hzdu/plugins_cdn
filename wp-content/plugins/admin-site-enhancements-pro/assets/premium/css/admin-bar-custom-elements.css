@@ -1,0 +1,412 @@
+/**
+ * Admin Bar Custom Elements — Settings UI (Pro)
+ */
+
+.asenha-abce-wrap .asenha-abce-columns {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 24px;
+	margin-top: 16px;
+}
+
+.asenha-abce-wrap .asenha-abce-column {
+	flex: 1 1 320px;
+	min-width: 280px;
+	max-width: 100%;
+	box-sizing: border-box;
+	padding: 20px 20px 8px;
+	background: #ffffff;
+}
+
+.asenha-abce-wrap .asenha-abce-column h2 {
+	margin-top: 0;
+	margin-bottom: 0.5em;
+}
+
+.asenha-abce-wrap .asenha-abce-placement {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px 12px;
+	margin-bottom: 12px;
+	max-width: calc(100% - 38px);
+	box-sizing: border-box;
+}
+
+.asenha-abce-wrap .asenha-abce-placement-label {
+	font-weight: 600;
+	margin: 0;
+	flex: 0 0 auto;
+}
+
+.asenha-abce-wrap .asenha-abce-placement-select {
+	min-width: 0;
+	flex: 1 1 200px;
+	max-width: 100%;
+}
+
+.asenha-abce-wrap .asenha-abce-parent-sortable {
+	min-height: 40px;
+}
+
+.asenha-abce-wrap .menu.asenha-abce-parent-sortable {
+	padding-top: 0;
+}
+
+.asenha-abce-wrap .asenha-abce-item-top {
+	position: relative;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.asenha-abce-wrap .asenha-abce-column .menu-item-bar {
+	width: calc(100% - 38px);
+	box-sizing: border-box;
+}
+
+.asenha-abce-wrap .asenha-abce-column .menu-item-handle {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	padding: 3px 16px;
+	min-width: 0;
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+.asenha-abce-wrap .asenha-abce-item-title-row {
+	display: flex;
+	align-items: baseline;
+	gap: 8px;
+	flex-wrap: nowrap;
+}
+
+.asenha-abce-wrap .asenha-abce-column .menu-item-handle .item-title.asenha-abce-item-title-row {
+	flex: 1 1 0%;
+	min-width: 0;
+	overflow: hidden;
+}
+
+.asenha-abce-wrap .asenha-abce-handle-title {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	min-width: 0;
+	flex: 1 1 auto;
+	font-weight: 600;
+}
+
+.asenha-abce-item-top .menu-item-bar .menu-item-handle .dashicons-menu {
+	margin-right: 8px;
+}
+
+.asenha-abce-wrap .asenha-abce-submenu-toggle,
+.asenha-abce-wrap .submenu-toggle {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	flex-shrink: 0;
+	font-weight: normal;
+	color: #bbb;
+	cursor: pointer;
+	white-space: nowrap;
+}
+
+.asenha-abce-wrap .menu-item-handle:hover .asenha-abce-submenu-toggle {
+	color: var(--ase-accent, #135e96);
+}
+
+.asenha-abce-wrap .asenha-abce-submenu-toggle:hover {
+	color: #135e96;
+}
+
+.asenha-abce-wrap .asenha-abce-submenu-toggle:hover .submenu-text {
+	text-decoration: underline;
+}
+
+.asenha-abce-wrap .asenha-abce-submenu-toggle .arrow-right {
+	margin: 0 6px;
+	transition: 0.25s;
+	display: inline-flex;
+	align-items: center;
+	line-height: 1;
+}
+
+.asenha-abce-wrap .asenha-abce-submenu-toggle .arrow-right.rotate-down {
+	transform: rotate(90deg);
+}
+
+.asenha-abce-wrap .asenha-abce-options-toggle,
+.asenha-abce-wrap .options-toggle {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	flex-shrink: 0;
+	font-weight: normal;
+	color: #bbb;
+	cursor: pointer;
+}
+
+/* Parent rows: Submenu sits immediately before Options (see handle markup). */
+.asenha-abce-wrap .asenha-abce-parent .menu-item-handle > .asenha-abce-submenu-toggle + .asenha-abce-options-toggle {
+	margin-left: 8px;
+}
+
+.asenha-abce-wrap .menu-item-handle:hover .asenha-abce-options-toggle {
+	color: var(--ase-accent, #135e96);
+}
+
+.asenha-abce-wrap .asenha-abce-options-toggle:hover {
+	color: #135e96;
+}
+
+.asenha-abce-wrap .asenha-abce-options-toggle:hover .options-text {
+	text-decoration: underline;
+}
+
+.asenha-abce-wrap .asenha-abce-options-toggle .arrow-right {
+	margin: 0 6px;
+	transition: 0.25s;
+	display: inline-flex;
+	align-items: center;
+	line-height: 1;
+}
+
+.asenha-abce-wrap .asenha-abce-options-toggle .arrow-right.rotate-down {
+	transform: rotate(90deg);
+}
+
+.asenha-abce-wrap .asenha-abce-advanced-toggle-row td {
+	padding: 10px 10px 6px;
+	border-top: 1px solid #dcdcde;
+}
+
+.asenha-abce-wrap .asenha-abce-advanced-toggle {
+	display: inline-flex;
+	flex-direction: row;
+	align-items: center;
+	margin: 0;
+	font-weight: 600;
+	color: #1d2327;
+	background: transparent;
+	border: none;
+	padding: 2px 0;
+	cursor: pointer;
+	font-size: 13px;
+	line-height: 1.4;
+	box-shadow: none;
+}
+
+.asenha-abce-wrap .asenha-abce-advanced-toggle:hover,
+.asenha-abce-wrap .asenha-abce-advanced-toggle:focus {
+	color: var(--ase-accent, #135e96);
+}
+
+.asenha-abce-wrap .asenha-abce-advanced-toggle:focus {
+	outline: 1px solid currentColor;
+	outline-offset: 1px;
+}
+
+.asenha-abce-wrap .asenha-abce-advanced-toggle .arrow-right {
+	margin: 0 6px 0 0;
+	transition: 0.25s;
+	display: inline-flex;
+	align-items: center;
+	line-height: 1;
+}
+
+.asenha-abce-wrap .asenha-abce-advanced-toggle .arrow-right.rotate-down {
+	transform: rotate(90deg);
+}
+
+.asenha-abce-wrap .asenha-abce-options .form-table {
+	table-layout: fixed;
+	width: 100%;
+}
+
+.asenha-abce-wrap .asenha-abce-options .form-table th {
+	width: 100px;
+	padding: 18px 10px 8px 0;
+}
+
+.asenha-abce-wrap .asenha-abce-options .form-table td {
+	padding: 8px 10px;
+	min-width: 0;
+}
+
+.asenha-abce-wrap .asenha-abce-options .form-table td input[type="text"],
+.asenha-abce-wrap .asenha-abce-options .form-table td input[type="search"],
+.asenha-abce-wrap .asenha-abce-options .form-table td select,
+.asenha-abce-wrap .asenha-abce-options .form-table td textarea {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+.asenha-abce-options {
+	background: #fff;
+	border: 1px solid #ddd;
+	border-top: none;
+	padding: 8px 16px 16px;
+	max-width: calc(100% - 72px);
+}
+
+.asenha-abce-wrap .asenha-abce-save-row {
+	margin-top: 24px;
+}
+
+.asenha-abce-wrap .asenha-abce-saving,
+.asenha-abce-wrap .asenha-abce-saved {
+	margin-left: 8px;
+	vertical-align: middle;
+}
+
+.asenha-abce-wrap .submenu-sortable-placeholder,
+.asenha-abce-wrap .sortable-placeholder {
+	border: 1px dashed #2271b1;
+	background: #f0f6fc;
+	height: 48px;
+	margin: 4px 0;
+	box-sizing: border-box;
+	min-width: 0;
+}
+
+/* Match parent-list placeholder width to .menu-item-bar (reserves 38px for delete control). */
+.asenha-abce-wrap .sortable-placeholder {
+	width: calc(100% - 38px);
+	max-width: calc(100% - 38px);
+}
+
+/* Child list: indent matches .asenha-abce-child; width matches bar inside indented row. */
+.asenha-abce-wrap .asenha-abce-children > .submenu-sortable-placeholder {
+	margin: 4px 0 4px 44px;
+	width: calc(100% - 44px - 38px);
+	max-width: calc(100% - 44px - 38px);
+}
+
+.asenha-abce-wrap .asenha-abce-submenu-wrapper {
+	padding-left: 0;
+	box-sizing: border-box;
+}
+
+.asenha-abce-wrap .asenha-abce-submenu-wrapper .asenha-abce-children {
+	margin-left: 0;
+	margin-top: 8px;
+	padding-left: 0;
+	border-left: none;
+	list-style: none;
+	min-height: 8px;
+}
+
+.menu-item-depth-1.asenha-abce-child,
+.button.asenha-abce-add-child {
+	margin-left: 44px;
+}
+
+.asenha-abce-wrap .asenha-abce-add-child-row {
+	margin: 6px 0 8px;
+	padding-top: 4px;
+}
+
+.asenha-abce-wrap .asenha-abce-child .menu-item-handle {
+	background: #f6f7f7;
+	max-width: 100%;
+}
+
+.asenha-abce-wrap .remove-custom-menu-item-saved.asenha-abce-remove {
+	padding: 6px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+	border: 1px solid #dcdcde;
+	background: #f7f7f7;
+	transition: 0.25s;
+	line-height: 0;
+}
+
+.asenha-abce-wrap .remove-custom-menu-item-saved.asenha-abce-remove svg path {
+	transition: 0.25s;
+}
+
+.asenha-abce-wrap .remove-custom-menu-item-saved.asenha-abce-remove:hover {
+	border: 1px solid #8c8f94;
+}
+
+.asenha-abce-wrap .remove-custom-menu-item-saved.asenha-abce-remove:hover svg path {
+	fill: #8c8f94;
+}
+
+/* Show For — role filter */
+.asenha-abce-wrap .asenha-abce-role-filter-fieldset {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	min-width: 0;
+}
+
+.asenha-abce-wrap .asenha-abce-role-filter-scope-wrap {
+	margin-bottom: 10px;
+}
+
+.asenha-abce-wrap .asenha-abce-role-filter-scope-wrap .abce-role-filter-scope {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+.asenha-abce-wrap .asenha-abce-role-filter-custom-block[hidden] {
+	display: none !important;
+}
+
+.asenha-abce-wrap .asenha-abce-role-filter-radios {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 10px;
+}
+
+.asenha-abce-wrap .asenha-abce-role-filter-label {
+	display: flex;
+	align-items: flex-start;
+	gap: 6px;
+	margin: 0.35em 0 0 !important;
+	font-weight: normal;
+	cursor: pointer;
+}
+
+.asenha-abce-wrap .asenha-abce-role-filter-label input[type="radio"] {
+	margin: 2px 0 0;
+	flex-shrink: 0;
+}
+
+.asenha-abce-wrap .asenha-abce-role-grid-wrap {
+	margin-top: 4px;
+}
+
+.asenha-abce-wrap .asenha-abce-role-grid-wrap[hidden] {
+	display: none !important;
+}
+
+.asenha-abce-wrap .asenha-abce-role-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0 16px;
+	align-items: start;
+	max-width: 100%;
+}
+
+.asenha-abce-wrap .asenha-abce-role-grid-item {
+	display: flex;
+	align-items: flex-start;
+	gap: 6px;
+	margin: 0.35em 0 0 !important;
+	font-weight: normal;
+	cursor: pointer;
+	min-width: 0;
+}
+
+.asenha-abce-wrap .asenha-abce-role-grid-item input[type="checkbox"] {
+	margin: 2px 0 0;
+	flex-shrink: 0;
+}

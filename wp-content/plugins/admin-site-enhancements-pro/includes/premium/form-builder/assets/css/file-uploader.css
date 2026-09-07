@@ -1,0 +1,159 @@
+.fb-file-uploader .qq-uploader {
+    position: relative;
+    width: 100%;
+}
+
+.fb-file-uploader .qq-upload-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #EEE;
+    color: #333;
+    border-radius: 2px;
+    font-size: 14px;
+}
+
+.fb-form-custom-style .fb-file-uploader .qq-upload-button {
+    border-top: var(--fb-upload-border-top, 1px) solid var(--fb-upload-border-color-normal, #CCC);
+    border-right: var(--fb-upload-border-right, 1px) solid var(--fb-upload-border-color-normal, #CCC);
+    border-bottom: var(--fb-upload-border-bottom, 1px) solid var(--fb-upload-border-color-normal, #CCC);
+    border-left: var(--fb-upload-border-left, 1px) solid var(--fb-upload-border-color-normal, #CCC);
+    border-radius: var(--fb-upload-border-radius-top, 3px) var(--fb-upload-border-radius-right, 3px) var(--fb-upload-border-radius-bottom, 3px) var(--fb-upload-border-radius-left, 3px);
+    padding: var(--fb-upload-padding-top, 10px) var(--fb-upload-padding-right, 20px) var(--fb-upload-padding-bottom, 10px) var(--fb-upload-padding-left, 20px);
+    color: var(--fb-upload-color-normal, #666);
+    background-color: var(--fb-upload-bg-color-normal, #EEE);
+    box-shadow: var(--fb-upload-shadow-normal-x, 0) var(--fb-upload-shadow-normal-y, 0) var(--fb-upload-shadow-normal-blur, 0) var(--fb-upload-shadow-normal-spread, 0) var(--fb-upload-shadow-normal-color, transparent);
+}
+
+.fb-form-custom-style .fb-file-uploader .qq-upload-button-hover,
+.fb-form-custom-style .fb-file-uploader .qq-upload-button:hover {
+    border-top: var(--fb-upload-border-top, 1px) solid var(--fb-upload-border-color-hover, var(--fb-upload-border-color-normal, #CCC));
+    border-right: var(--fb-upload-border-right, 1px) solid var(--fb-upload-border-color-hover, var(--fb-upload-border-color-normal, #CCC));
+    border-bottom: var(--fb-upload-border-bottom, 1px) solid var(--fb-upload-border-color-hover, var(--fb-upload-border-color-normal, #CCC));
+    border-left: var(--fb-upload-border-left, 1px) solid var(--fb-upload-border-color-hover, var(--fb-upload-border-color-normal, #CCC));
+    color: var(--fb-upload-color-hover, var(--fb-upload-color-normal, inherit));
+    background-color: var(--fb-upload-bg-color-hover, var(--fb-upload-bg-color-normal, #EEE));
+    box-shadow: var(--fb-upload-shadow-hover-x, var(--fb-upload-shadow-normal-x, 0)) var(--fb-upload-shadow-hover-y, var(--fb-upload-shadow-normal-y, 0)) var(--fb-upload-shadow-hover-blur, var(--fb-upload-shadow-normal-blur, 0)) var(--fb-upload-shadow-hover-spread, var(--fb-upload-shadow-normal-spread, 0)) var(--fb-upload-shadow-hover-color, var(--fb-upload-shadow-normal-color, transparent));
+}
+
+.fb-file-uploader .qq-upload-button input {
+    height: 100% !important;
+    width: 100% !important;
+    font-size: 0 !important;
+}
+
+.fb-file-uploader .qq-upload-drop-area {
+    width: 100%;
+    max-width: 300px;
+    min-height: 80px;
+    z-index: 2;
+    background: none;
+    text-align: center;
+    border: 2px dashed #EEE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fb-file-uploader .qq-upload-drop-area-active {
+    background: #EEE;
+}
+
+.fb-file-uploader .qq-upload-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.fb-file-uploader .qq-upload-list li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 0 0 8px;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1;
+    background-color: #FFF0BD;
+}
+
+.fb-file-uploader .qq-progress-bar {
+    display: none;
+}
+
+.fb-file-uploader .qq-upload-spinner {
+    display: inline-block;
+    background: url("loading.gif");
+    width: 15px;
+    height: 15px;
+    vertical-align: text-bottom;
+}
+
+.fb-file-uploader .qq-upload-size,
+.fb-file-uploader .qq-upload-cancel {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.fb-file-uploader .qq-upload-size {
+    margin-right: auto;
+}
+
+.fb-file-uploader .qq-upload-size:before {
+    content: " - ";
+}
+
+.fb-file-uploader .qq-upload-failed-text {
+    display: none;
+}
+
+.fb-file-uploader .qq-upload-fail .qq-upload-failed-text {
+    display: inline;
+}
+
+.fb-file-uploader .qq-upload-list li.qq-upload-success {
+    background-color: #edfaef;
+    color: #3c434a;
+    border: 1px solid #c3c4c7;
+    border-left-width: 4px;
+    border-left-color: #00a32a;
+}
+
+.fb-file-uploader .qq-upload-list li.qq-upload-fail {
+    background-color: #fff;
+    color: #3c434a;
+    border: 1px solid #c3c4c7;
+    border-left-width: 4px;
+    border-left-color: #d63638;
+}
+
+.fb-prev-holder {
+    background: #f5f5f5;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.fb-prev-holder img {
+    max-width: 200px !important;
+}
+
+.fb-prev-holder .fb-prev-name {
+    display: block;
+    margin: 6px 0;
+    font-size: 12px;
+}
+
+.fb-preview-remove {
+    background: #d63638;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #FFF;
+    padding: 6px 10px;
+    line-height: 1;
+    border-radius: 5px;
+}
+
+.fb-preview-remove:hover {
+    background: #000;
+}

@@ -2,27 +2,6 @@ jQuery(document).ready( function($) {
 
     $('.page-title-action').hide();
     
-    $('#code-snippet-description').appendTo('#code-snippet-description-wrapper');
-    $('#code-snippet-description-wrapper').css('border','0');
-    
-    if ( 'post.php' == CSM.page_now ) {
-        // Re-init wp_editor for snippet description. Required because the wp_editor was moved in the DOM after document ready.
-        // Ref: https://stackoverflow.com/a/21519323.
-        // Ref: https://core.trac.wordpress.org/ticket/19173
-        var id = 'code_snippet_description';
-        tinymce.execCommand('mceRemoveEditor', true, id);
-        var init = tinymce.extend( {}, tinyMCEPreInit.mceInit[ id ] );
-        try { tinymce.init( init ); } catch(e){}
-        $('textarea[id="' + id + '"]').closest('form').find('input[type="submit"]').click(function(){
-            if( getUserSetting( 'editor' ) == 'tmce' ){
-                var id = mce.find( 'textarea' ).attr( 'id' );
-                tinymce.execCommand( 'mceRemoveEditor', false, id );
-                tinymce.execCommand( 'mceAddEditor', false, id );
-            }
-            return true;
-        });
-    }
-
     var postID = document.getElementById('post_ID') != null ? document.getElementById('post_ID').value : 0;
 
     // Initialize the CodeMirror editor
@@ -37,7 +16,6 @@ jQuery(document).ready( function($) {
         }
 
 		CSM.codemirror.mode = content_mode;
-		CSM.codemirror.theme = 'monokai-mod';
 		CSM.codemirror.extraKeys.F11 = function(cm) {
         	cm.setOption("fullScreen", !cm.getOption("fullScreen"));
 			fullscreen_buttons( true );
@@ -145,6 +123,10 @@ jQuery(document).ready( function($) {
 			var curPos = editor.getCursor();
 			document.cookie = 'csm-' + postID + '=' + [curPos.line, curPos.ch, cookies[2], Number(editor.getOption('fullScreen'))].join(',') + '; SameSite=Lax';
 		});
+
+        if ( 'solarized-mod' == CSM.codemirror.theme ) {
+            $('.CodeMirror').addClass('light-theme');
+        }
     }
 
     // Enable the tipsy 
@@ -205,10 +187,13 @@ jQuery(document).ready( function($) {
             success: function(data){
                 if (data === 'yes') {
                     csm_activate_deactivate(code_id, false);
+                    $('#snippet-status').attr('data-snippet-status', 'inactive');
 			        $('#publishing-action .spinner').removeClass('is-active');
                 }
                 if (data === 'no') {
                     csm_activate_deactivate(code_id, true);
+                    $('#snippet-status').attr('data-snippet-status', 'active');
+                    $('.snippet-inactive-notes').hide();
 			        $('#publishing-action .spinner').removeClass('is-active');
                 }
             }
@@ -427,7 +412,247 @@ jQuery(document).ready( function($) {
 
 
     });
+    
+    // CSS / JS / HTML snippet
+    // On which part of the site? --> Frontend conditionals
+    if ( $('input[name="code_snippet_side-frontend"]').is(':checked') ) {
+        // console.log('Frontend checked');
+        $('.csm-advanded-options').show();
+        // $('.radio-group.php.execution_location').show();
+        // $('.shortcode-wrapper').hide();
+        // $('.execution_location_details').show();
+        // $('.priority-wrapper').show();
+    } else {
+        $('.csm-advanded-options').hide();
+    }
 
+    $('input[name="code_snippet_side-frontend"]').change( function() {
+        if ($(this).is(':checked')) {
+            $('.csm-advanded-options').show();            
+        } else {
+            $('.csm-advanded-options').hide();            
+        }
+    });
+    
+    
+    // PHP snippets >> Snippets Options
+    // How to execute
+    if ( $('select[name="code_snippet_execution_method"]').find(":selected").val() == 'on_page_load' ) {
+        $('.php-execution-button-wrapper').hide();
+        $('.secure-url-wrapper').hide();
+        $('.php.execution_location_type').show();
+        $('.radio-group.php.execution_location_type').show();
+        $('.radio-group.php.execution_location').show();
+        $('.shortcode-wrapper').hide();
+        $('.execution_location_details').show();
+
+        // Where to execute / insert
+        if ( $('input[name="code_snippet_execution_location_type"]:checked').val() == 'hook' ) {
+            $('.radio-group.php.execution_location').show();
+            $('.shortcode-wrapper').hide();
+            $('.execution_location_details').show();
+            $('.priority-wrapper').show();
+        }
+        if ( $('input[name="code_snippet_execution_location_type"]:checked').val() == 'shortcode' ) {
+            $('.radio-group.php.execution_location').hide();
+            $('.shortcode-wrapper').show();
+            $('.execution_location_details').hide();
+            $('.priority-wrapper').show();
+        }
+        
+        $('input[name="code_snippet_execution_location_type"]').click(function() {
+            var radioValue = $(this).attr('value');
+            if ( radioValue == 'hook' ) {
+                $('.radio-group.php.execution_location').show();
+                $('.shortcode-wrapper').hide();
+                $('.execution_location_details').show();
+                $('.priority-wrapper').show();
+            } else if ( radioValue == 'shortcode' ) {
+                $('.radio-group.php.execution_location').hide();
+                $('.shortcode-wrapper').show();
+                $('.execution_location_details').hide();
+                $('.priority-wrapper').show();
+            }
+        });
+    }
+
+    if ( $('select[name="code_snippet_execution_method"]').find(":selected").val() == 'on_demand' ) {
+        $('.php-execution-button-wrapper').show();
+        $('.secure-url-wrapper').hide();
+        $('.php.execution_location_type').hide();
+        $('.radio-group.php.execution_location_type').hide();
+        $('.radio-group.php.execution_location').hide();
+        $('.shortcode-wrapper').hide();
+        $('.execution_location_details').hide();
+        $('.priority-wrapper').hide();
+    }
+
+    if ( $('select[name="code_snippet_execution_method"]').find(":selected").val() == 'via_secure_url' ) {
+        $('.php-execution-button-wrapper').hide();
+        $('.secure-url-wrapper').show();
+        $('.php.execution_location_type').hide();
+        $('.radio-group.php.execution_location_type').hide();
+        $('.radio-group.php.execution_location').hide();
+        $('.shortcode-wrapper').hide();
+        $('.execution_location_details').hide();
+        $('.priority-wrapper').hide();
+    }
+    
+    $(document).on('change','#code_snippet_execution_method',function() {
+        var selectValue = $(this).find("option:selected").attr('value');
+        if ( selectValue == 'on_page_load' ) {
+            $('.php-execution-button-wrapper').hide();
+            $('.secure-url-wrapper').hide();
+            $('.php.execution_location_type').show();
+            $('.radio-group.php.execution_location_type').show();
+            $('.radio-group.php.execution_location').show();
+            $('.shortcode-wrapper').hide();
+            $('.execution_location_details').show();
+            $('.priority-wrapper').show();
+
+            // Where to execute / insert
+            if ( $('input[name="code_snippet_execution_location_type"]:checked').val() == 'hook' ) {
+                $('.radio-group.php.execution_location').show();
+                $('.shortcode-wrapper').hide();
+                $('.execution_location_details').show();
+                $('.priority-wrapper').show();
+            }
+            if ( $('input[name="code_snippet_execution_location_type"]:checked').val() == 'shortcode' ) {
+                $('.radio-group.php.execution_location').hide();
+                $('.shortcode-wrapper').show();
+                $('.execution_location_details').hide();
+                $('.priority-wrapper').show();
+            }
+            
+            $('input[name="code_snippet_execution_location_type"]').click(function() {
+                var radioValue = $(this).attr('value');
+                if ( radioValue == 'hook' ) {
+                    $('.radio-group.php.execution_location').show();
+                    $('.shortcode-wrapper').hide();
+                    $('.execution_location_details').show();
+                    $('.priority-wrapper').show();
+                } else if ( radioValue == 'shortcode' ) {
+                    $('.radio-group.php.execution_location').hide();
+                    $('.shortcode-wrapper').show();
+                    $('.execution_location_details').hide();
+                    $('.priority-wrapper').show();
+                }
+            });
+        } else if ( selectValue == 'on_demand' ) {
+            $('.php-execution-button-wrapper').show();
+            $('.secure-url-wrapper').hide();
+            $('.php.execution_location_type').hide();
+            $('.radio-group.php.execution_location_type').hide();
+            $('.radio-group.php.execution_location').hide();
+            $('.shortcode-wrapper').hide();
+            $('.execution_location_details').hide();
+            $('.priority-wrapper').hide();
+        } else if ( selectValue == 'via_secure_url' ) {
+            $('.php-execution-button-wrapper').hide();
+            $('.secure-url-wrapper').show();
+            $('.php.execution_location_type').hide();
+            $('.radio-group.php.execution_location_type').hide();
+            $('.radio-group.php.execution_location').hide();
+            $('.shortcode-wrapper').hide();
+            $('.execution_location_details').hide();
+            $('.priority-wrapper').hide();
+        }
+    });
+
+    // Execute PHP snippet on demand via AJAX
+    $(".execute-php-snippet-button").click( function(e) {
+        var url = $(this).attr('href');
+        var snippetId = $(this).attr('data-php-snippet-id');
+        var status = $('#snippet-status').attr('data-snippet-status');
+        // console.log( 'status ' + status );
+        // console.log( 'snippetId ' + snippetId );
+
+        e.preventDefault();
+        if ( 'inactive' == status ) {
+            $('.snippet-inactive-notes').show();
+        }
+        if ( 'active' == status ) {
+            $('.php-execution-button-wrapper .spinner').addClass('is-active');
+            $('.on-demand-execution-notes').show();
+            $.ajax({
+                url: url, 
+                success: function(data){
+                    // console.log(data);
+                    if (data === 'success') {
+                        setTimeout( function() {
+                            alert( CSM.execution_success );
+                            $('.php-execution-button-wrapper .spinner').removeClass('is-active');
+                            $('.on-demand-execution-notes').hide();
+                            window.location.reload();
+                        }, 1000);
+                    }
+                    if (data === 'error') {
+                        setTimeout( function() {
+                            alert( CSM.execution_error );
+                            $('.php-execution-button-wrapper .spinner').removeClass('is-active');
+                            $('.on-demand-execution-notes').hide();
+                            // window.location.reload();
+                        }, 1000);
+                    }
+                }
+            });            
+        }
+    });
+
+    // Copy secure URL button
+    // https://tippyjs.bootcss.com/
+    tippy('.copy-secure-url-button', {
+        content: 'Copied!',
+        placement: 'left',
+        arrow: true,
+        theme: 'light',
+        trigger: 'click',
+        onShow(instance) {
+            setTimeout(() => {
+                instance.hide();
+            }, 1000);
+        }
+    });
+
+    var clipboard = new ClipboardJS('.copy-secure-url-button');
+
+    // clipboard.on('success', function(e) {
+    //   // console.log(e);
+    // });
+
+    // clipboard.on('error', function(e) {
+    //   // console.log(e);
+    // });
+    
+    // Copy shortcode button
+    // https://tippyjs.bootcss.com/
+    tippy('.copy-shortcode-button', {
+        content: 'Copied!',
+        placement: 'left',
+        arrow: true,
+        theme: 'light',
+        trigger: 'click',
+        onShow(instance) {
+            setTimeout(() => {
+                instance.hide();
+            }, 1000);
+        }
+    });
+    
+    // https://clipboardjs.com/
+    var clipboard = new ClipboardJS('.copy-shortcode-button', {
+        text: function( trigger ) {
+            return '[php_snippet id="' + trigger.getAttribute('data-clipboard-text') + '"]';
+        }
+    });
+
+    // clipboard.on('success', function(e) {
+    // console.log(e);
+    // });
+
+    // clipboard.on('error', function(e) {
+    // console.log(e);
+    // });
 
 });
 

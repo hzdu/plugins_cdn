@@ -6,7 +6,7 @@
 	//setup constants
 	const el = element.createElement;
 	const { registerBlockType } = blocks; 
-	const { RichText, InspectorControls } = blockEditor;
+	const { RichText, InspectorControls, useBlockProps } = blockEditor;
 	const { Fragment } = element;
 	const { SelectControl, TextControl, ToggleControl, Panel, PanelBody, PanelRow, ColorPicker } = components;
 	const { withSelect } = wp.data;
@@ -28,6 +28,7 @@
  
  	//register click to tweet block
 	registerBlockType('novashare/click-to-tweet', {
+		apiVersion: 3,
 		title: __("Click to Post", 'novashare'),
 		description: __("Add an X post box.", 'novashare'),
 		category: 'widgets',
@@ -77,6 +78,9 @@
 			var count_status;
 			var chars_remaining;
 			var defaultTheme = (!props.attributes.theme && !novashare.click_to_tweet?.theme) || props.attributes.theme == 'default' ? true : false;
+
+			//apiVersion 3 requires useBlockProps so the block respects the editor content width
+			const blockProps = useBlockProps();
 		 
 			return (
 				el(Fragment, {},
@@ -88,6 +92,7 @@
 							//theme
 							el(SelectControl, {
 								label: __('Theme', 'novashare'),
+								__nextHasNoMarginBottom: true,
 								options : [
 									{ label: __('Global', 'novashare'), value: '' },
 									{ label: __('Default (Accent Background)', 'novashare'), value: 'default' },
@@ -103,6 +108,7 @@
 							//call to action text
 							el(TextControl, {
 								label: __('Call to Action Text', 'novashare'),
+								__nextHasNoMarginBottom: true,
 								onChange: (value) => {
 									props.setAttributes({ cta_text: value });
 								},
@@ -112,6 +118,7 @@
 							//call to action position
 							el(SelectControl, {
 								label: __('Call to Action Position', 'novashare'),
+								__nextHasNoMarginBottom: true,
 								options : [
 									{ label: __('Global', 'novashare'), value: '' },
 									{ label: __('Right (Default)', 'novashare'), value: '' },
@@ -126,6 +133,7 @@
 							//remove url
 							el(ToggleControl, {
 								label: __('Remove URL', 'novashare'),
+								__nextHasNoMarginBottom: true,
 								onChange: (value) => {
 									props.setAttributes({ remove_url: value });
 								},
@@ -135,6 +143,7 @@
 							//remove username
 							el(ToggleControl, {
 								label: __('Remove Username', 'novashare'),
+								__nextHasNoMarginBottom: true,
 								onChange: (value) => {
 									props.setAttributes({ remove_username: value });
 								},
@@ -144,6 +153,7 @@
 							//hide hashtags
 							el(ToggleControl, {
 								label: __('Hide Hashtags', 'novashare'),
+								__nextHasNoMarginBottom: true,
 								onChange: (value) => {
 									props.setAttributes({ hide_hashtags: value });
 								},
@@ -167,116 +177,120 @@
 						)
 					),
 
-					//print block in editor
-					el('div', {
-						className: props.className + (() => {
+					//block wrapper (useBlockProps) keeps width aligned with other content blocks
+					el('div', blockProps,
 
-							var extra_classes = '';
+						//print block in editor
+						el('div', {
+							className: (() => {
 
-							extra_classes+= ' ns-ctt';
+								var extra_classes = '';
 
-							//theme container class
-							if(props.attributes.theme) {
-								extra_classes+= ' ns-ctt-' + props.attributes.theme;
-							} else if(novashare.click_to_tweet?.theme) {
-								extra_classes+= ' ns-ctt-' + novashare.click_to_tweet.theme;
-							}
-							
-							//cta position container class
-							if(props.attributes.cta_position) {
-								extra_classes+= ' ns-ctt-cta-' + props.attributes.cta_position;
-							} else if(novashare.click_to_tweet?.cta_position) {
-								extra_classes+= ' ns-ctt-cta-' + novashare.click_to_tweet.cta_position;
-							}
+								extra_classes+= ' ns-ctt';
 
-							return extra_classes;
+								//theme container class
+								if(props.attributes.theme) {
+									extra_classes+= ' ns-ctt-' + props.attributes.theme;
+								} else if(novashare.click_to_tweet?.theme) {
+									extra_classes+= ' ns-ctt-' + novashare.click_to_tweet.theme;
+								}
+								
+								//cta position container class
+								if(props.attributes.cta_position) {
+									extra_classes+= ' ns-ctt-cta-' + props.attributes.cta_position;
+								} else if(novashare.click_to_tweet?.cta_position) {
+									extra_classes+= ' ns-ctt-cta-' + novashare.click_to_tweet.cta_position;
+								}
 
-						})(), 
-						style: {
-							backgroundColor: (() => {
-								if(defaultTheme) {
+								return extra_classes;
+
+							})(), 
+							style: {
+								backgroundColor: (() => {
+									if(defaultTheme) {
+										return props.attributes.accent_color;
+									}
+								})(),
+								borderColor: (() => {
 									return props.attributes.accent_color;
-								}
-							})(),
-							borderColor: (() => {
-								return props.attributes.accent_color;
-							})(),
-						}			
-					},
+								})(),
+							}			
+						},
 
-						//editable tweet
-						el('div', { className: 'ns-ctt-tweet' },
-							el(RichText, {
-								format: 'string',
-								onChange: (value) => {
-									props.setAttributes({ tweet: value });
+							//editable tweet
+							el('div', { className: 'ns-ctt-tweet' },
+								el(RichText, {
+									format: 'string',
+									onChange: (value) => {
+										props.setAttributes({ tweet: value });
+									},
+									value: props.attributes.tweet,
+									allowedFormats: []
+								})
+							),
+
+							//tweet cta container
+							el('div', { className: 'ns-ctt-cta-container' },
+								el('span', { className: 'ns-ctt-cta',
+									style: {
+										color: (() => {
+											if(!defaultTheme) {
+												return props.attributes.accent_color;
+											}
+										})(),
+									}
 								},
-								value: props.attributes.tweet,
-								allowedFormats: []
-							})
-						),
 
-						//tweet cta container
-						el('div', { className: 'ns-ctt-cta-container' },
-							el('span', { className: 'ns-ctt-cta',
-								style: {
-									color: (() => {
-										if(!defaultTheme) {
-											return props.attributes.accent_color;
-										}
-									})(),
-								}
-							},
+									//cta text
+									el('span', { className: 'ns-ctt-cta-text' },
+										(() => {
+											if(props.attributes.cta_text) {
+												return props.attributes.cta_text;
+											} else if(novashare.click_to_tweet?.cta_text) {
+												return novashare.click_to_tweet.cta_text;
+											} else {
+												return "Click to Post";
+											}
+										})()
+									),
 
-								//cta text
-								el('span', { className: 'ns-ctt-cta-text' },
-									(() => {
-										if(props.attributes.cta_text) {
-											return props.attributes.cta_text;
-										} else if(novashare.click_to_tweet?.cta_text) {
-											return novashare.click_to_tweet.cta_text;
-										} else {
-											return "Click to Post";
-										}
-									})()
-								),
-
-								//cta icon
-								el('span', { className: 'ns-ctt-cta-icon' }, 
-									(() => {
-										return iconTwitter;
-									})()
+									//cta icon
+									el('span', { className: 'ns-ctt-cta-icon' }, 
+										(() => {
+											return iconTwitter;
+										})()
+									)
 								)
 							)
-						)
-					),
+						),
 
-					//characters remaining
-					el('div', { className: 'ns-ctt-char-count' },
+						//characters remaining
+						el('div', { className: 'ns-ctt-char-count' },
 
-						//calculate character count
-						(() => {
-
-							//max character count
-							var initial_char_count = 280;
-
-							//calculate section lengths
-							var username_length = (novashare.twitter_username && props.attributes.remove_username != true) ? (novashare.twitter_username.length + 6) : 0;
-							var url_length = (props.permalink && props.attributes.remove_url != true) ? 24 : 0;
-							var tweet_length = (props.attributes.tweet) ? props.attributes.tweet.replace(/(<([^>]+)>)/ig, "").length : 0;
-							
-							//calculate remaining characters
-							chars_remaining = initial_char_count - username_length - url_length - tweet_length;
-
-							//container class based on +/- status
-							count_status = (chars_remaining >= 0) ? 'ns-ctt-positive' : 'ns-ctt-negative';
-						})(),
-
-						//print finished character count
-						el('span', { className: count_status }, 
+							//calculate character count
 							(() => {
-								return chars_remaining + " " + __("Characters Remaining", 'novashare');
-							})()
+
+								//max character count
+								var initial_char_count = 280;
+
+								//calculate section lengths
+								var username_length = (novashare.twitter_username && props.attributes.remove_username != true) ? (novashare.twitter_username.length + 6) : 0;
+								var url_length = (props.permalink && props.attributes.remove_url != true) ? 24 : 0;
+								var tweet_length = (props.attributes.tweet) ? props.attributes.tweet.replace(/(<([^>]+)>)/ig, "").length : 0;
+								
+								//calculate remaining characters
+								chars_remaining = initial_char_count - username_length - url_length - tweet_length;
+
+								//container class based on +/- status
+								count_status = (chars_remaining >= 0) ? 'ns-ctt-positive' : 'ns-ctt-negative';
+							})(),
+
+							//print finished character count
+							el('span', { className: count_status }, 
+								(() => {
+									return chars_remaining + " " + __("Characters Remaining", 'novashare');
+								})()
+							)
 						)
 					)
 				)

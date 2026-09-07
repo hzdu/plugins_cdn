@@ -1,0 +1,740 @@
+.wrap.admin-menu-organizer {
+    margin: 10px 20px 0;
+}
+
+.admin-menu-organizer-main {
+    display: flex;
+    gap: 16px;
+}
+
+.module-description {
+    margin-top: 8px;
+    margin-bottom: 24px;
+}
+
+.admin-menu-sortables-wrapper {
+    width: 696px;
+    box-sizing: border-box;
+    margin-top: 16px;
+    padding: 32px 48px 32px;
+    background: #fff;
+}
+
+.admin-menu-actions {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.admin-menu-actions #amo-save-changes {
+    position: sticky;
+    margin-top: 16px;
+    top: 48px;
+    border-style: solid;
+    border-color: #fff;
+    border-width: 24px 40px;
+}
+
+.admin-menu-actions #amo-save-changes:focus {
+    box-shadow: none !important;
+}
+
+.asenha-saving-changes,
+.asenha-changes-saved {
+    position: sticky;
+}
+
+.asenha-saving-changes {
+    top: 76px;
+    margin-top: 44px;
+    margin-left: -31px;
+}
+
+.asenha-changes-saved {
+    top: 74px;
+    margin-top: 42px;
+    margin-left: -33px;
+}
+
+.admin-menu-organizer ul.menu {
+    margin-top: 0;
+    padding-top: 0;
+/*    overflow: auto; */
+}
+
+.admin-menu-organizer .menu-item-bar {
+    display: flex;
+    align-items: center;
+    margin: 8px 0 0;
+}
+
+.admin-menu-organizer .menu-item-bar .menu-item-handle {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding: 3px 15px 3px 7px;
+    max-width: 600px;
+    width: 600px;
+    min-height: 30px;
+}
+
+.admin-menu-organizer .title-wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 4px;
+}
+
+.admin-menu-organizer .menu-item-handle .menu-item-checkbox {
+    display: inline-block;
+}
+
+.admin-menu-organizer .menu-item-handle .item-title {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 0;
+    line-height: 30px;
+}
+.rtl .admin-menu-organizer .menu-item-handle .item-title {
+    
+}
+
+.admin-menu-organizer .menu-item-handle .item-title .menu-item-title a {
+    color: #666;
+    text-decoration: none;
+    margin-left: 6px;
+}
+
+.admin-menu-organizer .menu-item-handle .item-title .menu-item-title a:hover {
+    color: inherit;
+}
+
+.menu-item-title input[type="text"],
+.item-title .title-wrapper input[type="text"] {
+    border: 1px solid #dcdcde;
+    margin-left: -5px;
+    padding: 0 8px 0 4px;
+    font-size: 13px;
+    min-height: 28px;
+    line-height: 28px;
+}
+
+.menu-item-title input[type="text"]:focus,
+.item-title .title-wrapper input[type="text"]:focus {
+    border: 1px solid #999;
+    box-shadow: none;
+    outline: none;
+}
+
+.menu-item-checkbox-label span {
+    font-weight: normal;
+}
+
+#separator1 .menu-item-title,
+#separator2 .menu-item-title,
+#separator-last .menu-item-title,
+#separator-woocommerce .menu-item-title,
+li[id^="separator"] .menu-item-title {
+    font-weight: normal;
+    color: #999;
+}
+
+/* Scoped to AMO root list so other screens (e.g. ABCE) can style .sortable-placeholder independently. */
+#custom-admin-menu .sortable-placeholder {
+    width: 600px !important;
+    max-width: 600px !important;
+    height: 46px;
+    min-height: 42px;
+    max-height: 42px;
+    background: #cdddd6;
+    border: 1px dashed #508871;
+    border-radius: 0 !important;
+}
+
+.form-table .asenha-subfields td:not(.datatable-td) label.menu-item-checkbox-label {
+    top: 0;
+}
+
+#custom-admin-menu .menu-item-depth-0 {
+    display: list-item !important;
+    margin-block-start: 0;
+    padding: 0;
+    position: relative;
+}
+
+#custom-admin-menu .parent-menu-item .dashicons-menu {
+    padding: 5px 8px;
+    cursor: move;
+    color: #ddd;
+}
+#custom-admin-menu .menu-item-bar .menu-item-handle:hover .dashicons-menu {
+    color: #1d2327;
+}
+
+.submenu-sortable li.menu-item {
+    position: relative;
+}
+
+/*! <fs_premium_only> */
+.admin-menu-organizer .menu-item-bar .menu-item-handle.menu-item-target-none {
+    background-color: #edeffc;
+    border-color: #afbcf6;
+}
+
+#custom-admin-menu .parent-menu-item .arrow-right {
+    margin: 0 6px;
+    transition: .25s;
+}
+#custom-admin-menu .parent-menu-item .arrow-right.rotate-down {
+    transform: rotate(90deg);
+}
+#custom-admin-menu .parent-menu-item .menu-item-settings {
+    box-sizing: border-box;
+    max-width: 600px;
+    width: 600px;
+}
+#custom-admin-menu .submenu-wrapper .menu-item-settings {
+    box-sizing: border-box;
+    max-width: 556px;
+    width: 556px;
+}
+
+.remove-menu-item {
+    padding: 6px 6px 0;
+    position: absolute;
+    top: 0;
+    right: -38px;
+    cursor: pointer;
+    border: 1px solid #dcdcde;
+    background: #f7f7f7;
+    transition: .25s;
+}
+.remove-menu-item svg path {
+    transition: .25s;    
+}
+.remove-menu-item:hover {
+    border: 1px solid #8c8f94;
+}
+.remove-menu-item:hover svg path {
+    fill: #8c8f94;
+}
+
+/* Submenu Items Sortable */
+
+.submenu-wrapper {
+    padding-left: 44px;
+}
+.admin-menu-organizer .submenu-wrapper .menu-item-bar .menu-item-handle {
+    padding: 7px 15px 7px 7p;
+    max-width: 556px;
+    width: 556px;
+    min-height: 30px;
+}
+.submenu-sortable-placeholder {
+    margin-top: 8px;
+    width: 556px;
+    max-width: 556px;
+    height: 46px;
+    min-height: 42px;
+    max-height: 42px;
+    background: #cdddd6;
+    border: 1px dashed #508871;
+}
+.admin-menu-organizer .submenu-toggle,
+.admin-menu-organizer .options-toggle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: normal;
+    color: #bbb;
+    cursor: pointer;
+}
+#custom-admin-menu .menu-item-bar .menu-item-handle:hover .submenu-toggle,
+#custom-admin-menu .menu-item-bar .menu-item-handle:hover .options-toggle {
+    color: var(--ase-accent);
+}
+.admin-menu-organizer .submenu-toggle:hover,
+.admin-menu-organizer .options-toggle:hover {
+    color: #135e96;
+}
+.admin-menu-organizer .submenu-toggle:hover .submenu-text,
+.admin-menu-organizer .options-toggle:hover .options-text {
+    text-decoration: underline;
+}
+.add-submenu-to-custom-parent {
+    display: inline-block;
+    flex-shrink: 0;
+    white-space: nowrap;
+    margin-left: 8px;
+    font-size: 13px;
+    font-weight: normal;
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+#custom-admin-menu .menu-item-bar .menu-item-handle:hover .add-submenu-to-custom-parent {
+    color: var(--ase-accent);
+}
+.add-submenu-to-custom-parent:hover {
+    color: #135e96;
+    text-decoration: underline;
+}
+.options-for-hiding {
+    display: flex;
+}
+.hide-toggle-or-always label:first-child {
+    margin-right: 16px;
+}
+.all-selected-roles-options {
+    margin: 8px 0 -8px;
+    padding: 8px 0;
+    border-top: 1px solid #ccc;
+}
+.all-selected-roles-options fieldset {
+    display: flex;
+    margin-top: 4px;
+}
+.all-selected-roles-options div {
+    margin-right: 8px;
+    display: flex;
+    align-items: flex-end;
+}
+.form-table .all-selected-roles-options input[type="radio"] {
+    margin-right: 0;
+}
+.all-selected-roles-options div:last-child {
+    margin-right: 0;
+}
+.hide-for-roles-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #eee;
+}
+.hide-for-roles-options label {
+    width: 32%;
+    margin: 2px 0;
+}
+.menu-required-capability {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #eee;
+}
+.always-show-for-users-options {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #eee;
+}
+.always-show-for-users-options label {
+    display: block;
+    margin-bottom: 6px;
+}
+.always-show-for-users-options .select2-container {
+    width: 100% !important;
+}
+.always-show-for-users-options .select2-container-multi .select2-choices,
+.always-show-for-users-options .select2-container .select2-selection--multiple {
+    min-height: 32px;
+}
+.always-show-for-users-options .select2-container-multi .select2-choices {
+    padding: 0;
+}
+.always-show-for-users-options .select2-container-multi .select2-choices .select2-search-choice {
+    margin: 5px 0 1px 5px;
+}
+.always-show-for-users-options .select2-container-multi .select2-choices .select2-search-field input {
+    min-height: 20px;
+    line-height: 20px;
+}
+
+.admin-menu-actions-wrapper {
+    width: 600px;
+    margin-top: -4px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.admin-menu-main-actions {
+    display: flex;
+}
+
+a.admin-menu-action {
+    text-decoration: none;
+    transition: .25s;    
+}
+
+a.admin-menu-action:hover {
+    text-decoration: underline;
+}
+
+a.admin-menu-action:focus {
+    color: #2271b1;
+    box-shadow: none;
+}
+
+.reset-menu-wrapper {
+    display: flex;
+    width: 120px;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.reset-menu-wrapper a {
+    text-decoration: none;
+    transition: .25s;
+}
+
+.reset-menu-wrapper a:hover {
+    text-decoration: underline;
+}
+
+.reset-menu-spinner {
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+}
+
+/* Hide radio button for Dashboard >> Hide >> All roles */
+#all-selected-roles-radio-for-menu-dashboard div:first-child {
+    display: none;
+}
+
+/* ----- Custom Menu Items ----- */
+
+.admin-menu-main-actions {
+    display: flex;
+    gap: 16px;
+}
+
+.admin-menu-main-actions a {
+    text-decoration: none;
+}
+
+.custom-menu-options-panel {
+    display: block;
+    padding: 15px 15px 5px;
+    border: 1px solid #c3c4c7;
+    border-top: none;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.custom-menu-field {
+    margin-bottom: 12px;
+}
+
+.custom-menu-field label {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.custom-menu-field input[type="text"] {
+    width: 100%;
+    padding: 0 8px;
+}
+
+.custom-menu-field small {
+    display: block;
+    margin-top: 4px;
+    color: #666;
+    font-size: 12px;
+}
+
+.custom-menu-title-input {
+    flex: 1;
+    min-width: 0;
+    font-weight: 600;
+}
+
+.custom-menu-target-url,
+.custom-menu-capability,
+.custom-menu-icon {
+    box-sizing: border-box;
+}
+
+.wp-core-ui select.custom-menu-capability {
+    max-width: 100%;
+}
+
+.remove-custom-menu-item,
+.remove-custom-menu-item-saved {
+    padding: 6px 6px 0;
+    position: absolute;
+    top: 0;
+    right: -38px;
+    cursor: pointer;
+    border: 1px solid #dcdcde;
+    background: #f7f7f7;
+    transition: .25s;
+}
+
+.remove-custom-menu-item svg path,
+.remove-custom-menu-item-saved svg path {
+    transition: .25s;
+}
+
+.remove-custom-menu-item:hover,
+.remove-custom-menu-item-saved:hover {
+    border: 1px solid #8c8f94;
+}
+
+.remove-custom-menu-item:hover svg path,
+.remove-custom-menu-item-saved:hover svg path {
+    fill: #8c8f94;
+}
+
+.url-warning {
+    color: #d63638;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.custom-menu-saved-fields {
+    background: #f9f9f9;
+    padding: 8px 16px 16px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+.custom-menu-saved-fields .custom-menu-field {
+    margin-bottom: 12px;
+}
+
+.custom-menu-saved-fields .custom-menu-field label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.custom-menu-saved-fields .custom-menu-field input[type="text"],
+.custom-menu-saved-fields .custom-menu-field select {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Styling options wrapper (for unsaved custom menus only) */
+.custom-menu-styling-options {
+    background: #fff;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    margin-top: 4px;
+}
+
+.custom-menu-styling-options .custom-menu-field {
+    margin-bottom: 12px;
+}
+
+.custom-menu-styling-options .custom-menu-field:last-child {
+    margin-bottom: 0;
+}
+
+.custom-menu-styling-heading {
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    margin: -12px -16px 12px -16px;
+    padding: 9px 8px;
+}
+
+.custom-menu-styling-title {
+    color: #2c3338;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.custom-menu-saved-fields .custom-menu-field:last-child {
+    margin-bottom: 0;
+}
+
+/* Target type radio buttons */
+.custom-menu-target-type-radios {
+    display: flex;
+    gap: 16px;
+}
+
+.custom-menu-target-type-radios label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+/* Horizontal radio button layout for styling options */
+.custom-menu-styling-options label input[type="radio"],
+.custom-menu-styling-options-saved label input[type="radio"] {
+    cursor: pointer;
+}
+
+/* Color picker field */
+.custom-menu-color-picker,
+.custom-menu-color-picker-saved {
+    width: 100%;
+}
+
+/* wp-color-picker overrides */
+.wp-picker-container {
+    display: block;
+}
+
+.wp-picker-container .wp-color-result {
+    height: 30px;
+}
+
+/* Site Health-style accordion for Menu Style options */
+.custom-menu-styling-options-saved.asenha-accordion {
+    background: #fff;
+    padding: 0;
+    border: 1px solid #c3c4c7;
+    margin-bottom: 12px;
+    margin-top: -4px;
+}
+
+.custom-menu-styling-options-saved .asenha-accordion-heading {
+    margin: 0;
+    border-top: none;
+    border-bottom: 1px solid #c3c4c7;
+}
+
+.custom-menu-styling-options-saved .asenha-accordion-trigger {
+    background: #fff;
+    border: none;
+    color: #2c3338;
+    cursor: pointer;
+    display: flex;
+    font-weight: 600;
+    justify-content: space-between;
+    min-height: 24px;
+    padding: 9px 8px;
+    position: relative;
+    text-align: left;
+    width: 100%;
+}
+
+.custom-menu-styling-options-saved .asenha-accordion-trigger:hover,
+.custom-menu-styling-options-saved .asenha-accordion-trigger:active {
+    background: #f6f7f7;
+}
+
+.custom-menu-styling-options-saved .asenha-accordion-trigger:focus {
+    background: #f6f7f7;
+    border: none;
+    box-shadow: 0 0 0 2px #2271b1;
+    outline: 2px solid transparent;
+}
+
+.custom-menu-styling-options-saved .asenha-accordion-trigger .title {
+    pointer-events: none;
+    font-weight: 600;
+    flex-grow: 1;
+}
+
+.custom-menu-styling-options-saved .asenha-accordion-trigger .icon:before {
+    content: '\f347';
+    display: inline-block;
+    font: normal 20px/1 dashicons;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: absolute;
+    right: 8px;
+    top: 9px;
+    color: #50575e;
+}
+
+.custom-menu-styling-options-saved .asenha-accordion-trigger[aria-expanded="true"] .icon:before {
+    content: '\f343';
+}
+
+.custom-menu-styling-options-saved .asenha-accordion-panel {
+    margin: 0;
+    padding: 16px;
+}
+
+.custom-menu-styling-options-saved .asenha-accordion-panel[hidden] {
+    display: none;
+}
+
+/* Ensure existing styling field styles remain intact */
+.custom-menu-styling-options-saved .asenha-accordion-panel .custom-menu-field {
+    margin-bottom: 12px;
+}
+
+.custom-menu-styling-options-saved .asenha-accordion-panel .custom-menu-field:last-child {
+    margin-bottom: 0;
+}
+
+.submenu-actions {
+    padding: 8px 12px;
+}
+
+.submenu-actions a {
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.submenu-actions a:hover {
+    text-decoration: underline;
+}
+
+/* Custom Menu Form Field Styles */
+.custom-menu-field-margin {
+    margin-bottom: 12px;
+}
+
+.custom-menu-field-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.custom-menu-field-label-tight {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.custom-menu-radios-wrapper {
+    display: flex;
+    gap: 16px;
+}
+
+.custom-menu-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: normal;
+}
+
+.custom-menu-input-full {
+    width: 100%;
+}
+
+.custom-menu-field-hint {
+    display: block;
+    margin-top: 4px;
+    color: #666;
+}
+
+.custom-menu-color-radios-wrapper {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 8px;
+}
+
+.url-warning-inline {
+    color: #d63638;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.menu-item[data-custom-menu-item="yes"] .remove-custom-menu-item-saved {
+    display: block;
+}
+/*! </fs_premium_only> */

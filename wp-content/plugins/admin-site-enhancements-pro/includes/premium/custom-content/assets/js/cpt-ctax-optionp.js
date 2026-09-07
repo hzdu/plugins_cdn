@@ -145,6 +145,35 @@
       });
       var cptSlugSaved = $('#cpt_key').val();
       $('.post-type-key-text').text(cptSlugSaved);
+
+      var setContextLabelFieldState = function( $wrappers, isVisible ) {
+         $wrappers.each(function() {
+            var $wrapper = $(this);
+
+            if ( isVisible ) {
+               $wrapper.show();
+               $wrapper.find(':input').prop('disabled', false);
+            } else {
+               $wrapper.hide();
+               $wrapper.find(':input').prop('disabled', true);
+            }
+         });
+      };
+
+      // Show label fields only when the related CPT setting is enabled.
+      var toggleCptContextLabelFields = function() {
+         if ( $('#cpt_plural_name').length === 0 ) {
+            return;
+         }
+
+         setContextLabelFieldState( $('.cpt-label-thumbnail-support'), $('#cpt_supports_featured_image').is(':checked') );
+         setContextLabelFieldState( $('.cpt-label-hierarchical'), $('#cpt_hierarchical').is(':checked') );
+         setContextLabelFieldState( $('.cpt-label-page-attributes-support'), $('#cpt_supports_page_attributes').is(':checked') );
+         setContextLabelFieldState( $('.cpt-label-has-archive'), $('#cpt_has_archive').is(':checked') );
+      };
+
+      $(document).on('change', '#cpt_supports_featured_image, #cpt_hierarchical, #cpt_supports_page_attributes, #cpt_has_archive', toggleCptContextLabelFields);
+      toggleCptContextLabelFields();
       
       // capability_type
       
@@ -260,6 +289,7 @@
             $('#cpt-use-custom-rewrite-slug').hide();
             $('label[for="cpt_rewrite_custom_slug"]').hide();
             $('#cpt_rewrite_custom_slug').hide();
+            $('#cpt-rewrite-custom-slug-description').hide();
             $('.enable-rewrite-related-field').hide();
          }
       });
@@ -272,14 +302,17 @@
          if ( $('#cpt_use_custom_rewrite_slug').is(':checked') ) {
             $('label[for="cpt_rewrite_custom_slug"]').show();
             $('#cpt_rewrite_custom_slug').show();
+            $('#cpt-rewrite-custom-slug-description').show();
          } else {
             $('label[for="cpt_rewrite_custom_slug"]').hide();
-            $('#cpt_rewrite_custom_slug').hide();            
+            $('#cpt_rewrite_custom_slug').hide();
+            $('#cpt-rewrite-custom-slug-description').hide();
          }
       });
       if ( $('#cpt_use_custom_rewrite_slug').is(':checked') ) {
             $('label[for="cpt_rewrite_custom_slug"]').show();
-            $('#cpt_rewrite_custom_slug').show();         
+            $('#cpt_rewrite_custom_slug').show();
+            $('#cpt-rewrite-custom-slug-description').show();
       }
 
       $(document).on('change','#cpt_ep_mask', function() {
@@ -390,6 +423,20 @@
       var ctaxSlugSaved = $('#ctax_key').val();
       $('.taxonomy-key-text').text(ctaxSlugSaved);
 
+      // Show taxonomy label fields based on hierarchical vs tag-style configuration.
+      var toggleCtaxContextLabelFields = function() {
+         if ( $('#ctax_plural_name').length === 0 ) {
+            return;
+         }
+
+         var isHierarchical = $('#ctax_hierarchical').is(':checked');
+         setContextLabelFieldState( $('.ctax-label-hierarchical'), isHierarchical );
+         setContextLabelFieldState( $('.ctax-label-non-hierarchical'), ! isHierarchical );
+      };
+
+      $(document).on('change', '#ctax_hierarchical', toggleCtaxContextLabelFields);
+      toggleCtaxContextLabelFields();
+
       $(document).on('change','#ctax_query_var', function() {
          if ( $('#ctax_query_var').is(':checked') ) {
             $('#ctax-use-custom-query-var-string').show();
@@ -445,6 +492,7 @@
             $('#ctax-use-custom-rewrite-slug').hide();
             $('label[for="ctax_rewrite_custom_slug"]').hide();
             $('#ctax_rewrite_custom_slug').hide();
+            $('#ctax-rewrite-custom-slug-description').hide();
             $('.enable-rewrite-related-field').hide();
          }
       });
@@ -457,14 +505,17 @@
          if ( $('#ctax_use_custom_rewrite_slug').is(':checked') ) {
             $('label[for="ctax_rewrite_custom_slug"]').show();
             $('#ctax_rewrite_custom_slug').show();
+            $('#ctax-rewrite-custom-slug-description').show();
          } else {
             $('label[for="ctax_rewrite_custom_slug"]').hide();
-            $('#ctax_rewrite_custom_slug').hide();            
+            $('#ctax_rewrite_custom_slug').hide();
+            $('#ctax-rewrite-custom-slug-description').hide();
          }
       });
       if ( $('#ctax_use_custom_rewrite_slug').is(':checked') ) {
             $('label[for="ctax_rewrite_custom_slug"]').show();
-            $('#ctax_rewrite_custom_slug').show();         
+            $('#ctax_rewrite_custom_slug').show();
+            $('#ctax-rewrite-custom-slug-description').show();
       }
 
       $(document).on('change','#ctax_ep_mask', function() {
@@ -567,6 +618,25 @@
             });
          });         
       }
+
+      var $slugModeSelect = $( 'select.asenha-cct-wpml-translation-mode' );
+      var $slugButtonWrap = $( '.asenha-cct-wpml-translate-slug-wrap' );
+
+      function toggleTranslateSlugButton() {
+         if ( ! $slugModeSelect.length || ! $slugButtonWrap.length ) {
+            return;
+         }
+
+         var mode = $slugModeSelect.val();
+         if ( 'translate' === mode || 'display_as_translated' === mode ) {
+            $slugButtonWrap.show();
+         } else {
+            $slugButtonWrap.hide();
+         }
+      }
+
+      toggleTranslateSlugButton();
+      $slugModeSelect.on( 'change', toggleTranslateSlugButton );
 
 
    }); // END OF $(document).ready()

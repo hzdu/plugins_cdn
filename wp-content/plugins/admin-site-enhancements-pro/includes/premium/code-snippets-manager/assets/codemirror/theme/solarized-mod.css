@@ -1,0 +1,145 @@
+/*
+solarized-mod theme for code-mirror
+http://ethanschoonover.com/solarized-mod
+*/
+
+/*
+solarized-mod color palette
+http://ethanschoonover.com/solarized-mod/img/solarized-mod-palette.png
+*/
+
+.solarized-mod.base03 { color: #002b36; }
+.solarized-mod.base02 { color: #073642; }
+.solarized-mod.base01 { color: #586e75; }
+.solarized-mod.base00 { color: #657b83; }
+.solarized-mod.base0 { color: #839496; }
+.solarized-mod.base1 { color: #495050; }
+.solarized-mod.base2 { color: #eee8d5; }
+.solarized-mod.base3  { color: #fdf6e3; }
+.solarized-mod.solar-yellow  { color: #5f44be; }
+.solarized-mod.solar-orange  { color: #8c0a0a; }
+.solarized-mod.solar-red { color: #dc322f; }
+.solarized-mod.solar-magenta { color: #d33682; }
+.solarized-mod.solar-violet  { color: #6165b0; }
+.solarized-mod.solar-blue { color: #268bd2; }
+.solarized-mod.solar-cyan { color: #218079; }
+.solarized-mod.solar-green { color: #5e6a11; }
+
+/* Color scheme for code-mirror */
+
+.cm-s-solarized-mod {
+  line-height: 1.45em;
+  color-profile: sRGB;
+  rendering-intent: auto;
+}
+.cm-s-solarized-mod {
+  background-color: #fefbf3;
+  color: #657b83;
+}
+
+.cm-s-solarized-mod .CodeMirror-widget {
+  text-shadow: none;
+}
+
+.cm-s-solarized-mod .cm-header { color: #586e75; }
+.cm-s-solarized-mod .cm-quote { color: #495050; }
+
+.cm-s-solarized-mod .cm-keyword { color: #8c0a0a; }
+.cm-s-solarized-mod .cm-atom { color: #d33682; }
+.cm-s-solarized-mod .cm-number { color: #d33682; }
+.cm-s-solarized-mod .cm-def { color: #218079; }
+
+.cm-s-solarized-mod .cm-variable { color: #222; }
+.cm-s-solarized-mod .cm-variable-2 { color: #5f44be; }
+.cm-s-solarized-mod .cm-variable-3, .cm-s-solarized-mod .cm-type { color: #6165b0; }
+
+.cm-s-solarized-mod .cm-property { color: #218079; }
+.cm-s-solarized-mod .cm-operator { color: #6165b0; }
+
+.cm-s-solarized-mod .cm-comment { color: #999; font-style:italic; }
+
+.cm-s-solarized-mod .cm-string { color: #5e6a11; }
+.cm-s-solarized-mod .cm-string-2 { color: #5f44be; }
+
+.cm-s-solarized-mod .cm-meta { color: #5e6a11; }
+.cm-s-solarized-mod .cm-qualifier { color: #5f44be; }
+.cm-s-solarized-mod .cm-builtin { color: #d33682; }
+.cm-s-solarized-mod .cm-bracket { color: #8c0a0a; }
+.cm-s-solarized-mod .CodeMirror-matchingbracket { color: #5e6a11; }
+div.CodeMirror.cm-s-solarized-mod span.CodeMirror-matchingbracket { color: #5e6a11; background-color: #b2ffb2; }
+.cm-s-solarized-mod .CodeMirror-nonmatchingbracket { color: #dc322f; }
+.cm-s-solarized-mod .cm-tag { color: #495050; }
+.cm-s-solarized-mod .cm-attribute { color: #218079; }
+.cm-s-solarized-mod .cm-hr {
+  color: transparent;
+  border-top: 1px solid #586e75;
+  display: block;
+}
+.cm-s-solarized-mod .cm-link { color: #495050; cursor: pointer; }
+.cm-s-solarized-mod .cm-special { color: #6165b0; }
+.cm-s-solarized-mod .cm-em {
+  color: #999;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+.cm-s-solarized-mod .cm-error,
+.cm-s-solarized-mod .cm-invalidchar {
+  color: #586e75;
+  border-bottom: 1px dotted #dc322f;
+}
+
+.cm-s-solarized-mod div.CodeMirror-selected { 
+  background: #eee8d5; 
+}
+
+.cm-s-solarized-mod .CodeMirror-line::selection, 
+ .CodeMirror-line > span::selection, 
+  .CodeMirror-line > span > span::selection { 
+  background: #eee8d5;
+}
+
+.cm-s-solarized-mod .CodeMirror-line::-moz-selection, 
+ .CodeMirror-line > span::-moz-selection, 
+ .CodeMirror-line > span > span::-moz-selection { 
+  background: #eee8d5;
+}
+
+/* Editor styling */
+
+/* Remove gutter border */
+.cm-s-solarized-mod .CodeMirror-gutters {
+  border-right: 0;
+}
+
+/* Gutter colors and line number styling based of color scheme (dark / light) */
+/* Light */
+/*.cm-s-solarized-mod .CodeMirror-gutters {
+  background-color: #eee8d5;
+}
+*/
+.cm-s-solarized-mod .CodeMirror-linenumber {
+  color: #839496;
+}
+
+/* Common */
+.cm-s-solarized-mod .CodeMirror-linenumber {
+  padding: 0 5px;
+}
+.cm-s-solarized-mod .CodeMirror-guttermarker-subtle { color: #586e75; }
+.cm-s-solarized-mod .CodeMirror-guttermarker { color: #8c0a0a; }
+
+.cm-s-solarized-mod .CodeMirror-gutter .CodeMirror-gutter-text {
+  color: #586e75;
+}
+
+/* Cursor */
+.cm-s-solarized-mod .CodeMirror-cursor { border-left: 1px solid #819090; }
+
+/* Fat cursor */
+.cm-s-solarized-mod.cm-fat-cursor .CodeMirror-cursor { background: #77ee77; }
+.cm-s-solarized-mod .cm-animate-fat-cursor { background-color: #77ee77; }
+
+/* Active line */
+.cm-s-solarized-mod .CodeMirror-activeline-background {
+  background: rgba(0, 0, 0, 0.06);
+}

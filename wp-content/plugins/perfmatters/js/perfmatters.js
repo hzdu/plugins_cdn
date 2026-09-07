@@ -1,21 +1,64 @@
-jQuery(document).ready(function($) {
+jQuery(function($) {
+
+	var pmActionButtonTimeouts = [];
 
 	//tab-content display
-	$('#perfmatters-menu > a').click(function(e) {
+	$('#perfmatters-menu a[rel][href^="#"]').on('click', function(e) {
+
+		//leave snippet editor when already on Code tab; otherwise return via client-side switch
+		if(new URLSearchParams(location.search).has('snippet') && $(this).attr('rel') === 'code-code' && $('#perfmatters-menu a.active').attr('rel') === 'code-code') {
+			e.preventDefault();
+			var hash = $(this).attr('href');
+			location.href = '?page=perfmatters' + (hash === '#' ? '' : hash);
+			return;
+		}
 
 		$('.perfmatters-button-message').hide();
 					
-		var active_tab = $(this).closest('#perfmatters-menu').find('a.active');	
-		var selected = $(this).attr('rel');
+		//deactivate previous active tab + content
+		var activeTab = $('#perfmatters-menu a.active');
+		var activeContent = $('#' + activeTab.attr('rel'));
+		activeTab.removeClass('active');
+		activeContent.removeClass('active');
 
-		active_tab.removeClass('active');
-		$('#' + active_tab.attr('rel')).removeClass('active');
-					
+		//deactivate previous active child content
+		var activeChild = $('#perfmatters-settings [data-pm-parent="' + activeTab.attr('rel') + '"].active');
+		activeChild.removeClass('active');
+
+		//activate selected tab + content
 		$(this).addClass('active');
+		var selected = $(this).attr('rel');
 		$('#' + selected).addClass('active');
 
-		$('#perfmatters-options-form').attr('data-pm-option', selected.split('-')[0]);
+		//activate selected subnav
+		var selectedSubNav = $('#' + selected).attr('data-pm-subnav');
+		if(selectedSubNav) {
+			$('#' + selectedSubNav).addClass('active');
+		}
+
+		//update selected section in settings container
+		$('#perfmatters-settings').attr('data-pm-option', selected.split('-')[0]);
 		
+		//refresh codemirrors
+		//do we need to refresh on tab change?
+		$('#perfmatters-admin .CodeMirror').each(function(i, el) {
+		    el.CodeMirror.refresh();
+		});
+	});
+
+	//sub nav display
+	$('.pm-subnav > a').on('click', function(e) {
+
+		var active = $(this).closest('.pm-subnav').find('a.active');	
+		var selected = $(this).attr('rel');
+
+		//deactivate previous active subnav + content
+		$('#' + active.attr('rel')).removeClass('active');
+
+		//activate selected subnav + content
+		$('#' + selected).addClass('active');
+		
+		//do we need to refresh here on subnav change?
 		$('#perfmatters-admin .CodeMirror').each(function(i, el) {
 		    el.CodeMirror.refresh();
 		});
@@ -37,10 +80,11 @@ jQuery(document).ready(function($) {
 	}
 
     //tooltip display
-	$(".perfmatters-tooltip").hover(function() {
-	    $(this).closest("tr").find(".perfmatters-tooltip-text").fadeIn(100);
-	},function(){
-	    $(this).closest("tr").find(".perfmatters-tooltip-text").fadeOut(100);
+	$('.perfmatters-tooltip').on('mouseenter', function() {
+    	$(this).closest('tr, .pmcs-title').find('.perfmatters-tooltip-text').fadeIn(100);
+	})
+	.on('mouseleave', function() {
+    	$(this).closest('tr, .pmcs-title').find('.perfmatters-tooltip-text').fadeOut(100);
 	});
 	
 	//add input row
@@ -50,13 +94,27 @@ jQuery(document).ready(function($) {
 		var rowCount = $(this).prop('rel');
 
 		if(rowCount < 1) {
-			$(this).closest('.perfmatters-input-row-wrapper').find('.perfmatters-input-row').addClass('perfmatters-opened').show();
+			$onlyRow = $(this).closest('.perfmatters-input-row-wrapper').find('.perfmatters-input-row');
+			if($onlyRow.find('.perfmatters-input-row-extra').length > 0) {
+				$onlyRow.addClass('perfmatters-opened');
+			}
+			$onlyRow.show();
 		}
 		else {
 			var $container = $(this).closest('.perfmatters-input-row-wrapper').find('.perfmatters-input-row-container');
 			var $clonedRow = $container.find('.perfmatters-input-row').last().clone();
 
-			$clonedRow.addClass('perfmatters-opened');
+			if($clonedRow.find('.perfmatters-input-row-extra').length > 0) {
+				$clonedRow.addClass('perfmatters-opened');
+			}
+
+			/* snippet conditions */
+			if($clonedRow.hasClass('condition')) {
+				$clonedRow.removeClass('pmcs-condition-load-objects pmcs-condition-objects-loaded');
+				$clonedRow.attr('data-object-type', '').attr('data-saved-object', '');
+				$clonedRow.find('.condition-object-wrap').empty();
+			}
+
 			$clonedRow.find(':text, select').val('');
 			$clonedRow.find(':checkbox').prop('checked', false);
 
@@ -81,6 +139,13 @@ jQuery(document).ready(function($) {
 			$row.find(':text, select').val('');
 			$row.find(':checkbox').prop("checked", false);
 			$row.hide();
+
+			/* snippet conditions */
+			if($row.hasClass('condition')) {
+				$row.removeClass('pmcs-condition-load-objects pmcs-condition-objects-loaded');
+				$row.attr('data-object-type', '').attr('data-saved-object', '');
+				$row.find('.condition-object-wrap').empty();
+			}
 		}
 		else {
 			$(this).closest('.perfmatters-input-row').remove();
@@ -108,7 +173,7 @@ jQuery(document).ready(function($) {
 	});
 
 	//quick exclusions
-	$(".perfmatters-quick-exclusion-title-bar").click(function(e) {
+	$(".perfmatters-quick-exclusion-title-bar").on('click', function(e) {
         var clicked = $(this).closest(".perfmatters-quick-exclusion");
         if(clicked.hasClass("perfmatters-opened")) {
             clicked.removeClass("perfmatters-opened");
@@ -119,7 +184,7 @@ jQuery(document).ready(function($) {
     });
 
 	//input display control
-	$('.perfmatters-input-controller input, .perfmatters-input-controller select').change(function() {
+	$('.perfmatters-input-controller input, .perfmatters-input-controller select').on('change', function() {
 
 		var controller = $(this);
 
@@ -190,7 +255,7 @@ jQuery(document).ready(function($) {
 	});
 
 	//validate input
-	$("#perfmatters-admin [perfmatters_validate]").keypress(function(e) {
+	$("#perfmatters-admin [perfmatters_validate]").on('keypress', function(e) {
 
 		//grab input and pattern
 		var code = e.which;
@@ -204,15 +269,15 @@ jQuery(document).ready(function($) {
 	});
 
 	//initialize codemirror textareas
-	var $codemirror = $('.perfmatters-codemirror');
+	/*var $codemirror = $('.perfmatters-codemirror');
 	if($codemirror.length) {
 		$codemirror.each(function() {
 			wp.codeEditor.initialize(this, cm_settings);
 		});
-	}
+	}*/
 
 	//show advanced toggle
-	$('#perfmatters-options-form #show_advanced').click(function(e) {
+	$('#perfmatters-options-form #show_advanced').on('click', function(e) {
 		var container = $('#perfmatters-options');
 		var checked = $(this).is(':checked');
 		if(checked) {
@@ -224,7 +289,7 @@ jQuery(document).ready(function($) {
 	});
 
 	//close cta
-	$('#perfmatters-cta-close').click(function(e) {
+	$('#perfmatters-cta-close').on('click', function(e) {
 		
 		e.preventDefault();
 
@@ -240,30 +305,67 @@ jQuery(document).ready(function($) {
 	        }
 	    });
 	});
-});
 
-//update row count for given input row attributes
-function perfmattersUpdateRowCount(row, rowCount) {
-	jQuery(row).find('input, select, label').each(function() {
-		if(jQuery(this).attr('id')) {
-			jQuery(this).attr('id', jQuery(this).attr('id').replace(/[0-9]+/g, rowCount));
+	// PHP-rendered success beside a button (?message= after full reload): same fadeIn + 10s fadeOut as AJAX .always.
+	$('.perfmatters-button-message[data-pm-post-reload-notice="1"]').each(function() {
+		var $message = $(this);
+		var action = $message.closest('.perfmatters-button-container').find('button[data-pm-action]').attr('data-pm-action');
+		if(!action) {
+			return;
 		}
-		if(jQuery(this).attr('name')) {
-			jQuery(this).attr('name', jQuery(this).attr('name').replace(/[0-9]+/g, rowCount));
-		}
-		if(jQuery(this).attr('for')) {
-			jQuery(this).attr('for', jQuery(this).attr('for').replace(/[0-9]+/g, rowCount));
-		}
+		$message.fadeIn();
+		clearTimeout(pmActionButtonTimeouts[action]);
+		pmActionButtonTimeouts[action] = setTimeout(function() {
+			//$message.fadeOut();
+		}, 10000);
 	});
-}
 
 
-jQuery(function($) {
+	function perfmattersFadeButtonMessage($message, action) {
+		$message.fadeIn();
+		clearTimeout(pmActionButtonTimeouts[action]);
+		pmActionButtonTimeouts[action] = setTimeout(function() {
+			$message.fadeOut();
+		}, 10000);
+	}
 
-	var pmActionButtonTimeouts = [];
+	function perfmattersReloadWithNotice(data) {
+		if(!data.message_key) {
+			window.location.reload();
+			return;
+		}
+
+		var url = new URL(window.location.href);
+
+		url.search = '';
+		url.searchParams.set('page', 'perfmatters');
+		url.searchParams.set('message', data.message_key);
+
+		var messageKeyHashes = {
+			snippets_imported: '#code/settings',
+			editor_theme_updated: '#code/settings',
+			settings_imported: '#tools',
+			settings_restored: '#tools'
+		};
+		if(messageKeyHashes[data.message_key]) {
+			url.hash = messageKeyHashes[data.message_key];
+		}
+
+		window.location.assign(url.toString());
+	}
+
+	// PHP-rendered success after full reload.
+	$('.perfmatters-button-message .perfmatters-reload-notice').each(function() {
+		var $message = $(this).closest('.perfmatters-button-message');
+		var action = $message.closest('.perfmatters-button-container').find('button[data-pm-action]').attr('data-pm-action');
+		if(!action) {
+			return;
+		}
+		perfmattersFadeButtonMessage($message, action);
+	});
 
 	//action button press
-	$('button[data-pm-action]').click(function(e) {
+	$('button[data-pm-action]').on('click', function(e) {
 
 		e.preventDefault();
 
@@ -300,6 +402,9 @@ jQuery(function($) {
 	    if(action == 'import_settings') {
     		formData.append('perfmatters_import_settings_file', document.getElementById('perfmatters-import-settings-file').files[0]);
 	    }
+	    else if(action == 'import_snippets') {
+    		formData.append('pmcs_import_file', document.getElementById('pmcs-import-file').files[0]);
+	    }
 	    else if(action == 'scan_database') {
 	    	$('#tools-database .perfmatters-option-data').html('');
 	    }
@@ -309,6 +414,14 @@ jQuery(function($) {
 			    this.CodeMirror.save();
 			});
 	    	formData.append('form', form.serialize());
+
+	    	//include custom CodeMirror theme file upload when saving settings.
+	    	if(action == 'save_settings') {
+	    		var customThemeInput = document.getElementById('code-custom-theme-file');
+	    		if(customThemeInput && customThemeInput.files && customThemeInput.files[0]) {
+	    			formData.append('code_custom_theme_file', customThemeInput.files[0]);
+	    		}
+	    	}
 	    }
 
 	    //ajax request
@@ -327,7 +440,8 @@ jQuery(function($) {
 	    	}
 
 	    	//export settings
-	    	if(action == 'export_settings' && r.data.export) {
+	    	const exportActions = ['export_settings', 'export_snippets'];
+	    	if(exportActions.includes(action) && r.data.export) {
 	    		var blob = new Blob([r.data.export], {
 			        type: 'application/json'
 		      	});
@@ -339,7 +453,7 @@ jQuery(function($) {
 				var day = d.getDate();
 				var dateString = d.getFullYear() + '-' + (month<10 ? '0' : '') + month + '-' + (day<10 ? '0' : '') + day;
 
-			    link.download = 'perfmatters-settings-export-' + dateString + '.json';
+			    link.download = 'perfmatters-' + action.split('_').reverse().join('-') + '-' + location.hostname + '-' + dateString + '.json';
 			    link.click();
 	    	}
 
@@ -364,17 +478,18 @@ jQuery(function($) {
 			message.addClass('perfmatters-error');
 			message.html(PERFMATTERS.strings.failed);
 		})
-		.always(function(r) {
-			
+	.always(function(r) {
+
+			if(r.data && r.data.reload) {
+				perfmattersReloadWithNotice(r.data);
+				return;
+			}
+
 			//show response message
 			if(r.data && r.data.message) {
 				message.html(r.data.message);
 			}
-			message.fadeIn();
-			clearTimeout(pmActionButtonTimeouts[action]);
-			pmActionButtonTimeouts[action] = setTimeout(function() {
-				message.fadeOut();
-			}, 10000);
+			perfmattersFadeButtonMessage(message, action);
 
 			//re-enable button
 			button.attr('disabled', false);
@@ -385,11 +500,21 @@ jQuery(function($) {
 	       	if(action == 'purge_meta') {
 	       		$('#perfmatters-purge-meta input:checkbox').removeAttr('checked');
 	       	}
-
-	       	//reload page
-	       	if(r.data && r.data.reload) {
-	       		location.reload();
-	       	}
 		})
 	});
+
+	//update row count for given input row attributes
+	function perfmattersUpdateRowCount(row, rowCount) {
+		$(row).find('input, select, label').each(function() {
+			if($(this).attr('id')) {
+				$(this).attr('id', $(this).attr('id').replace(/[0-9]+/g, rowCount));
+			}
+			if($(this).attr('name')) {
+				$(this).attr('name', $(this).attr('name').replace(/[0-9]+/g, rowCount));
+			}
+			if($(this).attr('for')) {
+				$(this).attr('for', $(this).attr('for').replace(/[0-9]+/g, rowCount));
+			}
+		});
+	}
 });

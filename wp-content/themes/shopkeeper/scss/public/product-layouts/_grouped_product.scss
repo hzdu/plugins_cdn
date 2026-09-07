@@ -1,0 +1,136 @@
+.group_table
+{
+    tr
+    {
+        td
+        {
+            font-size: 1rem;
+            padding-bottom: 13px !important;
+            padding-top: 13px !important;
+            text-align: left;
+            vertical-align: middle !important;
+        }
+
+        &:first-child td
+        {
+            padding-top: 5px !important;
+        }
+
+        &:last-child td
+        {
+            border-bottom: none;
+        }
+
+    }
+
+    td.woocommerce-grouped-product-list-item__quantity
+    {
+        padding-right: 13px;
+
+        .wc-grouped-product-add-to-cart-checkbox
+        {
+            transform: scale(1) !important;
+            width: 35px !important;
+            height: 35px;
+            outline: 0;
+        }
+
+        .button
+        {
+            min-width: 100px;
+
+            @media #{$xmedium-down} {
+                max-width: 110px;
+                word-break: break-word;
+                padding: 16px !important;
+            }
+
+            &:hover
+            {
+                color: #fff;
+            }
+        }
+
+        .quantity.default
+        {
+            width: 60px;
+            margin: 0 auto;
+        }
+
+        .quantity.custom
+        {
+            margin: 0 auto;
+        }
+    }
+
+    td.woocommerce-grouped-product-list-item__label
+    {
+        display: table-cell;
+        cursor: default !important;
+        color: #333;
+
+        @media #{$large-down} {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+        }
+
+        label
+        {
+            margin-top: -5px;
+            cursor: default !important;
+            padding-right: 0;
+
+            @media #{$large-up} {
+                margin-top: 0;
+            }
+
+            a
+            {
+                @media #{$large-down} {
+                    font-size: 13px !important;
+
+                }
+            }
+        }
+
+        .price {
+            @media #{$large-up} {
+                display: none;
+            }
+        }
+    }
+
+    td.woocommerce-grouped-product-list-item__price
+    {
+        @media #{$large-up} {
+            display: table-cell;
+        }
+
+        @media #{$large-down} {
+            font-size: 13px !important;
+            text-align: right;
+
+        }
+    }
+
+    label
+    {
+        a
+        {
+            font-size: 1rem;
+            line-height: 1.3125rem;
+            font-weight: 600;
+            white-space: normal;
+            text-transform: capitalize;
+        }
+    }
+
+    del
+    {
+        .amount
+        {
+            margin-right: 5px;
+        }
+    }
+
+}

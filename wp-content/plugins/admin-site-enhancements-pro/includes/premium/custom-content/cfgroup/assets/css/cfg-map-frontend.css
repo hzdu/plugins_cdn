@@ -1,0 +1,42 @@
+/**
+ * CFG Map — frontend OpenStreetMap (Leaflet) embeds.
+ */
+
+.asenha-cfgroup-map-output {
+	max-width: 100%;
+}
+
+.asenha-cfgroup-map-osm {
+	width: 100%;
+	max-width: 100%;
+	min-height: 200px;
+	background: #eef1f4;
+	border: 1px solid #c3c4c7;
+	border-radius: 2px;
+	overflow: hidden;
+	z-index: 0;
+	touch-action: none; /* before Leaflet adds .leaflet-container */
+	-ms-touch-action: none;
+}
+
+/* L.map() adds .leaflet-container to the same node as .asenha-cfgroup-map-osm */
+.asenha-cfgroup-map-osm.leaflet-container {
+	width: 100%;
+	height: 100%;
+	font: inherit;
+	z-index: 0;
+	touch-action: none; /* lets Leaflet own pinch / pan */
+	-ms-touch-action: none;
+}
+
+.asenha-cfgroup-map-address {
+	margin: 0.5em 0;
+}
+
+/*
+ * Breakdance ASE Map: root must grow with address above/below.
+ * Higher specificity than cached instance rules (.bde-ase-map-*) that still set height: 400px.
+ */
+.breakdance div.bde-ase-map {
+	height: auto;
+}

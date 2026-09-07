@@ -1,0 +1,30 @@
+#getbowtied_dashboard_iframe {
+  width: 100%;
+  min-width: 100%;
+  min-height: calc(100vh - 32px);
+  opacity: 0;
+  -webkit-animation: fadeInFromNone 0.3s ease-out;
+          animation: fadeInFromNone 0.3s ease-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+}
+
+@-webkit-keyframes fadeInFromNone {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInFromNone {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

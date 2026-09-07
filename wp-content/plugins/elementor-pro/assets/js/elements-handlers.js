@@ -1,12 +1,12 @@
-/*! elementor-pro - v3.26.0 - 22-12-2024 */
+/*! elementor-pro - v4.2.0 - 31-08-2026 */
 "use strict";
 (self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["elements-handlers"],{
 
-/***/ "../assets/dev/js/frontend/elements-handlers.js":
+/***/ "../assets/dev/js/frontend/elements-handlers.js"
 /*!******************************************************!*\
   !*** ../assets/dev/js/frontend/elements-handlers.js ***!
   \******************************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
 
 
 
@@ -20,22 +20,22 @@ var _frontend6 = _interopRequireDefault(__webpack_require__(/*! modules/forms/as
 var _frontend7 = _interopRequireDefault(__webpack_require__(/*! modules/gallery/assets/js/frontend/frontend */ "../modules/gallery/assets/js/frontend/frontend.js"));
 var _frontend8 = _interopRequireDefault(__webpack_require__(/*! modules/lottie/assets/js/frontend/frontend */ "../modules/lottie/assets/js/frontend/frontend.js"));
 var _frontend9 = _interopRequireDefault(__webpack_require__(/*! modules/nav-menu/assets/js/frontend/frontend */ "../modules/nav-menu/assets/js/frontend/frontend.js"));
-var _frontend10 = _interopRequireDefault(__webpack_require__(/*! modules/popup/assets/js/frontend/frontend */ "../modules/popup/assets/js/frontend/frontend.js"));
-var _frontend11 = _interopRequireDefault(__webpack_require__(/*! modules/posts/assets/js/frontend/frontend */ "../modules/posts/assets/js/frontend/frontend.js"));
-var _frontend12 = _interopRequireDefault(__webpack_require__(/*! modules/share-buttons/assets/js/frontend/frontend */ "../modules/share-buttons/assets/js/frontend/frontend.js"));
-var _frontend13 = _interopRequireDefault(__webpack_require__(/*! modules/slides/assets/js/frontend/frontend */ "../modules/slides/assets/js/frontend/frontend.js"));
-var _frontend14 = _interopRequireDefault(__webpack_require__(/*! modules/social/assets/js/frontend/frontend */ "../modules/social/assets/js/frontend/frontend.js"));
-var _frontend15 = _interopRequireDefault(__webpack_require__(/*! modules/table-of-contents/assets/js/frontend/frontend */ "../modules/table-of-contents/assets/js/frontend/frontend.js"));
-var _frontend16 = _interopRequireDefault(__webpack_require__(/*! modules/theme-builder/assets/js/frontend/frontend */ "../modules/theme-builder/assets/js/frontend/frontend.js"));
-var _frontend17 = _interopRequireDefault(__webpack_require__(/*! modules/theme-elements/assets/js/frontend/frontend */ "../modules/theme-elements/assets/js/frontend/frontend.js"));
-var _frontend18 = _interopRequireDefault(__webpack_require__(/*! modules/woocommerce/assets/js/frontend/frontend */ "../modules/woocommerce/assets/js/frontend/frontend.js"));
-var _frontend19 = _interopRequireDefault(__webpack_require__(/*! modules/loop-builder/assets/js/frontend/frontend */ "../modules/loop-builder/assets/js/frontend/frontend.js"));
-var _frontend20 = _interopRequireDefault(__webpack_require__(/*! modules/mega-menu/assets/js/frontend/frontend */ "../modules/mega-menu/assets/js/frontend/frontend.js"));
-var _frontend21 = _interopRequireDefault(__webpack_require__(/*! modules/nested-carousel/assets/js/frontend/frontend */ "../modules/nested-carousel/assets/js/frontend/frontend.js"));
-var _frontend22 = _interopRequireDefault(__webpack_require__(/*! modules/loop-filter/assets/js/frontend/frontend */ "../modules/loop-filter/assets/js/frontend/frontend.js"));
-var _frontend23 = _interopRequireDefault(__webpack_require__(/*! modules/off-canvas/assets/js/frontend/frontend */ "../modules/off-canvas/assets/js/frontend/frontend.js"));
-var _frontend24 = _interopRequireDefault(__webpack_require__(/*! modules/floating-buttons/assets/js/frontend/frontend */ "../modules/floating-buttons/assets/js/frontend/frontend.js"));
-var _frontend25 = _interopRequireDefault(__webpack_require__(/*! modules/search/assets/js/frontend/frontend */ "../modules/search/assets/js/frontend/frontend.js"));
+var _frontend0 = _interopRequireDefault(__webpack_require__(/*! modules/popup/assets/js/frontend/frontend */ "../modules/popup/assets/js/frontend/frontend.js"));
+var _frontend1 = _interopRequireDefault(__webpack_require__(/*! modules/posts/assets/js/frontend/frontend */ "../modules/posts/assets/js/frontend/frontend.js"));
+var _frontend10 = _interopRequireDefault(__webpack_require__(/*! modules/share-buttons/assets/js/frontend/frontend */ "../modules/share-buttons/assets/js/frontend/frontend.js"));
+var _frontend11 = _interopRequireDefault(__webpack_require__(/*! modules/slides/assets/js/frontend/frontend */ "../modules/slides/assets/js/frontend/frontend.js"));
+var _frontend12 = _interopRequireDefault(__webpack_require__(/*! modules/social/assets/js/frontend/frontend */ "../modules/social/assets/js/frontend/frontend.js"));
+var _frontend13 = _interopRequireDefault(__webpack_require__(/*! modules/table-of-contents/assets/js/frontend/frontend */ "../modules/table-of-contents/assets/js/frontend/frontend.js"));
+var _frontend14 = _interopRequireDefault(__webpack_require__(/*! modules/theme-builder/assets/js/frontend/frontend */ "../modules/theme-builder/assets/js/frontend/frontend.js"));
+var _frontend15 = _interopRequireDefault(__webpack_require__(/*! modules/theme-elements/assets/js/frontend/frontend */ "../modules/theme-elements/assets/js/frontend/frontend.js"));
+var _frontend16 = _interopRequireDefault(__webpack_require__(/*! modules/woocommerce/assets/js/frontend/frontend */ "../modules/woocommerce/assets/js/frontend/frontend.js"));
+var _frontend17 = _interopRequireDefault(__webpack_require__(/*! modules/loop-builder/assets/js/frontend/frontend */ "../modules/loop-builder/assets/js/frontend/frontend.js"));
+var _frontend18 = _interopRequireDefault(__webpack_require__(/*! modules/mega-menu/assets/js/frontend/frontend */ "../modules/mega-menu/assets/js/frontend/frontend.js"));
+var _frontend19 = _interopRequireDefault(__webpack_require__(/*! modules/nested-carousel/assets/js/frontend/frontend */ "../modules/nested-carousel/assets/js/frontend/frontend.js"));
+var _frontend20 = _interopRequireDefault(__webpack_require__(/*! modules/loop-filter/assets/js/frontend/frontend */ "../modules/loop-filter/assets/js/frontend/frontend.js"));
+var _frontend21 = _interopRequireDefault(__webpack_require__(/*! modules/off-canvas/assets/js/frontend/frontend */ "../modules/off-canvas/assets/js/frontend/frontend.js"));
+var _frontend22 = _interopRequireDefault(__webpack_require__(/*! modules/floating-buttons/assets/js/frontend/frontend */ "../modules/floating-buttons/assets/js/frontend/frontend.js"));
+var _frontend23 = _interopRequireDefault(__webpack_require__(/*! modules/search/assets/js/frontend/frontend */ "../modules/search/assets/js/frontend/frontend.js"));
 const extendDefaultHandlers = defaultHandlers => {
   const handlers = {
     animatedText: _frontend.default,
@@ -47,22 +47,22 @@ const extendDefaultHandlers = defaultHandlers => {
     gallery: _frontend7.default,
     lottie: _frontend8.default,
     nav_menu: _frontend9.default,
-    popup: _frontend10.default,
-    posts: _frontend11.default,
-    share_buttons: _frontend12.default,
-    slides: _frontend13.default,
-    social: _frontend14.default,
-    themeBuilder: _frontend16.default,
-    themeElements: _frontend17.default,
-    woocommerce: _frontend18.default,
-    tableOfContents: _frontend15.default,
-    loopBuilder: _frontend19.default,
-    megaMenu: _frontend20.default,
-    nestedCarousel: _frontend21.default,
-    taxonomyFilter: _frontend22.default,
-    offCanvas: _frontend23.default,
-    contactButtons: _frontend24.default,
-    search: _frontend25.default
+    popup: _frontend0.default,
+    posts: _frontend1.default,
+    share_buttons: _frontend10.default,
+    slides: _frontend11.default,
+    social: _frontend12.default,
+    themeBuilder: _frontend14.default,
+    themeElements: _frontend15.default,
+    woocommerce: _frontend16.default,
+    tableOfContents: _frontend13.default,
+    loopBuilder: _frontend17.default,
+    megaMenu: _frontend18.default,
+    nestedCarousel: _frontend19.default,
+    taxonomyFilter: _frontend20.default,
+    offCanvas: _frontend21.default,
+    contactButtons: _frontend22.default,
+    search: _frontend23.default
   };
   return {
     ...defaultHandlers,
@@ -73,13 +73,13 @@ elementorProFrontend.on('elementor-pro/modules/init/before', () => {
   elementorFrontend.hooks.addFilter('elementor-pro/frontend/handlers', extendDefaultHandlers);
 });
 
-/***/ }),
+/***/ },
 
-/***/ "../assets/dev/js/frontend/utils/ajax-helper.js":
+/***/ "../assets/dev/js/frontend/utils/ajax-helper.js"
 /*!******************************************************!*\
   !*** ../assets/dev/js/frontend/utils/ajax-helper.js ***!
   \******************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+(__unused_webpack_module, exports) {
 
 
 
@@ -105,13 +105,13 @@ class AjaxHelper {
 }
 exports["default"] = AjaxHelper;
 
-/***/ }),
+/***/ },
 
-/***/ "../assets/dev/js/frontend/utils/focusable-element-selectors.js":
+/***/ "../assets/dev/js/frontend/utils/focusable-element-selectors.js"
 /*!**********************************************************************!*\
   !*** ../assets/dev/js/frontend/utils/focusable-element-selectors.js ***!
   \**********************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+(__unused_webpack_module, exports) {
 
 
 
@@ -123,13 +123,13 @@ function focusableElementSelectors() {
   return 'audio, button, canvas, details, iframe, input, select, summary, textarea, video, [accesskey], a[href], area[href], [tabindex]';
 }
 
-/***/ }),
+/***/ },
 
-/***/ "../assets/dev/js/frontend/utils/icons/e-icons.js":
+/***/ "../assets/dev/js/frontend/utils/icons/e-icons.js"
 /*!********************************************************!*\
   !*** ../assets/dev/js/frontend/utils/icons/e-icons.js ***!
   \********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -153,13 +153,13 @@ const close = exports.close = {
   }
 };
 
-/***/ }),
+/***/ },
 
-/***/ "../assets/dev/js/frontend/utils/icons/manager.js":
+/***/ "../assets/dev/js/frontend/utils/icons/manager.js"
 /*!********************************************************!*\
   !*** ../assets/dev/js/frontend/utils/icons/manager.js ***!
   \********************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+(__unused_webpack_module, exports) {
 
 
 
@@ -183,12 +183,11 @@ class IconsManager {
       }
     }
   }
-  createSvgElement(name, _ref) {
-    let {
-      path,
-      width,
-      height
-    } = _ref;
+  createSvgElement(name, {
+    path,
+    width,
+    height
+  }) {
     const elementName = this.prefix + name,
       elementSelector = '#' + this.prefix + name;
 
@@ -211,13 +210,13 @@ class IconsManager {
 }
 exports["default"] = IconsManager;
 
-/***/ }),
+/***/ },
 
-/***/ "../assets/dev/js/frontend/utils/modal-keyboard-handler.js":
+/***/ "../assets/dev/js/frontend/utils/modal-keyboard-handler.js"
 /*!*****************************************************************!*\
   !*** ../assets/dev/js/frontend/utils/modal-keyboard-handler.js ***!
   \*****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -320,7 +319,7 @@ class ModalKeyboardHandler {
     }
   }
   setFocusToElement(element) {
-    const focusDelayToEnsureThatAllAnimationsHaveFinished = 100;
+    const focusDelayToEnsureThatAllAnimationsHaveFinished = 'popup' === this.config.modalType ? 250 : 100;
     setTimeout(() => {
       element?.focus();
     }, focusDelayToEnsureThatAllAnimationsHaveFinished);
@@ -328,13 +327,13 @@ class ModalKeyboardHandler {
 }
 exports["default"] = ModalKeyboardHandler;
 
-/***/ }),
+/***/ },
 
-/***/ "../assets/dev/js/frontend/utils/run-element-handlers.js":
+/***/ "../assets/dev/js/frontend/utils/run-element-handlers.js"
 /*!***************************************************************!*\
   !*** ../assets/dev/js/frontend/utils/run-element-handlers.js ***!
   \***************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+(__unused_webpack_module, exports) {
 
 
 
@@ -346,13 +345,13 @@ function runElementHandlers(elements) {
   [...elements].flatMap(el => [...el.querySelectorAll('.elementor-element')]).forEach(el => elementorFrontend.elementsHandler.runReadyTrigger(el));
 }
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/animated-headline/assets/js/frontend/frontend.js":
+/***/ "../modules/animated-headline/assets/js/frontend/frontend.js"
 /*!*******************************************************************!*\
   !*** ../modules/animated-headline/assets/js/frontend/frontend.js ***!
   \*******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -368,13 +367,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/carousel/assets/js/frontend/frontend.js":
+/***/ "../modules/carousel/assets/js/frontend/frontend.js"
 /*!**********************************************************!*\
   !*** ../modules/carousel/assets/js/frontend/frontend.js ***!
   \**********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -392,13 +391,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/countdown/assets/js/frontend/frontend.js":
+/***/ "../modules/countdown/assets/js/frontend/frontend.js"
 /*!***********************************************************!*\
   !*** ../modules/countdown/assets/js/frontend/frontend.js ***!
   \***********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -414,13 +413,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/dynamic-tags/assets/js/frontend/frontend.js":
+/***/ "../modules/dynamic-tags/assets/js/frontend/frontend.js"
 /*!**************************************************************!*\
   !*** ../modules/dynamic-tags/assets/js/frontend/frontend.js ***!
   \**************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+(__unused_webpack_module, exports) {
 
 
 
@@ -439,13 +438,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/floating-buttons/assets/js/frontend/frontend.js":
+/***/ "../modules/floating-buttons/assets/js/frontend/frontend.js"
 /*!******************************************************************!*\
   !*** ../modules/floating-buttons/assets/js/frontend/frontend.js ***!
   \******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -468,13 +467,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/forms/assets/js/frontend/frontend.js":
+/***/ "../modules/forms/assets/js/frontend/frontend.js"
 /*!*******************************************************!*\
   !*** ../modules/forms/assets/js/frontend/frontend.js ***!
   \*******************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -491,13 +490,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/gallery/assets/js/frontend/frontend.js":
+/***/ "../modules/gallery/assets/js/frontend/frontend.js"
 /*!*********************************************************!*\
   !*** ../modules/gallery/assets/js/frontend/frontend.js ***!
   \*********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -513,13 +512,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/hotspot/assets/js/frontend/frontend.js":
+/***/ "../modules/hotspot/assets/js/frontend/frontend.js"
 /*!*********************************************************!*\
   !*** ../modules/hotspot/assets/js/frontend/frontend.js ***!
   \*********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -535,13 +534,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/loop-builder/assets/js/frontend/frontend.js":
+/***/ "../modules/loop-builder/assets/js/frontend/frontend.js"
 /*!**************************************************************!*\
   !*** ../modules/loop-builder/assets/js/frontend/frontend.js ***!
   \**************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -563,13 +562,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/loop-filter/assets/js/frontend/frontend-module-base.js":
+/***/ "../modules/loop-filter/assets/js/frontend/frontend-module-base.js"
 /*!*************************************************************************!*\
   !*** ../modules/loop-filter/assets/js/frontend/frontend-module-base.js ***!
   \*************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -596,9 +595,7 @@ class BaseFilterFrontendModule extends elementorModules.Module {
    * @param {string} filterTerm
    * @param {string} defaultFilter
    */
-  removeFilterFromLoopWidget(widgetId, filterId) {
-    let filterTerm = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
-    let defaultFilter = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
+  removeFilterFromLoopWidget(widgetId, filterId, filterTerm = '', defaultFilter = '') {
     if (!this.loopWidgetsStore.getWidget(widgetId)) {
       this.loopWidgetsStore.addWidget(widgetId);
       this.refreshLoopWidget(widgetId, filterId);
@@ -633,9 +630,7 @@ class BaseFilterFrontendModule extends elementorModules.Module {
    * @param {boolean} refresh
    * @param {string}  multipleFiltersLogicalJoin AND / OR / 'DISABLED' for single filter (default)
    */
-  setFilterDataForLoopWidget(widgetId, filterId, filter) {
-    let refresh = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
-    let multipleFiltersLogicalJoin = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'DISABLED';
+  setFilterDataForLoopWidget(widgetId, filterId, filter, refresh = true, multipleFiltersLogicalJoin = 'DISABLED') {
     this.loopWidgetsStore.maybeInitializeWidget(widgetId);
     this.loopWidgetsStore.maybeInitializeFilter(widgetId, filterId);
     const logicalJoin = this.validateMultipleFilterOperator(multipleFiltersLogicalJoin);
@@ -870,7 +865,7 @@ class BaseFilterFrontendModule extends elementorModules.Module {
       const existingWidgetContainer = widget.querySelector('.elementor-widget-container'),
         newWidgetContainer = this.createElementFromHTMLString(response.data);
       widget.replaceChild(newWidgetContainer, existingWidgetContainer);
-      this.handleElementHandlers(newWidgetContainer);
+      this.handleElementHandlers(widget);
       if (ElementorProFrontendConfig.settings.lazy_load_background_images) {
         document.dispatchEvent(new Event('elementor/lazyload/observe'));
       }
@@ -890,13 +885,13 @@ class BaseFilterFrontendModule extends elementorModules.Module {
 }
 exports["default"] = BaseFilterFrontendModule;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/loop-filter/assets/js/frontend/frontend.js":
+/***/ "../modules/loop-filter/assets/js/frontend/frontend.js"
 /*!*************************************************************!*\
   !*** ../modules/loop-filter/assets/js/frontend/frontend.js ***!
   \*************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -914,13 +909,13 @@ class LoopFilter extends _frontendModuleBase.default {
 }
 exports["default"] = LoopFilter;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/loop-filter/assets/js/frontend/loop-widgets-store.js":
+/***/ "../modules/loop-filter/assets/js/frontend/loop-widgets-store.js"
 /*!***********************************************************************!*\
   !*** ../modules/loop-filter/assets/js/frontend/loop-widgets-store.js ***!
   \***********************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+(__unused_webpack_module, exports) {
 
 
 
@@ -1046,13 +1041,13 @@ class LoopWidgetsStore {
 }
 exports["default"] = LoopWidgetsStore;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/loop-filter/assets/js/query-constants.js":
+/***/ "../modules/loop-filter/assets/js/query-constants.js"
 /*!***********************************************************!*\
   !*** ../modules/loop-filter/assets/js/query-constants.js ***!
   \***********************************************************/
-/***/ ((module) => {
+(module) {
 
 
 
@@ -1094,13 +1089,13 @@ module.exports = {
   queryConstants
 };
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/lottie/assets/js/frontend/frontend.js":
+/***/ "../modules/lottie/assets/js/frontend/frontend.js"
 /*!********************************************************!*\
   !*** ../modules/lottie/assets/js/frontend/frontend.js ***!
   \********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -1116,13 +1111,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/mega-menu/assets/js/frontend/frontend.js":
+/***/ "../modules/mega-menu/assets/js/frontend/frontend.js"
 /*!***********************************************************!*\
   !*** ../modules/mega-menu/assets/js/frontend/frontend.js ***!
   \***********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -1138,13 +1133,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/nav-menu/assets/js/frontend/frontend.js":
+/***/ "../modules/nav-menu/assets/js/frontend/frontend.js"
 /*!**********************************************************!*\
   !*** ../modules/nav-menu/assets/js/frontend/frontend.js ***!
   \**********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -1169,13 +1164,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/nested-carousel/assets/js/frontend/frontend.js":
+/***/ "../modules/nested-carousel/assets/js/frontend/frontend.js"
 /*!*****************************************************************!*\
   !*** ../modules/nested-carousel/assets/js/frontend/frontend.js ***!
   \*****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -1191,13 +1186,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/off-canvas/assets/js/frontend/frontend.js":
+/***/ "../modules/off-canvas/assets/js/frontend/frontend.js"
 /*!************************************************************!*\
   !*** ../modules/off-canvas/assets/js/frontend/frontend.js ***!
   \************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -1233,13 +1228,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/document.js":
+/***/ "../modules/popup/assets/js/frontend/document.js"
 /*!*******************************************************!*\
   !*** ../modules/popup/assets/js/frontend/document.js ***!
   \*******************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -1271,8 +1266,7 @@ class _default extends elementorModules.frontend.Document {
   initTriggers() {
     this.triggers = new _triggers.default(this.getDocumentSettings('triggers'), this);
   }
-  showModal(event) {
-    let avoidMultiple = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  showModal(avoidMultiple) {
     // eslint-disable-next-line @wordpress/no-unused-vars-before-return
     const settings = this.getDocumentSettings();
     if (!this.isEdit) {
@@ -1495,13 +1489,13 @@ class _default extends elementorModules.frontend.Document {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/frontend.js":
+/***/ "../modules/popup/assets/js/frontend/frontend.js"
 /*!*******************************************************!*\
   !*** ../modules/popup/assets/js/frontend/frontend.js ***!
   \*******************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -1550,7 +1544,7 @@ class _default extends elementorModules.Module {
     if (settings.toggle && modal.isVisible()) {
       modal.hide();
     } else {
-      popup.showModal(event);
+      popup.showModal(null, event);
     }
   }
   closePopup(settings, event) {
@@ -1571,13 +1565,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/timing.js":
+/***/ "../modules/popup/assets/js/frontend/timing.js"
 /*!*****************************************************!*\
   !*** ../modules/popup/assets/js/frontend/timing.js ***!
   \*****************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -1628,13 +1622,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/timing/base.js":
+/***/ "../modules/popup/assets/js/frontend/timing/base.js"
 /*!**********************************************************!*\
   !*** ../modules/popup/assets/js/frontend/timing/base.js ***!
   \**********************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+(__unused_webpack_module, exports) {
 
 
 
@@ -1653,13 +1647,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/timing/browsers.js":
+/***/ "../modules/popup/assets/js/frontend/timing/browsers.js"
 /*!**************************************************************!*\
   !*** ../modules/popup/assets/js/frontend/timing/browsers.js ***!
   \**************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -1684,13 +1678,13 @@ class _default extends _base.default {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/timing/devices.js":
+/***/ "../modules/popup/assets/js/frontend/timing/devices.js"
 /*!*************************************************************!*\
   !*** ../modules/popup/assets/js/frontend/timing/devices.js ***!
   \*************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -1710,13 +1704,13 @@ class _default extends _base.default {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/timing/logged-in.js":
+/***/ "../modules/popup/assets/js/frontend/timing/logged-in.js"
 /*!***************************************************************!*\
   !*** ../modules/popup/assets/js/frontend/timing/logged-in.js ***!
   \***************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -1744,13 +1738,13 @@ class _default extends _base.default {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/timing/page-views.js":
+/***/ "../modules/popup/assets/js/frontend/timing/page-views.js"
 /*!****************************************************************!*\
   !*** ../modules/popup/assets/js/frontend/timing/page-views.js ***!
   \****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -1777,13 +1771,13 @@ class _default extends _base.default {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/timing/schedule-utils.js":
+/***/ "../modules/popup/assets/js/frontend/timing/schedule-utils.js"
 /*!********************************************************************!*\
   !*** ../modules/popup/assets/js/frontend/timing/schedule-utils.js ***!
   \********************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+(__unused_webpack_module, exports) {
 
 
 
@@ -1815,13 +1809,13 @@ class ScheduleUtils {
 }
 exports["default"] = ScheduleUtils;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/timing/schedule.js":
+/***/ "../modules/popup/assets/js/frontend/timing/schedule.js"
 /*!**************************************************************!*\
   !*** ../modules/popup/assets/js/frontend/timing/schedule.js ***!
   \**************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -1833,8 +1827,8 @@ exports["default"] = void 0;
 var _base = _interopRequireDefault(__webpack_require__(/*! ./base */ "../modules/popup/assets/js/frontend/timing/base.js"));
 var _scheduleUtils = _interopRequireDefault(__webpack_require__(/*! ./schedule-utils */ "../modules/popup/assets/js/frontend/timing/schedule-utils.js"));
 class _default extends _base.default {
-  constructor() {
-    super(...arguments);
+  constructor(...args) {
+    super(...args);
     const {
       schedule_timezone: timezone,
       schedule_start_date: startDate,
@@ -1860,13 +1854,13 @@ class _default extends _base.default {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/timing/sessions.js":
+/***/ "../modules/popup/assets/js/frontend/timing/sessions.js"
 /*!**************************************************************!*\
   !*** ../modules/popup/assets/js/frontend/timing/sessions.js ***!
   \**************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -1893,13 +1887,13 @@ class _default extends _base.default {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/timing/sources.js":
+/***/ "../modules/popup/assets/js/frontend/timing/sources.js"
 /*!*************************************************************!*\
   !*** ../modules/popup/assets/js/frontend/timing/sources.js ***!
   \*************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -1934,13 +1928,13 @@ class _default extends _base.default {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/timing/times-utils.js":
+/***/ "../modules/popup/assets/js/frontend/timing/times-utils.js"
 /*!*****************************************************************!*\
   !*** ../modules/popup/assets/js/frontend/timing/times-utils.js ***!
   \*****************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+(__unused_webpack_module, exports) {
 
 
 
@@ -2010,9 +2004,7 @@ class TimesUtils {
     }
     return false;
   }
-  shouldDisplayBackwordCompatible() {
-    let impressionCount = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    let showsLimit = arguments.length > 1 ? arguments[1] : undefined;
+  shouldDisplayBackwordCompatible(impressionCount = 0, showsLimit) {
     const shouldDisplay = parseInt(impressionCount) < parseInt(showsLimit);
     this.shouldCountOnOpen();
     return shouldDisplay;
@@ -2020,13 +2012,13 @@ class TimesUtils {
 }
 exports["default"] = TimesUtils;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/timing/times.js":
+/***/ "../modules/popup/assets/js/frontend/timing/times.js"
 /*!***********************************************************!*\
   !*** ../modules/popup/assets/js/frontend/timing/times.js ***!
   \***********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -2038,8 +2030,8 @@ exports["default"] = void 0;
 var _base = _interopRequireDefault(__webpack_require__(/*! ./base */ "../modules/popup/assets/js/frontend/timing/base.js"));
 var _timesUtils = _interopRequireDefault(__webpack_require__(/*! ./times-utils.js */ "../modules/popup/assets/js/frontend/timing/times-utils.js"));
 class _default extends _base.default {
-  constructor() {
-    super(...arguments);
+  constructor(...args) {
+    super(...args);
     this.uniqueId = `popup-${this.document.getSettings('id')}-impressions-count`;
     const {
       times_count: countOnOpen,
@@ -2092,13 +2084,13 @@ class _default extends _base.default {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/timing/url.js":
+/***/ "../modules/popup/assets/js/frontend/timing/url.js"
 /*!*********************************************************!*\
   !*** ../modules/popup/assets/js/frontend/timing/url.js ***!
   \*********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -2130,13 +2122,13 @@ class _default extends _base.default {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/triggers.js":
+/***/ "../modules/popup/assets/js/frontend/triggers.js"
 /*!*******************************************************!*\
   !*** ../modules/popup/assets/js/frontend/triggers.js ***!
   \*******************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -2190,13 +2182,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/triggers/adblock-detection.js":
+/***/ "../modules/popup/assets/js/frontend/triggers/adblock-detection.js"
 /*!*************************************************************************!*\
   !*** ../modules/popup/assets/js/frontend/triggers/adblock-detection.js ***!
   \*************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -2258,13 +2250,13 @@ class _default extends _base.default {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/triggers/base.js":
+/***/ "../modules/popup/assets/js/frontend/triggers/base.js"
 /*!************************************************************!*\
   !*** ../modules/popup/assets/js/frontend/triggers/base.js ***!
   \************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+(__unused_webpack_module, exports) {
 
 
 
@@ -2283,13 +2275,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/triggers/click.js":
+/***/ "../modules/popup/assets/js/frontend/triggers/click.js"
 /*!*************************************************************!*\
   !*** ../modules/popup/assets/js/frontend/triggers/click.js ***!
   \*************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -2300,8 +2292,8 @@ Object.defineProperty(exports, "__esModule", ({
 exports["default"] = void 0;
 var _base = _interopRequireDefault(__webpack_require__(/*! ./base */ "../modules/popup/assets/js/frontend/triggers/base.js"));
 class _default extends _base.default {
-  constructor() {
-    super(...arguments);
+  constructor(...args) {
+    super(...args);
     this.checkClick = this.checkClick.bind(this);
     this.clicksCount = 0;
   }
@@ -2323,13 +2315,13 @@ class _default extends _base.default {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/triggers/exit-intent.js":
+/***/ "../modules/popup/assets/js/frontend/triggers/exit-intent.js"
 /*!*******************************************************************!*\
   !*** ../modules/popup/assets/js/frontend/triggers/exit-intent.js ***!
   \*******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -2340,8 +2332,8 @@ Object.defineProperty(exports, "__esModule", ({
 exports["default"] = void 0;
 var _base = _interopRequireDefault(__webpack_require__(/*! ./base */ "../modules/popup/assets/js/frontend/triggers/base.js"));
 class _default extends _base.default {
-  constructor() {
-    super(...arguments);
+  constructor(...args) {
+    super(...args);
     this.detectExitIntent = this.detectExitIntent.bind(this);
   }
   getName() {
@@ -2361,13 +2353,13 @@ class _default extends _base.default {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/triggers/inactivity.js":
+/***/ "../modules/popup/assets/js/frontend/triggers/inactivity.js"
 /*!******************************************************************!*\
   !*** ../modules/popup/assets/js/frontend/triggers/inactivity.js ***!
   \******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -2378,8 +2370,8 @@ Object.defineProperty(exports, "__esModule", ({
 exports["default"] = void 0;
 var _base = _interopRequireDefault(__webpack_require__(/*! ./base */ "../modules/popup/assets/js/frontend/triggers/base.js"));
 class _default extends _base.default {
-  constructor() {
-    super(...arguments);
+  constructor(...args) {
+    super(...args);
     this.restartTimer = this.restartTimer.bind(this);
   }
   getName() {
@@ -2406,13 +2398,13 @@ class _default extends _base.default {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/triggers/page-load.js":
+/***/ "../modules/popup/assets/js/frontend/triggers/page-load.js"
 /*!*****************************************************************!*\
   !*** ../modules/popup/assets/js/frontend/triggers/page-load.js ***!
   \*****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -2435,13 +2427,13 @@ class _default extends _base.default {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/triggers/scrolling-to.js":
+/***/ "../modules/popup/assets/js/frontend/triggers/scrolling-to.js"
 /*!********************************************************************!*\
   !*** ../modules/popup/assets/js/frontend/triggers/scrolling-to.js ***!
   \********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -2484,13 +2476,13 @@ class _default extends _base.default {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/popup/assets/js/frontend/triggers/scrolling.js":
+/***/ "../modules/popup/assets/js/frontend/triggers/scrolling.js"
 /*!*****************************************************************!*\
   !*** ../modules/popup/assets/js/frontend/triggers/scrolling.js ***!
   \*****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -2501,8 +2493,8 @@ Object.defineProperty(exports, "__esModule", ({
 exports["default"] = void 0;
 var _base = _interopRequireDefault(__webpack_require__(/*! ./base */ "../modules/popup/assets/js/frontend/triggers/base.js"));
 class _default extends _base.default {
-  constructor() {
-    super(...arguments);
+  constructor(...args) {
+    super(...args);
     this.checkScroll = this.checkScroll.bind(this);
     this.lastScrollOffset = 0;
   }
@@ -2535,13 +2527,13 @@ class _default extends _base.default {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/posts/assets/js/frontend/frontend.js":
+/***/ "../modules/posts/assets/js/frontend/frontend.js"
 /*!*******************************************************!*\
   !*** ../modules/posts/assets/js/frontend/frontend.js ***!
   \*******************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -2563,13 +2555,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/search/assets/js/frontend/frontend.js":
+/***/ "../modules/search/assets/js/frontend/frontend.js"
 /*!********************************************************!*\
   !*** ../modules/search/assets/js/frontend/frontend.js ***!
   \********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -2585,13 +2577,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/share-buttons/assets/js/frontend/frontend.js":
+/***/ "../modules/share-buttons/assets/js/frontend/frontend.js"
 /*!***************************************************************!*\
   !*** ../modules/share-buttons/assets/js/frontend/frontend.js ***!
   \***************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -2607,13 +2599,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/slides/assets/js/frontend/frontend.js":
+/***/ "../modules/slides/assets/js/frontend/frontend.js"
 /*!********************************************************!*\
   !*** ../modules/slides/assets/js/frontend/frontend.js ***!
   \********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -2629,13 +2621,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/social/assets/js/frontend/frontend.js":
+/***/ "../modules/social/assets/js/frontend/frontend.js"
 /*!********************************************************!*\
   !*** ../modules/social/assets/js/frontend/frontend.js ***!
   \********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -2654,13 +2646,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/table-of-contents/assets/js/frontend/frontend.js":
+/***/ "../modules/table-of-contents/assets/js/frontend/frontend.js"
 /*!*******************************************************************!*\
   !*** ../modules/table-of-contents/assets/js/frontend/frontend.js ***!
   \*******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -2671,18 +2663,18 @@ exports["default"] = void 0;
 class _default extends elementorModules.Module {
   constructor() {
     super();
-    elementorFrontend.elementsHandler.attachHandler('table-of-contents', () => Promise.all(/*! import() | table-of-contents */[__webpack_require__.e("vendors-node_modules_dompurify_dist_purify_js"), __webpack_require__.e("table-of-contents")]).then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/table-of-contents */ "../modules/table-of-contents/assets/js/frontend/handlers/table-of-contents.js")));
+    elementorFrontend.elementsHandler.attachHandler('table-of-contents', () => Promise.all(/*! import() | table-of-contents */[__webpack_require__.e("vendors-node_modules_dompurify_dist_purify_cjs_js"), __webpack_require__.e("table-of-contents")]).then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/table-of-contents */ "../modules/table-of-contents/assets/js/frontend/handlers/table-of-contents.js")));
   }
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/theme-builder/assets/js/frontend/frontend.js":
+/***/ "../modules/theme-builder/assets/js/frontend/frontend.js"
 /*!***************************************************************!*\
   !*** ../modules/theme-builder/assets/js/frontend/frontend.js ***!
   \***************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -2713,13 +2705,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/theme-elements/assets/js/frontend/frontend.js":
+/***/ "../modules/theme-elements/assets/js/frontend/frontend.js"
 /*!****************************************************************!*\
   !*** ../modules/theme-elements/assets/js/frontend/frontend.js ***!
   \****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -2735,13 +2727,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/woocommerce/assets/js/frontend/frontend.js":
+/***/ "../modules/woocommerce/assets/js/frontend/frontend.js"
 /*!*************************************************************!*\
   !*** ../modules/woocommerce/assets/js/frontend/frontend.js ***!
   \*************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 
 
@@ -2777,17 +2769,17 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "@wordpress/i18n":
+/***/ "@wordpress/i18n"
 /*!**************************!*\
   !*** external "wp.i18n" ***!
   \**************************/
-/***/ ((module) => {
+(module) {
 
 module.exports = wp.i18n;
 
-/***/ })
+/***/ }
 
 },
 /******/ __webpack_require__ => { // webpackRuntimeModules

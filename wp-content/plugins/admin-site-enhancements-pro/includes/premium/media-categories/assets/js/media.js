@@ -20,7 +20,80 @@ var mediaLibraryOrganizerUploader       = false, // Uploader instance.
 	MediaLibraryOrganizerTaxonomyFilter = {}, // Grid View Taxonomy Dropdown Filters.
 	MediaLibraryOrganizerTaxonomyOrderBy, // Grid View Dropdown Order By Filter.
 	MediaLibraryOrganizerTaxonomyOrder, // Grid View Dropdown Order Filter.
-	MediaLibraryOrganizerAttachmentsBrowser; // Grid View Attachments Browser.
+	MediaLibraryOrganizerAttachmentsBrowser, // Grid View Attachments Browser.
+	mediaLibraryOrganizerInjectedUploadModels = []; // Uploading models injected into the active grid collection when filtered.
+
+/**
+ * Returns whether the Media Library Grid is currently filtered by any Media Categories taxonomy.
+ *
+ * When filtered, WordPress won't necessarily render "uploading" placeholder tiles unless the
+ * uploading model exists in the active attachments collection. We use this to decide whether
+ * to inject uploading models into the collection so the native per-file progress UI is shown.
+ *
+ * @since 	1.4.1
+ *
+ * @return {boolean} Whether a taxonomy filter is active.
+ */
+function mediaLibraryOrganizerGridViewHasActiveTaxonomyFilter() {
+
+	if ( typeof media_categories_module_media === 'undefined' || ! media_categories_module_media.taxonomies ) {
+		return false;
+	}
+
+	// Prefer the localized selected_term values, which are derived from the request on page load.
+	for ( let taxonomy_name in media_categories_module_media.taxonomies ) {
+		const selected_term = media_categories_module_media.taxonomies[ taxonomy_name ].selected_term;
+		if ( typeof selected_term !== 'undefined' && selected_term !== null && selected_term !== '' && selected_term !== false ) {
+			return true;
+		}
+	}
+
+	// Fallback: check URL query vars for any registered taxonomy.
+	try {
+		const searchParams = new URLSearchParams( window.location.search );
+		for ( let taxonomy_name in media_categories_module_media.taxonomies ) {
+			if ( searchParams.has( taxonomy_name ) ) {
+				return true;
+			}
+		}
+	} catch ( e ) {
+		// Ignore.
+	}
+
+	return false;
+}
+
+/**
+ * Returns the active Media Library Grid collection, if available.
+ *
+ * @since 	1.4.1
+ *
+ * @return {Object|false} Backbone collection or false.
+ */
+function mediaLibraryOrganizerGetActiveGridCollection() {
+
+	// Preferred: the attachments browser collection (available on upload.php grid view).
+	if ( typeof MediaLibraryOrganizerAttachmentsBrowser !== 'undefined' &&
+		MediaLibraryOrganizerAttachmentsBrowser &&
+		MediaLibraryOrganizerAttachmentsBrowser.collection ) {
+		return MediaLibraryOrganizerAttachmentsBrowser.collection;
+	}
+
+	// Fallbacks: match existing refresh logic.
+	if ( typeof wp !== 'undefined' && wp.media && wp.media.frame ) {
+		if ( typeof wp.media.frame.library !== 'undefined' ) {
+			return wp.media.frame.library;
+		}
+		if ( wp.media.frame.content && typeof wp.media.frame.content.get === 'function' ) {
+			const content = wp.media.frame.content.get();
+			if ( content && content.collection ) {
+				return content.collection;
+			}
+		}
+	}
+
+	return false;
+}
 
 /**
  * Grid View: Define Order By and Order Defaults on wp.media.query calls, which the Media Library
@@ -215,8 +288,10 @@ function mediaLibraryOrganizerUploaderInitializeEvents() {
 					success: function( file_attachment ) {
 						wp.media.events.trigger( 'asenha-media:grid:attachment:upload:success', file_attachment );
 					},
-					error: function( error_message ) {
-						wp.media.events.trigger( 'asenha-media:grid:attachment:upload:error', error_message );
+					error: function( error_message, file_attachment ) {
+						// Trigger event with the legacy first argument (message) and an optional second argument (model),
+						// so existing listeners expecting only a string continue to work.
+						wp.media.events.trigger( 'asenha-media:grid:attachment:upload:error', error_message, file_attachment );
 					},
 					complete: function() {
 						wp.media.events.trigger( 'asenha-media:grid:attachment:upload:complete' );
@@ -1176,10 +1251,19 @@ function mediaLibraryOrganizerEditAttachmentAddTerm( taxonomy_name, term_name, p
  */
 function mediaLibraryOrganizerGridViewRefresh() {
 
+	// Bail on screens where the Backbone media frame isn't instantiated
+	// (e.g. third-party uploaders such as Download Monitor's Add/Edit Download).
+	if ( typeof wp === 'undefined' || ! wp.media || ! wp.media.frame ) {
+		return;
+	}
+
 	if ( typeof wp.media.frame.library !== 'undefined' ) {
 		wp.media.frame.library.props.set( {ignore: (+ new Date())} );
-	} else {
-		wp.media.frame.content.get().collection.props.set( {ignore: (+ new Date())} );
+	} else if ( wp.media.frame.content && typeof wp.media.frame.content.get === 'function' ) {
+		var content = wp.media.frame.content.get();
+		if ( content && content.collection ) {
+			content.collection.props.set( {ignore: (+ new Date())} );
+		}
 	}
 
 }
@@ -1192,22 +1276,22 @@ function mediaLibraryOrganizerGridViewRefresh() {
 wp.media.events.on(
 	'asenha-media:grid:attachment:upload:init',
 	function() {
-
-		// Fetch wp.media.frame.uploader, so we persist it when the user switches
-		// between grid view and inline editing in grid view.
-		if ( ! mediaLibraryOrganizerUploader && typeof wp.media.frame.uploader !== 'undefined' ) {
-			mediaLibraryOrganizerUploader = wp.media.frame.uploader;
-		}
-
-		if ( mediaLibraryOrganizerUploader && typeof mediaLibraryOrganizerUploader.uploader !== 'undefined' ) {
-			var selected_terms = {};
-			for ( let taxonomy_name in media_categories_module_media.taxonomies ) {
-				selected_terms[ taxonomy_name ] = media_categories_module_media.taxonomies[ taxonomy_name ].selected_term;
+		if ( wp.media.frame ) {
+			// Fetch wp.media.frame.uploader, so we persist it when the user switches
+			// between grid view and inline editing in grid view.
+			if ( ! mediaLibraryOrganizerUploader && typeof wp.media.frame.uploader !== 'undefined' ) {
+				mediaLibraryOrganizerUploader = wp.media.frame.uploader;
 			}
 
-			mediaLibraryOrganizerUploader.uploader.uploader.settings.multipart_params.media_categories_module = selected_terms;
-		}
+			if ( mediaLibraryOrganizerUploader && typeof mediaLibraryOrganizerUploader.uploader !== 'undefined' ) {
+				var selected_terms = {};
+				for ( let taxonomy_name in media_categories_module_media.taxonomies ) {
+					selected_terms[ taxonomy_name ] = media_categories_module_media.taxonomies[ taxonomy_name ].selected_term;
+				}
 
+				mediaLibraryOrganizerUploader.uploader.uploader.settings.multipart_params.media_categories_module = selected_terms;
+			}			
+		}
 	}
 );
 
@@ -1233,6 +1317,123 @@ wp.media.events.on(
 );
 
 /**
+ * Grid View: When an attachment is added to the upload queue, ensure the Media Library Grid
+ * shows the native per-file upload placeholder + progress bar even when filtered by a taxonomy term.
+ *
+ * We hook directly into wp.Uploader.queue (a Backbone collection) for reliable detection,
+ * in addition to the custom event listener.
+ *
+ * @since 	1.4.1
+ */
+function mediaLibraryOrganizerInjectUploadingModel( file_attachment ) {
+
+	// Only applicable on the Media Library Grid view.
+	if ( typeof media_categories_module_media === 'undefined' || media_categories_module_media.media_view !== 'grid' ) {
+		return;
+	}
+
+	// If not filtered by a taxonomy term, WordPress already handles rendering upload placeholders.
+	if ( ! mediaLibraryOrganizerGridViewHasActiveTaxonomyFilter() ) {
+		return;
+	}
+
+	const collection = mediaLibraryOrganizerGetActiveGridCollection();
+	if ( ! collection || ! file_attachment ) {
+		return;
+	}
+
+	// Avoid duplicates. Backbone.Collection#get accepts a model and checks by id/cid.
+	if ( collection.get( file_attachment ) ) {
+		return;
+	}
+
+	// Inject at the top so the user sees uploads immediately.
+	collection.add( file_attachment, { at: 0 } );
+	mediaLibraryOrganizerInjectedUploadModels.push( file_attachment );
+}
+
+/**
+ * Grid View: Remove injected uploading model on error so we don't leave stuck tiles.
+ *
+ * @since 	1.4.1
+ */
+function mediaLibraryOrganizerRemoveUploadingModelOnError( file_attachment ) {
+
+	// Only applicable on the Media Library Grid view.
+	if ( typeof media_categories_module_media === 'undefined' || media_categories_module_media.media_view !== 'grid' ) {
+		return;
+	}
+
+	if ( ! mediaLibraryOrganizerGridViewHasActiveTaxonomyFilter() ) {
+		return;
+	}
+
+	const collection = mediaLibraryOrganizerGetActiveGridCollection();
+	if ( ! collection ) {
+		return;
+	}
+
+	// If we received the model, remove just that one.
+	if ( file_attachment && collection.get( file_attachment ) ) {
+		collection.remove( file_attachment );
+	}
+}
+
+// Listen to custom events (if they fire).
+wp.media.events.on(
+	'asenha-media:grid:attachment:upload:added',
+	function( file_attachment ) {
+		mediaLibraryOrganizerInjectUploadingModel( file_attachment );
+	}
+);
+
+wp.media.events.on(
+	'asenha-media:grid:attachment:upload:error',
+	function( error_message, file_attachment ) { // eslint-disable-line no-unused-vars
+		mediaLibraryOrganizerRemoveUploadingModelOnError( file_attachment );
+	}
+);
+
+/**
+ * Grid View: Hook directly into wp.Uploader.queue to detect uploads.
+ * This is more reliable than relying on prototype extension callbacks.
+ *
+ * @since 	1.4.1
+ */
+jQuery( document ).ready( function() {
+
+	// Wait for wp.Uploader.queue to be available.
+	var checkQueue = setInterval( function() {
+		if ( typeof wp !== 'undefined' && wp.Uploader && wp.Uploader.queue ) {
+			clearInterval( checkQueue );
+
+			// Listen for models being added to the upload queue.
+			wp.Uploader.queue.on( 'add', function( model ) {
+				mediaLibraryOrganizerInjectUploadingModel( model );
+			} );
+
+			// Listen for errors to clean up.
+			wp.Uploader.queue.on( 'change:error', function( model ) {
+				if ( model.get( 'error' ) ) {
+					mediaLibraryOrganizerRemoveUploadingModelOnError( model );
+				}
+			} );
+
+			// Listen for upload completion to clean up injected models.
+			wp.Uploader.queue.on( 'change:uploading', function( model ) {
+				if ( ! model.get( 'uploading' ) ) {
+					// Upload finished - remove from our tracking array.
+					var index = mediaLibraryOrganizerInjectedUploadModels.indexOf( model );
+					if ( index > -1 ) {
+						mediaLibraryOrganizerInjectedUploadModels.splice( index, 1 );
+					}
+				}
+			} );
+		}
+	}, 100 );
+} );
+
+/**
  * Grid View: When an attachment completes successful upload to the Grid View, refresh the Grid View.
  *
  * @since   1.2.3
@@ -1242,9 +1443,28 @@ wp.media.events.on(
 wp.media.events.on(
 	'asenha-media:grid:attachment:upload:success',
 	function( attachment ) {
+		// Only run grid-view completion logic where the Backbone media frame exists.
+		// On third-party uploader screens (e.g. Download Monitor) wp.media.frame is
+		// undefined and queue.reset() would also interfere with the host uploader.
+		if ( typeof wp === 'undefined' || ! wp.media || ! wp.media.frame || ! wp.Uploader || ! wp.Uploader.queue ) {
+			return;
+		}
 
-		mediaLibraryOrganizerGridViewRefresh();
+		if ( wp.Uploader.queue ) {
+			complete = wp.Uploader.queue.all( function( attachment ) {
+				return ! attachment.get( 'uploading' );
+			});
 
+			if ( complete ) {
+				wp.Uploader.queue.reset();
+				// Get URL parameters
+				let searchParams = new URLSearchParams(window.location.search);
+				// Do not refresh grid view when viewing an item, i.e. URL will look like /wp-admin/upload.php?item=11477. 
+				if (! searchParams.has('item')) {
+					mediaLibraryOrganizerGridViewRefresh();
+				}
+			}
+		}
 	}
 );
 

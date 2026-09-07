@@ -1,0 +1,229 @@
+body.gbt_custom_notif {
+	.wc-block-components-notice-banner,
+	.woocommerce-message,
+	.woocommerce-error,
+	.woocommerce-info,
+	.woocommerce-notice {
+		display: none !important;
+	}
+
+	.page-notifications {
+		top: 63px;
+		left: 100%;
+		margin: 0;
+		padding: 0;
+	    background: transparent;
+		position: fixed;
+		box-shadow: none;
+		z-index: 8889;
+
+		.gbt-custom-notification-content {
+			margin: 0 0 10px;
+		}
+
+		&.slide-out {
+			@for $i from 0 to 10 {
+		  		.gbt-custom-notification-notice.close-notice:nth-child(#{$i}) { transition-delay: ( 10 - $i ) * 0.25s; }
+			}
+
+			.gbt-custom-notification-notice {
+				cursor: default;
+			}
+		}
+
+		&.slide-in {
+			.gbt-custom-notification-notice {
+				cursor: pointer;
+			}
+		}
+
+		@for $i from 0 to 10 {
+	  		.gbt-custom-notification-notice.open-notice:nth-child(#{$i}) { transition-delay: $i * 0.25s; }
+		}
+
+		.gbt-custom-notification-notice {
+			box-shadow: 0px 7px 52px -12px rgba(0,0,0,0.36);
+			border: none;
+			color: #FFF;
+			display: flex;
+    		flex-direction: row;
+			margin: 0 0 15px;
+			z-index: 8888;
+			font-weight: 600;
+			font-size: 16px;
+			transition: all .5s ease;
+			width: 320px;
+			transform: translateX(0);
+
+			@media all and (min-width: 768px) {
+				width: 400px;
+			}
+
+			@media all and (min-width: 1024px) {
+				width: 465px;
+			}
+
+			a,
+			.button {
+				color: #FFF;
+			    text-transform: uppercase;
+			    display: inline-block;
+			    position: relative;
+			    font-size: 13px;
+			    padding: 0 !important;
+			    width: fit-content;
+			    float: none;
+			    min-width: 10px;
+
+			    &:after  {
+			    	font-family: 'Shopkeeper-Icon-Font';
+				    content: "\e902";
+				    display: inline-block;
+				    font-weight: normal;
+				    color: #fff;
+				    font-size: 16px;
+				    padding: 0px 1px 0px 3.5px;
+				    top: 2px;
+				    position: relative;
+				    margin-right: 5px;
+			    }
+			}
+
+			form {
+				display: block !important;
+			    width: 100%;
+		        text-align: left;
+			    min-height: 20px;
+			}
+
+			.gbt-custom-notification-notice-icon {
+			    background: rgba(0, 0, 0, 0.2);
+			    font-size: 24px;
+			    display: flex;
+			    align-items: center;
+			    justify-content: center;
+			    width: 90px;
+
+			    &:before  {
+			    	padding: 33px;
+			    }
+
+			    @media only screen and (max-width: 767px) {
+			    	font-size: 18px;
+					width: 75px;
+
+					&:before  {
+				    	padding: 28px;
+				    }
+				}
+
+				@media only screen and (min-width: 768px) and (max-width: 1023px) {
+					font-size: 18px;
+					width: 85px;
+
+					&:before {
+				    	padding: 33.5px;
+				    }
+				}
+
+			    &.spk-icon-success {
+			    	&:before {
+		    		    content: '\e923';
+					    font-family: 'Shopkeeper-Icon-Font';
+			    	}
+			    }
+			}
+
+			.gbt-custom-notification-message,
+			.product_notification_text {
+				align-items: center;
+				display: flex;
+				font-size: 16px;
+				line-height: 1.4;
+				margin: 0;
+				padding: 20px 25px;
+				word-break: break-word;
+
+				@media only screen and (max-width: 767px) {
+					font-size: 13px;
+				}
+
+				@media only screen and (min-width: 768px) and (max-width: 1023px) {
+					font-size: 14px;
+				}
+
+				div {
+				    display: table-cell;
+    				vertical-align: middle;
+				}
+
+				li {
+					list-style-type: none;
+				}
+			}
+
+			.product_notification_wrapper {
+			    display: flex;
+
+			    .product_notification_background {
+					min-width: 75px;
+					width: 75px;
+				    overflow: hidden;
+					transition: all .5s ease;
+
+					img {
+						height: 100%;
+						width: 100%;
+					    object-position: center;
+					    object-fit: cover;
+						transition: all .5s ease;
+					}
+
+				    @media all and (min-width: 768px) {
+						min-width: 85px;
+				    	width: 85px;
+				    }
+
+				    @media all and (min-width: 1024px) {
+						min-width: 90px;
+				    	width: 90px;
+				    }
+			    }
+			}
+
+			&.open-notice {
+				transform: translateX(-340px);
+
+				@media all and (min-width: 768px) {
+					transform: translateX(-455px);
+				}
+
+				@media all and (min-width: 1024px) {
+					transform: translateX(-520px);
+				}
+			}
+
+			&.close-notice {
+				transform: translateX(0);
+			}
+
+			svg {
+				display: none;
+			}
+		}
+
+		@media only screen and (max-width: 767px) {
+			top: 50px;
+		}
+	}
+}
+
+.rtl {
+	.page-notifications {
+		direction: ltr;
+	}
+}
+
+.woocommerce-account .page-notifications {
+	display: none;
+}

@@ -155,6 +155,12 @@ export var AmeMenuStylerJsFeatures;
                 const linkUrl = (typeof config.linkUrl === 'string') ? config.linkUrl.trim() : '';
                 if (linkUrl) {
                     $link.show().attr('href', linkUrl);
+                    if (config.openInNewTab) {
+                        $link.attr('target', '_blank');
+                    }
+                    else {
+                        $link.removeAttr('target');
+                    }
                 }
                 else {
                     $link.hide().removeAttr('href');

@@ -13,7 +13,7 @@
 /* IMPORTANT EXTENSION FOR FONT LOADING !! SR7 KRISZTIAN HORVATH*/
 .material-icons:not(.testloadedicon) {
   font-family: 'Material Icons';
-  font-weight: normal;
+  font-weight: inherit;
   font-style: normal;
   font-size: inherit;  /* Preferred icon size */
   display: inline-block;
@@ -37,7 +37,9 @@
 }
 
 
-sr7-module .material-icons {    
+sr7-module .material-icons,
+sr7-txt .material-icons,
+.sr7-layer .materical-icons {    
   font-size: inherit;
   vertical-align: top;
   line-height: inherit;    

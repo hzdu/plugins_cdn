@@ -2,31 +2,34 @@
 /************************************************************/
 .ns-buttons {
   position: relative;
+  --ns-btn-size: 40px;
+  --ns-btn-margin: 10px;
 }
 .ns-buttons-wrapper {
   display: flex;
   flex-wrap: wrap;
 }
 .ns-columns.ns-has-total-share-count-before .ns-buttons-wrapper {
-  margin-left: 50px;
+  margin-left: calc(var(--ns-btn-size) + 10px);
 }
 .ns-columns.ns-has-total-share-count-after .ns-buttons-wrapper {
-  margin-right: 50px;
+  margin-right: calc(var(--ns-btn-size) + 10px);
 }
 
 /* Social Network Buttons
 /************************************************************/
 body a.ns-button {
   display: inline-flex;
-  height: 40px;
-  line-height: 40px;
-  margin: 0px 10px 10px 0px;
+  height: var(--ns-btn-size);
+  line-height: var(--ns-btn-size);
+  margin: 0px var(--ns-btn-margin) var(--ns-btn-margin) 0px;
   padding: 0px;
-  font-size: 14px;
+  font-size: calc(var(--ns-btn-size) * .35);
   overflow: hidden;
   text-decoration: none;
   border: none;
-  --ns-button-color: #333;
+  --ns-btn-color: #333;
+  --ns-icon-color: #fff;
 }
 .ns-button * {
   pointer-events: none;
@@ -35,7 +38,7 @@ body a.ns-button {
   display: inline-flex;
   align-items: center;
   background: #333;
-  background: var(--ns-button-color);
+  background: var(--ns-btn-color);
 }
 .ns-button-wrapper {
   display: inline-flex;
@@ -52,10 +55,10 @@ body a.ns-button {
 
 /* button icon */
 .ns-button-icon {
-  color: #fff;
-  height: 40px;
-  width: 40px;
-  min-width: 40px;
+  color: var(--ns-icon-color);
+  height: var(--ns-btn-size);
+  width: var(--ns-btn-size);
+  min-width: var(--ns-btn-size);
   box-sizing: border-box;
   justify-content: center;
 }
@@ -66,11 +69,13 @@ body a.ns-button {
 .ns-button-icon path {
   fill: currentColor;
 }
+.ns-button-icon:has(+ .ns-hide) {
+  width: 100%;
+}
 
 /* button share count */
 .ns-button-share-count {
   display: none;
-  font-size: 12px;
   align-items: center;
 }
 .ns-button.ns-share-count:hover svg {
@@ -82,7 +87,7 @@ body a.ns-button {
 
 /* button label */
 .ns-button-label {
-  color: #fff;
+  color: var(--ns-icon-color);
   height: 100%;
   box-sizing: border-box;
   flex-grow: 1;
@@ -101,258 +106,231 @@ body a.ns-button {
 /* Social Network Defaults
 /************************************************************/
 .ns-button.bluesky {
-  --ns-button-color: #1185FE;
+  --ns-btn-color: #1185FE;
 }
 .ns-button.twitter {
-  --ns-button-color: #000;
+  --ns-btn-color: #000;
 }
 .ns-button.facebook {
-  --ns-button-color: #3b5998;
+  --ns-btn-color: #3b5998;
 }
 .ns-button.linkedin {
-  --ns-button-color: #0077B5;
+  --ns-btn-color: #0077B5;
 }
 .ns-button.pinterest {
-  --ns-button-color: #C92228;
+  --ns-btn-color: #C92228;
 }
 .ns-button.buffer {
-  --ns-button-color: #323b43;
+  --ns-btn-color: #323b43;
+}
+.ns-button.cashapp {
+  --ns-btn-color: #00D632;
 }
 .ns-button.reddit {
-  --ns-button-color: #ff4500;
+  --ns-btn-color: #ff4500;
 }
 .ns-button.hackernews {
-  --ns-button-color: #F0652F;
-}
-.ns-button.pocket {
-  --ns-button-color: #ef4056;
+  --ns-btn-color: #F0652F;
 }
 .ns-button.whatsapp {
-  --ns-button-color: #25d366;
+  --ns-btn-color: #25d366;
 }
 .ns-button.tumblr {
-  --ns-button-color: #35465c;
+  --ns-btn-color: #35465c;
 }
 .ns-button.vkontakte {
-  --ns-button-color: #45668e;
+  --ns-btn-color: #45668e;
 }
 .ns-button.xing {
-  --ns-button-color: #026466;
+  --ns-btn-color: #026466;
 }
 .ns-button.flipboard {
-  --ns-button-color: #e12828;
+  --ns-btn-color: #e12828;
 }
 .ns-button.mix {
-  --ns-button-color: #fd8235;
-}
-.ns-button.yummly {
-  --ns-button-color: #e16120;
+  --ns-btn-color: #fd8235;
 }
 .ns-button.sms {
-  --ns-button-color: #218AFF;
+  --ns-btn-color: #218AFF;
 }
 .ns-button.email {
-  --ns-button-color: #319324;
+  --ns-btn-color: #319324;
 }
 .ns-button.print {
-  --ns-button-color: #d34836;
+  --ns-btn-color: #d34836;
 }
 .ns-button.\35 00px {
-  --ns-button-color: #0099E5;
+  --ns-btn-color: #0099E5;
 }
 .ns-button.bandcamp {
-  --ns-button-color: #408294;
+  --ns-btn-color: #408294;
 }
 .ns-button.behance {
-  --ns-button-color: #1769FF;
+  --ns-btn-color: #1769FF;
 }
 .ns-button.bitbucket {
-  --ns-button-color: #0052CC;
+  --ns-btn-color: #0052CC;
+}
+.ns-button.claude {
+  --ns-btn-color: #d97757;
 }
 .ns-button.copy {
-  --ns-button-color: #816B5B;
+  --ns-btn-color: #816B5B;
 }
 .ns-button.deviantart {
-  --ns-button-color: #05CC47;
+  --ns-btn-color: #05CC47;
 }
 .ns-button.discord {
-  --ns-button-color: #7289da;
+  --ns-btn-color: #7289da;
 }
 .ns-button.dribbble {
-  --ns-button-color: #EA4C89;
+  --ns-btn-color: #EA4C89;
 }
 .ns-button.dropbox {
-  --ns-button-color: #0061FF;
+  --ns-btn-color: #0061FF;
 }
 .ns-button.flickr {
-  --ns-button-color: #0063DC;
+  --ns-btn-color: #0063DC;
 }
 .ns-button.foursquare {
-  --ns-button-color: #F94877;
+  --ns-btn-color: #F94877;
+}
+.ns-button.gab {
+  --ns-btn-color: #21cf7a;
 }
 .ns-button.github {
-  --ns-button-color: #181717;
+  --ns-btn-color: #181717;
 }
 .ns-button.goodreads {
-  --ns-button-color: #553b08;
+  --ns-btn-color: #553b08;
+}
+.ns-button.googleai {
+  --ns-btn-color: #4285F4;
+}
+.ns-button.grok {
+  --ns-btn-color: #0A0A0A;
 }
 .ns-button.houzz {
-  --ns-button-color: #4DBC15;
+  --ns-btn-color: #4DBC15;
 }
 .ns-button.instagram {
-  --ns-button-color: #E4405F;
+  --ns-btn-color: #E4405F;
 }
 .ns-button.jsfiddle {
-  --ns-button-color: #0084FF;
+  --ns-btn-color: #0084FF;
+}
+.ns-button.kofi {
+  --ns-btn-color: #FF6433;
 }
 .ns-button.lastfm {
-  --ns-button-color: #D51007;
+  --ns-btn-color: #D51007;
 }
 .ns-button.line {
-  --ns-button-color: #00B900;
+  --ns-btn-color: #00B900;
+}
+.ns-button.location {
+  --ns-btn-color: #EA4235;
 }
 .ns-button.mastodon {
-  --ns-button-color: #6364FF;
+  --ns-btn-color: #6364FF;
 }
 .ns-button.messenger {
-  --ns-button-color: #0078FF;
+  --ns-btn-color: #0078FF;
+}
+.ns-button.mewe {
+  --ns-btn-color: #4DD39A;
+}
+.ns-button.mistralai {
+  --ns-btn-color: #FA500F;
 }
 .ns-button.mixcloud {
-  --ns-button-color: #314359;
+  --ns-btn-color: #314359;
+}
+.ns-button.nextdoor {
+  --ns-btn-color: #1B8751;
+}
+.ns-button.chatgpt {
+  --ns-btn-color: #181818;
+}
+.ns-button.perplexity {
+  --ns-btn-color: #0098a1;
 }
 .ns-button.phone {
-  --ns-button-color: #512DA8;
+  --ns-btn-color: #512DA8;
 }
 .ns-button.rss {
-  --ns-button-color: #FFA500;
+  --ns-btn-color: #FFA500;
 }
 .ns-button.share {
-  --ns-button-color: #2A2A2C;
+  --ns-btn-color: #2A2A2C;
 }
 .ns-button.skype {
-  --ns-button-color: #00AFF0;
+  --ns-btn-color: #00AFF0;
 }
 .ns-button.snapchat {
-  --ns-button-color: #FFFC00;
+  --ns-btn-color: #FFFC00;
 }
 .ns-button.soundcloud {
-  --ns-button-color: #FF3300;
+  --ns-btn-color: #FF3300;
 }
 .ns-button.spotify {
-  --ns-button-color: #1ED760;
+  --ns-btn-color: #1ED760;
 }
 .ns-button.stackoverflow {
-  --ns-button-color: #FE7A16;
+  --ns-btn-color: #FE7A16;
 }
 .ns-button.subscribe {
-  --ns-button-color: #7A5189;
+  --ns-btn-color: #7A5189;
 }
 .ns-button.telegram {
-  --ns-button-color: #0088cc;
+  --ns-btn-color: #0088cc;
 }
 .ns-button.tripadvisor {
-  --ns-button-color: #34E0A1;
+  --ns-btn-color: #34E0A1;
+}
+.ns-button.venmo {
+  --ns-btn-color: #008CFF;
 }
 .ns-button.vimeo {
-  --ns-button-color: #1AB7EA;
+  --ns-btn-color: #1AB7EA;
 }
 .ns-button.wordpress {
-  --ns-button-color: #21759B;
+  --ns-btn-color: #21759B;
 }
 .ns-button.yelp {
-  --ns-button-color: #D32323;
+  --ns-btn-color: #D32323;
 }
 .ns-button.youtube {
-  --ns-button-color: #FF0000;
+  --ns-btn-color: #FF0000;
 }
 .ns-button.angellist, .ns-button.applemusic, .ns-button.codepen, .ns-button.digg, .ns-button.steam, .ns-button.threads, .ns-button.tiktok {
-  --ns-button-color: #000;
+  --ns-btn-color: #000;
 }
 
 /* Button Styles
 /************************************************************/
 .ns-border {
-  border: 2px solid var(--ns-button-color);
+  border: 2px solid var(--ns-btn-color);
 }
 body .ns-button .ns-button-block.ns-inverse, body .ns-button:hover .ns-button-block.ns-inverse, body a.ns-button.ns-hover-swap .ns-button-block.ns-button-wrapper {
   background: transparent;
-  color: var(--ns-button-color);
+  color: var(--ns-btn-color);
 }
 
 /* button layout */
-.ns-1-col .ns-buttons-wrapper > a {
-  flex-basis: 100%;
-  margin-right: 0;
+.ns-columns .ns-buttons-wrapper > a {
+  flex-basis: calc(100% / var(--ns-columns) - ((var(--ns-columns) - 1) * var(--ns-btn-margin) / var(--ns-columns)));
 }
-.ns-2-col .ns-buttons-wrapper > a {
-  flex-basis: calc(50% - 5px);
-}
-.ns-2-col .ns-buttons-wrapper > a:nth-of-type(2n) {
-  margin-right: 0;
-}
-.ns-3-col .ns-buttons-wrapper > a {
-  flex-basis: calc(33.333333% - 6.666666px);
-}
-.ns-3-col .ns-buttons-wrapper > a:nth-of-type(3n) {
-  margin-right: 0;
-}
-.ns-4-col .ns-buttons-wrapper > a {
-  flex-basis: calc(25% - 7.5px);
-}
-.ns-4-col .ns-buttons-wrapper > a:nth-of-type(4n) {
-  margin-right: 0;
-}
-.ns-5-col .ns-buttons-wrapper > a {
-  flex-basis: calc(20% - 8px);
-}
-.ns-5-col .ns-buttons-wrapper > a:nth-of-type(5n) {
-  margin-right: 0;
-}
-.ns-6-col .ns-buttons-wrapper > a {
-  flex-basis: calc(16.666666% - 8.333333px);
-}
-.ns-6-col .ns-buttons-wrapper > a:nth-of-type(6n) {
-  margin-right: 0;
+.ns-last-col {
+  margin-right: 0 !important;
 }
 
 /* button size */
-.ns-columns.small.ns-has-total-share-count-before .ns-buttons-wrapper {
-  margin-left: 40px;
+.ns-buttons.small {
+  --ns-btn-size: 32px;
 }
-.ns-columns.small.ns-has-total-share-count-after .ns-buttons-wrapper {
-  margin-right: 40px;
-}
-.ns-columns.large.ns-has-total-share-count-before .ns-buttons-wrapper {
-  margin-left: 60px;
-}
-.ns-columns.large.ns-has-total-share-count-after .ns-buttons-wrapper {
-  margin-right: 60px;
-}
-.ns-buttons.small .ns-button {
-  height: 30px;
-  line-height: 30px;
-  font-size: 12px;
-}
-.ns-buttons.small .ns-button-icon {
-  height: 30px;
-  width: 30px;
-  min-width: 30px;
-}
-.ns-buttons.small .ns-button-share-count {
-  font-size: 10px;
-}
-.ns-buttons.large .ns-button {
-  height: 50px;
-  line-height: 50px;
-  font-size: 18px;
-}
-.ns-buttons.large .ns-button-icon {
-  height: 50px;
-  width: 50px;
-  min-width: 50px;
-}
-.ns-buttons.large .ns-button-share-count {
-  font-size: 16px;
+.ns-buttons.large {
+  --ns-btn-size: 50px;
 }
 
 /* button shape */
@@ -371,29 +349,31 @@ body .ns-button .ns-button-block.ns-inverse, body .ns-button:hover .ns-button-bl
 
 /* button alignment */
 .ns-align-right {
-  justify-content: flex-end;
+  justify-content: right;
 }
 .ns-align-right .ns-button {
-  margin: 0px 0px 10px 10px;
+  margin: 0px 0px var(--ns-btn-margin) var(--ns-btn-margin);
 }
 .ns-align-center {
   justify-content: center;
 }
 .ns-align-center .ns-button {
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: calc(var(--ns-btn-margin)/2);
+  margin-right: calc(var(--ns-btn-margin)/2);
 }
 
 /* Total Share Count Box
 /************************************************************/
 .ns-total-share-count {
-  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(var(--ns-btn-size) * .375);
   line-height: normal;
-  text-align: center;
-  display: inline-table;
-  height: 40px;
-  width: 40px;
-  margin: 0px 0px 10px 0px;
+  height: var(--ns-btn-size);
+  width: var(--ns-btn-size);
+  margin: 0px var(--ns-btn-margin) var(--ns-btn-margin) 0px;
 }
 .ns-total-share-count-wrapper {
   display: table-cell;
@@ -403,8 +383,7 @@ body .ns-button .ns-button-block.ns-inverse, body .ns-button:hover .ns-button-bl
   font-weight: bold;
 }
 .ns-total-share-count-text {
-  font-size: 8px;
-  line-height: 11px;
+  font-size: calc(var(--ns-btn-size) * .2);
 }
 .ns-columns .ns-total-share-count {
   position: absolute;
@@ -414,26 +393,6 @@ body .ns-button .ns-button-block.ns-inverse, body .ns-button:hover .ns-button-bl
 .ns-columns.ns-has-total-share-count-before .ns-total-share-count {
   right: unset;
   left: 0;
-}
-
-/* button sizes */
-.ns-buttons.small .ns-total-share-count {
-  height: 30px;
-  width: 30px;
-  font-size: 13px;
-}
-.ns-buttons.small .ns-total-share-count-text {
-  font-size: 7px;
-  line-height: 10px;
-}
-.ns-buttons.large .ns-total-share-count {
-  height: 50px;
-  width: 50px;
-  font-size: 19px;
-}
-.ns-buttons.large .ns-total-share-count-text {
-  font-size: 9px;
-  line-height: 12px;
 }
 
 /* Inline Content
@@ -462,6 +421,9 @@ body .ns-button .ns-button-block.ns-inverse, body .ns-button:hover .ns-button-bl
   flex-direction: column;
   height: 100%;
 }
+.ns-floating .ns-button-icon {
+  width: 100%;
+}
 
 /* Misc
 /************************************************************/
@@ -473,4 +435,3 @@ body .ns-button .ns-button-block.ns-inverse, body .ns-button:hover .ns-button-bl
     display: none !important;
   }
 }
-.wp-block {} /* fix for enqueuing in fullsite editor iframe

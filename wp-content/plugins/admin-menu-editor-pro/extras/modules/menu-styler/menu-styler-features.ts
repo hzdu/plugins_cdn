@@ -126,6 +126,7 @@ export namespace AmeMenuStylerJsFeatures {
 		baseImage: ImageSettingValue | null;
 		collapsedImage: ImageSettingValue | null;
 		linkUrl: string | null;
+		openInNewTab: boolean;
 		backgroundColor: string | null;
 		baseHeight: number | null;
 		collapsedHeight: number | null;
@@ -230,6 +231,12 @@ export namespace AmeMenuStylerJsFeatures {
 				const linkUrl = (typeof config.linkUrl === 'string') ? config.linkUrl.trim() : '';
 				if (linkUrl) {
 					$link.show().attr('href', linkUrl);
+
+					if (config.openInNewTab) {
+						$link.attr('target', '_blank');
+					} else {
+						$link.removeAttr('target');
+					}
 				} else {
 					$link.hide().removeAttr('href');
 				}

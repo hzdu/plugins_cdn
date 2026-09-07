@@ -207,7 +207,7 @@ body.js .is-unix-socket .hide-if-unix-socket {
 }
 
 .objectcache\:groups-widget .actions > :first-child label {
-    margin-left: .75em;
+    margin-left: 1em;
 }
 
 #objectcache_groups .inside,
@@ -233,7 +233,7 @@ body.js .is-unix-socket .hide-if-unix-socket {
 }
 
 #objectcache_groups .objectcache\:flush-group {
-    margin-left: .25em;
+    margin-left: .5em;
 }
 
 #objectcache_groups .busy .objectcache\:flush-group {
@@ -242,6 +242,15 @@ body.js .is-unix-socket .hide-if-unix-socket {
 
 #objectcache_groups tr:hover .objectcache\:flush-group {
     visibility: visible;
+}
+
+#objectcache_slowlog,
+#objectcache_adaptive,
+#objectcache_flushlog,
+#objectcache_commandstats,
+#objectcache_groupflushlog,
+#objectcache_relay_overview {
+    overflow: hidden;
 }
 
 #objectcache_slowlog .inside,

@@ -286,6 +286,7 @@ function mediaLibraryOrganizerTreeViewAssignAttachmentsToCategory( attachment_id
 
 				// Bail if an error occured.
 				if ( ! response.success ) {
+					$('#media-categories-spinner').fadeOut();
 					wpzinc_notification_show_error_message( response.data );
 					return;
 				}
@@ -354,6 +355,7 @@ function mediaLibraryOrganizerTreeViewGet( taxonomy_name, current_term ) {
 			function( response ) {
 
 				if ( ! response.success ) {
+					$( '#media-categories-spinner' ).fadeOut();
 					return false;
 				}
 
@@ -372,6 +374,9 @@ function mediaLibraryOrganizerTreeViewGet( taxonomy_name, current_term ) {
 				// Rebind Droppable.
 				mediaLibraryOrganizerTreeViewInitDroppable();
 
+				// Hide spinner, if shown.
+				$( '#media-categories-spinner' ).fadeOut();
+
 				// Fire the asenha-media:grid:tree-view:loaded event that Addons can hook into and listen.
 				wp.media.events.trigger( 'asenha-media:grid:tree-view:loaded' );
 
@@ -388,33 +393,62 @@ function mediaLibraryOrganizerTreeViewGet( taxonomy_name, current_term ) {
  * @since   1.2.7
  */
 function mediaLibraryOrganizerTreeViewInitJsTree() {
+	// console.log('jsTree init');
 
 	( function( $ ) {
 
 		if ( $( '.media-categories-module-tree-view-enabled' ).length ) {
+			var stateKey = 'stored_state',
+				hasSavedState = false;
+
+			if ( typeof media_categories_module_tree_view !== 'undefined' && media_categories_module_tree_view.state_key ) {
+				stateKey = media_categories_module_tree_view.state_key;
+			}
+
+			// If a saved state exists, do not force-open ancestors (respect user state).
+			try {
+				hasSavedState = !! window.localStorage.getItem( stateKey );
+			} catch ( e ) {
+				hasSavedState = false;
+			}
+
 			// If a subcategory was selected, open all .current-cat-ancestor list items,
 			// so the user can see the subcategory.
-			$( 'li.current-cat-ancestor', $( '.media-categories-module-tree-view-enabled' ) ).each(
-				function() {
-					$( this ).addClass( 'jstree-open' );
-				}
-			);
-
-			// Init JSTree.
-			$( '.media-categories-module-tree-view-enabled' ).jstree()
-				.bind(
-					'select_node.jstree',
-					function( e, data ) {
-						document.location.href = data.node.a_attr.href;
-					}
-				)
-				.bind(
-					'open_node.jstree',
-					function( e, data ) {
-						// Re-init droppable targets as new categories are displayed in the Tree View.
-						mediaLibraryOrganizerTreeViewInitDroppable();
+			if ( ! hasSavedState ) {
+				$( 'li.current-cat-ancestor', $( '.media-categories-module-tree-view-enabled' ) ).each(
+					function() {
+						$( this ).addClass( 'jstree-open' );
 					}
 				);
+			}
+
+			// Init JSTree.
+			$( '.media-categories-module-tree-view-enabled' ).jstree({
+				// https://www.jstree.com/plugins/ >> State plugin
+				// https://groups.google.com/g/jstree/c/Jk72DjaatSc
+				"state" : {
+					"key" : stateKey,
+					"preserve_loaded" : true
+				},
+				"plugins" : [ "state" ]
+			})
+				.on('state_ready.jstree', function() {
+					mediaLibraryOrganizerTreeViewInitDroppable();
+					$('.media-categories-module-tree-view-enabled')
+					.bind(
+						'select_node.jstree', 
+						function(e, data) {
+							document.location = data.instance.get_node(data.node, true).children('a').attr('href');
+						}
+					)
+					.bind(
+						'open_node.jstree',
+						function( e, data ) {
+							// Re-init droppable targets as new categories are displayed in the Tree View.
+							mediaLibraryOrganizerTreeViewInitDroppable();
+						}
+					);
+				});
 		}
 
 	} )( jQuery );
@@ -701,16 +735,18 @@ jQuery( document ).ready(
 
 		// Media Library Screen.
 		if ( $( 'body' ).hasClass( 'upload-php' ) ) {
-			// Move tree view into the wrapper.
-			$( '.wrap' ).wrap( '<div class="media-categories-module-tree-view"></div>' );
-			$( '.media-categories-module-tree-view' ).prepend( $( '#media-categories-module-tree-view' ) );
-			$( '#media-categories-module-tree-view' ).show();
+			var $treeView = $( '#media-categories-module-tree-view' );
+
+			// Bail if Tree View markup is not present (or intentionally hidden).
+			if ( ! $treeView.length || ! $treeView.is( ':visible' ) ) {
+				return;
+			}
 
 			// Make Sidebar Sticky.
 			var mediaLibraryOrganizerTreeViewSidebar = new StickySidebar(
 				'#media-categories-module-tree-view',
 				{
-					containerSelector: '.media-categories-module-tree-view',
+					containerSelector: '#wpbody-content',
 					innerWrapperSelector: '.media-categories-module-tree-view-inner',
 				}
 			);
@@ -1031,6 +1067,30 @@ wp.media.events.on(
 
 						// Set HTML in Terms column of this Attachment's row.
 						$( 'tr#post-' + atts.attachments[ attachment ].id + ' td.taxonomy-' + atts.taxonomy.name ).html( terms.join( ', ' ) );
+
+						// If the user is currently filtering the List View by a specific term,
+						// remove moved attachments that no longer match the current filter.
+						var selectedTerm = atts.selected_term;
+						if ( typeof selectedTerm !== 'undefined' && selectedTerm !== null && selectedTerm !== '' ) {
+							var keepInView = true;
+
+							// "Uncategorized" filter is represented as -1.
+							if ( selectedTerm === -1 || selectedTerm === '-1' ) {
+								keepInView = ( atts.attachments[ attachment ].terms.length === 0 );
+							} else {
+								keepInView = false;
+								for ( j = 0; j < length; j++ ) {
+									if ( atts.attachments[ attachment ].terms[ j ].slug == selectedTerm ) {
+										keepInView = true;
+										break;
+									}
+								}
+							}
+
+							if ( ! keepInView ) {
+								$( 'tr#post-' + atts.attachments[ attachment ].id ).remove();
+							}
+						}
 					}
 					break;
 
@@ -1039,21 +1099,31 @@ wp.media.events.on(
 				 */
 				case 'grid':
 
-					// Cancel Bulk Select mode if active and was just used to categorize multiple Attachments.
+					// If Bulk Select mode is enabled, clear the selection so the user can continue selecting
+					// and categorizing more attachments without leaving Bulk Select mode.
 					if ( MediaLibraryOrganizerAttachmentsBrowser.controller.isModeActive( 'select' ) ) {
-						MediaLibraryOrganizerAttachmentsBrowser.controller.deactivateMode( 'select' ).activateMode( 'edit' );
+						var selection = MediaLibraryOrganizerAttachmentsBrowser.controller.state().get( 'selection' );
+						if ( selection ) {
+							selection.reset();
+						}
 					}
 
-					// Replace Taxonomy Filter to reflect changes.
-					mediaLibraryOrganizerGridViewReplaceTaxonomyFilter(
-						atts.taxonomy.name,
-						atts.terms,
-						atts.taxonomy.labels.all_items,
-						media_categories_module_media.labels.unassigned
-					);
+					// Keep Bulk Select mode active if enabled.
+					// In Bulk Select mode, the Taxonomy Filters are not displayed, so don't try to replace them.
+					if ( ! MediaLibraryOrganizerAttachmentsBrowser.controller.isModeActive( 'select' ) ) {
+						// Replace Taxonomy Filter to reflect changes.
+						mediaLibraryOrganizerGridViewReplaceTaxonomyFilter(
+							atts.taxonomy.name,
+							atts.terms,
+							atts.taxonomy.labels.all_items,
+							media_categories_module_media.labels.unassigned
+						);
+					}
 
-					// Refresh Grid View.
-					mediaLibraryOrganizerGridViewRefresh();
+					// Do NOT refresh/requery the Grid View here.
+					// Refreshing forces wp.media to requery (via collection props `ignore`), which resets the user's
+					// scroll position and loaded items (e.g. when infinite scrolling is enabled).
+					// If the user is filtering by a term, moved items might remain visible until the next natural refresh.
 					break;
 			}
 
@@ -1161,21 +1231,16 @@ wp.media.events.on(
 wp.media.events.on(
 	'asenha-media:grid:attachment:upload:success',
 	function( attachment ) {
-		
 		// console.log( attachment );
 		// console.log('ID: '+attachment.id );
 		// console.dir('Tree view: '+JSON.stringify(media_categories_module_tree_view));
 		// console.log('Selected term: '+media_categories_module_tree_view.selected_term);
 		// console.log('Selected term: '+media_categories_module_tree_view.selected_term_id);
-
+		
 		// Assign Attachments to Category.
 		const attachment_ids = []
 		attachment_ids.push(attachment.id);
 		mediaLibraryOrganizerTreeViewAssignAttachmentsToCategory( attachment_ids, media_categories_module_tree_view.selected_term_id );
-		
-		// Reload the Tree View
-		mediaLibraryOrganizerTreeViewGet( media_categories_module_tree_view.taxonomy.name, media_categories_module_tree_view.selected_term );
-
 	}
 );
 

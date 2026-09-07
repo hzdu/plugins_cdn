@@ -1,0 +1,269 @@
+.rs-update-notice-wrap {
+	display:none !important;
+}
+
+.vc_license-activation-notice {
+	display: none !important;
+}
+
+.wpb-notice {
+	display: none !important;
+}
+
+/* Customizer */
+
+.customize-control
+{
+	margin-bottom: 20px !important;
+}
+
+.customize-control-checkbox .customize-control-description
+{
+	margin-left: -24px!important;
+}
+
+.customize-control-checkbox label
+{
+	margin-top: -2px;
+    display: inline-block;
+	font-size: 14px;
+	line-height: 1.75;
+	font-weight: 600;
+}
+
+.customize-inside-control-row
+{
+	padding-bottom: 0;
+}
+
+.customize-control-description
+{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.customize-control .dashicons-editor-help,
+.customize-control .dashicons-warning
+{
+	margin-top: -1px;
+    margin-right: 4px;
+}
+
+#customize-control-ajax_add_to_cart.disabled input:checked + .switch:after
+{
+    background: #999 !important;
+    transform: translate3d(0, -50%, 0) !important;
+}
+
+#customize-control-ajax_add_to_cart.disabled .switch:before
+{
+	display: none !important;
+}
+
+#customize-control-ajax_add_to_cart div.ajax-error
+{
+	display: none;
+
+	ul
+	{
+		margin-top: 6px;
+		list-style: disc;
+    	list-style-position: inside;
+	}
+}
+
+#customize-control-ajax_add_to_cart.disabled div.ajax-error
+{
+	display: block;
+	clear: both;
+    margin-top: 15px;
+}
+
+#customize-control-ajax_add_to_cart div.ajax-error li
+{
+	display: none;
+	width: 100%;
+    clear: both;
+    font-weight: bold;
+}
+
+#customize-control-ajax_add_to_cart.incompatible-woo-addons div.ajax-error li.woo-addons
+{
+	display: block;
+}
+
+#customize-control-ajax_add_to_cart.incompatible-fields-factory div.ajax-error li.fields-factory
+{
+	display: block;
+}
+
+#customize-control-ajax_add_to_cart.incompatible-gift-card div.ajax-error li.gift-card
+{
+	display: block;
+}
+
+#customize-control-ajax_add_to_cart.incompatible-gift-wrapper div.ajax-error li.gift-wrapper
+{
+	display: block;
+}
+
+#customize-control-ajax_add_to_cart.incompatible-price-calculator div.ajax-error li.m-price-calculator
+{
+	display: block;
+}
+
+#customize-control-ajax_add_to_cart.incompatible-woo-bundles div.ajax-error li.woo-bundles
+{
+	display: block;
+}
+
+.page-template-full,
+.page-template-blank,
+.page-template-default {
+    .editor-styles-wrapper {
+		.wp-block:not([data-align="full"]),
+		.block-editor-block-list__block:not([data-align="full"]),
+		.wp-block:not([data-align="full"]) .block-editor-block-list__block {
+            max-width: 100%;
+		}
+    }
+}
+
+.customize-sk_heading-control
+{
+	background: #fff;
+	cursor: default;
+	margin-left: -12px;
+	margin-right: -12px;
+	padding: 12px;
+
+	label
+	{
+		color: #555d66;
+		cursor: default;
+		display: block;
+		font-size: 14px;
+		line-height: 1.75;
+		font-weight: 600;
+	}
+}
+
+/* page options metabox */
+.postbox-header {
+	border-bottom: 0;
+}
+
+.postbox-header .handle-actions {
+	padding: 0 5px;
+}
+
+.js .meta-box-sortables .postbox .handlediv .toggle-indicator:before {
+	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M12 8l-6 5.4 1 1.2 5-4.6 5 4.6 1-1.2z'%2F%3E%3C%2Fsvg%3E");
+	background-repeat: no-repeat;
+	background-position: center;
+	content: '' !important;
+	margin-top: 5px;
+	width: 24px;
+	height: 24px;
+}
+.js .meta-box-sortables .postbox.closed .handlediv .toggle-indicator:before {
+	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M17 9.4L12 14 7 9.4l-1 1.2 6 5.4 6-5.4z'%20fill%3D'%23191e23'%2F%3E%3C%2Fsvg%3E");
+}
+
+.postbox .handle-order-lower .order-lower-indicator::before {
+    content: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M17 9.4L12 14 7 9.4l-1 1.2 6 5.4 6-5.4z'%20fill%3D'%23191e23'%2F%3E%3C%2Fsvg%3E");
+    top: 0;
+}
+
+.postbox .handle-order-higher .order-higher-indicator::before {
+    content: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M12 8l-6 5.4 1 1.2 5-4.6 5 4.6 1-1.2z'%2F%3E%3C%2Fsvg%3E");
+    top: 0;
+}
+
+.edit-post-meta-boxes-area #poststuff .postbox h2.hndle {
+	border-bottom: 0;
+    color: #1e1e1e;
+    font-weight: 500;
+    font-size: 13px;
+	padding: 16px;
+}
+.edit-post-meta-boxes-area #poststuff .postbox > .inside > p {
+	margin-bottom: 20px;
+	&:last-of-type{
+		margin-bottom: 0;
+	}
+}
+.edit-post-meta-boxes-area #poststuff .postbox > .inside {
+	padding: 0 16px 16px;
+}
+
+.edit-post-meta-boxes-area #poststuff .inside {
+	margin: 5px 0 0 0;
+}
+
+.edit-post-meta-boxes-area .metabox-location-side .postbox input[type="checkbox"]:checked {
+    background: #007cba;
+    border-color: #007cba;
+}
+
+.edit-post-meta-boxes-area .metabox-location-side .postbox input[type="checkbox"]:checked:before {
+	background-repeat: no-repeat;
+	background-position: center;
+	content: '';
+	display: inline-block;
+	background-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2020%2020%27%3E%3Cpath%20d%3D%27M9 18.6L3.5 13l1-1L9 16.4l9.5-9.9 1 1z%27%20fill%3D%27%23ffffff%27%2F%3E%3C%2Fsvg%3E")
+}
+
+.components-base-control.select-control {
+	width: 100%;
+    margin: 5px 0;
+
+	label {
+		margin-bottom: 5px;
+	    display: block;
+	    max-width: 100%;
+	}
+
+	select {
+		box-sizing: border-box;
+	}
+}
+
+label[for="page_product_youtube"] {
+	margin-bottom: 5px;
+	display: block;
+	max-width: 100%;
+}
+
+
+/********/
+/* OCDI */
+/********/
+
+
+// Hide default recommended plugins
+
+.ocdi-install-plugins-content-content
+{
+	.plugin-item:has(.plugin-item-content-title>span>img[src*="star.svg"]),
+	.ocdi-content-notice:has(.ocdi-recommended-star>img[src*="star.svg"])
+	{
+		display: none !important;
+	}
+}
+
+
+// About the theme
+
+.ocdi__theme-about
+{
+	//display: none !important;
+}
+
+
+// Manual Install
+
+.ocdi__file-upload-container-items--second-row
+{
+	display: none !important;
+}

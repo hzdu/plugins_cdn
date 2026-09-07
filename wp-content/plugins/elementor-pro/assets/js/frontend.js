@@ -1,11 +1,46 @@
-/*! elementor-pro - v3.26.0 - 22-12-2024 */
+/*! elementor-pro - v4.2.0 - 31-08-2026 */
 (self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["frontend"],{
 
-/***/ "../assets/dev/js/frontend/frontend.js":
+/***/ "../../elementor/assets/dev/js/frontend/utils/utils.js"
+/*!*************************************************************!*\
+  !*** ../../elementor/assets/dev/js/frontend/utils/utils.js ***!
+  \*************************************************************/
+(__unused_webpack_module, exports) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.isScrollSnapActive = exports.escapeHTML = void 0;
+// Escape HTML special chars to prevent XSS.
+const escapeHTML = str => {
+  const specialChars = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    "'": '&#39;',
+    '"': '&quot;'
+  };
+  return str.replace(/[&<>'"]/g, tag => specialChars[tag] || tag);
+};
+
+// Check if Scroll-Snap is active.
+exports.escapeHTML = escapeHTML;
+const isScrollSnapActive = () => {
+  const scrollSnapStatus = elementorFrontend.isEditMode() ? elementor.settings.page.model.attributes?.scroll_snap : elementorFrontend.config.settings.page?.scroll_snap;
+  return 'yes' === scrollSnapStatus ? true : false;
+};
+exports.isScrollSnapActive = isScrollSnapActive;
+
+/***/ },
+
+/***/ "../assets/dev/js/frontend/frontend.js"
 /*!*********************************************!*\
   !*** ../assets/dev/js/frontend/frontend.js ***!
   \*********************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
 
@@ -50,8 +85,8 @@ class ElementorProFrontend extends elementorModules.ViewModule {
 
     // TODO: BC Since 2.9.0
     this.modules.linkActions = {
-      addAction: function () {
-        elementorFrontend.utils.urlActions.addAction(...arguments);
+      addAction: (...args) => {
+        elementorFrontend.utils.urlActions.addAction(...args);
       }
     };
   }
@@ -67,13 +102,13 @@ class ElementorProFrontend extends elementorModules.ViewModule {
 }
 window.elementorProFrontend = new ElementorProFrontend();
 
-/***/ }),
+/***/ },
 
-/***/ "../assets/dev/js/frontend/utils/controls.js":
+/***/ "../assets/dev/js/frontend/utils/controls.js"
 /*!***************************************************!*\
   !*** ../assets/dev/js/frontend/utils/controls.js ***!
   \***************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+(__unused_webpack_module, exports) {
 
 "use strict";
 
@@ -118,8 +153,7 @@ class Controls {
    * @param {string} controlSubKey   A specific property of the control object.
    * @return {*} Control Value
    */
-  getResponsiveControlValue(controlSettings, controlKey) {
-    let controlSubKey = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+  getResponsiveControlValue(controlSettings, controlKey, controlSubKey = '') {
     const currentDeviceMode = elementorFrontend.getCurrentDeviceMode(),
       controlValueDesktop = this.getControlValue(controlSettings, controlKey, controlSubKey);
 
@@ -158,13 +192,13 @@ class Controls {
 }
 exports["default"] = Controls;
 
-/***/ }),
+/***/ },
 
-/***/ "../assets/dev/js/frontend/utils/dropdown-menu-height-controller.js":
+/***/ "../assets/dev/js/frontend/utils/dropdown-menu-height-controller.js"
 /*!**************************************************************************!*\
   !*** ../assets/dev/js/frontend/utils/dropdown-menu-height-controller.js ***!
   \**************************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+(__unused_webpack_module, exports) {
 
 "use strict";
 
@@ -233,13 +267,13 @@ class DropdownMenuHeightController {
 }
 exports["default"] = DropdownMenuHeightController;
 
-/***/ }),
+/***/ },
 
-/***/ "../assets/dev/js/public-path.js":
+/***/ "../assets/dev/js/public-path.js"
 /*!***************************************!*\
   !*** ../assets/dev/js/public-path.js ***!
   \***************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
 
@@ -247,13 +281,13 @@ exports["default"] = DropdownMenuHeightController;
 /* eslint-disable camelcase */
 __webpack_require__.p = ElementorProFrontendConfig.urls.assets + 'js/';
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/code-highlight/assets/js/frontend/frontend.js":
+/***/ "../modules/code-highlight/assets/js/frontend/frontend.js"
 /*!****************************************************************!*\
   !*** ../modules/code-highlight/assets/js/frontend/frontend.js ***!
   \****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -270,13 +304,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/motion-fx/assets/js/frontend/frontend.js":
+/***/ "../modules/motion-fx/assets/js/frontend/frontend.js"
 /*!***********************************************************!*\
   !*** ../modules/motion-fx/assets/js/frontend/frontend.js ***!
   \***********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -295,13 +329,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/motion-fx/assets/js/frontend/handler.js":
+/***/ "../modules/motion-fx/assets/js/frontend/handler.js"
 /*!**********************************************************!*\
   !*** ../modules/motion-fx/assets/js/frontend/handler.js ***!
   \**********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -313,8 +347,8 @@ Object.defineProperty(exports, "__esModule", ({
 exports["default"] = void 0;
 var _motionFx = _interopRequireDefault(__webpack_require__(/*! ./motion-fx/motion-fx */ "../modules/motion-fx/assets/js/frontend/motion-fx/motion-fx.js"));
 class _default extends elementorModules.frontend.handlers.Base {
-  __construct() {
-    super.__construct(...arguments);
+  __construct(...args) {
+    super.__construct(...args);
     this.toggle = elementorFrontend.debounce(this.toggle, 200);
   }
   getDefaultSettings() {
@@ -504,6 +538,10 @@ class _default extends elementorModules.frontend.handlers.Base {
   }
   onInit() {
     super.onInit();
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (prefersReducedMotion && prefersReducedMotion.matches) {
+      return;
+    }
     this.initEffects();
     this.addCSSTransformEvents();
     this.toggle();
@@ -539,13 +577,13 @@ class _default extends elementorModules.frontend.handlers.Base {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/motion-fx/assets/js/frontend/motion-fx/actions.js":
+/***/ "../modules/motion-fx/assets/js/frontend/motion-fx/actions.js"
 /*!********************************************************************!*\
   !*** ../modules/motion-fx/assets/js/frontend/motion-fx/actions.js ***!
   \********************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+(__unused_webpack_module, exports) {
 
 "use strict";
 
@@ -728,7 +766,7 @@ class _default extends elementorModules.Module {
     });
     return value;
   }
-  runAction(actionName, actionData, passedPercents) {
+  runAction(actionName, actionData, passedPercents, ...args) {
     if (actionData.affectedRange) {
       if (actionData.affectedRange.start > passedPercents) {
         passedPercents = actionData.affectedRange.start;
@@ -736,9 +774,6 @@ class _default extends elementorModules.Module {
       if (actionData.affectedRange.end < passedPercents) {
         passedPercents = actionData.affectedRange.end;
       }
-    }
-    for (var _len = arguments.length, args = new Array(_len > 3 ? _len - 3 : 0), _key = 3; _key < _len; _key++) {
-      args[_key - 3] = arguments[_key];
     }
     this[actionName](actionData, passedPercents, ...args);
   }
@@ -759,13 +794,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/motion-fx/assets/js/frontend/motion-fx/interactions/base.js":
+/***/ "../modules/motion-fx/assets/js/frontend/motion-fx/interactions/base.js"
 /*!******************************************************************************!*\
   !*** ../modules/motion-fx/assets/js/frontend/motion-fx/interactions/base.js ***!
   \******************************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+(__unused_webpack_module, exports) {
 
 "use strict";
 
@@ -800,9 +835,9 @@ class _default extends elementorModules.ViewModule {
     this.run();
     this.animationFrameRequest = requestAnimationFrame(this.onInsideViewport);
   };
-  runCallback() {
+  runCallback(...args) {
     const callback = this.getSettings('callback');
-    callback(...arguments);
+    callback(...args);
   }
   removeIntersectionObserver() {
     if (this.intersectionObserver) {
@@ -824,13 +859,13 @@ class _default extends elementorModules.ViewModule {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/motion-fx/assets/js/frontend/motion-fx/interactions/mouse-move.js":
+/***/ "../modules/motion-fx/assets/js/frontend/motion-fx/interactions/mouse-move.js"
 /*!************************************************************************************!*\
   !*** ../modules/motion-fx/assets/js/frontend/motion-fx/interactions/mouse-move.js ***!
   \************************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -876,13 +911,13 @@ MouseMoveInteraction.updateMousePosition = event => {
   };
 };
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/motion-fx/assets/js/frontend/motion-fx/interactions/scroll.js":
+/***/ "../modules/motion-fx/assets/js/frontend/motion-fx/interactions/scroll.js"
 /*!********************************************************************************!*\
   !*** ../modules/motion-fx/assets/js/frontend/motion-fx/interactions/scroll.js ***!
   \********************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -929,13 +964,13 @@ class _default extends _base.default {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/motion-fx/assets/js/frontend/motion-fx/motion-fx.js":
+/***/ "../modules/motion-fx/assets/js/frontend/motion-fx/motion-fx.js"
 /*!**********************************************************************!*\
   !*** ../modules/motion-fx/assets/js/frontend/motion-fx/motion-fx.js ***!
   \**********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -1055,18 +1090,14 @@ class _default extends elementorModules.ViewModule {
     this.elements.$parent.removeClass(settings.classes.perspective);
   }
   runInteractions() {
-    var _this = this;
     const settings = this.getSettings();
     this.actions.setCSSTransformVariables(settings.elementSettings);
     this.prepareSpecialActions();
     jQuery.each(settings.interactions, (interactionName, actions) => {
       this.interactions[interactionName] = new this.interactionsTypes[interactionName]({
         motionFX: this,
-        callback: function () {
-          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-          }
-          jQuery.each(actions, (actionName, actionData) => _this.actions.runAction(actionName, actionData, ...args));
+        callback: (...args) => {
+          jQuery.each(actions, (actionName, actionData) => this.actions.runAction(actionName, actionData, ...args));
         }
       });
       this.interactions[interactionName].run();
@@ -1120,13 +1151,13 @@ class _default extends elementorModules.ViewModule {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/payments/assets/js/frontend/frontend.js":
+/***/ "../modules/payments/assets/js/frontend/frontend.js"
 /*!**********************************************************!*\
   !*** ../modules/payments/assets/js/frontend/frontend.js ***!
   \**********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -1139,18 +1170,18 @@ class _default extends elementorModules.Module {
   constructor() {
     super();
     elementorFrontend.elementsHandler.attachHandler('paypal-button', () => __webpack_require__.e(/*! import() | paypal-button */ "paypal-button").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/paypal-button */ "../modules/payments/assets/js/frontend/handlers/paypal-button.js")));
-    elementorFrontend.elementsHandler.attachHandler('stripe-button', () => Promise.all(/*! import() | stripe-button */[__webpack_require__.e("vendors-node_modules_dompurify_dist_purify_js"), __webpack_require__.e("stripe-button")]).then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/stripe-button */ "../modules/payments/assets/js/frontend/handlers/stripe-button.js")));
+    elementorFrontend.elementsHandler.attachHandler('stripe-button', () => Promise.all(/*! import() | stripe-button */[__webpack_require__.e("vendors-node_modules_dompurify_dist_purify_cjs_js"), __webpack_require__.e("stripe-button")]).then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/stripe-button */ "../modules/payments/assets/js/frontend/handlers/stripe-button.js")));
   }
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/progress-tracker/assets/js/frontend/frontend.js":
+/***/ "../modules/progress-tracker/assets/js/frontend/frontend.js"
 /*!******************************************************************!*\
   !*** ../modules/progress-tracker/assets/js/frontend/frontend.js ***!
   \******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -1167,13 +1198,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/sticky/assets/js/frontend/frontend.js":
+/***/ "../modules/sticky/assets/js/frontend/frontend.js"
 /*!********************************************************!*\
   !*** ../modules/sticky/assets/js/frontend/frontend.js ***!
   \********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -1194,13 +1225,13 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/sticky/assets/js/frontend/handlers/sticky.js":
+/***/ "../modules/sticky/assets/js/frontend/handlers/sticky.js"
 /*!***************************************************************!*\
   !*** ../modules/sticky/assets/js/frontend/handlers/sticky.js ***!
   \***************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -1370,13 +1401,13 @@ var _default = exports["default"] = elementorModules.frontend.handlers.Base.exte
   }
 });
 
-/***/ }),
+/***/ },
 
-/***/ "../modules/video-playlist/assets/js/frontend/frontend.js":
+/***/ "../modules/video-playlist/assets/js/frontend/frontend.js"
 /*!****************************************************************!*\
   !*** ../modules/video-playlist/assets/js/frontend/frontend.js ***!
   \****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -1389,10 +1420,9 @@ class _default extends elementorModules.Module {
   constructor() {
     super();
     elementorFrontend.hooks.addAction('frontend/element_ready/video-playlist.default', $element => {
-      __webpack_require__.e(/*! import() | video-playlist */ "video-playlist").then(__webpack_require__.bind(__webpack_require__, /*! ./handler */ "../modules/video-playlist/assets/js/frontend/handler.js")).then(_ref => {
-        let {
-          default: dynamicHandler
-        } = _ref;
+      __webpack_require__.e(/*! import() | video-playlist */ "video-playlist").then(__webpack_require__.bind(__webpack_require__, /*! ./handler */ "../modules/video-playlist/assets/js/frontend/handler.js")).then(({
+        default: dynamicHandler
+      }) => {
         elementorFrontend.elementsHandler.addHandler(dynamicHandler, {
           $element,
           toggleSelf: false
@@ -1403,57 +1433,22 @@ class _default extends elementorModules.Module {
 }
 exports["default"] = _default;
 
-/***/ }),
+/***/ },
 
-/***/ "../../elementor/assets/dev/js/frontend/utils/utils.js":
-/*!*************************************************************!*\
-  !*** ../../elementor/assets/dev/js/frontend/utils/utils.js ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.isScrollSnapActive = exports.escapeHTML = void 0;
-// Escape HTML special chars to prevent XSS.
-const escapeHTML = str => {
-  const specialChars = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    "'": '&#39;',
-    '"': '&quot;'
-  };
-  return str.replace(/[&<>'"]/g, tag => specialChars[tag] || tag);
-};
-
-// Check if Scroll-Snap is active.
-exports.escapeHTML = escapeHTML;
-const isScrollSnapActive = () => {
-  const scrollSnapStatus = elementorFrontend.isEditMode() ? elementor.settings.page.model.attributes?.scroll_snap : elementorFrontend.config.settings.page?.scroll_snap;
-  return 'yes' === scrollSnapStatus ? true : false;
-};
-exports.isScrollSnapActive = isScrollSnapActive;
-
-/***/ }),
-
-/***/ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js":
+/***/ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js"
 /*!***********************************************************************!*\
   !*** ../node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
   \***********************************************************************/
-/***/ ((module) => {
+(module) {
 
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    "default": obj
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
   };
 }
 module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
-/***/ })
+/***/ }
 
 },
 /******/ __webpack_require__ => { // webpackRuntimeModules

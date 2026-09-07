@@ -1,4 +1,3 @@
-/*! elementor - v3.26.0 - 19-12-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -27,7 +26,7 @@ var _view = _interopRequireDefault(__webpack_require__(/*! elementor-admin/float
 var _layout = _interopRequireDefault(__webpack_require__(/*! elementor-common/views/modal/layout */ "../core/common/assets/js/views/modal/layout.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var _default = exports["default"] = /*#__PURE__*/function (_ModalLayout) {
   function _default() {
     (0, _classCallCheck2.default)(this, _default);
@@ -116,6 +115,11 @@ var _default = exports["default"] = /*#__PURE__*/function (_Marionette$LayoutVie
   }
   (0, _inherits2.default)(_default, _Marionette$LayoutVie);
   return (0, _createClass2.default)(_default, [{
+    key: "tagName",
+    value: function tagName() {
+      return 'header';
+    }
+  }, {
     key: "className",
     value: function className() {
       return 'elementor-templates-modal__header';
@@ -149,6 +153,29 @@ var _default = exports["default"] = /*#__PURE__*/function (_Marionette$LayoutVie
       };
     }
   }, {
+    key: "onRender",
+    value: function onRender() {
+      this.bindEscapeKey();
+    }
+  }, {
+    key: "bindEscapeKey",
+    value: function bindEscapeKey() {
+      var _this = this;
+      this.onDocumentKeyDown = function (event) {
+        if ('Escape' === event.key) {
+          _this.onCloseModalClick();
+        }
+      };
+      document.addEventListener('keydown', this.onDocumentKeyDown);
+    }
+  }, {
+    key: "onDestroy",
+    value: function onDestroy() {
+      if (this.onDocumentKeyDown) {
+        document.removeEventListener('keydown', this.onDocumentKeyDown);
+      }
+    }
+  }, {
     key: "templateHelpers",
     value: function templateHelpers() {
       return {
@@ -159,12 +186,25 @@ var _default = exports["default"] = /*#__PURE__*/function (_Marionette$LayoutVie
     key: "onCloseModalClick",
     value: function onCloseModalClick() {
       this._parent._parent._parent.hideModal();
+      var documentType = this.getDocumentType();
+      var customEvent = new CustomEvent("core/modal/close/".concat(documentType));
+      window.dispatchEvent(customEvent);
       if (this.isFloatingButtonLibraryClose()) {
         $e.internal('document/save/set-is-modified', {
           status: false
         });
         window.location.href = elementor.config.admin_floating_button_admin_url;
       }
+    }
+  }, {
+    key: "getDocumentType",
+    value: function getDocumentType() {
+      var _elementor$config$doc, _elementor;
+      var DEFAULT_TYPE = 'default';
+      if ('undefined' === typeof window.elementor) {
+        return DEFAULT_TYPE;
+      }
+      return (_elementor$config$doc = (_elementor = elementor) === null || _elementor === void 0 || (_elementor = _elementor.config) === null || _elementor === void 0 || (_elementor = _elementor.document) === null || _elementor === void 0 ? void 0 : _elementor.type) !== null && _elementor$config$doc !== void 0 ? _elementor$config$doc : DEFAULT_TYPE;
     }
   }, {
     key: "isFloatingButtonLibraryClose",
@@ -426,17 +466,6 @@ var _default = exports["default"] = /*#__PURE__*/function (_Marionette$ItemView)
 
 /***/ }),
 
-/***/ "@wordpress/i18n":
-/*!**************************!*\
-  !*** external "wp.i18n" ***!
-  \**************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = wp.i18n;
-
-/***/ }),
-
 /***/ "../node_modules/@babel/runtime/helpers/assertThisInitialized.js":
 /*!***********************************************************************!*\
   !*** ../node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
@@ -660,6 +689,17 @@ function _typeof(o) {
 }
 module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
+/***/ }),
+
+/***/ "@wordpress/i18n":
+/*!**************************!*\
+  !*** external "wp.i18n" ***!
+  \**************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = wp.i18n;
+
 /***/ })
 
 /******/ 	});
@@ -690,7 +730,7 @@ module.exports = _typeof, module.exports.__esModule = true, module.exports["defa
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (() => {
 "use strict";
 /*!*************************************************************************!*\
@@ -704,7 +744,7 @@ var NewFloatingElementsModule = elementorModules.ViewModule.extend({
   getDefaultSettings: function getDefaultSettings() {
     return {
       selectors: {
-        addButtonTopBar: '.page-title-action',
+        addButtonTopBar: 'a.page-title-action[href*="e-floating-buttons"]',
         addButtonAdminBar: '#wp-admin-bar-new-e-floating-buttons a',
         addButtonEmptyTemplate: '#elementor-template-library-add-new'
       }

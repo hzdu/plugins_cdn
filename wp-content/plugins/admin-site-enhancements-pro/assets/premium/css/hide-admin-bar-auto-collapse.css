@@ -1,0 +1,114 @@
+/*! <fs_premium_only> */
+/**
+ * Frontend auto-collapse for the WordPress toolbar (Hide Admin Bar module, Pro).
+ *
+ * WordPress adds `admin-bar` to body, not html — selectors must use body.admin-bar.
+ */
+
+/* Narrow screens: hide toolbar entirely (default). */
+html.asenha-abac-html--small-hidden body.admin-bar #wpadminbar {
+	display: none !important;
+}
+
+html.asenha-abac-html--small-hidden {
+	margin-top: 0 !important;
+}
+
+html.asenha-abac-html--small-hidden body.admin-bar {
+	padding-top: 0 !important;
+}
+
+/* Wide screens: collapse upward; keep toggle visible. */
+html.asenha-abac-html--wide-active {
+	--asenha-abac-toggle-slot: 32px;
+}
+
+html.asenha-abac-html--wide-active.asenha-abac-html--collapsed {
+	margin-top: 0 !important;
+}
+
+html.asenha-abac-html--wide-active.asenha-abac-html--collapsed body.admin-bar {
+	padding-top: 0 !important;
+}
+
+html.asenha-abac-html--wide-active body.admin-bar #wpadminbar {
+	will-change: transform;
+}
+
+html.asenha-abac-html--wide-active.asenha-abac-html--collapsed body.admin-bar #wpadminbar {
+	transform: translateY(-100%);
+	pointer-events: none;
+}
+
+/* Expanded bar: reserve space so fixed toggle does not cover first menu items (left toggle). */
+html.asenha-abac-html--wide-active:not(.asenha-abac-html--collapsed):not(.asenha-abac-html--toggle-right) body.admin-bar #wpadminbar .quicklinks {
+	padding-left: var(--asenha-abac-toggle-slot);
+	box-sizing: border-box;
+}
+
+/* Right-positioned toggle: inset Core secondary (right) group. */
+html.asenha-abac-html--wide-active.asenha-abac-html--toggle-right:not(.asenha-abac-html--collapsed) body.admin-bar #wpadminbar .ab-top-secondary {
+	padding-right: var(--asenha-abac-toggle-slot);
+	box-sizing: border-box;
+}
+
+/* Hover strip at top edge (invisible hit target). */
+#asenha-abac-hover-strip {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 14px;
+	z-index: 100001;
+	background: transparent;
+}
+
+/* Toggle control */
+.asenha-abac-toggle {
+	box-sizing: border-box;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100002;
+	min-width: var(--asenha-abac-toggle-slot, 32px);
+	min-height: 32px;
+	padding: 0;
+	margin: 0;
+	border: none;
+	border-radius: 0;
+	background: #23282d;
+	color: #fff;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.asenha-abac-toggle:focus {
+	outline: 2px solid #2271b1;
+	outline-offset: 1px;
+}
+
+.asenha-abac-toggle--right {
+	left: auto;
+	right: 0;
+}
+
+.asenha-abac-toggle .asenha-abac-arrow {
+	display: block;
+	width: 0;
+	height: 0;
+	margin: 0 auto;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-bottom: 8px solid #fff;
+	transform: rotate(0deg);
+	transition: transform 0.12s ease-out;
+}
+
+/* Collapsed (bar hidden): caret points down. Expanded: default triangle points up. */
+html.asenha-abac-html--wide-active.asenha-abac-html--collapsed .asenha-abac-toggle .asenha-abac-arrow {
+	transform: rotate(180deg);
+}
+
+/*! </fs_premium_only> */

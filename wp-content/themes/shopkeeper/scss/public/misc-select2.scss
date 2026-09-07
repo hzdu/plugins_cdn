@@ -1,0 +1,64 @@
+@import "../settings";
+
+.select2-results
+{
+
+    .select2-results__option
+    {
+        font-size: 13px;
+    }
+}
+
+
+.catalog-ordering
+{
+    span.select2-container
+    {
+        span
+        {
+            border: none;
+            text-transform: uppercase;
+            font-size: 13px;
+        }
+
+        .selection
+        {
+            .select2-selection__rendered
+            {
+                padding: 0 20px 0 0;
+            }
+
+            .select2-selection__arrow
+            {
+                b
+                {
+                    //display: none;
+                }
+            }
+        }
+    }
+}
+
+
+
+// Select2 on Checkout and MyAccount
+
+#billing_country_field,
+#billing_state_field,
+#calc_shipping_country_field,
+#calc_shipping_state_field,
+#shipping_country_field,
+#shipping_state_field,
+.woocommerce-widget-layered-nav-dropdown
+{
+
+
+    .select2-selection__rendered,
+    .select2-selection__placeholder
+    {
+        font-size: 0.875rem;
+        color: #444 !important;
+    }
+
+}
+

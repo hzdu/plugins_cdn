@@ -13,8 +13,21 @@
 	/* display: none; */
 }
 
-.postbox .inside {
-	padding: 8px 0 0;
+#poststuff .postbox .inside {
+	margin: 0;
+	padding: 16px 10px;
+}
+
+#poststuff .postbox .inside p {
+	margin-top: 0;
+}
+
+#poststuff .postbox .inside select {
+	margin-bottom: 1em;
+}
+
+.tips-wrapper ul {
+	margin-top: 0;
 }
 
 /* === TABS === */
@@ -67,4 +80,67 @@
 .postbox .item-active {
   color: #1d2327;
   border-bottom: 2px solid #007DBA !important;
+}
+
+/* === STICKY PUBLISH BAR (Custom Field Group editor) === */
+
+.asenha-cfgroup-sticky-publish-bar {
+	position: fixed;
+	top: 32px; /* below wp-admin bar */
+	z-index: 100;
+	background: #fff;
+	border-bottom: 1px solid #ccd0d4;
+	box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+
+	/* Hidden by default (no layout shift). */
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(-8px);
+	pointer-events: none;
+	transition: opacity 120ms ease, transform 120ms ease, visibility 0s linear 120ms;
+}
+
+.asenha-cfgroup-sticky-publish-bar.is-visible {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+	pointer-events: auto;
+	transition: opacity 120ms ease, transform 120ms ease, visibility 0s;
+}
+
+.asenha-cfgroup-sticky-publish-bar__inner {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 12px;
+	padding: 12px 20px;
+	box-sizing: border-box;
+}
+
+.asenha-cfgroup-sticky-publish-bar__title {
+	flex: 1 1 auto;
+	min-width: 0;
+	font-size: 1.75em;
+	font-weight: 500;
+	color: #2c3338;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.asenha-cfgroup-sticky-publish-bar__actions {
+	flex: 0 0 auto;
+}
+
+@media screen and (max-width: 782px) {
+	.asenha-cfgroup-sticky-publish-bar {
+		top: 46px; /* mobile wp-admin bar */
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.asenha-cfgroup-sticky-publish-bar {
+		transition: none;
+		transform: none;
+	}
 }

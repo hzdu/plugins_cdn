@@ -65,13 +65,18 @@
 
 	&__add-button {
 		margin-block-start: $e-site-editor-add-button-margin-block-start;
-		background-color: var(--e-site-editor-add-button-background-color);
-		color: $e-site-editor-add-button-color;
+		background-color: var(--e-one-palette-primary-main, var(--e-site-editor-add-button-background-color));
+		border-color: var(--e-one-palette-primary-main, var(--e-site-editor-add-button-background-color));
+		color: var(--e-one-palette-primary-contrast-text, var(--e-one-palette-primary-contrastText, #{$e-site-editor-add-button-color}));
 		text-transform: uppercase;
+		text-decoration: none;
 
-		&:hover {
-			background-color: var(--e-site-editor-add-button-color-hover-background-color);
-			color: $e-site-editor-add-button-color-hover-color;
+		&:hover,
+		&:focus {
+			background-color: var(--e-one-palette-primary-dark, var(--e-site-editor-add-button-color-hover-background-color));
+			border-color: var(--e-one-palette-primary-dark, var(--e-site-editor-add-button-color-hover-background-color));
+			color: var(--e-one-palette-primary-contrast-text, var(--e-one-palette-primary-contrastText, #{$e-site-editor-add-button-color-hover-color}));
+			text-decoration: none;
 		}
 	}
 
@@ -105,15 +110,15 @@
 			background: transparent;
 		}
 
-		&:after {
+		&::after {
 			font-family: eicons;
 			content: '\e8ad';
 			font-size: $e-site-editor-input-wrapper-select-arrow-font-size;
 			pointer-events: none;
 			position: absolute;
-			top: 50%;
+			inset-block-start: 50%;
+			inset-inline-end: $e-site-editor-input-wrapper-select-arrow-margin-end;
 			transform: translateY(-50%);
-			@include end($e-site-editor-input-wrapper-select-arrow-margin-end);
 		}
 
 		.select2-container--default .select2-selection--single {
@@ -140,12 +145,12 @@
 	&__input-wrapper--condition-type {
 		position: relative;
 
-		&:before {
+		&::before {
 			font-family: eicons;
 			position: absolute;
-			top: 50%;
 			transform: translateY(-50%);
-			@include start($e-site-editor-input-wrapper-condition-type-icon-start-spacing);
+			inset-block-start: 50%;
+			inset-inline-start: $e-site-editor-input-wrapper-condition-type-icon-start-spacing;
 			font-size: $e-site-editor-input-wrapper-condition-type-icon-font-size;
 			//color: $e-site-editor-input-wrapper-condition-type-icon-color;
 			pointer-events: none;
@@ -162,13 +167,13 @@
 		}
 
 		&[data-elementor-condition-type="include"] {
-			&:before {
+			&::before {
 				content: '\e8cc';
 			}
 		}
 
 		&[data-elementor-condition-type="exclude"] {
-			&:before {
+			&::before {
 				content: '\e8cd';
 			}
 		}

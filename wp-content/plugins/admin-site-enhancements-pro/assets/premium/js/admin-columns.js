@@ -4,7 +4,80 @@
    $(document).ready( function() {
       
       var currentUrl = window.location.href;
+      var hasSavedHScrollSetting = !! ( 'undefined' !== typeof adminColumns && adminColumns && adminColumns.hScrollSettingExists );
+
+      var explicitWidthTypes = ['px', 'em', 'rem', '%'];
+
+      /**
+       * Check whether the current active columns include any fixed-width unit + positive number.
+       *
+       * @return {boolean}
+       */
+      function asenhaHasFixedWidthActiveColumn() {
+         var hasFixedWidth = false;
+
+         $('#current-columns .sortable-item').each(function() {
+            var $item = $(this);
+            var columnKey = $item.data('column-key');
+
+            if ( ! columnKey ) {
+               return;
+            }
+
+            var widthType = $item.find('input[name="width_type_'+columnKey+'"]:checked').val();
+            var widthVal  = $item.find('input[name="column_width_'+columnKey+'"]').val();
+            var widthNum  = parseFloat(widthVal);
+
+            if ( explicitWidthTypes.indexOf(widthType) !== -1 && ! isNaN(widthNum) && widthNum > 0 ) {
+               hasFixedWidth = true;
+               return false; // break .each()
+            }
+         });
+
+         return hasFixedWidth;
+      }
+
+      /**
+       * Auto-toggle the \"Disable horizontal scrolling\" checkbox based on active column widths.
+       *
+       * - If all active columns are Auto width: check the box.
+       * - If any active column has fixed width: uncheck the box.
+       *
+       * @return {void}
+       */
+      function asenhaSyncDisableHorizontalScrollCheckbox() {
+         var $checkbox = $('input[name="disable-horizontal-scroll"]');
+         if ( ! $checkbox.length ) {
+            return;
+         }
+
+         if ( asenhaHasFixedWidthActiveColumn() ) {
+            $checkbox.prop('checked', false);
+         } else {
+            $checkbox.prop('checked', true);
+         }
+
+         asenhaSyncFreezeFirstColumnsVisibility();
+      }
       
+      /**
+       * Show/hide the “Freeze the first columns” setting based on the h-scroll checkbox.
+       *
+       * @return {void}
+       */
+      function asenhaSyncFreezeFirstColumnsVisibility() {
+         var $freezeSetting = $( '.additional-setting-freeze-columns' );
+         if ( ! $freezeSetting.length ) {
+            return;
+         }
+
+         if ( $( 'input[name="disable-horizontal-scroll"]' ).is( ':checked' ) ) {
+            $freezeSetting.addClass( 'is-hidden' );
+         } else {
+            $freezeSetting.removeClass( 'is-hidden' );
+         }
+      }
+
       // Get post type value from URL and set the select dropdown value
       const urlParams = new URLSearchParams(window.location.search);
       const postTypeParam = urlParams.get('for');
@@ -28,7 +101,7 @@
       // Sort custom fields items by label in data-attribute. Ref: https://stackoverflow.com/a/27836605.
       var sortableList = $('#custom-field-columns .sortable-item');
       sortableList.sort(function(a, b) { 
-         return String.prototype.localeCompare.call($(a).data('column-title').toLowerCase(), $(b).data('column-title').toLowerCase());
+         return String.prototype.localeCompare.call($(a).data('column-title').toString().toLowerCase(), $(b).data('column-title').toString().toLowerCase());
       });
       $('#custom-field-columns').html(sortableList);
             
@@ -39,7 +112,11 @@
          handle: '.dashicons.dashicons-menu',
          placeholder: 'ui-sortable-placeholder',
          forcePlaceholderSize: true,
-         tolerance: 'pointer'
+         tolerance: 'pointer',
+         stop: function() {
+            // Update horizontal scrolling default when active columns change via drag/drop.
+            asenhaSyncDisableHorizontalScrollCheckbox();
+         }
       });
 
       // Open settings panel on clicking settings icon
@@ -81,6 +158,27 @@
          $('.active-columns-container').find('.column-width .width-number').text('100');
          $('.active-columns-container').find(".radio-group.width-type input[value='px']").prop("checked",true);
          $('.active-columns-container').find('.column-width .width-type').text('px');
+         asenhaSyncDisableHorizontalScrollCheckbox();
+      });
+
+      // Set width of all columns to em
+      $(document).on('click', '#set-width-em', function(e) {
+         e.preventDefault();
+         $('.active-columns-container').find('#current-columns .column-width-input').val('10');
+         $('.active-columns-container').find('.column-width .width-number').text('10');
+         $('.active-columns-container').find(".radio-group.width-type input[value='em']").prop("checked",true);
+         $('.active-columns-container').find('.column-width .width-type').text('em');
+         asenhaSyncDisableHorizontalScrollCheckbox();
+      });
+
+      // Set width of all columns to rem
+      $(document).on('click', '#set-width-rem', function(e) {
+         e.preventDefault();
+         $('.active-columns-container').find('#current-columns .column-width-input').val('10');
+         $('.active-columns-container').find('.column-width .width-number').text('10');
+         $('.active-columns-container').find(".radio-group.width-type input[value='rem']").prop("checked",true);
+         $('.active-columns-container').find('.column-width .width-type').text('rem');
+         asenhaSyncDisableHorizontalScrollCheckbox();
       });
 
       // Set width of all columns to percent
@@ -90,6 +188,7 @@
          $('.active-columns-container').find('.column-width .width-number').text('');
          $('.active-columns-container').find(".radio-group.width-type input[value='%']").prop("checked",true);
          $('.active-columns-container').find('.column-width .width-type').text('%');
+         asenhaSyncDisableHorizontalScrollCheckbox();
       });
 
       // Set width of all columns to auto
@@ -99,6 +198,7 @@
          $('.active-columns-container').find('.column-width .width-number').text('');
          $('.active-columns-container').find(".radio-group.width-type input[value='auto']").prop("checked",true);
          $('.active-columns-container').find('.column-width .width-type').text('Auto');
+         asenhaSyncDisableHorizontalScrollCheckbox();
       });
 
       // Change column label based on input
@@ -117,6 +217,7 @@
             if ( $this.parents('.sortable-item').find('.item-bar .width-type').text() == 'Auto' ) {
                $this.parents('.sortable-item').find('.item-bar .width-type').text('');            
             }
+            asenhaSyncDisableHorizontalScrollCheckbox();
          }, 1);
       });
 
@@ -132,7 +233,93 @@
          }
          setTimeout(function() {
             $this.parents('.sortable-item').find('.item-bar .width-type').text(widthType);
+            asenhaSyncDisableHorizontalScrollCheckbox();
          }, 1);
+      });
+      
+      // Show hide format sub-options on document ready
+      $('.format-type select').each(function() {
+         var savedFormatType = $(this).find('option:selected').attr('value');
+         var thisSetting = $(this).parent().parent(); // .item-sub-settings
+         if ('default'==savedFormatType) {
+            thisSetting.find('.number-format-type').hide();
+            thisSetting.find('.number-decimal-point').hide();
+            thisSetting.find('.date-time-format-type').hide();
+            thisSetting.find('.date-time-format-type-custom').hide();
+         }
+         if ('number'==savedFormatType) {
+            thisSetting.find('.number-format-type').show();
+            thisSetting.find('.number-decimal-point').show();
+            thisSetting.find('.date-time-format-type').hide();
+            thisSetting.find('.date-time-format-type-custom').hide();
+         }
+         if ('date_time'==savedFormatType) {
+            thisSetting.find('.number-format-type').hide();
+            thisSetting.find('.number-decimal-point').hide();
+            thisSetting.find('.date-time-format-type').show();
+            var dateTimeFormatType = thisSetting.find('.date-time-format-type').find('option:selected').attr('value');
+            if ('custom'==dateTimeFormatType) {
+               thisSetting.find('.date-time-format-type-custom').show();
+            } else {
+               thisSetting.find('.date-time-format-type-custom').hide();
+            }
+         }
+      });
+
+      // Show hide sub-options on format selection
+      $(document).on('change','.format-type select',function() {
+         var formatType = $(this).find('option:selected').attr('value');
+         var thisSetting = $(this).parent().parent(); // .item-sub-settings
+         console.log(formatType);
+         console.log(thisSetting);
+         if ('default'==formatType) {
+            thisSetting.find('.number-format-type').hide();
+            thisSetting.find('.number-decimal-point').hide();
+            thisSetting.find('.date-time-format-type').hide();
+            thisSetting.find('.date-time-format-type-custom').hide();
+         }
+         if ('number'==formatType) {
+            thisSetting.find('.number-format-type').show();
+            thisSetting.find('.number-decimal-point').show();
+            thisSetting.find('.date-time-format-type').hide();
+            thisSetting.find('.date-time-format-type-custom').hide();
+         }
+         if ('date_time'==formatType) {
+            thisSetting.find('.number-format-type').hide();
+            thisSetting.find('.number-decimal-point').hide();
+            thisSetting.find('.date-time-format-type').show();
+            var dateTimeFormatType = thisSetting.find('.date-time-format-type').find('option:selected').attr('value');
+            if ('custom'==dateTimeFormatType) {
+               thisSetting.find('.date-time-format-type-custom').show();
+            } else {
+               thisSetting.find('.date-time-format-type-custom').hide();
+            }
+         }
+      });
+
+      // Show or hide input field box custom date-time format 
+      $(document).on('change','.date-time-format-type select',function() {
+         var dateTimeFormatType = $(this).find('option:selected').attr('value');
+         var thisSetting = $(this).parent(); // .date-time-format-type
+         if ('custom'==dateTimeFormatType) {
+            thisSetting.next('.date-time-format-type-custom').show();
+         } else {
+            thisSetting.next('.date-time-format-type-custom').hide();            
+         }
+      });
+
+      // Show or hide Sort Order settings if the Sort checkbox is chekced 
+      $(document).on('click','.default-sort-checkbox',function() {
+         var columnKey = $(this).parents('.item-settings').data('column-key');
+         if ($(this).is(':checked')) {
+            $('.item-setting.default-sort-setting input[type="checkbox"]:not(\'.default-sort-checkbox-' + columnKey + '\')').prop('checked', false);
+            $(this).parents('.item-setting').next('.item-setting').css('display','flex');
+            $('.item-setting.sort-order-setting:not(\'.sort-order-setting-' + columnKey + '\')').hide();
+            $('.sortable-icon.default-sort').removeClass('default-sort');
+            $(this).parents('.sortable-item').find('.sortable-icon').addClass('default-sort');
+         } else {
+            $(this).parents('.item-setting').next('.item-setting').css('display','none');
+         }
       });
       
       // Update data-use-original-title attribute based on checkbox click
@@ -152,7 +339,19 @@
          $(this).parents('.sortable-item').addClass('discarded');
          $(this).parents('.sortable-item').appendTo('#discarded-columns');
          $('.sortable-columns').sortable('refresh');
+         asenhaSyncDisableHorizontalScrollCheckbox();
       });
+
+      // Initialize default checkbox state only when no saved setting exists yet.
+      if ( ! hasSavedHScrollSetting ) {
+         asenhaSyncDisableHorizontalScrollCheckbox();
+      }
+
+      // Keep freeze setting visibility in sync with checkbox state.
+      asenhaSyncFreezeFirstColumnsVisibility();
+      $( document ).on( 'change', 'input[name="disable-horizontal-scroll"]', function() {
+         asenhaSyncFreezeFirstColumnsVisibility();
+      } );
       
       // Saving data via AJAX
       $('.save-button').click(function(e) {
@@ -184,9 +383,50 @@
             } else if ( $(this).data('is-sortable') == 'maybe' ) {
                var isSortable = 'maybe';
             }
+            if ( $(this).data('is-formatable') == 'yes' ) {
+               var isFormatable = true;
+            } else if ( $(this).data('is-formatable') == 'no' ) {
+               var isFormatable = false;
+            }
             var customColumnTitle = $(this).find('.item-bar .column-title').text();
             var width = $(this).find('input[name="column_width_'+columnKey+'"]').val();
             var widthType = $(this).find('input[name="width_type_'+columnKey+'"]:checked').val();
+            if ( $(this).find('select[name="format_type_'+columnKey+'"]').length ) {
+               var formatType = $(this).find('select[name="format_type_'+columnKey+'"]').find(':selected').val();            
+            } else {
+               var formatType = 'default';
+            }
+            if ( $(this).find('select[name="format_type_'+columnKey+'"]').length
+               && $(this).find('select[name="format_type_'+columnKey+'"]').find(':selected').val() == 'number' ) {
+               var numberFormatType = $(this).find('select[name="number_format_type_'+columnKey+'"]').find(':selected').val();
+               var numberDecimalPoint = $(this).find('input[name="number_decimal_point_'+columnKey+'"]').val();
+            } else {
+               var numberFormatType = '';
+               var numberDecimalPoint = '';
+            }
+            if ( $(this).find('select[name="format_type_'+columnKey+'"]').length
+               && $(this).find('select[name="format_type_'+columnKey+'"]').find(':selected').val() == 'date_time' ) {
+               var dateTimeFormatType = $(this).find('select[name="date_time_format_type_'+columnKey+'"]').find(':selected').val();
+               var dateTimeFormatCustom = $(this).find('input[name="date_time_format_custom_'+columnKey+'"]').val();
+            } else {
+               var dateTimeFormatType = '';
+               var dateTimeFormatCustom = '';
+            }
+            if ( $(this).find('input[name="default_sort_'+columnKey+'"]').length ) {
+               if ( $(this).find('input[name="default_sort_'+columnKey+'"]').is(':checked') ) {
+                  var isTheDefaultSort = true;
+               } else {
+                  var isTheDefaultSort = false;
+               }
+            } else {
+                  var isTheDefaultSort = false;
+            }
+            if ( $(this).find('input[name="sort_order_'+columnKey+'"]').length ) {
+               var sortOrder = $(this).find('input[name="sort_order_'+columnKey+'"]:checked').val();            
+            } else {
+               var sortOrder = '';
+            }
+
             columns[columnKey] = {};
             columns[columnKey]['key'] = columnKey;
             columns[columnKey]['title'] = columnTitle;
@@ -194,9 +434,17 @@
             columns[columnKey]['is_extra_field'] = isExtraField;
             columns[columnKey]['is_custom_field'] = isCustomField;
             columns[columnKey]['is_sortable'] = isSortable;
+            columns[columnKey]['is_formatable'] = isFormatable;
             columns[columnKey]['custom_title'] = customColumnTitle;
             columns[columnKey]['width'] = width;
             columns[columnKey]['width_type'] = widthType;
+            columns[columnKey]['format_type'] = formatType;
+            columns[columnKey]['number_format_type'] = numberFormatType;
+            columns[columnKey]['number_decimal_point'] = numberDecimalPoint;
+            columns[columnKey]['date_time_format_type'] = dateTimeFormatType;
+            columns[columnKey]['date_time_format_custom'] = dateTimeFormatCustom;
+            columns[columnKey]['is_the_default_sort'] = isTheDefaultSort;
+            columns[columnKey]['sort_order'] = sortOrder;
          });
          // console.log(columns);
          // console.log(JSON.stringify(columns));
@@ -222,6 +470,35 @@
             discardedColumns[discardedColumnKey]['is_extra_field'] = discardedIsExtraField;
             discardedColumns[discardedColumnKey]['is_custom_field'] = discardedIsCustomField;
          });
+         
+         // Check if horizontal scrolling is disabled
+         var isHorizontalScrollingDisabled;
+         if ( $('input[name="disable-horizontal-scroll"]').is(':checked') ) {
+            isHorizontalScrollingDisabled = true;
+         } else {
+            isHorizontalScrollingDisabled = false;
+         }
+
+         // Freeze header row.
+         var freezeHeaderRow = false;
+         if ( $( 'input[name="freeze-header-row"]' ).length && $( 'input[name="freeze-header-row"]' ).is( ':checked' ) ) {
+            freezeHeaderRow = true;
+         }
+
+         // Freeze first columns: number of data columns (0 = No columns).
+         var freezeFirstColumns = 1;
+         if ( $( 'select[name="freeze-first-columns"]' ).length ) {
+            freezeFirstColumns = parseInt( $( 'select[name="freeze-first-columns"]' ).val(), 10 );
+         }
+         if ( isNaN( freezeFirstColumns ) ) {
+            freezeFirstColumns = 1;
+         }
+         if ( freezeFirstColumns < 0 ) {
+            freezeFirstColumns = 0;
+         }
+         if ( freezeFirstColumns > 5 ) {
+            freezeFirstColumns = 5;
+         }
 
          $('.save-button').text('Saving Changes...');
          $('.saving-progress').show();
@@ -235,7 +512,10 @@
                'nonce': adminColumns.nonce,
                'post_type': postType,
                'columns': JSON.stringify(columns),
-               'discarded_columns': JSON.stringify(discardedColumns)
+               'discarded_columns': JSON.stringify(discardedColumns),
+               'is_horizontal_scrolling_disabled': isHorizontalScrollingDisabled,
+               'freeze_first_columns': freezeFirstColumns,
+               'freeze_header_row': freezeHeaderRow
             },
             success:function(data) {
                var data = data.slice(0,-1); // remove strange trailing zero in string returned by AJAX call

@@ -15,7 +15,11 @@
     cursor: not-allowed !important;
 }
 
-div.wpcbn-hide-atc .single_add_to_cart_button:not(.wpcbn-btn), li.wpcbn-hide-atc .add_to_cart_button:not(.wpcbn-btn) {
+div.wpcbn-hide-atc .single_add_to_cart_button:not(.wpcbn-btn), li:not(.product-type-variable).wpcbn-hide-atc .add_to_cart_button:not(.wpcbn-btn) {
+    display: none !important;
+}
+
+li.product-type-variable .wpcbn-btn, li.product-type-grouped .wpcbn-btn, li.product-type-external .wpcbn-btn {
     display: none !important;
 }
 

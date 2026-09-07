@@ -1,0 +1,1507 @@
+// out:  ../chatgpt.css
+/*
+  CHATGPT THEME — SPACING, INPUT, AND SAFE-AREA DOCS
+
+  Overview
+  - ChatGPT-like styling with inline submit (no in-field absolute button on desktop).
+  - Balanced spacing that feels comfortable while preserving maximum content area.
+
+  Spacing Strategy
+  - Bottom spacing is owned by the input/footer, not the shell (prevents double padding
+    and tiny lingering gaps when browser toolbars hide/show). The shell applies only top/side safe areas.
+  - When no footer is present, we add a consistent baseline under the input for both desktop and mobile
+    via a shared mixin (symmetrical with top spacing on desktop).
+
+  Submit Button Strategy
+  - Inline button; center alignment handled by flex. No absolute positioning required here.
+  - Hover effects keep the button in place (no translation adjustments needed).
+
+  Safe Areas & Viewport
+  - Use dvh (100dvh) in common fullscreen contexts; avoid hard height locks that fight the keyboard.
+  - Safe-area bottom is applied only where needed (e.g., footer or input in no-footer cases).
+
+  Important
+  - Keep this documentation updated as we refine spacing, dvh, and safe-area behavior.
+*/
+@use 'common';
+@use 'window-animations' as animations;
+
+// Chatbot
+.mwai-chatgpt-theme {
+	font-family: var(--mwai-fontFamily, inherit);
+	--mwai-spacing: 15px;
+	--mwai-fontSize: 15px;
+	--mwai-lineHeight: 1.5;
+	--mwai-borderRadius: 10px;
+	--mwai-borderColor: #4f4f4f32;
+	--mwai-width: 460px;
+	--mwai-maxHeight: 40vh;
+	--mwai-iconTextColor: white;
+	--mwai-iconTextBackgroundColor: #212121;
+	--mwai-fontColor: #ECECEC;
+	--mwai-backgroundPrimaryColor: #2f2f2f; // Input area background
+	--mwai-backgroundHeaderColor: #212121;
+	--mwai-bubbleColor: #212121;
+	--mwai-iconSize: 60px;
+	--mwai-accentColor: #0d7df2; // ChatGPT blue accent
+	--mwai-headerColor: #ECECEC;
+	--mwai-conversationsBackgroundColor: #171717;
+	--mwai-conversationsTextColor: #ECECEC;
+	--mwai-backgroundSecondaryColor: #212121; // Main chat background
+	--mwai-errorBackgroundColor: #6d2f2a;
+	--mwai-errorTextColor: #FFFFFF;
+	
+	* {
+		box-sizing: border-box;
+	}
+
+	.mwai-body {
+		background: var(--mwai-backgroundSecondaryColor);
+		color: var(--mwai-fontColor);
+		font-size: var(--mwai-fontSize);
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		border-radius: var(--mwai-borderRadius);
+		position: relative;
+	}
+
+	// Full-window drag overlay (ChatGPT-style)
+	.mwai-drag-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(33, 33, 33, 0.95);
+		z-index: 100;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: var(--mwai-borderRadius);
+		pointer-events: none;
+
+		.mwai-drag-overlay-content {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 8px;
+			padding: 20px;
+		}
+
+		.mwai-drag-overlay-icons {
+			display: flex;
+			gap: 8px;
+			color: var(--mwai-accentColor);
+		}
+
+		.mwai-drag-overlay-title {
+			font-size: 15px;
+			font-weight: 500;
+			color: var(--mwai-fontColor);
+		}
+
+		.mwai-drag-overlay-subtitle {
+			font-size: 12px;
+			color: var(--mwai-fontColor);
+			opacity: 0.7;
+			text-align: center;
+		}
+
+		// Blocked state (file not allowed)
+		&.mwai-blocked {
+			.mwai-drag-overlay-icons {
+				color: #ef4444;
+			}
+
+			.mwai-drag-overlay-title {
+				color: #ef4444;
+			}
+		}
+	}
+
+	// Header title styling for window mode
+	&.mwai-window .mwai-header .mwai-name {
+		color: var(--mwai-headerColor);
+		font-size: var(--mwai-fontSize);
+	}
+
+	.mwai-shortcuts {
+		display: flex;
+		flex-wrap: wrap; // Two shortcuts already fill a phone; let them wrap instead of overflow.
+		// Right-aligned like Timeless and Messages: the chips are the visitor's next move,
+		// so they belong on the visitor's side rather than floating under the AI's message.
+		justify-content: flex-end;
+		gap: calc(var(--mwai-spacing) / 2);
+		margin: var(--mwai-spacing);
+
+		// Fully self-contained: padding, radius and background used to come from the site's
+		// own button CSS, so the same chatbot looked different on every theme and usually
+		// like an outlined form control. Suggestion chips should read as calm, tappable
+		// prompts, and the label must stay legible, so the variant tints the chip instead
+		// of colouring the text.
+		.mwai-shortcut {
+			display: inline-flex;
+			align-items: center;
+			gap: 7px;
+			padding: 8px 14px;
+			border-radius: 999px;
+			border: 1px solid var(--mwai-borderColor);
+			// Primary is the theme's raised surface (the input area), so the chip lifts off
+			// the conversation background without hardcoding a light- or dark-only overlay.
+			background: var(--mwai-backgroundPrimaryColor);
+			color: var(--mwai-fontColor);
+			font-family: inherit;
+			font-size: var(--mwai-fontSize);
+			line-height: 1.2;
+			text-align: left;
+			cursor: pointer;
+			transition: filter 0.15s ease, border-color 0.15s ease;
+
+			&:hover {
+				filter: brightness(1.15);
+			}
+
+			// Colour is reserved for the one variant where it carries meaning. A row of
+			// prompt suggestions gains nothing from being colour-coded, and tinting each
+			// chip only hurt legibility, so success / warning / info render as plain chips.
+			&.mwai-danger {
+				border-color: rgba(244, 67, 54, 0.5);
+				color: #ef5350;
+			}
+
+			.mwai-icon {
+				margin-right: 0; // spacing is the chip's gap now
+				display: inline-flex;
+				align-items: center;
+
+				img {
+					max-height: 16px;
+					width: auto;
+				}
+			}
+		}
+	}
+
+	.mwai-blocks {
+		display: flex;
+		flex-direction: column;
+		padding: var(--mwai-spacing);
+
+		.mwai-block {
+			p:first-child {
+				margin-top: 0;
+			}
+		}
+
+		button {
+			cursor: pointer;
+		}
+	}
+
+	.mwai-conversation {
+		overflow: auto;
+		flex: 1 1 auto;
+		max-height: var(--mwai-maxHeight);
+		min-height: 0; // allow it to shrink inside flex container so footer remains visible
+
+		// Custom scrollbar styling for WebKit browsers
+		&::-webkit-scrollbar {
+			width: 8px;
+			background: transparent;
+		}
+
+		&::-webkit-scrollbar-track {
+			background: rgba(255, 255, 255, 0.05);
+			border-radius: 4px;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: rgba(255, 255, 255, 0.15);
+			border-radius: 4px;
+			transition: background 0.2s ease;
+
+			&:hover {
+				background: rgba(255, 255, 255, 0.25);
+			}
+
+			&:active {
+				background: rgba(255, 255, 255, 0.3);
+			}
+		}
+
+		// Firefox scrollbar styling
+		scrollbar-width: thin;
+		scrollbar-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.05);
+	}
+
+  // Terminal messages mode - ChatGPT specific overrides
+  .mwai-conversation.mwai-terminal {
+    // ChatGPT specific styling
+    .mwai-terminal-line {
+      line-height: 1.5; // ChatGPT uses slightly taller line height
+
+      &.mwai-terminal-user {
+        .mwai-terminal-prompt { opacity: 0.95; }
+        .mwai-terminal-text { opacity: 0.98; }
+      }
+
+      &.mwai-terminal-system {
+        opacity: 0.75;
+      }
+
+      .mwai-terminal-prompt {
+        color: var(--mwai-headerColor); // ChatGPT uses header color for prompt
+      }
+
+      .mwai-terminal-text {
+        flex: 1;
+        opacity: 0.92; // default for assistant
+        // Ensure images or code blocks don't break the layout
+        .mwai-image { max-width: 100%; height: auto; }
+        pre { background: transparent; border: 1px solid rgba(255,255,255,0.08); padding: 8px; border-radius: 4px; }
+        code { font-family: inherit; }
+      }
+
+      .mwai-terminal-typed { 
+        white-space: pre-wrap; 
+      }
+    }
+  }
+
+	.mwai-reply {
+		display: flex;
+		padding: var(--mwai-spacing);
+		position: relative;
+		line-height: var(--mwai-lineHeight);
+		transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+		background: transparent; // No background by default
+
+		&.mwai-fade-out {
+			opacity: 0;
+		}
+
+		// User messages: right-aligned with accent-colored pill
+		&.mwai-user {
+			display: block;
+			background: transparent;
+			text-align: right; // Right-align all content
+
+			.mwai-name {
+				display: none; // Hide avatar for user messages
+			}
+
+			// User-uploaded images displayed separately (no bubble)
+			.mwai-user-images {
+				display: inline-flex;
+				flex-wrap: wrap;
+				justify-content: flex-end;
+				gap: 4px;
+				margin-bottom: 8px;
+				max-width: 70%;
+
+				// Single image
+				.mwai-user-image {
+					max-width: 100%;
+					max-height: 300px;
+					width: auto;
+					height: auto;
+					border-radius: var(--mwai-borderRadius);
+					object-fit: contain;
+				}
+
+				// Multiple images: grid layout like ChatGPT
+				&:has(.mwai-user-image:nth-child(2)) {
+					display: inline-grid;
+					grid-template-columns: repeat(2, 1fr);
+					gap: 4px;
+
+					.mwai-user-image {
+						width: 160px;
+						height: 160px;
+						object-fit: cover;
+						border-radius: var(--mwai-borderRadius);
+
+						// First image (left): large radius on outer corners, small on inner
+						&:nth-child(1) {
+							border-top-left-radius: var(--mwai-borderRadius);
+							border-top-right-radius: 4px; // Inner
+							border-bottom-left-radius: var(--mwai-borderRadius);
+							border-bottom-right-radius: 4px; // Inner
+						}
+
+						// Second image (right): large on top-right, small on others (near message)
+						&:nth-child(2) {
+							border-top-left-radius: 4px; // Inner
+							border-top-right-radius: var(--mwai-borderRadius);
+							border-bottom-left-radius: 4px; // Near message
+							border-bottom-right-radius: 4px; // Near message
+						}
+					}
+				}
+			}
+
+			.mwai-text {
+				display: inline-block;
+				text-align: left; // Text inside bubble should be left-aligned
+				max-width: 70%;
+				background: var(--mwai-accentColor);
+				padding: 10px 16px;
+				border-radius: 20px;
+				word-wrap: break-word;
+				overflow-wrap: break-word;
+			}
+		}
+
+		// AI messages: left-aligned, plain (no background)
+		&.mwai-ai {
+			align-items: flex-start;
+			background: transparent;
+
+			// Only stack vertically when there's a name-text (no avatar)
+			&:has(.mwai-name-text) {
+				flex-direction: column;
+			}
+
+			.mwai-name {
+				// When there's only a name (no avatar), display it above the text
+				.mwai-name-text {
+					display: block;
+					font-size: 0.75em;
+					font-weight: 600;
+					opacity: 0.6;
+					margin-bottom: 4px;
+				}
+			}
+
+			.mwai-text {
+				max-width: 100%;
+			}
+		}
+
+		&.mwai-error {
+			background: var(--mwai-backgroundPrimaryColor);
+		}
+
+		.mwai-name {
+			color: var(--mwai-fontColor);
+			margin-right: 5px;
+
+			.mwai-name-text {
+				opacity: 0.50;
+				white-space: nowrap;
+			}
+
+			.mwai-avatar {
+				margin-right: 10px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border-radius: 8px;
+				overflow: hidden;
+
+				img {
+					width: 32px;
+					height: 32px;
+					min-width: 32px;
+					min-height: 32px;
+				}
+
+				&.mwai-svg img {
+					width: 28px;
+					height: 28px;
+					min-width: 28px;
+					min-height: 28px;
+					filter: brightness(0) invert(1);
+				}
+			}
+		}
+
+		.mwai-text {
+			flex: auto;
+			font-size: var(--mwai-fontSize);
+			line-height: var(--mwai-lineHeight);
+			color: var(--mwai-fontColor);
+
+			.mwai-image {
+				display: block;
+				max-width: 250px;
+				height: auto;
+				margin: 0 0 10px 0;
+				border-radius: var(--mwai-borderRadius);
+			}
+
+			.mwai-filename {
+				display: flex;
+				text-decoration: none;
+				border: 1px solid var(--mwai-backgroundPrimaryColor);
+				border-radius: var(--mwai-borderRadius);
+				padding: 5px 10px;
+				margin-bottom: 10px;
+			}
+
+			* {
+				font-size: var(--mwai-fontSize);
+			}
+
+			> span > *:first-child {
+				margin-top: 0;
+			}
+
+			> span > *:last-child {
+				margin-bottom: 0;
+			}
+
+			a {
+				color: #2196f3;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: var(--mwai-fontColor);
+				margin: 0px;
+				line-height: 1.2;
+			}
+
+			h1 {
+				font-size: 150%;
+			}
+
+			h2 {
+				font-size: 130%;
+			}
+
+			h3 {
+				font-size: 115%;
+			}
+
+			h4 {
+				font-size: 105%;
+			}
+
+			h5 {
+				font-size: 100%;
+			}
+
+			h6 {
+				font-size: 95%;
+				font-weight: bold;
+			}
+
+			p {
+				code {
+					background: var(--mwai-backgroundSecondaryColor);
+					padding: 2px 6px;
+					border-radius: 8px;
+					font-size: 90%;
+					font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+				}
+			}
+
+			pre {
+				color: var(--mwai-fontColor);
+				border-radius: var(--mwai-borderRadius);
+				padding: calc(var(--mwai-spacing) * 2 / 3) var(--mwai-spacing);
+				break-after: auto;
+				white-space: pre-wrap;
+				font-size: 90%;
+				max-width: 100%;
+				width: 100%;
+				font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+				background: #{'hsl(0 0% 0% / 30%)'};
+
+				code {
+					padding: 0 !important;
+					background: transparent;
+					font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+				}
+			}
+
+			ul, ol {
+				padding: 0;
+			}
+			
+			ul {
+				list-style: disc;
+				margin: 0 0 0 15px;
+			}
+
+			ol {
+				list-style: decimal;
+				margin: 0 0 0 15px;
+			}
+
+			table {
+				width: 100%;
+				border: 2px solid var(--mwai-backgroundSecondaryColor);
+				border-collapse: collapse;
+			}
+
+			thead {
+				background: var(--mwai-backgroundSecondaryColor);
+			}
+
+			tr, td {
+				padding: 2px 5px;
+			}
+
+			td {
+				border: 2px solid var(--mwai-backgroundSecondaryColor);
+			}
+
+			.mwai-typewriter {
+				display: inline-block;
+
+				> :first-child {
+					margin-top: 0;
+				}
+			}
+
+			>*:first-child {
+				margin-top: 0;
+			}
+
+			>*:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		&.mwai-system {
+			background: var(--mwai-errorBackgroundColor);
+			color: var(--mwai-errorFontColor);
+
+			.mwai-name {
+				display: none;
+			}
+		}
+
+		// Error messages with dashed borders
+		&.mwai-error {
+			border-top: 1px dashed #ff5656;
+			border-bottom: 1px dashed #ff5656;
+		}
+	}
+
+	// Modern ChatGPT-style input: pill-shaped container with everything inside
+	.mwai-input {
+		display: flex;
+		align-items: flex-end; // Align to bottom of textarea
+		gap: 4px;
+		padding: 4px 6px 5px 4px !important; // Override no-footer-bottom-spacing mixin
+		margin: var(--mwai-spacing);
+		background: var(--mwai-backgroundPrimaryColor);
+		border: 1px solid var(--mwai-borderColor);
+		border-radius: 26px; // Pill shape
+		position: relative;
+		transition: border-color 0.2s ease;
+
+		&:focus-within {
+			border-color: rgba(255, 255, 255, 0.25); // Fallback for older browsers
+			border-color: color-mix(in srgb, var(--mwai-accentColor) 55%, transparent);
+		}
+
+		.mwai-input-text {
+			@include common.input-text-base();
+			background: transparent;
+			border: none;
+			padding: 0;
+			align-items: flex-end; // Align buttons with last line of text
+			gap: 4px;
+			border-radius: 0;
+			overflow: visible; // Prevent clipping
+
+			&.mwai-blocked {
+				background: var(--mwai-errorBackgroundColor);
+				border-radius: 16px;
+				padding: 4px 8px;
+				margin: -4px -8px;
+			}
+
+			&.mwai-dragging {
+				filter: brightness(1.2);
+			}
+
+			textarea {
+				@include common.input-textarea-base(transparent);
+				padding: 6px 4px; // Reduced to align text with 32px buttons
+				margin: 0 !important;
+				line-height: 1.4;
+				min-height: unset;
+
+				&:focus {
+					outline: none;
+					box-shadow: none;
+				}
+
+				&::placeholder {
+					color: var(--mwai-fontColor);
+					opacity: 0.5;
+				}
+			}
+
+			// Microphone button - same style as "+" upload button
+			.mwai-microphone {
+				@include common.microphone;
+				flex-shrink: 0;
+				width: 32px;
+				height: 32px;
+				min-width: 32px;
+				min-height: 32px;
+				background: transparent;
+				border: none;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				padding: 0;
+				margin: 0;
+
+				svg {
+					color: var(--mwai-fontColor);
+					opacity: 0.7;
+					width: 18px;
+					height: 18px;
+				}
+
+				&:hover {
+					background: rgba(255, 255, 255, 0.1);
+
+					svg {
+						opacity: 1;
+					}
+				}
+			}
+
+			// Hide the old sprite-based upload icon
+			.mwai-file-upload-icon:not(.mwai-lucide) {
+				@include common.file-upload-icon('icons/dark-icons.svg');
+			}
+
+			// ChatGPT-style upload button with "+" icon
+			.mwai-file-upload {
+				flex-shrink: 0;
+				order: -1; // Move to the left
+
+				.mwai-file-upload-icon.mwai-lucide.mwai-chatgpt-upload {
+					width: 32px;
+					height: 32px;
+					min-width: 32px;
+					min-height: 32px;
+					background: transparent;
+					border: none;
+					border-radius: 50%;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					cursor: pointer;
+					box-sizing: border-box;
+					padding: 0;
+					margin: 0;
+					svg {
+						color: var(--mwai-fontColor);
+						opacity: 0.7;
+						width: 18px;
+						height: 18px;
+					}
+
+					&:hover {
+						background: rgba(255, 255, 255, 0.1);
+
+						svg {
+							opacity: 1;
+						}
+					}
+
+					// File uploaded state - blue button with checkmark
+					&.mwai-has-file {
+						background: var(--mwai-accentColor);
+
+						svg {
+							color: white;
+							opacity: 1;
+						}
+
+						// Show check by default, X on hover
+						.mwai-icon-check { display: block; }
+						.mwai-icon-x { display: none; }
+					}
+				}
+			}
+
+			// Use parent hover for more stable hover detection
+			.mwai-file-upload:hover .mwai-file-upload-icon.mwai-lucide.mwai-chatgpt-upload.mwai-has-file {
+				background: #c53030;
+
+				.mwai-icon-check { display: none; }
+				.mwai-icon-x { display: block; }
+			}
+		}
+
+		// Submit button - circular, inside the pill on the right
+		button.mwai-input-submit {
+			flex-shrink: 0;
+			width: 32px;
+			height: 32px;
+			min-width: 32px;
+			min-height: 32px;
+			padding: 0;
+			margin: 0;
+			border-radius: 50%;
+			border: none;
+			background: rgba(255, 255, 255, 0.1);
+			color: rgba(255, 255, 255, 0.4);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: not-allowed;
+			transition: background 0.15s ease, color 0.15s ease, filter 0.15s ease;
+
+			svg {
+				width: 18px;
+				height: 18px;
+			}
+
+			// Active state - has content (send mode)
+			&.mwai-has-content {
+				background: var(--mwai-accentColor);
+				color: white;
+				cursor: pointer;
+
+				&:hover {
+					filter: brightness(1.15);
+				}
+			}
+
+			// Busy state - expand to pill shape to fit timer
+			&.mwai-busy {
+				width: auto;
+				min-width: 32px;
+				padding: 0 12px;
+				border-radius: 16px;
+				background: rgba(255, 255, 255, 0.15);
+				cursor: wait;
+				gap: 6px;
+
+				.mwai-timer {
+					font-size: 13px;
+					color: rgba(255, 255, 255, 0.8);
+					margin: 0;
+				}
+			}
+
+			&:disabled:not(.mwai-has-content) {
+				cursor: not-allowed;
+			}
+		}
+	}
+
+	// File previews inside the input area
+	.mwai-files {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		padding: 0 var(--mwai-spacing) 0 var(--mwai-spacing); // No bottom padding - input has its own margin
+
+		.mwai-file-preview {
+			background: var(--mwai-backgroundPrimaryColor);
+			border: 1px solid var(--mwai-borderColor);
+			border-radius: 12px;
+			padding: 8px 12px;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			max-width: 200px;
+
+			.mwai-file-content {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				width: 100%;
+			}
+
+			.mwai-file-thumbnail {
+				width: 32px;
+				height: 32px;
+				border-radius: 6px;
+				object-fit: cover;
+			}
+
+			.mwai-file-icon {
+				width: 32px;
+				height: 32px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: var(--mwai-fontColor);
+				opacity: 0.7;
+			}
+
+			.mwai-file-info {
+				flex: 1;
+				min-width: 0;
+
+				.mwai-file-name {
+					font-size: 12px;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+
+				.mwai-file-size {
+					font-size: 10px;
+					opacity: 0.6;
+				}
+			}
+
+			.mwai-file-remove {
+				width: 24px;
+				height: 24px;
+				min-width: 24px;
+				padding: 0;
+				border: none;
+				background: transparent;
+				color: var(--mwai-fontColor);
+				opacity: 0.5;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				&:hover {
+					opacity: 1;
+					color: #ef4444;
+				}
+
+				svg {
+					width: 16px;
+					height: 16px;
+				}
+			}
+
+			.mwai-file-progress {
+				flex: 1;
+				height: 4px;
+				background: rgba(255, 255, 255, 0.1);
+				border-radius: 2px;
+				overflow: hidden;
+
+				.mwai-file-progress-bar {
+					height: 100%;
+					background: var(--mwai-accentColor);
+					transition: width 0.2s ease;
+				}
+			}
+		}
+	}
+
+	.mwai-compliance {
+		opacity: 0.50;
+		/* Remove negative margin that pushed footer/content up when input is none */
+		margin-top: 0;
+		padding: calc(var(--mwai-spacing) / 1.5) var(--mwai-spacing);
+		font-size: smaller;
+		color: var(--mwai-fontColor);
+		text-align: left;
+	}
+
+
+
+	.mwai-gallery {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-gap: 5px;
+
+		img {
+			width: 100%;
+		}
+	}
+
+	button {
+		color: var(--mwai-fontColor);
+		background: var(--mwai-backgroundSecondaryColor);
+		border: 1px solid var(--mwai-borderColor);
+		padding: calc(var(--mwai-spacing) / 2) var(--mwai-spacing);
+		min-width: 70px;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: all 0.2s ease-out;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: calc(var(--mwai-fontSize) * 0.9);
+		position: relative;
+
+		.mwai-timer {
+			margin-left: 5px;
+			margin-right: 5px;
+			font-size: 11px;
+		}
+
+		&:hover {
+			background: var(--mwai-backgroundPrimaryColor);
+		}
+	}
+
+	button[disabled] {
+		cursor: not-allowed;
+
+		span {
+			opacity: 0.5;
+		}
+
+		&.mwai-busy {
+			span {
+				display: none;
+			}
+
+			&:before {
+				content: '';
+				width: 18px;
+				height: 18px;
+				margin: auto;
+				border: 3px solid transparent;
+				border-top-color: var(--mwai-fontColor);
+				border-radius: 50%;
+				animation: mwai-button-spinner 1s ease infinite;
+			}
+		}
+	}
+
+	&.mwai-form-container {
+		padding: var(--mwai-spacing);
+		font-size: var(--mwai-fontSize);
+		color: var(--mwai-fontColor);
+		background: var(--mwai-backgroundSecondaryColor);
+		border-radius: var(--mwai-borderRadius);
+
+		fieldset {
+			border: 0;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			margin-bottom: 10px;
+	
+			input[type="text"], input[type="email"], input[type="tel"], input[type="url"], input[type="password"], input[type="number"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="search"], input[type="time"], input[type="week"], select, textarea {
+				padding: calc(var(--mwai-spacing) * 2 / 3) var(--mwai-spacing);
+				border: 0;
+				width: 100%;
+				border-radius: var(--mwai-borderRadius);
+				font-size: var(--mwai-fontSize);
+				background: var(--mwai-backgroundPrimaryColor);
+				color: var(--mwai-fontColor);
+			}
+	
+			select {
+				padding: calc(var(--mwai-spacing) * 2 / 3) var(--mwai-spacing);
+				border: 0;
+				width: 100%;
+				border-radius: var(--mwai-borderRadius);
+				font-size: var(--mwai-fontSize);
+				background: var(--mwai-backgroundPrimaryColor);
+				color: var(--mwai-fontColor);
+			}
+	
+			textarea {
+				padding: calc(var(--mwai-spacing) * 2 / 3) var(--mwai-spacing);
+				border: 0;
+				width: 100%;
+				border-radius: var(--mwai-borderRadius);
+				font-family: inherit;
+				font-size: var(--mwai-fontSize);
+				background: var(--mwai-backgroundPrimaryColor);
+				color: var(--mwai-fontColor);
+			}
+	
+			input[disabled], select[disabled], textarea[disabled] {
+				opacity: 0.25;
+			}
+		}
+	
+		.mwai-form-submit, .mwai-form-reset {
+	
+			button {
+				height: 45px;
+				background: none;
+				width: 100%;
+				color: var(--mwai-fontColor);
+				font-size: var(--mwai-fontSize);
+				background-color: var(--mwai-backgroundSecondaryColor);
+				border: 1px solid var(--mwai-backgroundPrimaryColor);
+				border-radius: var(--mwai-borderRadius);
+				cursor: pointer;
+				transition: all 0.2s ease-out;
+				position: relative;
+	
+				&:hover {
+					background: var(--mwai-backgroundPrimaryColor);
+				}
+			}
+	
+			button[disabled] {
+				span {
+					opacity: 0.25;
+				}
+	
+				&:hover {
+					background: none;
+					cursor: not-allowed;
+				}
+			}
+	
+			&.mwai-loading {
+	
+				button {
+					
+					span {
+						opacity: 0;
+					}
+		
+					&::after {
+						content: '';
+						position: absolute;
+						width: 18px;
+						height: 18px;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						margin: auto;
+						border: 3px solid transparent;
+						border-top-color: var(--mwai-fontColor);
+						border-radius: 50%;
+						animation: mwai-button-spinner 1s ease infinite;
+					}
+
+					// Elapsed time, like the chatbot shows. Sits just right of the
+					// centred spinner so the two read as one indicator.
+					.mwai-timer {
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						margin-left: 16px;
+						transform: translateY(-50%);
+						font-size: 11px;
+						opacity: 0.8;
+					}
+				}
+			}
+		}
+	
+		.mwai-form-output-container {
+			
+			.mwai-form-output {
+				font-size: var(--mwai-fontSize);
+				position: relative;
+				margin-top: var(--mwai-spacing);
+				padding: var(--mwai-spacing);
+				border: 1px solid var(--mwai-backgroundPrimaryColor);
+	
+				&.mwai-error {
+					background: var(--mwai-errorBackgroundColor);
+					color: var(--mwai-errorFontColor);
+				}
+	
+				& > *:first-child {
+					margin-top: 0;
+				}
+	
+				& > *:last-child {
+					margin-bottom: 0;
+				}
+		
+				img {
+					max-width: 33%;
+				}
+	
+				div {
+					& > *:first-child {
+						margin-top: 0;
+					}
+		
+					& > *:last-child {
+						margin-bottom: 0;
+					}
+				}
+			}
+	
+			&.mwai-has-content {
+				display: block;
+			}
+		}
+	
+		.wp-block-columns {
+			margin: 0;
+		}
+	}
+
+	// ChatbotChunks - Dark theme overrides
+	.mwai-chunks {
+		background: rgba(255, 255, 255, 0.05);
+		border-top: 1px solid rgba(255, 255, 255, 0.1);	
+
+		.mwai-chunks-header {
+			color: #9ca3af;
+		}
+
+		.mwai-chunk {
+			background: rgba(255, 255, 255, 0.08);
+			border: 1px solid rgba(255, 255, 255, 0.1);
+
+			.mwai-chunk-header {
+				.mwai-chunk-time {
+					color: #6b7280;
+				}
+
+				.mwai-chunk-data {
+					color: #e5e7eb;
+				}
+
+				.mwai-chunk-expand {
+					color: #6b7280;
+				}
+			}
+
+			.mwai-chunk-details {
+				background: rgba(0, 0, 0, 0.2);
+
+				pre {
+					color: #d1d5db;
+				}
+			}
+		}
+	}
+
+	// Apply window animations conditionally
+	@include animations.window-animation-conditional();
+}
+
+// Footer tools unified via common mixin
+.mwai-chatgpt-theme { 
+  	@include common.footer-tools;
+
+  	// No-footer spacing strategy:
+  	// - Desktop: use symmetrical spacing (top/bottom = var(--mwai-spacing)).
+  	// - Mobile: keep the same baseline to ensure a visible gap regardless of
+  	//   browser toolbar visibility while still feeling nearly flush when hidden.
+
+    // Add bottom padding to input when footer is absent for proper spacing (per strategy above)
+      .mwai-body {
+        @include common.no-footer-bottom-spacing(
+          var(--mwai-spacing),
+          var(--mwai-spacing)
+        );
+      }
+    }
+
+
+// Discussions
+
+// Common
+.mwai-chatgpt-theme {
+	@include common.common-styles;
+	@include common.code-dark;
+	@include common.reply-actions;
+	@include common.realtime;
+	@include common.discussions-styles;
+
+	// Override common files-preview-styles for ChatGPT theme
+	.mwai-files {
+		padding: var(--mwai-spacing) var(--mwai-spacing) 0 var(--mwai-spacing); // Top and sides, no bottom
+		border: none;
+	}
+
+	// Hide reply actions on user messages
+	.mwai-reply.mwai-user .mwai-reply-actions {
+		display: none;
+	}
+
+	// Hide reply actions on the first AI message (intro/welcome message)
+	.mwai-conversation > .mwai-reply.mwai-ai:first-child .mwai-reply-actions {
+		display: none;
+	}
+
+	// ChatGPT-style reply actions: below the message, always visible
+	.mwai-reply.mwai-ai {
+		// Keep normal flex row (avatar left, content right)
+		align-items: flex-start;
+
+		// Avatar - just the icon, aligned with first line of text
+		.mwai-name .mwai-avatar {
+			width: 32px;
+			height: 32px;
+			min-width: 32px;
+			min-height: 32px;
+			background: transparent;
+			border-radius: 0;
+			margin-top: -2px;
+
+			img {
+				width: 32px;
+				height: 32px;
+				min-width: 32px;
+				min-height: 32px;
+			}
+		}
+
+		// Target the ReplyActions wrapper div (contains .mwai-text and .mwai-reply-actions)
+		> div:has(> .mwai-text) {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			flex: 1;
+		}
+
+		.mwai-reply-actions {
+			position: static;
+			background: transparent;
+			box-shadow: none;
+			padding: 5px 0 0 0;
+			margin-left: -7px; // Align circle background with text edge
+
+			&.mwai-hidden {
+				opacity: 1; // Always visible
+			}
+
+			.mwai-copy-button,
+			.mwai-download-button,
+			.mwai-pdf-button {
+				background: transparent;
+				padding: 0;
+				width: 32px;
+				height: 32px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				opacity: 0.2;
+				transition: opacity 0.15s ease;
+
+				svg {
+					width: 18px;
+					height: 18px;
+				}
+
+				&:hover {
+					background: rgba(255, 255, 255, 0.1);
+					opacity: 1;
+				}
+			}
+
+			// The SVG Repo printer has a generous internal margin inside its viewBox, so
+			// it renders visually smaller than the copy/download icons at the same size.
+			// Bump it up a couple of pixels so all three icons look balanced.
+			.mwai-pdf-button svg {
+				width: 22px;
+				height: 22px;
+			}
+		}
+	}
+
+	// ChatbotChunks - Dark theme overrides
+	.mwai-chunks {
+		background: rgba(255, 255, 255, 0.05);
+
+		.mwai-chunks-header {
+			color: #9ca3af;
+
+			.mwai-chunks-toggle {
+				border-color: rgba(255, 255, 255, 0.1);
+				color: #9ca3af;
+
+				&:hover {
+					background: rgba(255, 255, 255, 0.05);
+					color: #e5e7eb;
+				}
+			}
+		}
+
+		.mwai-chunk {
+			background: rgba(255, 255, 255, 0.08);
+
+			.mwai-chunk-header {
+				.mwai-chunk-time {
+					color: #e5e7eb; // Same as chunk-data
+				}
+
+				.mwai-chunk-data {
+					color: #e5e7eb;
+				}
+
+				.mwai-chunk-expand {
+					color: #e5e7eb; // Same as chunk-data
+				}
+			}
+
+			.mwai-chunk-details {
+				background: rgba(0, 0, 0, 0.2);
+
+				pre {
+					color: #d1d5db;
+				}
+			}
+		}
+	}
+}
+
+// Mobile
+.mwai-chatgpt-theme {
+
+@media (max-width: common.$bp-mobile) {
+		// The fullscreen styles are handled by mobile-fullscreen-window mixin in _common.scss
+		// The generic common-styles mixin forces .mwai-input into flex-column on mobile,
+		// which made sense for the old layout but now pushes our circular submit button
+		// below the pill. Restore flex-row so the pill + circular submit stay side by side,
+		// matching the desktop layout.
+		&.mwai-window.mwai-open .mwai-input {
+			flex-direction: row;
+			align-items: flex-end;
+			gap: 4px;
+		}
+
+		// Keep the pill design on mobile - adjust margin
+		.mwai-input {
+			margin: 10px var(--mwai-spacing);
+		}
+
+		// File previews on mobile
+		.mwai-files {
+			padding: 0 var(--mwai-spacing) 0 var(--mwai-spacing);
+		}
+
+		// User message bubble adjustments for mobile
+		.mwai-reply.mwai-user {
+			.mwai-user-images {
+				max-width: 90%;
+
+				&:has(.mwai-user-image:nth-child(2)) .mwai-user-image {
+					width: 120px;
+					height: 120px;
+				}
+			}
+
+			.mwai-text {
+				max-width: 90%;
+			}
+		}
+
+		.mwai-name {
+			margin-right: 0;
+			max-width: inherit;
+		}
+	}
+}
+
+// Discussions Overrides for ChatGPT Theme
+.mwai-chatgpt-theme {
+	&.mwai-discussions {
+		// Override header to match chatbot style
+		.mwai-header {
+			background: var(--mwai-backgroundSecondaryColor);
+			color: var(--mwai-fontColor);
+			border-bottom: 1px solid var(--mwai-backgroundPrimaryColor);
+			
+			// Buttons should match chatbot submit button style
+			button {
+				background: var(--mwai-backgroundSecondaryColor);
+				color: var(--mwai-fontColor);
+				border: 1px solid var(--mwai-borderColor);
+				padding: calc(var(--mwai-spacing) / 2) var(--mwai-spacing);
+				border-radius: 5px;
+				cursor: pointer;
+				transition: all 0.2s ease-out;
+				font-size: calc(var(--mwai-fontSize) * 0.9);
+				margin-left: 0; // Remove any default margin
+				
+				&:hover:not(:disabled) {
+					background: var(--mwai-backgroundPrimaryColor);
+				}
+				
+				&:disabled {
+					opacity: 0.5;
+					cursor: not-allowed;
+				}
+			}
+		}
+		
+		// Override pagination to match chatbot style
+		.mwai-pagination {
+			background: var(--mwai-backgroundSecondaryColor);
+			border-top: 1px solid var(--mwai-backgroundPrimaryColor);
+			
+			// Buttons should match chatbot submit button style
+			button {
+				background: var(--mwai-backgroundSecondaryColor);
+				color: var(--mwai-fontColor);
+				border: 1px solid var(--mwai-borderColor);
+				padding: calc(var(--mwai-spacing) / 2) var(--mwai-spacing);
+				border-radius: 5px;
+				cursor: pointer;
+				transition: all 0.2s ease-out;
+				font-size: calc(var(--mwai-fontSize) * 0.9);
+				margin-left: 0; // Remove any default margin
+				
+				&:hover:not(:disabled) {
+					background: var(--mwai-backgroundPrimaryColor);
+				}
+				
+				&:disabled {
+					opacity: 0.5;
+					cursor: not-allowed;
+				}
+			}
+		}
+		
+		// Footer area
+		.mwai-discussions-footer,
+		.mwai-discussions-pagination {
+			background: var(--mwai-backgroundSecondaryColor);
+			border-top: 1px solid var(--mwai-backgroundPrimaryColor);
+			
+			.mwai-new-chat-button {
+				width: 100%;
+				background: var(--mwai-backgroundSecondaryColor);
+				color: var(--mwai-fontColor);
+				border: 1px solid var(--mwai-borderColor);
+				padding: calc(var(--mwai-spacing) / 2) var(--mwai-spacing);
+				border-radius: 5px;
+				cursor: pointer;
+				transition: all 0.2s ease-out;
+				font-size: calc(var(--mwai-fontSize) * 0.9);
+				
+				&:hover {
+					background: var(--mwai-backgroundPrimaryColor);
+				}
+				
+				&:disabled {
+					opacity: 0.5;
+					cursor: not-allowed;
+				}
+			}
+		}
+	}
+}
+
+// Context Menu Overrides for ChatGPT Theme
+.mwai-context-menu-portal.mwai-chatgpt-theme {
+	.mwai-context-menu {
+		background: var(--mwai-backgroundSecondaryColor);
+		border: 1px solid var(--mwai-backgroundPrimaryColor);
+		color: var(--mwai-fontColor);
+
+		.mwai-menu-item {
+			&:hover {
+				background-color: var(--mwai-backgroundPrimaryColor);
+			}
+
+			&.mwai-danger {
+				color: var(--mwai-errorTextColor);
+
+				&:hover {
+					background-color: var(--mwai-errorBackgroundColor);
+				}
+			}
+		}
+	}
+}

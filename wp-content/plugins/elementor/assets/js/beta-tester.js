@@ -1,4 +1,3 @@
-/*! elementor - v3.26.0 - 19-12-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -166,17 +165,6 @@ var BetaTesterView = exports["default"] = /*#__PURE__*/function (_Marionette$Ite
     value: function onRender() {}
   }]);
 }(Marionette.ItemView);
-
-/***/ }),
-
-/***/ "@wordpress/i18n":
-/*!**************************!*\
-  !*** external "wp.i18n" ***!
-  \**************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = wp.i18n;
 
 /***/ }),
 
@@ -368,6 +356,17 @@ function _typeof(o) {
 }
 module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
+/***/ }),
+
+/***/ "@wordpress/i18n":
+/*!**************************!*\
+  !*** external "wp.i18n" ***!
+  \**************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = wp.i18n;
+
 /***/ })
 
 /******/ 	});
@@ -398,7 +397,7 @@ module.exports = _typeof, module.exports.__esModule = true, module.exports["defa
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (() => {
 "use strict";
 /*!*********************************************************!*\

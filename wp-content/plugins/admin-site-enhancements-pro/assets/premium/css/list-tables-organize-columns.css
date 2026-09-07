@@ -154,16 +154,15 @@ span.pointer svg {
     font-size: 11px;
     font-weight: 500;
     cursor: pointer;
-    z-index: 3;
+    z-index: 1;
 }
 
 .show-more-less {
 	bottom: -6px;
 }
 
-.collection-items-wrapper .collection-items-wrapper .show-more-less.show-more,
 .collection-items-wrapper .collection-items-wrapper .show-more-less {
-    bottom: -4px;	
+	bottom: -20px;
 }
 
 a.show-more-less:focus {
@@ -232,6 +231,11 @@ a.show-more-less:focus {
 
 /* Horizontal Scrolling */
 
+.tablenav.top,
+.tablenav.bottom {
+	display: none;
+}
+
 .wrap .wp-list-table {
 	display: none;
 }
@@ -244,8 +248,7 @@ a.show-more-less:focus {
 	position: relative;
 	display: flex;
 	overflow-x: auto;
-	overflow-y: hidden;
-	width: 100%;
+	overflow-y: hidden !important;width: 100%;
 	border: 1px solid #c3c4c7;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
 }
@@ -253,6 +256,56 @@ a.show-more-less:focus {
 #list-table-wrapper table.widefat {
 	border: none;
 	box-shadow: none;
+}
+
+#list-table-wrapper > table > thead > tr > .asenha-acm-frozen,
+#list-table-wrapper > table > tbody > tr > .asenha-acm-frozen,
+#list-table-wrapper > table > tfoot > tr > .asenha-acm-frozen {
+	position: sticky;
+	z-index: 2;
+}
+
+#list-table-wrapper > table.asenha-acm-freeze-header-row > thead {
+	position: relative;
+	z-index: 4;
+	will-change: transform;
+}
+
+.wp-list-table.asenha-acm-freeze-header-row > thead {
+	position: relative;
+	z-index: 4;
+	will-change: transform;
+}
+
+.wp-list-table.asenha-acm-freeze-header-row > thead > tr > th,
+.wp-list-table.asenha-acm-freeze-header-row > thead > tr > td {
+	background: #fff;
+	position: relative;
+	z-index: 5;
+}
+
+#list-table-wrapper > table > thead > tr > .asenha-acm-frozen,
+#list-table-wrapper > table > tfoot > tr > .asenha-acm-frozen {
+	z-index: 3;
+	background: #fff;
+}
+
+#list-table-wrapper > table.asenha-acm-freeze-header-row > thead > tr > .asenha-acm-frozen {
+	z-index: 6;
+}
+
+#list-table-wrapper > table > tbody > tr:nth-child(odd) > .asenha-acm-frozen {
+	background: #f6f7f7;
+}
+
+#list-table-wrapper > table > tbody > tr:nth-child(even) > .asenha-acm-frozen {
+	background: #fff;
+}
+
+#list-table-wrapper > table > thead > tr > .asenha-acm-last-frozen,
+#list-table-wrapper > table > tbody > tr > .asenha-acm-last-frozen,
+#list-table-wrapper > table > tfoot > tr > .asenha-acm-last-frozen {
+	border-right: 1px solid #c3c4c7;
 }
 
 /* Responsive View */

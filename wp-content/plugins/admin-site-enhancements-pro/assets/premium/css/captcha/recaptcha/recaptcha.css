@@ -1,0 +1,67 @@
+/* General container for reCAPTCHA with 10px padding */
+.asenha-recaptcha-container {
+    margin-bottom: 10px;
+}
+
+.woocommerce-form .asenha-recaptcha-container,
+.woocommerce-ResetPassword .asenha-recaptcha-container {
+    padding: 3px;
+}
+
+.woocommerce-form-login .asenha-recaptcha-container,
+.woocommerce-ResetPassword .asenha-recaptcha-container {
+    margin-top: 1rem;
+}
+
+.asenha-recaptcha-container.recaptcha-invisible {
+    height: 0;
+    margin-bottom: 0;
+}
+
+/* Styles for Login, Registration, Reset Password forms */
+.asenha-login-form,
+.asenha-registration-form,
+.asenha-password-reset-form {
+    text-align: center;
+}
+
+.woocommerce-form-login .asenha-login-form,
+.woocommerce-form-register .asenha-registration-form,
+.woocommerce-ResetPassword .asenha-password-reset-form {
+    text-align: left;
+}
+
+/* Inherit form styles for reCAPTCHA container */
+.asenha-login-form .g-recaptcha,
+.asenha-registration-form .g-recaptcha,
+.asenha-password-reset-form .g-recaptcha {
+    display: inline-block;
+/*    transform: scale(0.85); /* Reduce scale to fit within form */*/
+    transform-origin: center;
+}
+
+/* Adjust scaling for smaller screens */
+@media screen and (max-width: 400px) {
+    .asenha-login-form .g-recaptcha,
+    .asenha-registration-form .g-recaptcha,
+    .asenha-password-reset-form .g-recaptcha {
+        transform: scale(0.75);
+    }
+}
+
+/* Styles for Comments form */
+.asenha-comment-form {
+    text-align: left;
+}
+
+/* Optional: Adjust the width of the login form to prevent cutting off reCAPTCHA */
+body.login #login {
+    width: 350px; /* Adjust as needed */
+}
+
+/* Ensure reCAPTCHA does not overflow the form */
+.asenha-login-form,
+.asenha-registration-form,
+.asenha-password-reset-form {
+    overflow: hidden;
+}

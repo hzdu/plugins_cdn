@@ -56,6 +56,256 @@
 
       }, false);
 
+      /**
+       * Show "REST API" row in Settings only when Placement is "On Posts".
+       */
+      const syncCfgroupRestApiRowVisibility = () => {
+         const $row = $('#asenha-cfgroup-rest-api-row');
+         if (!$row.length) {
+            return;
+         }
+         const $checked = $('input[name="cfgroup[rules][placement]"]:checked');
+         const placement = $checked.length ? $checked.val() : '';
+         if (placement === 'posts') {
+            $row.show();
+         } else {
+            $row.hide();
+         }
+      };
+
+      syncCfgroupRestApiRowVisibility();
+      $(document).on('change', 'input[name="cfgroup[rules][placement]"]', syncCfgroupRestApiRowVisibility);
+
+      /**
+       * Sticky top bar showing Field Group Title + Publish/Update button.
+       *
+       * Appears when Publish meta box (#submitdiv) is out of view, and hides again when it re-enters.
+       */
+      const initStickyPublishBar = () => {
+         const $submitDiv = $('#submitdiv');
+         const $titleInput = $('#title');
+         const $publishButton = $('#publish');
+         const $wpBodyContent = $('#wpbody-content');
+         const $wpContent = $('#wpcontent');
+
+         if (
+            !$submitDiv.length ||
+            !$titleInput.length ||
+            !$publishButton.length ||
+            !$wpBodyContent.length ||
+            !$wpContent.length
+         ) {
+            return;
+         }
+
+         if ($('#asenha-cfgroup-sticky-publish-bar').length) {
+            return;
+         }
+
+         $wpBodyContent.prepend(
+            '<div id="asenha-cfgroup-sticky-publish-bar" class="asenha-cfgroup-sticky-publish-bar" aria-hidden="true">' +
+               '<div class="asenha-cfgroup-sticky-publish-bar__inner">' +
+                  '<div class="asenha-cfgroup-sticky-publish-bar__title" aria-live="polite"></div>' +
+                  '<div class="asenha-cfgroup-sticky-publish-bar__actions">' +
+                     '<button type="button" class="button button-primary asenha-cfgroup-sticky-publish-bar__action"></button>' +
+                  '</div>' +
+               '</div>' +
+            '</div>'
+         );
+
+         const $bar = $('#asenha-cfgroup-sticky-publish-bar');
+         const $barTitle = $bar.find('.asenha-cfgroup-sticky-publish-bar__title');
+         const $barAction = $bar.find('.asenha-cfgroup-sticky-publish-bar__action');
+         let isBarVisible = false;
+         let isPositionSyncScheduled = false;
+
+         const getTitleText = () => {
+            const val = $.trim($titleInput.val());
+            if (val) {
+               return val;
+            }
+
+            const placeholder = $.trim($titleInput.attr('placeholder') || '');
+            if (placeholder) {
+               return placeholder;
+            }
+
+            const promptText = $.trim($('#title-prompt-text').text() || '');
+            if (promptText) {
+               return promptText;
+            }
+
+            return '';
+         };
+
+         const getPrimaryActionLabel = () => {
+            const val = $.trim($publishButton.val() || '');
+            if (val) {
+               return val;
+            }
+
+            const text = $.trim($publishButton.text() || '');
+            if (text) {
+               return text;
+            }
+
+            return 'Publish';
+         };
+
+         const syncTitle = () => {
+            $barTitle.text(getTitleText());
+         };
+
+         const syncPosition = () => {
+            const el = $wpContent.get(0);
+            if (!el) {
+               return;
+            }
+
+            const rect = el.getBoundingClientRect();
+
+            // Align the fixed bar to #wpcontent so it sits flush against the admin menu.
+            $bar.css({
+               left: rect.left + 'px',
+               width: rect.width + 'px'
+            });
+         };
+
+         const scheduleSyncPosition = () => {
+            if (isPositionSyncScheduled) {
+               return;
+            }
+            isPositionSyncScheduled = true;
+
+            window.requestAnimationFrame(() => {
+               isPositionSyncScheduled = false;
+               syncPosition();
+            });
+         };
+
+         const syncAction = () => {
+            $barAction.text(getPrimaryActionLabel());
+
+            const isDisabled =
+               $publishButton.is(':disabled') ||
+               $publishButton.hasClass('disabled') ||
+               'true' === $publishButton.attr('aria-disabled');
+
+            $barAction.prop('disabled', isDisabled);
+            $barAction.toggleClass('disabled', isDisabled);
+         };
+
+         const setVisible = shouldShow => {
+            // If Publish meta box is hidden (screen options), keep bar hidden too.
+            if (!$submitDiv.is(':visible')) {
+               shouldShow = false;
+            }
+
+            shouldShow = !!shouldShow;
+
+            if (shouldShow === isBarVisible) {
+               return;
+            }
+
+            isBarVisible = shouldShow;
+
+            if (shouldShow) {
+               scheduleSyncPosition();
+               syncTitle();
+               syncAction();
+            }
+
+            $bar.toggleClass('is-visible', shouldShow);
+            $bar.attr('aria-hidden', shouldShow ? 'false' : 'true');
+
+         };
+
+         const isElementInViewport = el => {
+            if (!el) {
+               return true;
+            }
+            const rect = el.getBoundingClientRect();
+            const windowH = window.innerHeight || document.documentElement.clientHeight;
+            const windowW = window.innerWidth || document.documentElement.clientWidth;
+
+            // Consider "in view" if any part of the element intersects the viewport.
+            return rect.bottom > 0 && rect.right > 0 && rect.top < windowH && rect.left < windowW;
+         };
+
+         $barAction.on('click', function(e) {
+            e.preventDefault();
+            $publishButton.trigger('click');
+         });
+
+         $titleInput.on('input keyup change', function() {
+            syncTitle();
+         });
+
+         // Keep positioning correct when the admin menu collapses/expands or window resizes.
+         $(window).on('resize', function() {
+            scheduleSyncPosition();
+         });
+         $('#collapse-menu, #wp-admin-bar-menu-toggle').on('click', function() {
+            scheduleSyncPosition();
+            window.setTimeout(scheduleSyncPosition, 250);
+         });
+
+         // Keep the sticky action in sync if WP toggles the primary action state/label.
+         if ('MutationObserver' in window) {
+            const publishEl = $publishButton.get(0);
+            const mo = new MutationObserver(() => {
+               if (isBarVisible) {
+                  syncAction();
+               }
+            });
+            mo.observe(publishEl, {
+               attributes: true,
+               attributeFilter: [ 'value', 'disabled', 'class', 'aria-disabled' ]
+            });
+         }
+
+         // Toggle visibility based on #submitdiv viewport intersection.
+         if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver(
+               entries => {
+                  if (!entries || !entries.length) {
+                     return;
+                  }
+
+                  const entry = entries[0];
+                  setVisible(!entry.isIntersecting);
+               },
+               {
+                  root: null,
+                  threshold: 0
+               }
+            );
+
+            observer.observe($submitDiv.get(0));
+         } else {
+            let ticking = false;
+            const onScroll = () => {
+               if (ticking) {
+                  return;
+               }
+               ticking = true;
+
+               window.requestAnimationFrame(() => {
+                  ticking = false;
+                  setVisible(!isElementInViewport($submitDiv.get(0)));
+               });
+            };
+
+            $(window).on('scroll resize', onScroll);
+         }
+
+         // Initial state.
+         syncPosition();
+         setVisible(!isElementInViewport($submitDiv.get(0)));
+      };
+
+      initStickyPublishBar();
+
    }); // END OF $(document).ready()
 
 })( jQuery );

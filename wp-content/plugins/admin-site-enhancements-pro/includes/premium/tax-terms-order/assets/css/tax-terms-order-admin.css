@@ -41,10 +41,14 @@
 	margin-left: 38px;
 }
 
+.children .term_type_li:first-child {
+	margin-top: 8px;
+}
+
 #order-terms #wp_term_sortable li > .item {
 	position: relative;
 	padding: 9px 10px;
-	margin: 5px 0px;
+	margin: 0;
 	background-color: #fff;
 	border: 1px solid #c3c4c7;
 	cursor: move;
@@ -122,4 +126,41 @@
 
 #loading-terms {
 	display: inline;
+}
+
+/* Empty drop-zone: nearly invisible at rest (2px height, no border/background).
+   The 2px physical height is required so jQuery UI Sortable can detect when a
+   dragged item intersects this area and fire the over/out events. */
+#order-terms ul.sortable.empty-placeholder {
+	height: 2px;
+	min-height: 0;
+	overflow: hidden;
+	margin-left: 38px;
+	background: transparent;
+	border: none;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+li.ui-sortable-placeholder {
+	margin-top: 6px;
+}
+
+/* Expanded only when the dragged item is intersecting this specific placeholder
+   (tto-drop-active is added by the sortable over event on this element only). */
+#order-terms ul.sortable.empty-placeholder.tto-drop-active {
+	height: auto;
+	min-height: 38px;
+	overflow: visible;
+	border: 1px solid #508871;
+	background: #cdddd6;
+	border-radius: 2px;
+	margin-top: 4px;
+	margin-bottom: 3px;
+}
+
+/* Highlight the active drop-zone while the dragged item hovers directly over it. */
+#order-terms ul.sortable.empty-placeholder.tto-drop-active.ui-sortable-hover {
+	border-color: #508871;
+	background: #cdddd6;
 }

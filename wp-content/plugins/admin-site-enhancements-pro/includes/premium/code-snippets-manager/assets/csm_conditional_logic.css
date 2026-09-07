@@ -1,0 +1,334 @@
+/* Forked from https://plugins.trac.wordpress.org/browser/insert-php/tags/2.4.10/admin/assets/css/view-opt.css */
+/*#WINP_ViewOptionsMetaBox {
+  display: block;
+}*/
+#code-snippet-options .csm-template {
+  display: none;
+}
+.options_meta_box h3.conditionals {
+  display: none;
+}
+.csm-advanded-options input {
+  float: none;
+  position: relative;
+  top: 0;
+}
+.csm-advanded-options .csm-head {
+  position: relative;
+  overflow: auto;
+  background-color: #fff;
+  border: 1px solid #8c8f94;
+  border-radius: 3px 3px 0 0;
+  padding: 12px;
+}
+.csm-advanded-options .csm-head .csm-left {
+  float: left;
+}
+.csm-advanded-options .csm-head .csm-right {
+  float: right;
+}
+.csm-advanded-options .csm-head .csm-left > *,
+.csm-advanded-options .csm-head .csm-right > * {
+  display: block;
+  vertical-align: middle;
+}
+.csm-advanded-options .csm-head .csm-left > span,
+.csm-advanded-options .csm-head .csm-right > span {
+  margin: 0 5px;
+}
+.wp-core-ui .button.btn-remove-filter {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  border-color: #8c8f94;
+  border-radius: 0 3px 0 3px;
+}
+.wp-core-ui .button.btn-remove-filter:hover {
+  border-color: #0a4b78;
+}
+/*.csm-advanded-options .csm-editor-wrap .csm-filters {
+  padding-left: 20px;
+  border-left: 1px solid #ddd;
+}
+.csm-advanded-options .csm-filters .csm-point {
+  background-color: #fff;
+  border: 1px solid #0073aa;
+  border-radius: 100%;
+  width: 11px;
+  height: 11px;
+  display: block;
+  position: absolute;
+  margin-left: -26px;
+  margin-top: 19px;
+}*/
+.csm-advanded-options .csm-filters .csm-point:after {
+  position: absolute;
+  content: " ";
+  display: block;
+  width: 15px;
+  border-top: 1px solid #ddd;
+  margin-left: 10px;
+  margin-top: 4px;
+}
+.csm-advanded-options .csm-filter + .csm-filter {
+  margin-top: 20px;
+}
+.csm-advanded-options .csm-box {
+  padding: 12px;
+  border-right: 1px solid #8c8f94;
+  border-bottom: 1px solid #8c8f94;
+  border-left: 1px solid #8c8f94;
+  border-radius: 0 0 3px 3px;
+  background-color: #f9f9f9;
+}
+.csm-advanded-options .csm-when-empty {
+  display: none;
+}
+.csm-advanded-options .csm-empty .csm-when-empty {
+  display: block;
+}
+.csm-advanded-options .csm-empty .csm-conditions {
+  display: none;
+}
+.csm-advanded-options .csm-integer {
+  width: 60px;
+}
+.csm-advanded-options .csm-text {
+  width: 100%;
+  margin-top: 8px;
+}
+/* Conditions */
+.csm-condition {
+  position: relative;
+}
+.csm-condition .btn-group .btn {
+  height: 28px;
+}
+/*.csm-condition .csm-hint,
+.csm-condition .csm-hint-content {
+  display: none;
+}
+.csm-condition .csm-hint {
+  position: absolute;
+  display: none !important;
+  padding: 0 6px 0 3px;
+  top: -2px;
+  right: -20px;
+}
+.csm-editor-wrap:hover .csm-condition .csm-hint {
+  display: inline-block !important;
+}
+.csm-condition .csm-hint-icon {
+  background: url('./images/help.png') no-repeat 0 0 transparent;
+  position: relative;
+  height: 14px;
+  width: 13px;
+  display: inline-block;
+  cursor: help;
+  vertical-align: middle;
+  top: -1px;
+  opacity: 0.55;
+}
+.csm-condition .csm-hint:hover .csm-hint-content {
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  top: 2px;
+  left: -222px;
+  width: 224px;
+  background-color: rgba(0, 0, 0, 0.8);
+  white-space: normal;
+  padding: 10px 12px 12px 12px;
+  font-weight: normal;
+  line-height: 150%;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 13px;
+  z-index: 999;
+}
+.csm-condition .csm-hint .csm-hint-content,
+.csm-condition .csm-hint .csm-hint-content a {
+  color: #fff;
+}*/
+.csm-condition .csm-or {
+  display: none;
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: bold;
+  margin: 6px 0 4px;
+  padding: 1px 0 3px 0;
+  font-size: 0.875em;
+  text-transform: uppercase;
+}
+.csm-condition + .csm-condition .csm-or {
+  display: block;
+}
+.csm-condition .csm-controls {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+.csm-condition .btn-group {
+  border: 0;
+}
+.csm-condition > span {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+  margin-top: 8px;
+}
+.csm-condition > span.csm-params {
+  display: flex;
+  align-items: center;
+  margin-top: 0;
+  position: relative;
+}
+.select2-container {
+  margin-top: 8px;
+}
+.select2-container--default .select2-selection--single {
+  height: 30px;
+  border-radius: 3px;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  margin-bottom: 0;
+  background-color: #f5f5f5;
+  border-radius: 3px;
+}
+.select2-container .select2-search--inline .select2-search__field {
+  font-family: inherit;
+  font-size: 14px;
+  margin-left: 8px;
+}
+input[type="search"].select2-search__field {
+  height: 30px;
+}
+.select2-dropdown {
+  z-index: 999999;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+.select2-container--open .select2-dropdown--below {
+  border: 1px solid #aaa;
+}
+.options_meta_box select.csm-filter-type,
+.options_meta_box select.csm-param-select,
+.options_meta_box select.csm-operator-select,
+.csm-condition > span.csm-value select,
+.csm-condition > span.csm-value input,
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--multiple {
+  border: 1px solid #ddd;
+}
+.options_meta_box select.csm-filter-type:hover,
+.options_meta_box select.csm-param-select:hover,
+.options_meta_box select.csm-operator-select:hover,
+.csm-condition > span.csm-value select:hover,
+.csm-condition > span.csm-value input:hover,
+.select2-container--default .select2-selection--single:hover,
+.select2-container--default .select2-selection--multiple:hover {
+  border: 1px solid #8c8f94;
+}
+.options_meta_box select.csm-param-select,
+.options_meta_box select.csm-operator-select {
+  margin-top: 0;
+}
+.csm-condition > span.csm-value {
+  width: 100%;
+  margin-top: 0;
+}
+/* date control */
+.csm-date-control {
+  display: inline-block;
+  position: relative;
+}
+.csm-date-control input[type='text'],
+.csm-date-control select {
+  vertical-align: top;
+}
+.csm-date-control .csm-label {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  top: 4px;
+  padding: 0 4px;
+}
+.csm-date-control .csm-switcher {
+  padding: 4px 0;
+}
+.csm-date-control .csm-switcher * {
+  display: inline-block;
+  vertical-align: bottom;
+}
+.csm-date-control .csm-switcher label {
+  margin: 0 5px 0 0;
+  font-weight: normal;
+}
+.csm-date-control .csm-absolute-date input[type="text"] {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: #fff;
+  padding-right: 20px;
+  width: 140px;
+}
+.csm-date-control .csm-absolute-date .fa-calendar {
+  position: absolute;
+  right: 7px;
+  top: 8px;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  padding-left: 6px;
+}
+.csm-date-control .csm-relative-date input[type="text"] {
+  width: 40px;
+  text-align: center;
+}
+.csm-date-control.csm-between .csm-solo-date {
+  display: none;
+}
+.csm-date-control.csm-solo .csm-between-date {
+  display: none;
+}
+.csm-date-control.csm-relative .csm-absolute-date {
+  display: none;
+}
+.csm-date-control.csm-absolute .csm-relative-date {
+  display: none;
+}
+.csm-scope .csm-and {
+  display: none;
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: bold;
+  border-top: 1px solid #999;
+  margin: 18px 0;
+  position: relative;
+}
+.csm-scope .csm-and span {
+  position: absolute;
+  top: -10px;
+  background-color: #f9f9f9;
+  padding-right: 7px;
+  text-transform: uppercase;
+}
+.csm-scope + .csm-scope .csm-and {
+  display: block;
+}
+.wp-core-ui .csm-editor-wrap .button-group {
+  display: inline-block;
+  opacity: 0.25;
+  transition: 0.25s;
+}
+.wp-core-ui .csm-editor-wrap:hover .button-group {
+  opacity: 1;
+}
+.csm-advanded-options .csm-box {
+  padding: 12px 12px 34px;
+}
+.csm-condition .csm-controls {
+  margin-bottom: -22px;
+  position: relative;
+  z-index: 99999;
+}
+.csm-scope .csm-and {
+  margin: 30px 0 40px;
+}
+}
+/*# sourceMappingURL=view-opt.css.map */

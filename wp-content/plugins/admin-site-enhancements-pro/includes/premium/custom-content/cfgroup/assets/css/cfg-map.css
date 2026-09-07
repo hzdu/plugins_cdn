@@ -1,0 +1,199 @@
+/**
+ * CFG Map field styles.
+ */
+
+.cfgroup-map {
+	max-width: 100%;
+}
+
+/* Place/POI name cue beside the field label (Google Maps). */
+.cfgroup_input .field label.field-label .cfgroup-map-place-name-cue {
+	display: inline;
+	margin-left: 0.5em;
+	font-weight: 400;
+	font-size: 13px;
+	color: #646970;
+}
+
+.cfgroup_input .field label.field-label .cfgroup-map-place-name-cue[hidden] {
+	display: none !important;
+}
+
+.cfgroup-map-search {
+	margin-bottom: 8px;
+	position: relative;
+}
+
+.cfgroup-map-custom-address-wrap {
+	margin-bottom: 8px;
+}
+
+.cfgroup-map-custom-address-label {
+	display: block;
+	margin-bottom: 4px;
+	font-weight: 600;
+}
+
+.cfgroup-map-custom-address {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+.cfgroup-map-address {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+.cfgroup-map-search-status {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translateY( -50% );
+	z-index: 2;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 12px;
+	line-height: 1;
+	color: #646970;
+	pointer-events: none;
+}
+
+/* Author display:inline-flex overrides the UA [hidden] rule without !important. */
+.cfgroup-map-search-status[hidden] {
+	display: none !important;
+}
+
+.cfgroup-map.is-searching .cfgroup-map-address {
+	padding-right: 7.5em;
+}
+
+.cfgroup-map-search-status::before {
+	content: '';
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	border: 2px solid #c3c4c7;
+	border-top-color: #2271b1;
+	border-radius: 50%;
+	animation: cfgroup-map-spin 0.7s linear infinite;
+}
+
+@keyframes cfgroup-map-spin {
+	to {
+		transform: rotate( 360deg );
+	}
+}
+
+.cfgroup-map-suggestions {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 100%;
+	z-index: 100100;
+	margin: 2px 0 0;
+	padding: 0;
+	list-style: none;
+	max-height: 240px;
+	overflow-y: auto;
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-radius: 2px;
+	box-shadow: 0 2px 6px rgba( 0, 0, 0, 0.12 );
+}
+
+.cfgroup-map-suggestion {
+	display: block;
+	margin: 0;
+	padding: 8px 12px;
+	cursor: pointer;
+	border-bottom: 1px solid #f0f0f1;
+}
+
+.cfgroup-map-suggestion:last-child {
+	border-bottom: 0;
+}
+
+.cfgroup-map-suggestion:hover,
+.cfgroup-map-suggestion.is-active {
+	background: #f0f6fc;
+}
+
+.cfgroup-map-suggestion-title {
+	display: block;
+	font-weight: 600;
+	color: #1d2327;
+	line-height: 1.35;
+}
+
+.cfgroup-map-suggestion-address {
+	display: block;
+	margin-top: 2px;
+	font-size: 12px;
+	line-height: 1.35;
+	color: #646970;
+}
+
+.cfgroup-map-suggestion--empty {
+	cursor: default;
+	color: #646970;
+	font-size: 13px;
+}
+
+.cfgroup-map-suggestion--empty:hover {
+	background: #fff;
+}
+
+/*
+ * Hidden when Places API (New) PlaceAutocompleteElement is mounted.
+ * display:none !important beats QE/BE width:100% rules on .asenha-cfgroup-*-input.
+ * Input remains in the form and still submits.
+ */
+.cfgroup-map-address.cfgroup-map-address--hidden,
+#wpbody-content .inline-edit-row .asenha-cfgroup-qe-field .cfgroup-map-address.cfgroup-map-address--hidden,
+#wpbody-content .inline-edit-row .asenha-cfgroup-be-field .cfgroup-map-address.cfgroup-map-address--hidden {
+	display: none !important;
+}
+
+.cfgroup-map-place-autocomplete,
+.cfgroup-map-search gmp-place-autocomplete {
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+	color-scheme: light;
+	background-color: #fff;
+	border: 1px solid #8c8f94;
+	border-radius: 3px;
+	color: #2c3338;
+}
+
+.cfgroup-map-canvas {
+	width: 100%;
+	min-height: 200px;
+	background: #eef1f4;
+	border: 1px solid #c3c4c7;
+	border-radius: 2px;
+}
+
+.cfgroup-map-notice {
+	margin: 0 0 8px;
+}
+
+/* Quick Edit / Bulk Edit sizing */
+.inline-edit-row .cfgroup-map,
+.asenha-cfgroup-be-field .cfgroup-map {
+	max-width: 480px;
+}
+
+.inline-edit-row .cfgroup-map-canvas,
+.asenha-cfgroup-be-field .cfgroup-map-canvas {
+	min-height: 220px;
+}
+
+/* Leaflet default marker inside WP admin */
+.cfgroup-map-canvas .leaflet-container {
+	font: inherit;
+}

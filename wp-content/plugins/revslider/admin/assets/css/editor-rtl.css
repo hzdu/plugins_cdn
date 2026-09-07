@@ -1,0 +1,104 @@
+body.rtl,
+html[dir="rtl"] {
+
+/*********************************
+    -   HIDE WP CONTAINERS   -
+**********************************/    
+
+#sr_editor_icon {
+    position: absolute;
+    right: 343px;
+}
+
+/***************************+**********
+    -   TOP BAR AND ITS COMPONENTS  -
+**********************************/
+sr-toggle-sidebar {
+    right:auto;
+    left:15px;
+}
+
+sr-nav-wrap.sr_main_navgroup {
+    position: absolute;
+    right: 393px;
+}
+
+sr-topbar,
+.sr--center--group,
+.sr--right--group {
+    left:auto;
+    right:0px;
+}
+
+.sr--right--group {
+    left:0;
+    right:auto;
+    border-right:none;
+}
+.sr--center--group {
+    left:auto;
+    right:calc((100% - 555px) / 2);
+}
+
+sr-input .sr--drop--only--icon {
+    right:auto;
+    left:0px;
+}
+
+sr-wrap[dropicon] {
+    margin-right:inherit;
+    margin-left:5px;
+}
+
+sr-wrap.sr--topbar--infos {
+    border-left:3px solid var(--sr-col-w9-d2);
+    width: 323px;
+}
+
+/***************************+**********
+    -   SIDE BARS AND ITS COMPONENTS  -
+***************************************/
+
+.sr--static--slide sr-list-item-inner{ 
+    margin-left: inherit;
+    margin-right: 25px;
+}
+sr-list-content sr-list-subcog,
+sr-list-content sr-list-subdel,
+sr-list-content sr-list-subdup {
+    right: auto;
+    left: 5px;
+}
+sr-list-content sr-list-subdel {
+    right: auto;
+    left: 55px;
+}
+sr-list-content sr-list-subdup {
+    right: auto;
+    left: 30px;
+}
+
+/***************************+**********
+    -   TOP BAR RESPONSIVNESS   -
+***************************************/
+
+@media (max-width: 1570px) {
+    .sr--center--group {
+        left:auto;
+        right:calc((100% - 163px) / 2);
+    }
+}
+@media (max-width: 1350px) {
+    .sr--center--group {
+        left:auto;
+        right:calc((100% - 33px) / 2);
+    }
+}
+
+/* Timeline */
+
+sr-timeline {
+    direction: ltr;
+}
+
+}

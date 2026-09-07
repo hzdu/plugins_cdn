@@ -1,0 +1,1050 @@
+@config "../tailwind.config.js";
+
+/* @import url("https://rsms.me/inter/inter.css"); */
+
+/* Styles scoped to .gbt-dashboard-scope */
+.gbt-dashboard-scope {
+
+	@import "tailwindcss/preflight.css" layer(base);
+	/* Keep preflight layer */
+
+	position: relative;
+
+	font-size: 16px;
+	line-height: 1.5;
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-weight: normal;
+		font-size: 1rem;
+		margin: 0;
+		padding: 0;
+	}
+
+	p {
+		font-weight: normal;
+		margin: 0;
+		padding: 0;
+	}
+
+	font-family: var(--font-sans);
+}
+
+@import "tailwindcss/theme.css";
+@import "tailwindcss/utilities.css";
+
+@theme {
+	--breakpoint-*: initial;
+	--breakpoint-3xs: 30rem;  /* Original: 16rem (256px) */
+	--breakpoint-2xs: 40rem;  /* Original: 18rem (288px) */
+	--breakpoint-xs: 50rem;   /* Original: 20rem (320px) */
+	--breakpoint-sm: 60rem;   /* Original: 24rem (384px) */
+	--breakpoint-md: 70rem;   /* Original: 28rem (448px) */
+	--breakpoint-lg: 80rem;   /* Original: 32rem (512px) */
+	--breakpoint-xl: 90rem;   /* Original: 36rem (576px) */
+	--breakpoint-2xl: 100rem; /* Original: 42rem (672px) */
+	--breakpoint-3xl: 110rem; /* Original: 48rem (768px) */
+	--breakpoint-4xl: 120rem; /* Original: 56rem (896px) */
+	--breakpoint-5xl: 130rem; /* Original: 64rem (1024px) */
+	--breakpoint-6xl: 140rem; /* Original: 72rem (1152px) */
+	--breakpoint-7xl: 150rem; /* Original: 80rem (1280px) */
+	/*--font-sans: InterVariable, sans-serif;*/
+	--color-gbt-blue: #2271b1;
+	--color-gbt-blue-darker: #135e96;
+	--color-gbt-blue-lighter: #72aee6;
+	--color-gbt-gray-light: #2f353a;
+	--color-gbt-gray-lighter: #50575e;
+	--color-gbt-gray-dark: #1f2428;
+	--color-gbt-red: #d63638;
+	--color-gbt-green: #00a32a;
+	--color-gbt-green-darker: #007017;
+	--color-gbt-yellow: #dba617;
+	/* Soft gold — complements brand blue #2271b1 on light + navy surfaces */
+	--color-gbt-yellow-soft: #f0cc5a;
+}
+
+/* Rotating shiny border — ThemeForest convert panel (sits over default ring) */
+.gbt-dashboard-scope .gbt-shine-border {
+	--gbt-shine-width: 1px;
+	position: relative;
+}
+
+.gbt-dashboard-scope .gbt-shine-border__glow {
+	position: absolute;
+	inset: -1px;
+	z-index: 1;
+	border-radius: inherit;
+	padding: var(--gbt-shine-width);
+	pointer-events: none;
+	opacity: 0.5;
+	background: transparent;
+	-webkit-mask:
+		linear-gradient(#000 0 0) content-box,
+		linear-gradient(#000 0 0);
+	mask:
+		linear-gradient(#000 0 0) content-box,
+		linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask-composite: exclude;
+}
+
+.gbt-dashboard-scope .gbt-shine-border__glow::before {
+	content: '';
+	position: absolute;
+	inset: -60%;
+	background: conic-gradient(
+		from 0deg,
+		transparent 0%,
+		transparent 70%,
+		rgba(219, 166, 23, 0.25) 80%,
+		rgba(255, 214, 102, 0.8) 86%,
+		rgba(255, 236, 179, 0.95) 90%,
+		rgba(255, 214, 102, 0.8) 94%,
+		rgba(219, 166, 23, 0.25) 97%,
+		transparent 100%
+	);
+	animation: gbt-shine-spin 7s linear infinite;
+}
+
+.gbt-dashboard-scope .gbt-shine-border__body {
+	position: relative;
+	z-index: 0;
+	border-radius: inherit;
+	background: var(--color-gbt-gray-light);
+}
+
+@keyframes gbt-shine-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.gbt-dashboard-scope .gbt-shine-border__glow::before {
+		animation: none;
+		opacity: 0.4;
+		transform: rotate(45deg);
+	}
+}
+
+/* License flash / TF info notices — icon locked to first text line */
+.gbt-dashboard-scope .gbt-license-flash {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	column-gap: 0.5rem;
+	align-items: start;
+}
+.gbt-dashboard-scope .gbt-license-flash__icon {
+	grid-column: 1;
+	grid-row: 1;
+	line-height: 0;
+	padding-top: 0;
+}
+.gbt-dashboard-scope .gbt-license-flash__icon svg {
+	display: block;
+}
+.gbt-dashboard-scope .gbt-license-flash__body {
+	grid-column: 2;
+	grid-row: 1;
+	min-width: 0;
+}
+
+/* ---------------------------------------------------------------------------
+ * Combined TF upgrade offer — clean / minimal
+ * ------------------------------------------------------------------------- */
+.gbt-dashboard-scope .gbt-tf-offer {
+	--tf-accent: var(--color-gbt-yellow-soft);
+	--gbt-tf-feed-gap: 1.5rem;
+	container-type: inline-size;
+	container-name: gbt-tf-offer;
+	box-sizing: border-box;
+	border-radius: 0.375rem;
+	border: 1px solid color-mix(in srgb, #fff 10%, transparent);
+	background: color-mix(in srgb, #fff 5%, transparent);
+	padding: 1.25rem;
+}
+.gbt-dashboard-scope .gbt-tf-offer--flush {
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+	padding: 0;
+}
+.gbt-dashboard-scope .gbt-tf-offer--light {
+	--tf-accent: var(--color-gbt-yellow);
+	border-color: #e5e7eb;
+	background: #f9fafb;
+}
+
+/* Beat WP admin `dd, li { margin-bottom: 6px }` (unlayered, wins over utilities) */
+#wpbody .gbt-dashboard-scope .gbt-tf-offer li {
+	margin: 0;
+}
+
+/* Paths — stack on mobile; side-by-side on desktop */
+.gbt-dashboard-scope .gbt-tf-offer__paths {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 0.75rem;
+	align-items: stretch;
+}
+@media (min-width: theme(--breakpoint-lg)) {
+	.gbt-dashboard-scope .gbt-tf-offer .gbt-tf-offer__paths {
+		grid-template-columns: 1fr 1fr;
+		gap: 0.75rem;
+	}
+}
+
+.gbt-dashboard-scope .gbt-tf-offer__path--quiet {
+	background: transparent;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	box-shadow: none;
+}
+.gbt-dashboard-scope .gbt-tf-offer--light .gbt-tf-offer__path--quiet {
+	background: #fff;
+	border-color: rgba(17, 24, 39, 0.1);
+}
+.gbt-dashboard-scope .gbt-tf-offer__path--hot {
+	background: color-mix(in srgb, var(--tf-accent) 10%, var(--color-gbt-gray-dark));
+	border: 1px solid color-mix(in srgb, var(--tf-accent) 45%, transparent);
+	box-shadow: none;
+}
+.gbt-dashboard-scope .gbt-tf-offer--light .gbt-tf-offer__path--hot {
+	background: #fffaec;
+	border-color: color-mix(in srgb, var(--tf-accent) 50%, transparent);
+}
+
+/* Keep path CTAs flush with equal card padding (WP admin button margins otherwise skew them) */
+.gbt-dashboard-scope .gbt-tf-offer__path {
+	box-sizing: border-box;
+	padding: 1rem;
+}
+.gbt-dashboard-scope .gbt-tf-offer__path a {
+	box-sizing: border-box;
+	width: 100%;
+	margin: 0 !important;
+}
+
+/* Feed list — WP admin resets; use gap (not space-y) because #wpbody li { margin:0 } */
+#wpbody .gbt-dashboard-scope .gbt-tf-offer ul[role="list"] {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: var(--gbt-tf-feed-gap, 1.5rem);
+	margin: 1rem 0 0;
+	padding: 0;
+}
+
+/* Feed row — date / rail / title locked to one 24px baseline */
+.gbt-dashboard-scope .gbt-tf-feed__row {
+	display: grid;
+	grid-template-columns: 5.5rem 1.5rem minmax(0, 1fr);
+	column-gap: 0.75rem;
+	align-items: start;
+}
+.gbt-dashboard-scope .gbt-tf-feed__date,
+.gbt-dashboard-scope .gbt-tf-feed__mark,
+.gbt-dashboard-scope .gbt-tf-feed__title {
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	min-height: 1.5rem;
+	margin: 0;
+	padding: 0;
+	line-height: 1.5rem;
+}
+.gbt-dashboard-scope .gbt-tf-feed__date,
+.gbt-dashboard-scope .gbt-tf-feed__mark {
+	height: 1.5rem;
+}
+.gbt-dashboard-scope .gbt-tf-feed__date {
+	justify-content: flex-end;
+	font-size: 0.875rem;
+	font-weight: 400;
+	white-space: nowrap;
+}
+.gbt-dashboard-scope .gbt-tf-feed__rail {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	align-self: stretch;
+}
+.gbt-dashboard-scope .gbt-tf-feed__line {
+	position: absolute;
+	top: 0.75rem;
+	bottom: calc(-1 * var(--gbt-tf-feed-gap, 1.5rem));
+	left: 50%;
+	width: 1px;
+	transform: translateX(-50%);
+}
+.gbt-dashboard-scope .gbt-tf-feed__row.is-last .gbt-tf-feed__line {
+	display: none;
+}
+.gbt-dashboard-scope .gbt-tf-feed__row.is-today a {
+	color: var(--color-gbt-blue-lighter);
+}
+.gbt-dashboard-scope .gbt-tf-feed__row.is-today .gbt-tf-offer__paths a {
+	color: #fff;
+}
+.gbt-dashboard-scope .gbt-tf-feed__row.is-end .gbt-tf-feed__date,
+.gbt-dashboard-scope .gbt-tf-feed__row.is-end .gbt-tf-feed__mark,
+.gbt-dashboard-scope .gbt-tf-feed__row.is-end .gbt-tf-feed__event:not(.gbt-tf-feed__event--credit) .gbt-tf-feed__label {
+	color: var(--color-gbt-red);
+}
+.gbt-dashboard-scope .gbt-tf-offer--light .gbt-tf-feed__row.is-end .gbt-tf-feed__date,
+.gbt-dashboard-scope .gbt-tf-offer--light .gbt-tf-feed__row.is-end .gbt-tf-feed__mark,
+.gbt-dashboard-scope .gbt-tf-offer--light .gbt-tf-feed__row.is-end .gbt-tf-feed__event:not(.gbt-tf-feed__event--credit) .gbt-tf-feed__label {
+	color: var(--color-gbt-red);
+}
+.gbt-dashboard-scope .gbt-tf-feed__mark {
+	position: relative;
+	z-index: 1;
+	justify-content: center;
+	width: 1.5rem;
+}
+.gbt-dashboard-scope .gbt-tf-feed__title {
+	gap: 0.375rem;
+	min-width: 0;
+}
+.gbt-dashboard-scope .gbt-tf-feed__title--wrap {
+	flex-wrap: wrap;
+	row-gap: 0.375rem;
+}
+.gbt-dashboard-scope .gbt-tf-feed__body {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gbt-tf-feed-gap, 1.5rem);
+}
+.gbt-dashboard-scope .gbt-tf-feed__group {
+	box-sizing: border-box;
+	width: fit-content;
+	max-width: 100%;
+	border-radius: 0.5rem;
+	border: 1px solid color-mix(in srgb, #fff 10%, transparent);
+	background: color-mix(in srgb, #fff 4%, transparent);
+	padding: 0.875rem 1rem;
+}
+.gbt-dashboard-scope .gbt-tf-feed__group--after-here {
+	margin-top: 0.75rem;
+}
+.gbt-dashboard-scope .gbt-tf-offer--light .gbt-tf-feed__group {
+	border-color: #e5e7eb;
+	background: #fff;
+}
+.gbt-dashboard-scope .gbt-tf-feed__label {
+	font-size: 0.875rem;
+	font-weight: 500;
+	line-height: 1.5rem;
+}
+.gbt-dashboard-scope .gbt-tf-feed__meta {
+	font-weight: 500;
+	white-space: nowrap;
+	color: #fff; /* same as default titles on dark */
+}
+.gbt-dashboard-scope .gbt-tf-offer--light .gbt-tf-feed__meta {
+	color: #111827; /* gray-900 — same as default titles on light */
+}
+.gbt-dashboard-scope .gbt-tf-feed__pill {
+	display: inline-flex;
+	align-items: center;
+	height: 1.5rem;
+	padding: 0 0.625rem;
+	border-radius: 9999px;
+	background: var(--tf-accent);
+	color: #111827;
+	font-size: 0.75rem;
+	font-weight: 600;
+	line-height: 1;
+	white-space: nowrap;
+}
+.gbt-dashboard-scope .gbt-tf-feed__pill--here {
+	background: var(--color-gbt-blue-lighter);
+	color: #111827;
+}
+.gbt-dashboard-scope .gbt-tf-feed__pill--ask {
+	/* Same chrome as --here; only the fill differs (yellow via --tf-accent / base). */
+	background: var(--tf-accent);
+	color: #111827;
+}
+.gbt-dashboard-scope .gbt-tf-feed__title .gbt-tf-feed__why-decide-link {
+	color: var(--color-gbt-blue-lighter);
+	font-size: 0.875rem;
+	font-weight: 600;
+	text-decoration: underline;
+	text-underline-offset: 2px;
+	white-space: nowrap;
+}
+.gbt-dashboard-scope .gbt-tf-feed__title .gbt-tf-feed__why-decide-link:hover {
+	text-decoration: none;
+}
+.gbt-dashboard-scope .gbt-tf-offer--light .gbt-tf-feed__pill--ask {
+	background: var(--tf-accent);
+	color: #111827;
+}
+.gbt-dashboard-scope .gbt-tf-feed__desc {
+	margin: 0;
+	font-size: 0.875rem;
+	line-height: 1.5;
+}
+.gbt-dashboard-scope .gbt-tf-feed__decision {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	min-width: 0;
+}
+.gbt-dashboard-scope .gbt-tf-feed__notes {
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	max-width: 36rem;
+	font-size: 0.875rem;
+	line-height: 1.5;
+}
+.gbt-dashboard-scope .gbt-tf-feed__note-line {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.5rem;
+	margin: 0;
+	/* One line-box tall per wrapped line — no extra row gap */
+	line-height: inherit;
+}
+.gbt-dashboard-scope .gbt-tf-feed__note {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.5rem;
+	margin: 0;
+	max-width: 36rem;
+	font-size: 0.875rem;
+	line-height: 1.5;
+}
+.gbt-dashboard-scope .gbt-tf-feed__note-icon {
+	display: inline-flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	/* Sit on the first line: center 1em icon in the first line-box */
+	width: 1em;
+	height: 1.5em;
+	margin-top: 0;
+	line-height: 0;
+	overflow: hidden;
+	opacity: 0.85;
+}
+.gbt-dashboard-scope .gbt-tf-feed__note-icon svg {
+	display: block;
+	width: 1em;
+	height: 1em;
+	overflow: hidden;
+	flex-shrink: 0;
+}
+.gbt-dashboard-scope .gbt-tf-offer .gbt-tf-plan-link {
+	color: var(--color-gbt-blue-lighter);
+}
+.gbt-dashboard-scope .gbt-tf-offer--light .gbt-tf-plan-link {
+	color: var(--color-gbt-blue);
+}
+
+/* License status seal — big creative mark for the active/expired panel */
+.gbt-dashboard-scope .gbt-license-seal {
+	--gbt-seal: var(--color-gbt-green);
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 7.5rem;
+	height: 7.5rem;
+	margin-inline: auto;
+}
+
+.gbt-dashboard-scope .gbt-license-seal--expired {
+	--gbt-seal: var(--color-gbt-red);
+}
+
+.gbt-dashboard-scope .gbt-license-seal--unlock {
+	--gbt-seal: var(--color-gbt-blue);
+}
+
+.gbt-dashboard-scope .gbt-license-seal--migrate {
+	--gbt-seal: var(--color-gbt-yellow);
+}
+
+/* Purchase-code clear control — pinned top-right over the field */
+.gbt-dashboard-scope .gbt-tf-code-clear {
+	position: absolute;
+	top: 0.375rem;
+	right: 0.375rem;
+	z-index: 10;
+	margin: 0;
+	padding: 0;
+	line-height: 0;
+}
+
+/* Beat WP admin button chrome for conversion microcopy links */
+.gbt-dashboard-scope .gbt-why-link,
+.gbt-dashboard-scope .gbt-howto-link {
+	display: inline-flex !important;
+	align-items: center;
+	gap: 0.375rem;
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	color: var(--color-gbt-blue-lighter) !important;
+	font-size: 0.875rem !important;
+	font-weight: 400 !important;
+	letter-spacing: normal;
+	line-height: 1.5 !important;
+	text-transform: none;
+	text-decoration: underline !important;
+	text-underline-offset: 2px;
+	vertical-align: baseline;
+	cursor: pointer;
+	transition: color 150ms ease;
+}
+
+.gbt-dashboard-scope .gbt-why-link:hover,
+.gbt-dashboard-scope .gbt-why-link:focus,
+.gbt-dashboard-scope .gbt-howto-link:hover,
+.gbt-dashboard-scope .gbt-howto-link:focus {
+	color: #fff !important;
+	background: transparent !important;
+}
+
+.gbt-dashboard-scope .gbt-why-link svg,
+.gbt-dashboard-scope .gbt-howto-link svg {
+	display: block;
+	flex-shrink: 0;
+	color: currentColor;
+}
+
+.gbt-dashboard-scope .gbt-license-seal__bloom {
+	position: absolute;
+	inset: 8%;
+	border-radius: 9999px;
+	background: radial-gradient(circle, color-mix(in srgb, var(--gbt-seal) 45%, transparent) 0%, transparent 70%);
+	filter: blur(10px);
+	opacity: 0.85;
+	animation: gbt-seal-breathe 3.6s ease-in-out infinite;
+}
+
+.gbt-dashboard-scope .gbt-license-seal__orbit {
+	position: absolute;
+	inset: 0;
+	border-radius: 9999px;
+	border: 1px dashed color-mix(in srgb, var(--gbt-seal) 45%, transparent);
+	animation: gbt-seal-orbit 14s linear infinite;
+}
+
+.gbt-dashboard-scope .gbt-license-seal__ring {
+	position: absolute;
+	inset: 14%;
+	border-radius: 9999px;
+	background:
+		radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.12), transparent 45%),
+		color-mix(in srgb, var(--gbt-seal) 12%, var(--color-gbt-gray-dark));
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.08),
+		0 0 0 1px color-mix(in srgb, var(--gbt-seal) 35%, transparent),
+		0 10px 28px rgba(0, 0, 0, 0.35);
+}
+
+.gbt-dashboard-scope .gbt-license-seal__core {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 3.75rem;
+	height: 3.75rem;
+	border-radius: 9999px;
+	background: color-mix(in srgb, var(--gbt-seal) 18%, var(--color-gbt-gray-dark));
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.1),
+		0 0 0 1px color-mix(in srgb, var(--gbt-seal) 40%, transparent);
+}
+
+.gbt-dashboard-scope .gbt-license-seal__icon {
+	width: 2.5rem;
+	height: 2.5rem;
+	color: var(--gbt-seal);
+	filter: drop-shadow(0 0 10px color-mix(in srgb, var(--gbt-seal) 55%, transparent));
+}
+
+.gbt-dashboard-scope .gbt-license-seal__spark {
+	position: absolute;
+	z-index: 2;
+	width: 0.375rem;
+	height: 0.375rem;
+	border-radius: 9999px;
+	background: var(--gbt-seal);
+	box-shadow: 0 0 10px color-mix(in srgb, var(--gbt-seal) 80%, transparent);
+	animation: gbt-seal-spark 3.2s ease-in-out infinite;
+}
+
+.gbt-dashboard-scope .gbt-license-seal__spark--a {
+	top: 10%;
+	right: 18%;
+}
+
+.gbt-dashboard-scope .gbt-license-seal__spark--b {
+	bottom: 16%;
+	left: 12%;
+	animation-delay: 0.8s;
+	width: 0.275rem;
+	height: 0.275rem;
+}
+
+.gbt-dashboard-scope .gbt-license-seal__spark--c {
+	top: 42%;
+	right: 4%;
+	animation-delay: 1.6s;
+	width: 0.25rem;
+	height: 0.25rem;
+	opacity: 0.7;
+}
+
+@keyframes gbt-seal-orbit {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes gbt-seal-breathe {
+	0%,
+	100% {
+		transform: scale(0.92);
+		opacity: 0.55;
+	}
+	50% {
+		transform: scale(1.08);
+		opacity: 0.95;
+	}
+}
+
+@keyframes gbt-seal-spark {
+	0%,
+	100% {
+		transform: scale(0.7);
+		opacity: 0.35;
+	}
+	50% {
+		transform: scale(1.15);
+		opacity: 1;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.gbt-dashboard-scope .gbt-license-seal__bloom,
+	.gbt-dashboard-scope .gbt-license-seal__orbit,
+	.gbt-dashboard-scope .gbt-license-seal__spark {
+		animation: none;
+	}
+
+	.gbt-dashboard-scope .gbt-license-seal__orbit {
+		transform: rotate(25deg);
+	}
+}
+
+/* Coin-flip for eligibility check icon (and version badge update arrow) */
+@keyframes coin-flip {
+	0% {
+		transform: rotateY(0deg);
+	}
+	20% {
+		transform: rotateY(360deg);
+	}
+	100% {
+		transform: rotateY(360deg);
+	}
+}
+
+.gbt-dashboard-scope .coin-flip {
+	animation: coin-flip 4s ease-in-out infinite;
+	transform-style: preserve-3d;
+}
+
+.gbt-dashboard-scope .gbt-btn-loading {
+	opacity: 0.85 !important;
+	cursor: wait !important;
+	pointer-events: none !important;
+}
+
+.gbt-dashboard-scope .gbt-btn-spinning svg {
+	animation: gbt-btn-spin 0.7s linear infinite;
+}
+
+.gbt-dashboard-scope .gbt-btn-spinner {
+	display: inline-block;
+	width: 1.15rem;
+	height: 1.15rem;
+	border: 2px solid rgba(255, 255, 255, 0.35);
+	border-top-color: #fff;
+	border-radius: 9999px;
+	animation: gbt-btn-spin 0.7s linear infinite;
+	flex-shrink: 0;
+	vertical-align: middle;
+}
+
+@keyframes gbt-btn-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.gbt-dashboard-scope .gbt-btn-spinner,
+	.gbt-dashboard-scope .gbt-btn-spinning svg {
+		animation: none;
+		opacity: 0.7;
+	}
+	.gbt-dashboard-scope .gbt-btn-spinner {
+		border-top-color: rgba(255, 255, 255, 0.35);
+	}
+}
+
+/* Hide WP admin radio chrome; overlay the label (no clip/margin hacks) */
+.gbt-dashboard-scope .gbt-period-switch input[type="radio"] {
+	position: absolute !important;
+	inset: 0 !important;
+	width: 100% !important;
+	height: 100% !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	overflow: hidden !important;
+	border: 0 !important;
+	appearance: none !important;
+	-webkit-appearance: none !important;
+	opacity: 0 !important;
+	cursor: pointer;
+}
+
+.gbt-dashboard-scope .gbt-period-switch input[type="radio"]::before {
+	content: none !important;
+	display: none !important;
+}
+
+/* Recessed track; active pill matches flat primary buttons */
+.gbt-dashboard-scope .gbt-period-switch {
+	overflow: visible;
+	min-width: 0;
+}
+
+.gbt-dashboard-scope .gbt-period-switch > div {
+	overflow: hidden;
+	min-width: 0;
+	background-color: rgba(15, 23, 42, 0.06);
+	box-shadow:
+		inset 0 1px 2px rgba(15, 23, 42, 0.22),
+		inset 0 -1px 0 rgba(255, 255, 255, 0.85),
+		0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.gbt-dashboard-scope .gbt-period-switch label {
+	position: relative;
+	min-width: 0;
+	box-sizing: border-box;
+	align-self: stretch;
+	transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
+}
+
+.gbt-dashboard-scope .gbt-period-switch label:has(:checked) {
+	background-color: var(--color-gbt-blue);
+	background-image: none;
+	box-shadow: none;
+}
+
+.gbt-dashboard-scope .gbt-period-switch .gbt-period-save {
+	padding: 0.3rem 0.5rem;
+}
+
+/* Stats bar — non-desktop: clip labels with a right-edge fade; keep cell dividers */
+.gbt-dashboard-scope .gbt-stats-cell__label {
+	min-width: 0;
+	overflow-x: hidden;
+	overflow-y: visible;
+	white-space: nowrap;
+	line-height: 1.25;
+}
+
+@media (max-width: 79.99rem) {
+	.gbt-dashboard-scope .gbt-stats-cell__label {
+		-webkit-mask-image: linear-gradient(to right, #000 65%, transparent);
+		mask-image: linear-gradient(to right, #000 65%, transparent);
+	}
+}
+
+/* Last word + help icon wrap together; leading space stays with the tail word */
+.gbt-dashboard-scope .gbt-feat-help-unit {
+	display: inline;
+	white-space: nowrap;
+}
+
+.gbt-dashboard-scope .gbt-feat-help {
+	display: inline-flex;
+	margin-left: 0.25em;
+	vertical-align: -0.2em;
+}
+
+.gbt-dashboard-scope .gbt-feat-help svg {
+	display: block;
+	width: 1em;
+	height: 1em;
+}
+
+/* Pricing tips — shared type; brand blue reads on light and dark (no border) */
+.gbt-dashboard-scope .gbt-feat-tip,
+.gbt-dashboard-scope .gbt-save-tip {
+	--gbt-tip-bg: var(--color-gbt-blue);
+	font-size: 0.875rem;
+	font-weight: 400;
+	line-height: 1.5;
+	background-color: var(--gbt-tip-bg);
+	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.25);
+}
+
+.gbt-dashboard-scope .gbt-prem-tip {
+	--gbt-tip-bg: var(--color-gbt-gray-light);
+	font-size: 11px;
+	font-weight: 400;
+	line-height: 1.4;
+	background-color: var(--gbt-tip-bg);
+	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.25);
+	opacity: 0;
+}
+
+.gbt-dashboard-scope .gbt-prem-tip.is-on {
+	opacity: 1 !important;
+}
+
+/* Feature tips — absolute under the label; show on hover / .is-on */
+.gbt-dashboard-scope .gbt-feat-tip.is-on {
+	opacity: 1;
+}
+
+/* Caret always on the tip so it fades with opacity (not gated on hover). */
+.gbt-dashboard-scope .gbt-feat-tip::before {
+	content: '';
+	position: absolute;
+	left: 0.875rem;
+	top: -5px;
+	width: 0;
+	height: 0;
+	border: 5px solid transparent;
+	border-bottom-color: var(--gbt-tip-bg);
+	border-top-width: 0;
+}
+
+/* Flip tip above the label when there isn’t room below. */
+.gbt-dashboard-scope .gbt-feat-tip.is-above {
+	top: auto;
+	bottom: 100%;
+	margin-top: 0;
+	margin-bottom: 0.375rem;
+}
+
+.gbt-dashboard-scope .gbt-feat-tip.is-above::before {
+	top: auto;
+	bottom: -5px;
+	border-bottom-color: transparent;
+	border-top-color: var(--gbt-tip-bg);
+	border-top-width: 5px;
+	border-bottom-width: 0;
+}
+
+.gbt-dashboard-scope .gbt-prem-tip.is-on.is-anchored::before {
+	content: '';
+	position: absolute;
+	left: 0.875rem;
+	top: -5px;
+	width: 0;
+	height: 0;
+	border: 5px solid transparent;
+	border-bottom-color: var(--gbt-tip-bg);
+	border-top-width: 0;
+}
+
+.gbt-dashboard-scope .gbt-prem-tip.is-on.is-anchored.is-above::before {
+	top: auto;
+	bottom: -5px;
+	border-bottom-color: transparent;
+	border-top-color: var(--gbt-tip-bg);
+	border-top-width: 5px;
+	border-bottom-width: 0;
+}
+
+/* Dark card overlays (featured plan, FAQ CTA) */
+.gbt-dashboard-scope .gbt-dark-card-bg-radial {
+	background: radial-gradient(ellipse 80% 60% at 0% 0%, rgba(34, 113, 177, 0.5), transparent 70%), var(--color-gbt-gray-dark);
+}
+
+.gbt-dashboard-scope .gbt-dark-card-bg-texture {
+	background-image:
+		linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0) 100%),
+		repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(75, 85, 99, 0.06) 2px, rgba(75, 85, 99, 0.06) 3px, transparent 3px, transparent 8px),
+		repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(107, 114, 128, 0.05) 2px, rgba(107, 114, 128, 0.05) 3px, transparent 3px, transparent 8px),
+		repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(55, 65, 81, 0.04) 2px, rgba(55, 65, 81, 0.04) 3px, transparent 3px, transparent 8px),
+		repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(31, 41, 55, 0.03) 2px, rgba(31, 41, 55, 0.03) 3px, transparent 3px, transparent 8px),
+		linear-gradient(315deg, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0) 70%);
+}
+
+/* Show only the selected billing period on pricing cards */
+.gbt-dashboard-scope .group\/tiers:has([name="frequency"][value="monthly"]:checked) [data-period="annual"],
+.gbt-dashboard-scope .group\/tiers:has([name="frequency"][value="monthly"]:checked) [data-period="lifetime"],
+.gbt-dashboard-scope .group\/tiers:has([name="frequency"][value="annual"]:checked) [data-period="monthly"],
+.gbt-dashboard-scope .group\/tiers:has([name="frequency"][value="annual"]:checked) [data-period="lifetime"],
+.gbt-dashboard-scope .group\/tiers:has([name="frequency"][value="lifetime"]:checked) [data-period="monthly"],
+.gbt-dashboard-scope .group\/tiers:has([name="frequency"][value="lifetime"]:checked) [data-period="annual"] {
+	display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.gbt-dashboard-scope .coin-flip {
+		animation: none;
+	}
+}
+
+/* Pricing FAQ accordion */
+.gbt-dashboard-scope .gbt-pricing-faq__summary,
+.gbt-dashboard-scope .gbt-pricing-faq__summary *,
+.gbt-dashboard-scope .gbt-pricing-faq__question {
+	-webkit-user-select: none !important;
+	user-select: none !important;
+}
+
+/* Hide residual double-click highlight browsers still apply on <summary> */
+.gbt-dashboard-scope .gbt-pricing-faq__summary::selection,
+.gbt-dashboard-scope .gbt-pricing-faq__summary *::selection,
+.gbt-dashboard-scope .gbt-pricing-faq__question::selection {
+	background: transparent;
+	color: inherit;
+}
+
+.gbt-dashboard-scope .gbt-pricing-faq__summary {
+	display: grid;
+	list-style: none;
+}
+
+.gbt-dashboard-scope .gbt-pricing-faq__summary::-webkit-details-marker {
+	display: none;
+}
+
+.gbt-dashboard-scope .gbt-pricing-faq__summary:focus {
+	outline: none;
+}
+
+.gbt-dashboard-scope .gbt-pricing-faq__summary:focus-visible {
+	outline: 2px solid var(--color-gbt-blue);
+	outline-offset: 2px;
+	border-radius: 0.75rem;
+}
+
+.gbt-dashboard-scope .gbt-pricing-faq__question {
+	font-size: 1rem;
+	line-height: 1.5;
+	font-weight: 600;
+	color: #111827;
+	text-wrap: pretty;
+}
+
+.gbt-dashboard-scope .gbt-pricing-faq details:not([open]) .gbt-pricing-faq__answer {
+	display: none;
+}
+
+.gbt-dashboard-scope .gbt-pricing-faq details[open] {
+	background-color: rgb(249 250 251 / 0.85);
+	border-color: rgb(209 213 219 / 0.95);
+}
+
+.gbt-dashboard-scope .gbt-pricing-faq details[open] > .gbt-pricing-faq__summary .gbt-pricing-faq__question {
+	color: var(--color-gbt-blue);
+}
+
+.gbt-dashboard-scope .gbt-pricing-faq__answer {
+	color: #374151;
+}
+
+.gbt-dashboard-scope .gbt-pricing-faq__content {
+	font-size: 1rem;
+	line-height: 1.75;
+}
+
+.gbt-dashboard-scope .gbt-pricing-faq__content > p {
+	margin: 0 0 0.75rem;
+}
+
+.gbt-dashboard-scope .gbt-pricing-faq__content > p:last-child {
+	margin-bottom: 0;
+}
+
+.gbt-dashboard-scope .gbt-pricing-faq__content > p:has(+ ul) {
+	margin-bottom: 0.75rem;
+}
+
+.gbt-dashboard-scope .gbt-pricing-faq__content > ul {
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+	margin: 0 0 0.75rem;
+	padding-left: 1.25rem;
+	list-style-type: disc;
+	font-size: 13px;
+	line-height: 1.75;
+}
+
+.gbt-dashboard-scope .gbt-pricing-faq__content > ul:last-child {
+	margin-bottom: 0;
+}
+
+.gbt-dashboard-scope .gbt-pricing-faq__content > ul > li {
+	margin: 0;
+	padding: 0 0 0 0.125rem;
+	font-size: inherit;
+	line-height: inherit;
+}
+
+#wpbody .gbt-dashboard-scope .gbt-pricing-faq__content ul,
+#wpbody .gbt-dashboard-scope .gbt-pricing-faq__content ul li {
+	font-size: 13px;
+	line-height: 1.75;
+}
+
+#wpbody .gbt-dashboard-scope .gbt-pricing-faq__content ul li {
+	margin: 0;
+}
+
+.gbt-dashboard-scope .gbt-pricing-faq__content > ul > li:last-child {
+	margin-bottom: 0;
+}
+
+.gbt-dashboard-scope .gbt-pricing-faq__content strong {
+	font-weight: 600;
+	color: #111827;
+}
+
+.gbt-dashboard-scope .gbt-pricing-faq__content em {
+	font-style: italic;
+}
+
+.gbt-dashboard-scope .gbt-faq-chevron {
+	transform: rotate(0deg);
+	transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1), background-color 240ms ease, color 240ms ease;
+}
+
+.gbt-dashboard-scope .gbt-pricing-faq details[open] > .gbt-pricing-faq__summary .gbt-faq-chevron {
+	transform: rotate(180deg);
+	background-color: color-mix(in srgb, var(--color-gbt-blue) 10%, white);
+	color: var(--color-gbt-blue);
+}
+
+@media (min-width: 80rem) {
+	.gbt-dashboard-scope .gbt-pricing-faq__content {
+		font-size: 1.0625rem;
+		line-height: 1.8;
+	}
+}

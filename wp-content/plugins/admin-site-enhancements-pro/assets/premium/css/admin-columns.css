@@ -16,7 +16,7 @@
 .save-changes {
 	position: relative;
 	display: flex;
-	margin-top: 16px;
+	margin-top: 8px;
 }
 
 .saving-progress {
@@ -152,7 +152,7 @@ input[type="search"]#column-search-input.has-text-input {
 
 .active-columns-container {
 	/* max-height: 578px; */
-	max-height: calc( 100vh - 224px );
+	max-height: calc( 100vh - 288px );
 }
 
 .admin-columns-discarded {
@@ -210,15 +210,26 @@ input[type="search"]#column-search-input.has-text-input {
 }
 
 .wp-core-ui .button-secondary.expand-collapse-all {
-	position: relative;
-	top: 2px;
 	margin-left: 8px;
 }
 
 .set-all-to,
 .wp-core-ui .button-secondary.set-width-percent,
-.wp-core-ui .button-secondary.set-width-pixel {
-	margin-right: 8px;	
+.wp-core-ui .button-secondary.set-width-pixel,
+.wp-core-ui .button-secondary.set-width-em,
+.wp-core-ui .button-secondary.set-width-rem {
+	margin-right: 8px;
+}
+
+.wp-core-ui .button-secondary.expand-collapse-all,
+.wp-core-ui .button-secondary.set-width-percent,
+.wp-core-ui .button-secondary.set-width-pixel,
+.wp-core-ui .button-secondary.set-width-em,
+.wp-core-ui .button-secondary.set-width-rem,
+.wp-core-ui .button-secondary.set-width-auto,
+#reindex-custom-fields {
+	line-height: 30px;
+	min-height: 30px;
 }
 
 .sortable-item {
@@ -260,7 +271,7 @@ input[type="search"]#column-search-input.has-text-input {
 }
 
 .item-bar.expanded {
-	background: #ecf5f8;
+	background: #ebeefc;
 	border: 1px solid #0073aa;
 	border-bottom-color: #ddd;
 }
@@ -271,7 +282,7 @@ input[type="search"]#column-search-input.has-text-input {
 	display: flex;
 	flex-direction: column;
 	padding: 10px 8px 8px 14px;
-    background: #f7fbfc;
+    background: #f7f8fd;
     border: 1px solid #0073aa;
     border-top: none;
 }
@@ -326,6 +337,10 @@ span.custom-field-indicator {
 	display: none;
 }
 
+.sortable-icon.default-sort svg path {
+	fill: #2271b1;
+}
+
 .column-title {
 	font-size: 14px;
 	font-weight: 600;
@@ -333,6 +348,12 @@ span.custom-field-indicator {
 
 .width-type {
 	margin-left: 4px;
+}
+
+.format-type,
+.number-format-type,
+.date-time-format-type {
+	margin-right: 6px;
 }
 
 .column-action-links {
@@ -436,8 +457,15 @@ span.custom-field-indicator {
 
 .item-setting > label {
 	font-weight: 500;
-	width: 15%;
+	min-width: 15%;
 	text-align: left;
+}
+
+.item-sub-settings {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
 }
 
 .item-settings input.remaining-width {
@@ -455,7 +483,10 @@ span.custom-field-indicator {
 	align-items: center;
 }
 
-.item-settings .settings-checkbox {
+.item-settings .settings-checkbox,
+.item-settings .default-sort-checkbox,
+.disable-horizontal-scroll-checkbox,
+.freeze-header-row-checkbox {
 	position: relative;
 	top: 2px;
 }
@@ -469,19 +500,108 @@ span.custom-field-indicator {
 }
 
 .item-settings .radio-group {
-	width: 25%;
+	width: auto;
 	display: flex;
 	align-items: flex-end;
 	margin-left: 8px;
+}
+
+.item-settings .radio-group.width-type {
+	flex-wrap: wrap;
+}
+
+.item-settings .radio-group.format-type,
+.item-settings .radio-group.number-format-type {
+	width: auto;
+	margin-left: 16px;
+}
+
+.item-settings .radio-group.sort-order {
+	margin-left: 0;
 }
 
 .item-settings .radio-group label {
 	margin-right: 8px;	
 }
 
+.inline-setting {
+	display: flex;
+	align-items: center;
+}
+
+.faded {
+	color: #999;
+}
+
+.input-prefix {
+	margin-right: 4px;
+}
+
+.input-suffix {
+	margin-left: 6px;
+	height: 30px;
+	line-height: 30px;
+}
+
+.number-decimal-point-input {
+	width: 50px;
+}
+
+.date-time-format-custom {
+	max-width: 140px;
+}
+
+.setting-info {
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	height: 30px;
+	margin-left: 8px;
+}
+
+.setting-info a {
+	line-height: 30px;
+	display: flex;
+	align-items: center;
+}
+
 .settings-footer {
 	display: flex;
 	justify-content: flex-end;
+}
+
+/* Additional settings */
+
+.additional-settings {
+	margin: 8px 0;
+}
+
+.freeze-settings {
+	display: flex;
+	align-items: center;
+    justify-content: flex-start;
+}
+
+.freeze-settings-separator {
+	margin: 0 8px;
+}
+
+.freeze-settings .additional-setting {
+	min-height: 30px;
+	display: flex;
+	align-items: center;
+}
+
+.additional-setting-freeze-columns label {
+	margin-right: 6px;
+}
+
+.additional-setting-freeze-columns.is-hidden {
+	display: none;
+}
+
+input[type="checkbox"].freeze-header-row-checkbox {
+	margin-right: 8px;
 }
 
 /* Fields */

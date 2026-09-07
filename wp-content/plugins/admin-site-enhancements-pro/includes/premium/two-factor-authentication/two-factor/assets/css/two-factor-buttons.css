@@ -1,0 +1,105 @@
+/**
+ * Two-Factor action button styles (ASE).
+ */
+
+.asenha-2fa-action-btn {
+	display: inline-flex !important;
+	align-items: center;
+	gap: 6px;
+}
+
+.two-factor-prompt-email-ctas {
+	display: flex;
+	justify-content: space-between;
+}
+
+.two-factor-email-resend {
+	margin-left: 8px;
+}
+
+.asenha-2fa-btn-spinner {
+	float: none !important;
+	margin: 0 !important;
+	width: 16px;
+	height: 16px;
+	background-size: 16px 16px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.asenha-2fa-btn-spinner.is-active {
+	display: inline-block !important;
+}
+
+.asenha-2fa-btn-checkmark {
+	width: 16px;
+	height: 16px;
+	font-size: 16px;
+	margin-top: -12px;
+	color: #00a32a;
+	animation: checkmark-appear 0.3s ease;
+}
+
+@keyframes checkmark-appear {
+	0% {
+		transform: scale(0);
+		opacity: 0;
+	}
+	50% {
+		transform: scale(1.2);
+	}
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+.backup-methods-wrap {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background: rgba(255,255,255,0.3);
+	margin-top: 0 !important;
+	margin-bottom: 20px !important;
+	padding: 16px 24px !important;
+	border-radius: 4px;
+}
+
+.backup-methods-wrap > p {
+	font-weight: 600;
+}
+
+.backup-methods-wrap ul {
+	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 6px;
+}
+
+.backup-methods-wrap ul li {
+	margin: 2px 0;
+}
+
+.dark-scheme .backup-methods-wrap {
+	background: rgba(0,0,0,0.3);	
+}
+
+.dark-scheme .backup-methods-wrap > p {
+	color: #fff;
+}
+
+.dark-scheme .backup-methods-wrap a {
+	color: #fff;
+}
+
+.dark-scheme .backup-methods-wrap a:hover {
+	text-decoration: underline;
+}
+
+.two-factor-backup-codes-actions {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	margin-top: 4px;
+}

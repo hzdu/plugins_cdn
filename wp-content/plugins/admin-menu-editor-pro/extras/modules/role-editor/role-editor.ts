@@ -204,6 +204,10 @@ abstract class RexBaseActor implements IAmeActor {
 		return this.capabilities.getCapabilityState(capability);
 	}
 
+	hasOwnCap(capability: string): boolean | null {
+		return this.getOwnCapabilityState(capability);
+	}
+
 	setCap(capability: string, enabled: boolean) {
 		this.capabilities.setCapabilityState(capability, enabled);
 	}

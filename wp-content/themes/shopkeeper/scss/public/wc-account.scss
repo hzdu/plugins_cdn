@@ -1,0 +1,278 @@
+@import "../settings";
+
+.woocommerce-account {
+
+	&:not(.logged-in) {
+
+		.entry-header .entry-title,
+		.entry-header .page-title,
+		form .page-title {
+			display: none !important;
+		}
+	}
+
+	.woocommerce-Message--info {
+		margin-bottom: 35px !important;
+	}
+
+	a.button:hover {
+		color: #fff !important;
+	}
+
+	// My Account Navigation
+	.woocommerce-MyAccount-navigation {
+		display: block;
+		margin-bottom: 60px;
+		text-align: center;
+		width: 100%;
+
+		ul {
+			margin: 0px 0 5px;
+			text-align: center;
+			list-style: none;
+
+			li {
+				display: inline-block;
+
+				&.is-active {
+					a {
+						border-bottom: 1px solid transparent;
+					}
+				}
+
+				a {
+					font-size: 13px;
+					font-weight: 600;
+					margin-left: 2px;
+					margin-bottom: 10px;
+					margin: 0 12px 5px;
+					padding: 5px 0px;
+					border-bottom-width: 1px;
+					border-bottom-style: solid;
+					background: none;
+					text-transform: uppercase;
+					display: inline-block;
+					transition: color 0.3s, border-color 0.2s;
+
+					&:hover {
+						border-bottom: 1px solid transparent;
+						opacity: 1;
+					}
+				}
+			}
+		}
+	}
+
+	// My Account Content
+	.woocommerce-MyAccount-content {
+		clear: both;
+		display: block;
+		float: none;
+		margin: 0 auto 4rem;
+		max-width: 800px;
+		width: 100%;
+
+		table.woocommerce-MyAccount-orders {
+			margin-bottom: 2.5rem;
+
+			td {
+
+				@media #{$xmedium-down} {
+					padding: 15px 0 !important;
+
+					&:first-child {
+						border-top-width: 2px;
+					}
+				}
+
+				&.woocommerce-orders-table__cell-order-actions .button {
+					display: inline-block;
+					background: none;
+					padding: 0 !important;
+					margin: 0;
+					min-width: auto;
+					width: auto;
+
+					&:after {
+						content: '/';
+						padding: 0 10px;
+					}
+
+					&:last-child {
+						&:after {
+							content: "";
+							padding: 0;
+						}
+					}
+				}
+
+				&.woocommerce-orders-table__cell-order-number a {
+					font-weight: 600;
+					font-size: 13px;
+				}
+
+				tbody tr td {
+					padding-left: 0;
+				}
+			}
+		}
+
+		table.account-payment-methods-table {
+			margin-bottom: 2.5rem;
+
+			td {
+				&.payment-method-actions .button {
+					display: inline-block;
+					background: none;
+					padding: 0 !important;
+					margin: 0;
+					min-width: auto;
+					width: auto;
+
+					&:after {
+						content: '/';
+						padding: 0 10px;
+					}
+
+					&:last-child {
+						&:after {
+							content: "";
+							padding: 0;
+						}
+					}
+				}
+
+				tbody tr td {
+					padding-left: 0;
+				}
+			}
+		}
+
+		form.edit-account {
+
+			p.woocommerce-form-row span em {
+				font-size: 13px;
+				font-style: normal;
+				margin-top: 10px;
+				display: block;
+				line-height: 1.4;
+			}
+
+			fieldset {
+				margin: 0;
+				padding: 0;
+				border: 0;
+			}
+
+			legend {
+				font-size: 0.875rem;
+				font-weight: 600;
+				text-transform: uppercase;
+				padding: 50px 0 13px;
+				margin: 0;
+				background: transparent;
+			}
+
+			.button {
+				margin-top: 20px !important;
+			}
+
+		}
+
+		.woocommerce-pagination {
+			margin: 0;
+			overflow: visible;
+
+			.woocommerce-button--previous,
+			.woocommerce-button--next {
+				background: transparent;
+				min-width: fit-content;
+				padding: 0 !important;
+			}
+
+			.woocommerce-button--previous {
+				float: left;
+				text-align: left;
+			}
+
+			.woocommerce-button--next {
+				float: right;
+				text-align: right;
+			}
+		}
+	}
+
+	// My Account Login / Register
+	/*form.woocommerce-ResetPassword {
+		border: none;
+		margin: 0 auto;
+		padding: 0;
+		max-width: 500px;
+		width: 100%;
+	}*/
+
+	#customer_login {
+
+		/*.account-forms-container {
+			display: inline-block;
+			max-width: 500px;
+			width: 100%;
+			text-align: left;
+			height: auto;
+			padding: 0;
+		}*/
+
+		/*.form-row {
+			padding: 10px 0 !important;
+		}*/
+
+		.woocommerce-form-login__rememberme {
+			margin-bottom: 15px;
+		}
+
+		form.woocommerce-form-login,
+		form.woocommerce-form-register {
+			//border: none;
+			border-radius: 0;
+			padding: 50px;
+			//margin: 0;
+		}
+
+		form.woocommerce-form-login {
+
+			.lost_password {
+				margin: 20px 0 0 0;
+				a {
+					font-size: 13px;
+					//float: right;
+					//line-height: 1.5em;
+					//white-space: nowrap;
+					text-transform: uppercase;
+					font-weight: 600;
+				}
+			}
+		}
+
+		/*.lost-pass-link {
+			margin: 3px 0 0 0;
+			padding: 0;
+			border: none;
+		}*/
+
+		.woocommerce-button {
+			width: 100%;
+		}
+	}
+
+	// My Account - Add payment
+	form#add_payment_method {
+
+		#payment.woocommerce-Payment {
+			background: transparent;
+
+			ul.payment_methods {
+
+			}
+		}
+	}
+}

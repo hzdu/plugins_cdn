@@ -1,0 +1,20 @@
+.woocommerce,
+.woocommerce-page
+{
+    ul.products
+    {
+
+        li.product
+        {            
+            opacity: 0;
+            transform: scale(0.90);
+            will-change: opacity, transform;
+
+            &.animated{
+                opacity: 1;
+                transform: scale(1);
+                transition: opacity .3s ease-in-out, transform .3s ease-in-out;
+            }
+        }
+    }
+}

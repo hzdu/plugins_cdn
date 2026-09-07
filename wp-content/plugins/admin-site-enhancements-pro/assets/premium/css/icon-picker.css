@@ -1,0 +1,198 @@
+/* ==============================================
+   ICON PICKER STYLES FOR ADMIN MENU ORGANIZER
+   ============================================== */
+
+/* Icon picker wrapper */
+.icon-picker-wrapper {
+	width: 100%;
+	margin-top: 8px;
+	margin-bottom: 12px;
+}
+
+/* Icon picker container - displays selected icon and input */
+.icon-picker {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	height: 30px;
+	margin-bottom: 12px;
+}
+
+/* Selected menu icon display */
+.selected-menu-icon {
+	flex-shrink: 0;
+}
+
+.selected-menu-icon svg {
+	padding: 9px;
+	border: 1px solid #8c8f94;
+	border-radius: 4px;
+	margin-right: 8px;
+	display: block;
+	background: #fff;
+}
+
+/* Icon value input field */
+.icon-picker .custom-menu-icon,
+.icon-picker .custom-menu-icon-saved {
+	flex: 1;
+	min-width: 0;
+}
+
+/* Icon picker controls - button, spinner, search */
+.icon-picker-controls {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 8px;
+}
+
+/* Change icon button */
+.icon-picker-button {
+	height: 30px;
+	flex-shrink: 0;
+}
+
+/* Spinner */
+.icon-picker-spinner {
+	width: 20px;
+	height: 20px;
+	flex-shrink: 0;
+}
+
+/* Search input */
+.icon-picker-search {
+	flex: 1;
+	min-width: 0;
+	height: 30px;
+	overflow: auto;
+}
+
+input[type="search"].icon-picker-search.has-text-input {
+	background-color: #ffefca;
+}
+
+/* Icon library container */
+.icon-library-container {
+	position: relative;
+	margin-top: 8px;
+	margin-bottom: 12px;
+}
+
+/* Close button */
+.icon-picker-close {
+	position: absolute;
+	top: -8px;
+	right: -8px;
+	background: #fff;
+	border: 1px solid #8c8f94;
+	padding: 5px;
+	border-radius: 100%;
+	cursor: pointer;
+	transition: .25s;
+	z-index: 10;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.icon-picker-close:hover {
+	background: #f5f5f5;
+	border-color: #666;
+}
+
+.icon-picker-close svg {
+	display: block;
+}
+
+/* Menu icons list */
+.menu-icons-list {
+	max-width: 100%;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 7px;
+	background: #fafafa;
+	max-height: 280px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	border: 1px solid #8c8f94;
+	border-radius: 8px;
+	padding: 16px;
+}
+
+.custom-menu-icon-field-saved .menu-icons-list {
+	background: #ffffff;
+}
+
+/* Individual menu icon */
+.menu-icon {
+	background: #fff;
+	padding: 8px 8px 4px 8px;
+	border: 1px solid #bbb;
+	border-radius: 4px;
+	transition: .25s;
+	cursor: pointer;
+	flex-shrink: 0;
+}
+
+.menu-icon:hover {
+	border: 1px solid #888;
+	background: #fff6e5;
+}
+
+.menu-icon svg {
+	display: block;
+}
+
+/* Hidden icon (filtered out) */
+.icon-is-hidden {
+	display: none !important;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 782px) {
+	.icon-picker-controls {
+		flex-wrap: wrap;
+	}
+	
+	.icon-picker-button {
+		width: 100%;
+	}
+	
+	.icon-picker-search {
+		width: 100%;
+	}
+	
+	.menu-icons-list {
+		max-height: 240px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.icon-picker {
+		flex-direction: column;
+		align-items: flex-start;
+		height: auto;
+		gap: 8px;
+	}
+	
+	.selected-menu-icon svg {
+		margin-right: 0;
+		margin-bottom: 8px;
+	}
+	
+	.menu-icons-list {
+		gap: 6px;
+		padding: 12px;
+		max-height: 200px;
+	}
+	
+	.menu-icon {
+		padding: 6px 6px 3px 6px;
+	}
+}
+

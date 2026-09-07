@@ -122,6 +122,7 @@
 			  			}
 			  		}
 			  		else if(currentController.is('select')) {
+
 			  			var classNames = currentInputContainer.className.match(/novashare-select-control-([^\s]*)/g);
 
 			  			if(classNames) {
@@ -131,9 +132,13 @@
 							}
 						}
 
-						//clear value of nested selected controller and trigger change event
+						//clear value of nested select controller and force hide
+						//only reset when the select has an empty option (e.g. Pinterest placement)
 						if(controller.is('input') && !controller.is(':checked')) {
-							currentController.val('').change();
+							forceHide = true;
+							if(currentController.find('option[value=""]').length) {
+								currentController.val('');
+							}
 						}
 			  		}
 				});
@@ -216,12 +221,16 @@
 
 			  var $preview = $(fieldID).closest('.novashare-image-upload').find('.novashare-image-upload-preview');
 
+			  var imageSize = $preview.data('novashare-size') || 'thumbnail';
+
 			  var $previewLink = $preview.find('a');
 
-			  if($previewLink && attachment.sizes.thumbnail.url) {
+			  if($previewLink && attachment.sizes[imageSize].url) {
 			  	$previewLink.find('img').remove();
-			  	$previewLink.append("<img src='" + attachment.sizes.thumbnail.url + "' />");
+			  	$previewLink.append("<img src='" + attachment.sizes[imageSize].url + "' />");
 			  	$preview.removeClass('hidden');
+
+			  	$(fieldID).closest('.novashare-image-upload').attr('data-ns-has-img', true);
 			  }
 			});
 
@@ -238,6 +247,7 @@
 			$container.find('.novashare-image-upload-preview').addClass('hidden');
 			$container.find('.novashare-image-upload-preview a img').remove();
 			$container.find('.novashare-image-upload-input input').val('');
+			$container.removeAttr('data-ns-has-img');
 		});
 
 		//pinterest hidden images upload
@@ -283,10 +293,11 @@
 				    	return;
 				    }
 
-				    var output = '<div id="novashare-pinterest-hidden-image-' + attachment.id + '" class="novashare-pinterest-hidden-image">';
+				    var output = '<div id="novashare-pinterest-hidden-image-' + attachment.id + '" class="novashare-pinterest-hidden-image novashare-image-upload-preview">';
+				    	output+= '<input type="hidden" name="novashare[pinterest_hidden_images][]"  value="' + attachment.id + '">';
+				    	output+= '<a title="Remove"><span class="novashare-remove-mask"><span class="dashicons dashicons-no"></span></span>';
 						output+= '<img src="' + attachment.attributes.sizes.thumbnail.url + '" >';
-						output+= '<input type="hidden" name="novashare[pinterest_hidden_images][]"  value="' + attachment.id + '">';
-						output+= '<span class="dashicons dashicons-no"></span>';
+						output+= '</a>';
 					output+= '</div>';
 
 					$container.append(output);
@@ -299,7 +310,7 @@
 		});
 
 		//remove pinterest hidden image thumbnail
-		$('#novashare-pinterest-hidden-images-container').on('click', '.novashare-pinterest-hidden-image .dashicons-no', function(e) {
+		$('#novashare-pinterest-hidden-images-container').on('click', '.novashare-pinterest-hidden-image > a', function(e) {
 			$(this).closest('.novashare-pinterest-hidden-image').remove();
 		});
 

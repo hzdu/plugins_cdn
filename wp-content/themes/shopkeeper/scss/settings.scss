@@ -1,0 +1,68 @@
+$breakpoints: (
+  small: 0,
+  xsmall: 768px,
+  medium: 768px,
+  xmedium: 881px,
+  slarge: 1024px,
+  large: 1025px,
+  xlarge: 1201px,
+  xxlarge: 1367px,
+  xxxlarge: 2401px,
+);
+
+@import "../inc/foundation/scss/util/util";
+
+$grid-column-gutter: (
+	small: 20px,
+	medium: 20px,
+);
+
+$rem-base: 16px;
+
+$breakpoint-classes: (small medium large xlarge xxlarge);
+
+$global-weight-bold: 600;
+
+$white : #FFFFFF;
+$black : #000000;
+
+// Grid Variables
+$row-width: rem-calc(1700);
+$column-gutter: rem-calc(20);
+$total-columns: 12;
+
+// Block Grid Variables
+$block-grid-default-spacing: 20px;
+
+// Style anchors
+$anchor-font-color-hover: none;
+
+// Typography
+$h1-font-size: 50px;
+$header-font-family: inherit;
+$header-font-color: #000;
+$header-top-margin: .5rem;
+$header-bottom-margin: .5rem;
+
+// Style paragraphs
+$paragraph-line-height: 1.8;
+
+// Form Variables
+$input-focus-bg-color: darken(#fff, 5%);
+$input-border-color: #ddd;
+$input-focus-border-color: #ccc;
+$input-box-shadow: inset 0 0 0 rgba(0,0,0,0);
+$input-include-glowing-effect: false;
+
+// Off-canvas
+$offcanvas-sizes: (
+small: 270px,
+medium: 320px
+);
+$offcanvas-background: $white;
+$offcanvas-shadow: 0;
+$offcanvas-exit-background: rgba($black, 0.3);
+
+// Forms
+$input-shadow: 0;
+$input-shadow-focus: 0;

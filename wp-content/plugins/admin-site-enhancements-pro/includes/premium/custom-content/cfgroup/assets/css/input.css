@@ -2,6 +2,15 @@
     Container
 ---------------------------------------------------------------------------------------------*/
 
+/* Conditional logic: hide field columns, tab nav items, and tab panels. */
+.cfgroup-field-wrap.cfgroup-cl-hidden,
+.cfgroup-repeater-sub-wrap.cfgroup-cl-hidden,
+.cfgroup-tab.cfgroup-cl-hidden,
+.cfgroup-tab-content.cfgroup-cl-hidden,
+.cfgroup-tabs.cfgroup-tabs-all-hidden {
+    display: none !important;
+}
+
 #poststuff .cfgroup_input .inside {
     margin: 0;
     padding: 0;
@@ -11,6 +20,14 @@
     padding: 10px 12px;
     border-top: 1px solid #fff;
     /* border-bottom: 1px solid #dfdfdf; */
+}
+
+.cfgroup_input .row-heading:first-child .field {
+    padding: 12px 12px 10px;    
+}
+
+.cfgroup_input .row-line-break .field {
+    padding: 0 12px;
 }
 
 .cfgroup_input .field:last-child {
@@ -23,6 +40,12 @@
     width: 99.8%;
 }
 
+.cfgroup_input .field input[type="text"][readonly],
+#addtag .field input[type="text"][readonly],
+#edittag .field input[type="text"][readonly] {
+    background: #ffffff;
+}
+
 .cfgroup_input .field label {
     font-weight: bold;
     padding: 0 0 0.4em 0;
@@ -30,28 +53,57 @@
     display: block;
 }
 
-.cfgroup_input .field label.field-label {    
+.cfgroup_input .field label.cfgroup-map-custom-address-label {
+    font-weight: 500;
 }
 
-.cfgroup_input .field p.notes {
+.block-editor .cfgroup_input .field label {
+    font-weight: 500;
+}
+
+.cfgroup_input .row-heading .field label.field-label {
+    border-bottom: 1px solid #ccc;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.cfgroup_input .row-heading:first-child {
+    margin-top: 0;
+}
+
+.cfgroup_input .row-heading {
+    margin-top: 1.5em;
+}
+
+.cfgroup_input .field .notes {
     margin: 0 0 1em 0;
     color: #999;
     font-size:0.9em;
 }
 
-.cfgroup_input.no_box {
-    background: none;
-    border: none;
+.cfgroup_input .field .notes ul,
+.cfgroup_input .field .notes ol,
+.cfgroup-tab-notes ul,
+.cfgroup-tab-notes ol {
+    margin: 0.5em 0 1em 1.5em;
+    padding-left: 0;
+    list-style-position: outside;
 }
 
-.cfgroup_input.no_box .hndle,
-.cfgroup_input.no_box .handlediv {
-    display: none;
+.cfgroup_input .field .notes ul,
+.cfgroup-tab-notes ul,
+.cfgroup_repeater .notes ul {
+    list-style-type: disc;
 }
 
-.cfgroup_input.no_box .field {
-    padding: 10px 0;
-    border: none;
+.cfgroup_input .field .notes ol,
+.cfgroup-tab-notes ol,
+.cfgroup_repeater .notes ol {
+    list-style-type: decimal;
+}
+
+.cfgroup_input .field .notes p {
+    margin: 0 0 0.5em 0;
 }
 
 .cfgroup_input .error {
@@ -68,6 +120,232 @@
 }
 
 /*---------------------------------------------------------------------------------------------
+    CFG Frontend Form (.no_box)
+---------------------------------------------------------------------------------------------*/
+
+.cfgroup_input.no_box {
+    background: none;
+    border: none;
+}
+
+.cfgroup_input.no_box .hndle,
+.cfgroup_input.no_box .handlediv {
+    display: none;
+}
+
+.cfgroup_input.no_box .field > .mce-tinymce {
+    width: 99.7% !important;
+}
+
+.cfgroup_input.no_box .cfgroup-tabs {
+    margin: 0;
+    background: none;
+/*    border-top: 1px solid #d9d9d9;
+    border-right: 1px solid #d9d9d9;
+    border-left: 1px solid #d9d9d9;
+*/}
+
+.cfgroup_input.no_box .cfgroup-tab-content.active {
+    margin-bottom: 16px;
+    padding: 10px 16px 16px;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+}
+
+.cfgroup_input.no_box .fields-wrapper {
+    gap: 2%;
+}
+
+.cfgroup_input.no_box .cfgroup_repeater .fields-wrapper {
+    gap: 0;
+}
+
+.cfgroup_input.no_box .field {
+    padding: 10px 0;
+    border: none;
+}
+
+.cfgroup_input.no_box .field-group-title label {
+    border-bottom: 1px solid #ccc;
+}
+
+.cfgroup_input.no_box .cfgroup_hyperlink .field-column-quarter,
+.cfgroup_input.no_box .field-column-quarter {
+    width: 23.5%;
+}
+
+.cfgroup_input.no_box .field-column-third {
+    width: 32%;
+}
+
+.cfgroup_input.no_box .cfgroup_hyperlink .field-column-half,
+.cfgroup_input.no_box .field-column-half {
+    width: 49%;
+}
+
+.cfgroup_input.no_box .field-column-two-thirds {
+    width: 66%;
+}
+
+.cfgroup_input.no_box .field-column-three-quarters {
+    width: 70.5%;
+}
+
+.cfgroup_input.no_box .field-column-full {
+    width: 100%;
+}
+
+.cfgroup_input.no_box .cfgroup_repeater .field-column-quarter {
+    width: 25%;
+}
+
+.cfgroup_input.no_box .cfgroup_repeater .field-column-third {
+    width: 33.3333%;
+}
+
+.cfgroup_input.no_box .cfgroup_repeater .field-column-half {
+    width: 50%;
+}
+
+.cfgroup_input.no_box .cfgroup_repeater .field-column-two-thirds {
+    width: 66.6666%;
+}
+
+.cfgroup_input.no_box .cfgroup_repeater .field-column-three-quarters {
+    width: 75%;
+}
+
+.cfgroup_input.no_box .cfgroup_repeater .field-column-full {
+    width: 100%;
+}
+
+.cfgroup_input.no_box .cfgroup_hyperlink .field-column-quarter > div,
+.cfgroup_input.no_box .cfgroup_hyperlink .field-column-half > div {
+    padding: 0;
+}
+
+.cfgroup_input.no_box .cfgroup_repeater .cfgroup_hyperlink .field-column-half > div.cfgroup-hyperlink-url {
+    padding: 0 11px 0 0;
+}
+
+.cfgroup_input.no_box .cfgroup_repeater .cfgroup_hyperlink .field-column-quarter > div.cfgroup-hyperlink-text {
+    padding: 0 6px 0 12px;
+}
+
+.cfgroup_input.no_box .cfgroup_repeater .cfgroup_hyperlink .field-column-quarter > div.cfgroup-hyperlink-target {
+    padding: 0 0 0 18px;
+}
+
+.cfgroup_input.no_box .row-heading:first-child .field {
+    padding: 12px 0 10px;
+}
+
+.cfgroup_input.no_box .row-heading .field label.field-label {
+    font-size: 13px;
+}
+
+.cfgroup_input.no_box .field label,
+.cfgroup_input.no_box .field-label {
+    font-size: 1em;
+    font-weight: 600;
+    width: auto;
+}
+
+.cfgroup_input.no_box .field.post-title label,
+.cfgroup_input.no_box .field.post-content-title label,
+.cfgroup_input.no_box .field.field-group-title label {
+    font-weight: 700;
+}
+
+.cfgroup_input.no_box input[type=text], 
+.cfgroup_input.no_box input[type=number], 
+.cfgroup_input.no_box select, 
+.cfgroup_input.no_box textarea,
+.mce-tinymce.mce-container.mce-panel {
+    border: solid 1px #ccc;
+    border-radius: 3px;
+    min-height: 30px;
+    padding: 0 8px;
+    background: #fff;
+}
+
+.cfgroup_input.no_box input[type=submit] {
+    margin-top: 0.75em;    
+}
+
+.mce-tinymce.mce-container.mce-panel {
+    padding: 0;
+}
+
+.cfgroup_input.no_box input[type=text].select2-input {
+    border: 0;
+    background: none;
+}
+
+.cfgroup_input.no_box input[type="button"],
+.cfgroup_input.no_box .button:not(.hidden) {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 2.15384615;
+    min-height: 30px;
+    margin: 0;
+    padding: 0 10px;
+    cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
+    -webkit-appearance: none;
+    border-radius: 3px;
+    white-space: nowrap;
+    box-sizing: border-box;
+    color: #333;
+    border-color: #ccc;
+    background: #f5f5f5;
+    vertical-align: top;
+}
+
+.cfgroup_input.no_box input[type="button"]:hover,
+.cfgroup_input.no_box .button:hover {
+    color: #111;
+    background: #e9e9e9;
+    border-color: #999;
+}
+
+.cfgroup_input.no_box input[type="button"].disabled {
+    cursor: default;
+    color: #999;
+    border-color: #ddd;
+}
+
+.cfgroup_input.no_box input[type="button"].disabled:hover {
+    color: #999;
+    background: #f5f5f5;
+    border-color: #ddd;    
+}
+
+.cfgroup_input.no_box .cfgroup_repeater_head > a {
+    text-decoration: none;
+} 
+
+.cfgroup_input.no_box .cfgroup_wysiwyg iframe {
+    max-height: 150px;
+}
+
+.cfgroup_input.no_box .cf-turnstile-br {
+    display: none;
+}
+
+/* Post Content in CFG form */
+#wp-asenha-post-content-wrap {
+    display: none;
+}
+
+.mce-tinymce.mce-container.mce-panel {
+    overflow: hidden;
+}
+
+/*---------------------------------------------------------------------------------------------
     Field Column Width
 ---------------------------------------------------------------------------------------------*/
 
@@ -75,6 +353,14 @@
     display: flex;
     flex-wrap: wrap;
     padding-bottom: 8px;
+}
+
+.block-editor .cfgroup_input .inside > .fields-wrapper,
+.block-editor .cfgroup_input .inside > .cfgroup-field-wrap,
+.block-editor .cfgroup_input .inside > .cfgroup-tabs {
+    box-sizing: border-box;
+    padding-left: 12px;
+    padding-right: 4px;
 }
 
 .cfgroup_repeater_body .fields-wrapper {
@@ -103,6 +389,66 @@
 
 .field-column-full {
     width: 100%;
+}
+
+.row-line-break {
+    width: 100%;
+}
+
+/* Styling for taxonomy term add/edit screens */
+h3.form-field-cfg-title {
+    font-size: 1em;
+    font-weight: normal;
+    margin-top: 2em;
+    margin-bottom: 4px;
+}
+
+.form-field.form-field-cfg {
+    margin: 0;
+}
+
+.form-wrap label,
+h3.form-field-cfg-title {
+    font-weight: 600;
+}
+
+.form-field.form-field-cfg.tax-term-add > .fields-wrapper,
+.form-field.form-field-cfg.tax-term-edit td > .fields-wrapper {
+    box-sizing: border-box;
+    width: 95%;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    gap: 1.5em;
+}
+
+.form-field.form-field-cfg.tax-term-add > .fields-wrapper,
+.form-field.form-field-cfg.tax-term-edit td > .fields-wrapper {
+    background: #fbfbfb;
+    padding: 12px 16px;    
+}
+
+.form-field.form-field-cfg.tax-term-add > .fields-wrapper .field-label {
+    display: block;
+    margin-bottom: 4px;    
+}
+
+.form-field.form-field-cfg.tax-term-edit td > .fields-wrapper .field-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.form-field.form-field-cfg.tax-term-add {
+    margin-bottom: 2em;   
+}
+
+.form-field.form-field-cfg input[type="text"],
+.form-field.form-field-cfg input[type="number"] {
+    width: 100%;
+}
+
+.form-field.form-field-cfg iframe {
+    height: 280px;
 }
 
 /*---------------------------------------------------------------------------------------------
@@ -153,6 +499,12 @@ input[type="text"].select2-input {
     gap: 12px;
 }
 
+.cfgroup_checkbox .checkbox.vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;    
+}
+
 .cfgroup_input .field .cfgroup_checkbox label {
     font-weight: normal;   
 }
@@ -165,6 +517,12 @@ input[type="text"].select2-input {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
+}
+
+.cfgroup_radio .radio.vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;    
 }
 
 .cfgroup_input .field .cfgroup_radio label {
@@ -185,9 +543,25 @@ input[type="text"].select2-input {
     Color
 ---------------------------------------------------------------------------------------------*/
 
-.minicolors-theme-default.minicolors,
+.cfgroup_color {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+
 .cfgroup_input .cfgroup_color input.color {
-    width: 100%;
+    height: ;
+/*    width: 100%;*/
+}
+
+.cfgroup-color-preview {
+    box-sizing: border-box;
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    min-height: 30px;
+    border: 1px solid #8c8f94;
+    border-radius: 4px;
 }
 
 /*---------------------------------------------------------------------------------------------
@@ -210,6 +584,33 @@ input[type="text"].select2-input {
     padding: 0 0 0 12px;
 }
 
+.cfgroup-hyperlink-wplink {
+}
+
+.cfgroup-hyperlink-wplink-preview {
+    margin: 0 0 8px 0;
+}
+
+.cfgroup-hyperlink-wplink-preview-empty {
+    color: #646970;
+}
+
+.cfgroup-hyperlink-wplink-actions .button + .button {
+    margin-left: 6px;
+}
+
+.cfgroup-hyperlink-wplink-editor {
+    display: none;
+}
+
+/*---------------------------------------------------------------------------------------------
+    Number
+---------------------------------------------------------------------------------------------*/
+
+.cfgroup_input .cfgroup_number input.number {
+    width: 100%;
+}
+
 /*---------------------------------------------------------------------------------------------
     Wysiwyg
 ---------------------------------------------------------------------------------------------*/
@@ -222,8 +623,86 @@ input[type="text"].select2-input {
     height: 200px;
 }
 
+/* Bottom-align Visual/Code tabs with editor container; keep Add Media top-aligned. */
+.cfgroup_wysiwyg .wp-editor-tools {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+/* wp.editor.initialize() nests .wp-editor-container inside .wp-editor-tools
+   (PHP wp_editor() renders them as siblings). Never reparent it in JS — moving
+   the TinyMCE iframe reloads its document. Instead, wrap it to its own
+   full-width flex row so both structures render identically. */
+.cfgroup_wysiwyg .wp-editor-tools > .wp-editor-container {
+    flex: 0 0 100%;
+    width: 100%;
+    order: 3;
+}
+
+.cfgroup_wysiwyg .wp-editor-tools::after {
+    display: none;
+    content: none;
+}
+
 .cfgroup_wysiwyg .wp-media-buttons {
+    float: none;
+    flex: 0 0 auto;
+    align-self: flex-start;
     padding: 5px 0;
+}
+
+.cfgroup_wysiwyg .wp-editor-tabs {
+    float: none;
+    flex: 0 0 auto;
+    align-self: flex-end;
+    margin-inline-start: auto;
+}
+
+.cfgroup_wysiwyg .wp-editor-wrap iframe,
+.cfgroup_wysiwyg iframe {
+    min-height: 150px;
+    max-height: 150px;
+}
+
+.cfgroup_wysiwyg .wp-editor-wrap.tmce-active iframe,
+.cfgroup_wysiwyg .cfg-wysiwyg-initialized iframe {
+    max-height: unset;
+}
+
+.cfgroup_repeater .cfgroup_wysiwyg .wp-editor-wrap {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.cfgroup_wysiwyg .quicktags-toolbar {
+    padding: 3px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Keep TinyMCE toolbar icons dark when active/focused (beat lightgray skin cascade). */
+.cfgroup_wysiwyg .mce-toolbar-grp .mce-btn.mce-active button,
+.cfgroup_wysiwyg .mce-toolbar-grp .mce-btn.mce-active i,
+.cfgroup_wysiwyg .mce-toolbar-grp .mce-btn.mce-active:hover button,
+.cfgroup_wysiwyg .mce-toolbar-grp .mce-btn.mce-active:hover i,
+.cfgroup_wysiwyg .mce-toolbar .mce-btn-group .mce-btn.mce-active i,
+.cfgroup_wysiwyg .mce-toolbar .mce-btn-group .mce-btn.mce-active:hover i {
+    color: #1d2327;
+}
+
+/* Fullscreen: drop panel chrome; cfg-wysiwyg.js sets top/left/width/height to fit admin content area. */
+body.wp-admin .cfgroup_wysiwyg .mce-tinymce.mce-fullscreen {
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* TinyMCE fullscreen is unreliable in Gutenberg meta boxes — hide the control if it still renders. */
+body.block-editor-page .cfgroup_wysiwyg .mce-toolbar .mce-btn:has( .mce-i-fullscreen ) {
+    display: none;
 }
 
 /*---------------------------------------------------------------------------------------------
@@ -396,6 +875,32 @@ input[type="text"].select2-input {
     content: '\f348';
 }
 
+.available_posts h4 {
+    margin: 0;
+    padding: 4px 6px;
+    border-bottom: 1px solid #dfdfdf;
+    background: #e9e9e9;
+    font-size: 1em;
+}
+
+.single-post-post-type-label,
+.single-taxonomy-label {
+    border: 1px solid #999;
+    background: #e9e9e9;
+    padding: 0 5px;
+    border-radius: 4px;
+    margin-right: 5px;
+    font-weight: 500;
+}
+
+.available_posts .single-post-post-type-label,
+.available_posts .single-taxonomy-label {
+    display: none;
+}
+
+.user-info-faded {
+    color: #999;
+}
 
 /*---------------------------------------------------------------------------------------------
     Repeater
@@ -431,6 +936,25 @@ input[type="text"].select2-input {
     width: 21px;
     height: 18px;
     text-decoration: none;
+}
+
+.asenha-repeater-row-seq {
+/*    float: right;*/
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 6px;
+    margin: 0 4px;
+    border: 1px solid #c3c4c7;
+    border-radius: 3px;
+    background: #fff;
+    color: #50575e;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    box-sizing: border-box;
 }
 
 .repeater_wrapper:hover .cfgroup_insert_field:before {
@@ -504,7 +1028,7 @@ input[type="text"].select2-input {
     margin-right: 0;
 }
 
-.cfgroup_input .cfgroup_repeater_toggle {
+.cfgroup_repeater_toggle {
     float: right;
     width: 20px;
     height: 20px;
@@ -514,7 +1038,7 @@ input[type="text"].select2-input {
     border-radius: 50%;
 }
 
-.cfgroup_input .cfgroup_repeater_toggle:before {
+.cfgroup_repeater_toggle:before {
     content: '\f177';
 }
 
@@ -580,6 +1104,10 @@ input[type="text"].select2-input {
     border-top: 1px solid #dfdfdf;
 }
 
+.cfgroup_repeater .cfgroup_repeater_body.open .cfgroup_repeater_body.open {
+    background: #fff;
+}
+
 .cfgroup_repeater .cfgroup_repeater_body > label:first-of-type {
     padding-top: 0;
 }
@@ -596,6 +1124,11 @@ input[type="text"].select2-input {
 .cfgroup_repeater .field-column-quarter {
     box-sizing: border-box;
     padding: 10px 12px; 
+}
+
+.cfgroup_repeater .cfgroup-hyperlink .field-column-half,
+.cfgroup_repeater .cfgroup-hyperlink .field-column-quarter {
+    padding: 0;
 }
 
 /*---------------------------------------------------------------------------------------------
@@ -645,16 +1178,23 @@ input[type="text"].select2-input {
 
 .cfgroup-tab-notes {
     padding: 10px 12px;
+    margin: 0 0 1em 0;
+    color: #999;
+    font-size: 0.9em;
+}
+
+.cfgroup-tab-notes p {
+    margin: 0 0 0.5em 0;
 }
 
 /*---------------------------------------------------------------------------------------------
     Icons
 ---------------------------------------------------------------------------------------------*/
 
-.cfgroup_input .cfgroup_repeater_toggle,
-.cfgroup_input .cfgroup_toggle_field,
-.cfgroup_input .cfgroup_delete_field,
-.cfgroup_input .cfgroup_insert_field,
+.cfgroup_repeater_toggle,
+.cfgroup_toggle_field,
+.cfgroup_delete_field,
+.cfgroup_insert_field,
 .cfgroup_relationship .selected_posts div span.remove,
 .cfgroup_term .selected_posts div span.remove,
 .cfgroup_user .selected_posts div span.remove,
@@ -664,10 +1204,11 @@ input[type="text"].select2-input {
     position: relative;
 }
 
-.cfgroup_input .cfgroup_repeater_toggle:before,
-.cfgroup_input .cfgroup_toggle_field:before,
-.cfgroup_input .cfgroup_delete_field:before,
-.cfgroup_input .cfgroup_insert_field:before,
+.cfgroup_repeater_toggle:before,
+.cfgroup_toggle_field:before,
+.cfgroup_delete_field:before,
+.cfgroup_insert_field:before,
+.cfgroup_repeater_head:before,
 .cfgroup_repeater .cfgroup_repeater_head:before,
 .cfgroup_relationship .selected_posts div span.remove:before,
 .cfgroup_term .selected_posts div span.remove:before,
@@ -696,7 +1237,7 @@ input[type="text"].select2-input {
     -mos-osx-font-smoothing: grayscale;
 }
 
-.cfgroup_input .cfgroup_delete_field:before,
+.cfgroup_delete_field:before,
 .cfgroup_relationship .selected_posts div span.remove:before,
 .cfgroup_term .selected_posts div span.remove:before,
 .cfgroup_user .selected_posts div span.remove:before {

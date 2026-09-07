@@ -1,0 +1,60 @@
+/* switcher control */
+
+.elementor-control-type-asenha_switcher .elementor-switch {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    height: 20px;
+    border-radius: 18px;
+}
+.elementor-control-type-asenha_switcher .elementor-switch-input {
+    display: none;
+}
+.elementor-control-type-asenha_switcher .elementor-switch-label {
+    display: block;
+    height: inherit;
+    font-size: 10px;
+    background: var(--e-a-bg-active-bold);
+    border-radius: inherit;
+
+}
+.elementor-control-type-asenha_switcher .elementor-switch-label:before, 
+.elementor-control-type-asenha_switcher .elementor-switch-label:after {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    text-align: center;
+    line-height: 20px;
+    transition: inherit;
+}
+.elementor-control-type-asenha_switcher .elementor-switch-label:before {
+    content: attr(data-off);
+    right: 5px;
+    color: var(--e-a-color-txt-muted);
+}
+.elementor-control-type-asenha_switcher .elementor-switch-label:after {
+    content: attr(data-on);
+    left: 20px;
+    color: var(--e-a-color-txt-muted);
+    opacity: 0;
+}
+
+.elementor-control-type-asenha_switcher .elementor-switch-input:checked ~ .elementor-switch-label:before {
+    opacity: 0;
+}
+.elementor-control-type-asenha_switcher .elementor-switch-input:checked ~ .elementor-switch-label:after {
+    opacity: 1;
+}
+.elementor-control-type-asenha_switcher .elementor-switch-handle {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 10px;
+    transition: left 0.15s ease-out;
+}
+.elementor-control-type-asenha_switcher .elementor-switch-input:checked ~ .elementor-switch-handle {
+    left: 1px;
+}

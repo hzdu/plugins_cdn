@@ -139,6 +139,9 @@ class RexBaseActor {
     getOwnCapabilityState(capability) {
         return this.capabilities.getCapabilityState(capability);
     }
+    hasOwnCap(capability) {
+        return this.getOwnCapabilityState(capability);
+    }
     setCap(capability, enabled) {
         this.capabilities.setCapabilityState(capability, enabled);
     }

@@ -1,0 +1,40 @@
+.product_meta
+{
+    font-size: 10px;
+    line-height: 22px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0px;
+    padding: 22px 30px 22px;
+    text-align: left;
+    padding: 0;
+    clear: left;
+
+    @media #{$xlarge-down} {
+        padding: 20px 0;
+		border-top-width: 1px;
+		border-top-style: solid;
+    }
+
+    > span
+    {
+        display: block;
+        text-transform: uppercase;
+
+        a
+        {
+            font-size: 10px;
+            font-weight: normal;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            font-weight: 600;
+
+            &:hover
+            {
+                opacity: 1;
+            }
+        }
+
+    }
+
+}

@@ -1,10 +1,11 @@
-.elementor-lightbox {
+:where(.elementor-lightbox) {
   --lightbox-ui-color: rgba(238, 238, 238, 0.9);
   --lightbox-ui-color-hover: #fff;
   --lightbox-text-color: var(--lightbox-ui-color);
   --lightbox-header-icons-size: 20px;
   --lightbox-navigation-icons-size: 25px;
 }
+
 .elementor-lightbox:not(.elementor-popup-modal) .dialog-header,
 .elementor-lightbox:not(.elementor-popup-modal) .dialog-message {
   text-align: center;
@@ -117,25 +118,6 @@
 .elementor-lightbox .elementor-video-container .elementor-video-portrait video {
   aspect-ratio: var(--video-aspect-ratio, 1.77777);
 }
-@supports not (aspect-ratio: 1/1) {
-  .elementor-lightbox .elementor-video-container .elementor-video-square,
-  .elementor-lightbox .elementor-video-container .elementor-video-landscape,
-  .elementor-lightbox .elementor-video-container .elementor-video-portrait {
-    position: relative;
-    overflow: hidden;
-    height: 0;
-    padding-bottom: calc(100% / var(--video-aspect-ratio, 1.77777));
-  }
-  .elementor-lightbox .elementor-video-container .elementor-video-square iframe,
-  .elementor-lightbox .elementor-video-container .elementor-video-square video,
-  .elementor-lightbox .elementor-video-container .elementor-video-landscape iframe,
-  .elementor-lightbox .elementor-video-container .elementor-video-landscape video,
-  .elementor-lightbox .elementor-video-container .elementor-video-portrait iframe,
-  .elementor-lightbox .elementor-video-container .elementor-video-portrait video {
-    position: absolute;
-    inset: 0;
-  }
-}
 .elementor-lightbox .elementor-video-container .elementor-video-square iframe,
 .elementor-lightbox .elementor-video-container .elementor-video-square video {
   width: min(90vh, 90vw);
@@ -180,7 +162,7 @@
 }
 .elementor-lightbox .swiper .swiper-pagination-fraction {
   width: max-content;
-  color: #ffffff;
+  color: currentColor;
 }
 .elementor-lightbox .elementor-swiper-button:focus {
   outline-width: 1px;
@@ -193,15 +175,47 @@
   justify-content: center;
   font-size: var(--lightbox-navigation-icons-size);
 }
+@media (max-width: 1024px) {
+  .elementor-lightbox .elementor-swiper-button-prev:active, .elementor-lightbox .elementor-swiper-button-next:active {
+    -webkit-tap-highlight-color: transparent; /* fallback for some Androids */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+  .elementor-lightbox .elementor-swiper-button-prev svg,
+  .elementor-lightbox .elementor-swiper-button-prev i, .elementor-lightbox .elementor-swiper-button-next svg,
+  .elementor-lightbox .elementor-swiper-button-next i {
+    cursor: pointer;
+  }
+  .elementor-lightbox .elementor-swiper-button-prev svg:active,
+  .elementor-lightbox .elementor-swiper-button-prev i:active, .elementor-lightbox .elementor-swiper-button-next svg:active,
+  .elementor-lightbox .elementor-swiper-button-next i:active {
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
 @media (max-width: 767px) {
   .elementor-lightbox .elementor-swiper-button:focus {
     outline: none;
+  }
+  .elementor-lightbox .elementor-swiper-button-prev:active, .elementor-lightbox .elementor-swiper-button-next:active {
+    -webkit-tap-highlight-color: transparent; /* fallback for some Androids */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
   .elementor-lightbox .elementor-swiper-button-prev, .elementor-lightbox .elementor-swiper-button-next {
     width: 20%;
   }
   .elementor-lightbox .elementor-swiper-button-prev i, .elementor-lightbox .elementor-swiper-button-next i {
     padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .elementor-lightbox .elementor-swiper-button-prev svg,
+  .elementor-lightbox .elementor-swiper-button-prev i, .elementor-lightbox .elementor-swiper-button-next svg,
+  .elementor-lightbox .elementor-swiper-button-next i {
+    cursor: pointer;
+  }
+  .elementor-lightbox .elementor-swiper-button-prev svg:active,
+  .elementor-lightbox .elementor-swiper-button-prev i:active, .elementor-lightbox .elementor-swiper-button-next svg:active,
+  .elementor-lightbox .elementor-swiper-button-next i:active {
+    outline: none;
     background-color: rgba(0, 0, 0, 0.5);
   }
   .elementor-lightbox .elementor-swiper-button-prev {
@@ -373,8 +387,8 @@
 .elementor-slideshow--share-mode .elementor-slideshow__share-links, .elementor-slideshow--share-mode .elementor-slideshow__share-links a {
   opacity: 1;
 }
-.elementor-slideshow--share-mode .elementor-slideshow__share-links .eicon-twitter {
-  color: #1DA1F2;
+.elementor-slideshow--share-mode .elementor-slideshow__share-links .eicon-x-twitter {
+  color: #000000;
 }
 .elementor-slideshow--share-mode .elementor-slideshow__share-links .eicon-facebook {
   color: #3b5998;
@@ -385,8 +399,8 @@
 .elementor-slideshow--share-mode .elementor-slideshow__share-links .eicon-download-bold {
   color: #9DA5AE;
 }
-.elementor-slideshow--share-mode .elementor-slideshow__share-links .e-eicon-twitter {
-  fill: #1DA1F2;
+.elementor-slideshow--share-mode .elementor-slideshow__share-links .e-eicon-x-twitter {
+  fill: #000000;
 }
 .elementor-slideshow--share-mode .elementor-slideshow__share-links .e-eicon-facebook {
   fill: #3b5998;

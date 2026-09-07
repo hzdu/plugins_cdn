@@ -4,26 +4,110 @@
    $(document).ready( function() {
       var itemList = $('#item-list'), // Container of item list
           maxLevel = 6,
+          dragAxis = false,
+          dragTabSize = 20,
+          dragStartPageX = 0,
+          dragLastPageX = 0,
+          hierarchicalValue = ( typeof contentOrderSort.hierarchical !== 'undefined' ) ? contentOrderSort.hierarchical : contentOrderSort.hirarchical,
+          isHierarchical = ( String( hierarchicalValue ) === 'true' ),
+          disableParentChange = ! isHierarchical,
+          isSavingOrder = false,
           sort_started = {}, // For data related to the dragged element when dragging started
           sort_finished = {}; // For data related to the dragged element when dragging has finished
 
+      /**
+       * Block accidental nesting under a sibling during mostly-vertical drags.
+       * Intentional reparenting requires a deliberate rightward pointer move.
+       */
+      function isNestingMoveAllowed( placeholder, parentItem, currentItem ) {
+         if ( ! isHierarchical || ! parentItem || ! parentItem.length || ! currentItem || ! currentItem.length ) {
+            return true;
+         }
+
+         var $currentParentList = currentItem.parent( 'ul' ),
+             $proposedParentList = parentItem.parent( 'ul' );
+
+         if ( ! $currentParentList.length || ! $proposedParentList.length ) {
+            return true;
+         }
+
+         // Only guard nesting under a direct sibling in the same list.
+         if ( $currentParentList[0] !== $proposedParentList[0] ) {
+            return true;
+         }
+
+         return ( dragLastPageX - dragStartPageX ) > dragTabSize;
+      }
+
+      /**
+       * Re-enable nestedSortable after a save completes or fails.
+       */
+      function unlockContentOrderSortable() {
+         isSavingOrder = false;
+         itemList.nestedSortable( 'enable' );
+         itemList.removeClass( 'asenha-content-order--saving' );
+      }
+
+      /**
+       * Restore the dragged item to its pre-drag DOM position after a failed save.
+       */
+      function restoreItemAfterSaveFailure() {
+         if ( ! sort_started.item || ! sort_started.item.length ) {
+            return;
+         }
+
+         var $item = sort_started.item;
+
+         if ( sort_started.prev && sort_started.prev.length ) {
+            $item.insertAfter( sort_started.prev );
+         } else if ( sort_started.next && sort_started.next.length ) {
+            $item.insertBefore( sort_started.next );
+         } else if ( sort_started.parent && sort_started.parent.length ) {
+            sort_started.parent.prepend( $item );
+         }
+
+         if ( typeof sort_started.dataParent !== 'undefined' ) {
+            $item.attr( 'data-parent', sort_started.dataParent );
+         }
+
+         if ( typeof sort_started.dataMenuOrder !== 'undefined' ) {
+            $item.attr( 'data-menu-order', sort_started.dataMenuOrder );
+         }
+      }
+
       // console.log(contentOrderSort); // Data passed from PHP via wp_localize_script
-      if (contentOrderSort.hierarchical == 'false') {
+      if ( ! isHierarchical ) {
+         // Non-hierarchical lists should only support top-level reordering.
          maxLevel = 1;
+         // Locking drag to vertical axis prevents right-drift from triggering invalid nest attempts.
+         dragAxis = 'y';
+         // Keep placeholder-based drop valid even when pointer drifts right.
+         dragTabSize = 9999;
       }
 
       // Make item list into nested sortable
       // Ref: https://api.jqueryui.com/sortable/
       // Ref: https://github.com/ilikenwf/nestedSortable
+      // See options at https://github.com/ilikenwf/nestedSortable/blob/master/jquery.mjs.nestedSortable.js#L37
+      // Ref: https://ilikenwf.github.io/example.html (demo)
       itemList.nestedSortable({
          // Disable nesting if set to true
-         protectRoot: true,
+         protectRoot: false,
+         // Disable moving sub-item to a different parent or up the nested structure
+         disableParentChange: disableParentChange,
+         isTree: true,
+         // ASE does not use collapse/expand UI; keep configured pointer tolerance.
+         expandOnHover: false,
+         // Preserve empty ul.child-list drop targets on leaf posts during drag.
+         doNotClear: isHierarchical,
          // Forces the placeholder to have a size.
          forcePlaceholderSize: true,
          // Restricts sort start click to the specified element.
          // Allows for a helper element to be used for dragging display.
          // If set to "clone", then the element will be cloned and the clone will be dragged.
          helper: 'clone',
+         // Use vertical-only dragging for non-hierarchical post types.
+         axis: dragAxis,
          listType: 'ul',
          items: 'li',
          toleranceElement: '> div', // Direct children of the li element
@@ -39,17 +123,35 @@
          // Whether the sortable items should revert to their new positions using a smooth animation.
          // If set as a number, it's in miliseconds
          revert: 250,
-         // How far right or left (in pixels) the item has to travel 
+         // How far right or left (in pixels) the item has to travel
          // in order to be nested or to be sent outside its current list. Default: 20
-         tabSize: 25, 
+         tabSize: dragTabSize,
+         isAllowed: isNestingMoveAllowed,
          // This event is triggered when sorting starts.
          start: function (event, ui) {
+            if ( isSavingOrder ) {
+               return false;
+            }
+
+            dragStartPageX = event.pageX;
+            dragLastPageX = event.pageX;
+
+            // console.log('ui.item -- start');
+            // console.log(ui.item);
             sort_started.item = ui.item; // The jQuery object representing the current dragged element.
             sort_started.prev = ui.item.prev(':not(".ui-sortable-placeholder")');
             sort_started.next = ui.item.next(':not(".ui-sortable-placeholder")');
+            sort_started.parent = ui.item.parent( 'ul' );
+            sort_started.dataParent = ui.item.attr( 'data-parent' );
+            sort_started.dataMenuOrder = ui.item.attr( 'data-menu-order' );
+         },
+         sort: function (event) {
+            dragLastPageX = event.pageX;
          },
          // This event is triggered when the user stopped sorting and the DOM position has changed.
          update: function (event, ui) {
+            // console.log('ui.item -- update');
+            // console.log(ui.item);
             // Elements of the "Updating order..." notice
             var updateNotice = $('#updating-order-notice'), // Wrapper
                 spinner = $('#spinner-img'), // Spinner
@@ -60,13 +162,33 @@
             // Reset the state of the "Updating order..." indicator
             $(spinner).show();
             $(updateSuccess).hide();
-            $(updateNotice).css('background-color','#eee').fadeIn();
+            $(updateNotice)
+               .removeClass( 'asenha-content-order-notice--error' )
+               .css( 'background-color', '#eee' )
+               .fadeIn();
             
             // Get the end items where the item was placed
+            // console.log('sort_finished');
+            // console.log(sort_finished);
             sort_finished.item = ui.item; // The jQuery object representing the current dragged element.
-            sort_finished.prev = ui.item.prev(':not(".ui-sortable-placeholder")');
-            sort_finished.next = ui.item.next(':not(".ui-sortable-placeholder")');
+            // sort_finished.prev = ui.item.prev(':not(".ui-sortable-placeholder")');
+            // sort_finished.next = ui.item.next(':not(".ui-sortable-placeholder")');
 
+            // If an item is moved as a child of another item
+            // it will be inserted inside the ul.child-list with a data-parent
+            if ( ui.item.parent('.child-list').length ) {
+               // if ( ui.item.siblings('.list-item').length ) {
+                  // Do something       
+               // } else {
+                  // Let's set the item's parent ID here, taking from ul.child-list's data-parent info
+                  sort_finished.item.attr('data-parent', ui.item.parent('.child-list').attr('data-parent'));
+               // }
+            } else {
+                  sort_finished.item.attr('data-parent', '0');               
+            }
+            // console.log('sort_finished.prev');
+            // console.log(sort_finished.prev);
+            
             var list_offset = parseInt(sort_finished.item.index());
             sort_finished.item.attr('data-menu-order', list_offset);
             
@@ -89,8 +211,26 @@
                post_type: sort_started.item.attr('data-post-type'),
                attributes: attributes,
             };
+
+            /*! <fs_premium_only> */
+            dataArgs = {
+               action: contentOrderSort.action, // from wp_localize_script
+               item_parent: sort_finished.item.attr('data-parent'), // We deal with sorting child posts as well
+               start: 0, // Start processing menu_order update in DB from item with menu_order defined here
+               nonce: contentOrderSort.nonce,
+               post_id: sort_finished.item.attr('data-id'),
+               menu_order: sort_finished.item.attr('data-menu-order'),
+               excluded_items: {},
+               post_type: sort_started.item.attr('data-post-type'),
+               attributes: attributes,
+            };
+            /*! </fs_premium_only> */
             // console.log('dataArgs: ' + cleanStringify(dataArgs));
-            
+
+            isSavingOrder = true;
+            itemList.nestedSortable( 'disable' );
+            itemList.addClass( 'asenha-content-order--saving' );
+
             // AJAX call to update menu_order for items in the list
             $.ajax({
                type: "POST",
@@ -101,10 +241,30 @@
                   // Update the state of the "Updating order..." indicator
                   $(spinner).hide();
                   $(updateSuccess).show();
-                  $(updateNotice).css('background-color','#cce5cc').delay(1000).fadeOut();
+                  $(updateNotice).css( 'background-color', '#cce5cc' ).delay( 1000 ).fadeOut();
                },
                error: function(errorThrown) {
-                  console.log(errorThrown);
+                  console.log( errorThrown );
+
+                  try {
+                     itemList.nestedSortable( 'cancel' );
+                  } catch ( cancelError ) {
+                     console.log( cancelError );
+                  }
+
+                  restoreItemAfterSaveFailure();
+
+                  $(spinner).hide();
+                  $(updateSuccess).hide();
+                  $(updateNotice)
+                     .addClass( 'asenha-content-order-notice--error' )
+                     .css( 'background-color', '#f8d7da' )
+                     .fadeIn()
+                     .delay( 3000 )
+                     .fadeOut();
+               },
+               complete: function() {
+                  unlockContentOrderSortable();
                }
             });
          }
@@ -113,11 +273,27 @@
       /*! <fs_premium_only> */
       // Toggle excerpt
       $('#toggles').show();
+      $('#toggle-featured-thumbnails').on('change', function() {
+         // This checkbox is Pro-only and may not be present for some post types.
+         var url = new URL(window.location.href);
+
+         if ($(this).is(':checked')) {
+            url.searchParams.set('asenha_show_featured_thumbnails', '1');
+         } else {
+            url.searchParams.delete('asenha_show_featured_thumbnails');
+         }
+
+         window.location.href = url.toString();
+      });
       $('#toggle-excerpt').click(function() {
          $('.item-excerpt').toggle();
       });
       $('#toggle-taxonomy-terms').click(function() {
          $('.item-taxonomy-terms').toggle();
+      });
+      $('#toggle-child-posts').click(function() {
+         $('.has-child-label').toggle();
+         $('.child-list').toggle();
       });
       /*! </fs_premium_only> */
    });
