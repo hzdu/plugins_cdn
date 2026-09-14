@@ -1,0 +1,67 @@
+:root{
+	--wd-top-bar-h: .00001px;
+	--wd-top-bar-sm-h: .00001px;
+	--wd-top-bar-sticky-h: .00001px;
+	--wd-top-bar-brd-w: .00001px;
+
+	--wd-header-general-h: 90px;
+	--wd-header-general-sm-h: 60px;
+	--wd-header-general-sticky-h: 60px;
+	--wd-header-general-brd-w: .00001px;
+
+	--wd-header-bottom-h: .00001px;
+	--wd-header-bottom-sm-h: .00001px;
+	--wd-header-bottom-sticky-h: .00001px;
+	--wd-header-bottom-brd-w: .00001px;
+
+	--wd-header-clone-h: .00001px;
+
+	--wd-header-brd-w: calc(var(--wd-top-bar-brd-w) + var(--wd-header-general-brd-w) + var(--wd-header-bottom-brd-w));
+	--wd-header-h: calc(var(--wd-top-bar-h) + var(--wd-header-general-h) + var(--wd-header-bottom-h) + var(--wd-header-brd-w));
+	--wd-header-sticky-h: calc(var(--wd-top-bar-sticky-h) + var(--wd-header-general-sticky-h) + var(--wd-header-bottom-sticky-h) + var(--wd-header-clone-h) + var(--wd-header-brd-w));
+	--wd-header-sm-h: calc(var(--wd-top-bar-sm-h) + var(--wd-header-general-sm-h) + var(--wd-header-bottom-sm-h) + var(--wd-header-brd-w));
+}
+
+
+.whb-sticked .whb-general-header .wd-dropdown:not(.sub-sub-menu) {
+	margin-top: 10px;
+}
+
+.whb-sticked .whb-general-header .wd-dropdown:not(.sub-sub-menu):after {
+	height: 20px;
+}
+
+:root:has(.whb-top-bar.whb-border-boxed) {
+	--wd-top-bar-brd-w: .00001px;
+}
+
+@media (max-width: 1024px) {
+:root:has(.whb-top-bar.whb-hidden-mobile) {
+	--wd-top-bar-brd-w: .00001px;
+}
+}
+
+
+:root:has(.whb-header-bottom.whb-border-boxed) {
+	--wd-header-bottom-brd-w: .00001px;
+}
+
+@media (max-width: 1024px) {
+:root:has(.whb-header-bottom.whb-hidden-mobile) {
+	--wd-header-bottom-brd-w: .00001px;
+}
+}
+
+
+
+		.whb-top-bar-inner { border-color: rgba(255, 255, 255, 0.25);border-bottom-width: 1px;border-bottom-style: solid; }
+.whb-59c0lf2yqnwxibv5ypzl form.searchform {
+	--wd-form-height: 46px;
+}
+.whb-general-header {
+	border-bottom-width: 0px;border-bottom-style: solid;
+}
+
+.whb-header-bottom {
+	border-color: rgba(230, 230, 230, 1);border-bottom-width: 1px;border-bottom-style: solid;
+}

@@ -1,0 +1,113 @@
+@font-face {
+	font-weight: normal;
+	font-style: normal;
+	font-family: "woodmart-font";
+	src: url("//latea-co.com/wp-content/themes/woodmart/fonts/woodmart-font-1-400.woff2?v=8.2.2") format("woff2");
+}
+
+@font-face {
+	font-family: "star";
+	font-weight: 400;
+	font-style: normal;
+	src: url("//latea-co.com/wp-content/plugins/woocommerce/assets/fonts/star.eot?#iefix") format("embedded-opentype"), url("//latea-co.com/wp-content/plugins/woocommerce/assets/fonts/star.woff") format("woff"), url("//latea-co.com/wp-content/plugins/woocommerce/assets/fonts/star.ttf") format("truetype"), url("//latea-co.com/wp-content/plugins/woocommerce/assets/fonts/star.svg#star") format("svg");
+}
+
+@font-face {
+	font-family: "WooCommerce";
+	font-weight: 400;
+	font-style: normal;
+	src: url("//latea-co.com/wp-content/plugins/woocommerce/assets/fonts/WooCommerce.eot?#iefix") format("embedded-opentype"), url("//latea-co.com/wp-content/plugins/woocommerce/assets/fonts/WooCommerce.woff") format("woff"), url("//latea-co.com/wp-content/plugins/woocommerce/assets/fonts/WooCommerce.ttf") format("truetype"), url("//latea-co.com/wp-content/plugins/woocommerce/assets/fonts/WooCommerce.svg#WooCommerce") format("svg");
+}
+
+:root {
+	--wd-text-font: "Lato", Arial, Helvetica, sans-serif;
+	--wd-text-font-weight: 400;
+	--wd-text-color: rgb(118,118,118);
+	--wd-text-font-size: 15px;
+	--wd-title-font: "Roboto", Arial, Helvetica, sans-serif;
+	--wd-title-font-weight: 500;
+	--wd-title-color: #242424;
+	--wd-entities-title-font: "Roboto", Arial, Helvetica, sans-serif;
+	--wd-entities-title-font-weight: 400;
+	--wd-entities-title-color: #333333;
+	--wd-entities-title-color-hover: rgb(51 51 51 / 65%);
+	--wd-alternative-font: "Playfair Display", Arial, Helvetica, sans-serif;
+	--wd-widget-title-font: "Roboto", Arial, Helvetica, sans-serif;
+	--wd-widget-title-font-weight: 500;
+	--wd-widget-title-transform: uppercase;
+	--wd-widget-title-color: #333;
+	--wd-widget-title-font-size: 16px;
+	--wd-header-el-font: "Lato", Arial, Helvetica, sans-serif;
+	--wd-header-el-font-weight: 700;
+	--wd-header-el-transform: uppercase;
+	--wd-header-el-font-size: 13px;
+	--wd-primary-color: rgb(70,85,94);
+	--wd-alternative-color: rgb(130,107,47);
+	--wd-link-color: #333333;
+	--wd-link-color-hover: #242424;
+	--btn-default-bgcolor: #f7f7f7;
+	--btn-default-bgcolor-hover: #efefef;
+	--btn-accented-bgcolor: rgb(190,161,99);
+	--btn-accented-bgcolor-hover: rgb(173,141,74);
+	--wd-form-brd-width: 2px;
+	--notices-success-bg: #459647;
+	--notices-success-color: #fff;
+	--notices-warning-bg: #E0B252;
+	--notices-warning-color: #fff;
+}
+.wd-popup.wd-age-verify {
+	--wd-popup-width: 500px;
+}
+.wd-popup.wd-promo-popup {
+	background-color: #111111;
+	background-image: url(https://latea-co.com/wp-content/uploads/2021/08/promo-popup.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	--wd-popup-width: 800px;
+	--wd-popup-padding: 15px;
+}
+:is(.woodmart-woocommerce-layered-nav, .wd-product-category-filter) .wd-scroll-content {
+	max-height: 223px;
+}
+.wd-page-title {
+	background-color: #0a0a0a;
+	background-image: none;
+	background-size: cover;
+	background-position: center center;
+}
+.wd-footer {
+	background-color: #ffffff;
+	background-image: url(https://latea-co.com/wp-content/uploads/2025/06/pyramid.webp);
+	background-repeat: repeat;
+}
+.wd-popup.popup-quick-view {
+	--wd-popup-width: 920px;
+}
+:root{
+--wd-container-w: 1600px;
+--wd-form-brd-radius: 0px;
+--btn-default-color: #333;
+--btn-default-color-hover: #333;
+--btn-accented-color: #fff;
+--btn-accented-color-hover: #fff;
+--btn-default-brd-radius: 0px;
+--btn-default-box-shadow: none;
+--btn-default-box-shadow-hover: none;
+--btn-default-box-shadow-active: none;
+--btn-default-bottom: 0px;
+--btn-accented-bottom-active: -1px;
+--btn-accented-brd-radius: 0px;
+--btn-accented-box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .15);
+--btn-accented-box-shadow-hover: inset 0 -2px 0 rgba(0, 0, 0, .15);
+--wd-brd-radius: 0px;
+}
+
+@media (min-width: 1600px) {
+section.elementor-section.wd-section-stretch > .elementor-container {
+margin-left: auto;
+margin-right: auto;
+}
+}
+
+
